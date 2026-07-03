@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matemáticas - 1ro y 5to Básico</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 16px;
+        }
+        
+        /* MENÚ DE GRADOS */
+        .menu-grados {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        @media (max-width: 600px) {
+            .menu-grados {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .grado-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 50px 30px;
+            border-radius: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: none;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .grado-btn:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.4);
+        }
+        
+        .grado-emoji {
+            font-size: 80px;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        /* MENÚ PRINCIPAL POR GRADO */
+        .menu-principal {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        @media (max-width: 600px) {
+            .menu-principal {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .opcion {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: none;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        .opcion:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.4);
+        }
+        
+        .opcion-emoji {
+            font-size: 48px;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        /* EJERCICIOS */
+        .ejercicio {
+            background: #f8f9ff;
+            border-left: 5px solid #667eea;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            transition: transform 0.2s;
+        }
+        
+        .ejercicio:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.1);
+        }
+        
+        .ejercicio-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .ejercicio-numero {
+            font-size: 18px;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .operacion {
+            font-size: 24px;
+            font-weight: bold;
+            color: #667eea;
+            background: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: 2px solid #667eea;
+        }
+        
+        .decoracion-ejercicio {
+            font-size: 36px;
+            text-align: center;
+            margin: 15px 0;
+            opacity: 0.6;
+            filter: saturate(0.8);
+        }
+        
+        .recta-container {
+            background: white;
+            padding: 25px 10px;
+            border-radius: 10px;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+        
+        svg {
+            display: block;
+            margin: 0 auto;
+            width: 100%;
+            min-height: 150px;
+        }
+        
+        .imagenes-contenedor {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+        
+        .imagen-item {
+            font-size: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 70px;
+            height: 70px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            border: 2px solid #ddd;
+        }
+        
+        .opciones {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+            justify-content: center;
+        }
+        
+        .numero-btn {
+            min-width: 45px;
+            height: 45px;
+            padding: 0 10px;
+            border: 2px solid #ddd;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s;
+            color: #333;
+        }
+        
+        .numero-btn:hover {
+            transform: scale(1.1);
+            border-color: #667eea;
+            color: #667eea;
+        }
+        
+        .numero-btn.correcto {
+            background: #10b981;
+            border-color: #10b981;
+            color: white;
+        }
+        
+        .numero-btn.incorrecto {
+            background: #ef4444;
+            border-color: #ef4444;
+            color: white;
+        }
+        
+        .feedback {
+            margin-top: 10px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 16px;
+            display: none;
+        }
+        
+        .feedback.correcto {
+            color: #10b981;
+            display: block;
+        }
+        
+        .feedback.incorrecto {
+            color: #ef4444;
+            display: block;
+        }
+        
+        .botones-finales {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        
+        button.btn {
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-resultados {
+            background: #667eea;
+            color: white;
+        }
+        
+        .btn-resultados:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .btn-volver {
+            background: #764ba2;
+            color: white;
+        }
+        
+        .btn-volver:hover {
+            background: #653a89;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(118, 75, 162, 0.3);
+        }
+        
+        .puntuacion {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 10px;
+            margin-top: 30px;
+            display: none;
+        }
+        
+        .puntuacion h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .puntuacion p {
+            font-size: 18px;
+        }
+        
+        .seccion {
+            display: none;
+        }
+        
+        .seccion.active {
+            display: block;
+        }
+        
+        .instrucciones {
+            background: #e3f2fd;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            color: #333;
+        }
+        
+        .decoraciones-fondo {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+            opacity: 0.1;
+            overflow: hidden;
+        }
+        
+        .decoracion {
+            position: absolute;
+            font-size: 80px;
+            animation: float 6s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- MENÚ DE GRADOS -->
+        <div id="menu-grados" class="seccion active">
+            <h1>📚 Matemáticas</h1>
+            <p class="subtitle">Elige tu grado</p>
+            
+            <div class="menu-grados">
+                <button class="grado-btn" onclick="irA('menu-1basico')">
+                    <span class="grado-emoji">🧒</span>
+                    1º Básico
+                </button>
+                <button class="grado-btn" onclick="irA('menu-5basico')">
+                    <span class="grado-emoji">👧</span>
+                    5º Básico
+                </button>
+            </div>
+        </div>
+
+        <!-- MENÚ 1º BÁSICO -->
+        <div id="menu-1basico" class="seccion">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                <h1>🧒 1º Básico</h1>
+                <button class="btn btn-volver" onclick="irA('menu-grados')">← Volver</button>
+            </div>
+            
+            <div class="menu-principal">
+                <button class="opcion" onclick="irA('recta')">
+                    <span class="opcion-emoji">📍</span>
+                    Sumas y Restas<br>en Recta
+                </button>
+                <button class="opcion" onclick="irA('cuanto-falta')">
+                    <span class="opcion-emoji">❓</span>
+                    ¿Cuánto Falta?
+                </button>
+                <button class="opcion" onclick="irA('restas-simples')">
+                    <span class="opcion-emoji">➖</span>
+                    Restas Simples
+                </button>
+                <button class="opcion" onclick="irA('resta-imagenes')">
+                    <span class="opcion-emoji">🎨</span>
+                    Resta con Imágenes
+                </button>
+            </div>
+        </div>
+
+        <!-- MENÚ 5º BÁSICO -->
+        <div id="menu-5basico" class="seccion">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                <h1>👧 5º Básico</h1>
+                <button class="btn btn-volver" onclick="irA('menu-grados')">← Volver</button>
+            </div>
+            
+            <div class="menu-principal">
+                <button class="opcion" onclick="irA('tablas-multiplicar')">
+                    <span class="opcion-emoji">✖️</span>
+                    Tablas de Multiplicar
+                </button>
+            </div>
+        </div>
+
+        <!-- SUMAS Y RESTAS EN RECTA NUMÉRICA -->
+        <div id="recta" class="seccion">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                <h1>📍 Sumas y Restas en Recta Numérica</h1>
+                <button class="btn btn-volver" onclick="irA('menu-1basico')">← Volver</button>
+            </div>
+            <div class="instrucciones">
+                📌 Resuelve la operación y presiona el número correcto. ¡Se dibujarán los saltos en la recta!
+            </div>
+            <div id="ejercicios-recta"></div>
+            <div class="botones-finales">
+                <button class="btn btn-resultados" onclick="mostrarResultados('recta')">Ver Mis Resultados</button>
+                <button class="btn btn-resultados" onclick="generarNuevosEjercicios('recta')">🔄 Nuevos Ejercicios</button>
+                <button class="btn btn-volver" onclick="irA('menu-1basico')">Volver</button>
+            </div>
+            <div class="puntuacion" id="puntuacion-recta">
+                <h2>¡Felicidades!</h2>
+                <p id="puntuacion-texto-recta"></p>
+            </div>
+        </div>
+
+        <!-- ¿CUÁNTO FALTA? -->
+        <div id="cuanto-falta" class="seccion">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                <h1>❓ ¿Cuánto Falta?</h1>
+                <button class="btn btn-volver" onclick="irA('menu-1basico')">← Volver</button>
+            </div>
+            <div class="instrucciones">
+                🎯 Cuenta los objetos que faltan para llegar al número. Presiona la respuesta correcta.
+            </div>
+            <div id="ejercicios-cuanto-falta"></div>
+            <div class="botones-finales">
+                <button class="btn btn-resultados" onclick="mostrarResultados('cuanto-falta')">Ver Mis Resultados</button>
+                <button class="btn btn-resultados" onclick="generarNuevosEjercicios('cuanto-falta')">🔄 Nuevos Ejercicios</button>
+                <button class="btn btn-volver" onclick="irA('menu-1basico')">Volver</button>
+            </div>
+            <div class="puntuacion" id="puntuacion-cuanto-falta">
+                <h2>¡Felicidades!</h2>
+                <p id="puntuacion-texto-cuanto-falta"></p>
+            </div>
+        </div>
+
+        <!-- RESTAS SIMPLES -->
+        <div id="restas-simples" class="seccion">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                <h1>➖ Restas Simples</h1>
+                <button class="btn btn-volver" onclick="irA('menu-1basico')">← Volver</button>
+            </div>
+            <div class="instrucciones">
+                🧮 Resuelve las restas simples. Presiona el número correcto.
+            </div>
+            <div id="ejercicios-restas-simples"></div>
+            <div class="botones-finales">
+                <button class="btn btn-resultados" onclick="mostrarResultados('restas-simples')">Ver Mis Resultados</button>
+                <button class="btn btn-resultados" onclick="generarNuevosEjercicios('restas-simples')">🔄 Nuevos Ejercicios</button>
+                <button class="btn btn-volver" onclick="irA('menu-1basico')">Volver</button>
+            </div>
+            <div class="puntuacion" id="puntuacion-restas-simples">
+                <h2>¡Felicidades!</h2>
+                <p id="puntuacion-texto-restas-simples"></p>
+            </div>
+        </div>
+
+        <!-- RESTA CON IMÁGENES -->
+        <div id="resta-imagenes" class="seccion">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                <h1>🎨 Resta con Imágenes</h1>
+                <button class="btn btn-volver" onclick="irA('menu-1basico')">← Volver</button>
+            </div>
+            <div class="instrucciones">
+                📷 Cuenta los objetos que quedan después de restar. Presiona la respuesta correcta.
+            </div>
+            <div id="ejercicios-resta-imagenes"></div>
+            <div class="botones-finales">
+                <button class="btn btn-resultados" onclick="mostrarResultados('resta-imagenes')">Ver Mis Resultados</button>
+                <button class="btn btn-resultados" onclick="generarNuevosEjercicios('resta-imagenes')">🔄 Nuevos Ejercicios</button>
+                <button class="btn btn-volver" onclick="irA('menu-1basico')">Volver</button>
+            </div>
+            <div class="puntuacion" id="puntuacion-resta-imagenes">
+                <h2>¡Felicidades!</h2>
+                <p id="puntuacion-texto-resta-imagenes"></p>
+            </div>
+        </div>
+
+        <!-- TABLAS DE MULTIPLICAR -->
+        <div id="tablas-multiplicar" class="seccion">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                <h1>✖️ Tablas de Multiplicar</h1>
+                <button class="btn btn-volver" onclick="irA('menu-5basico')">← Volver</button>
+            </div>
+            <div class="instrucciones">
+                🎯 Resuelve las multiplicaciones. ¡Puedes lograr excelentes resultados!
+            </div>
+            <div id="ejercicios-tablas-multiplicar"></div>
+            <div class="botones-finales">
+                <button class="btn btn-resultados" onclick="mostrarResultados('tablas-multiplicar')">Ver Mis Resultados</button>
+                <button class="btn btn-resultados" onclick="generarNuevosEjercicios('tablas-multiplicar')">🔄 Nuevos Ejercicios</button>
+                <button class="btn btn-volver" onclick="irA('menu-5basico')">Volver</button>
+            </div>
+            <div class="puntuacion" id="puntuacion-tablas-multiplicar">
+                <h2>¡Felicidades!</h2>
+                <p id="puntuacion-texto-tablas-multiplicar"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ============ DATOS ============
+        const dibujosDisponibles = [
+            { dibujo: "🍎", descripcion: "manzanas" },
+            { dibujo: "🐠", descripcion: "peces" },
+            { dibujo: "🌟", descripcion: "estrellas" },
+            { dibujo: "🍭", descripcion: "dulces" },
+            { dibujo: "🦋", descripcion: "mariposas" },
+            { dibujo: "🌸", descripcion: "flores" },
+            { dibujo: "🧸", descripcion: "osos" },
+            { dibujo: "🍌", descripcion: "plátanos" },
+            { dibujo: "🎈", descripcion: "globos" },
+            { dibujo: "🐢", descripcion: "tortugas" },
+            { dibujo: "⭐", descripcion: "soles" },
+            { dibujo: "🍒", descripcion: "cerezas" },
+            { dibujo: "🌈", descripcion: "arcos iris" },
+            { dibujo: "🦆", descripcion: "patos" },
+            { dibujo: "🎨", descripcion: "colores" }
+        ];
+
+        const decoracionesMultiplicar = ["🌟", "💫", "✨", "🎯", "🏆", "🎉", "💪", "🚀", "💎", "👑"];
+
+        let ejercicios = {
+            recta: [],
+            'cuanto-falta': [],
+            'restas-simples': [],
+            'resta-imagenes': [],
+            'tablas-multiplicar': []
+        };
+
+        let respuestas = {
+            recta: {},
+            'cuanto-falta': {},
+            'restas-simples': {},
+            'resta-imagenes': {},
+            'tablas-multiplicar': {}
+        };
+
+        // ============ GENERAR EJERCICIOS ============
+        function generarEjercicios() {
+            ejercicios.recta = generarRecta();
+            ejercicios['cuanto-falta'] = generarCuantoFalta();
+            ejercicios['restas-simples'] = generarRestasSimples();
+            ejercicios['resta-imagenes'] = generarRestaImagenes();
+            ejercicios['tablas-multiplicar'] = generarTablasMultiplicar();
+        }
+
+        function generarRecta() {
+            const ejercicios = [];
+            const dibujosUsados = new Set();
+            
+            for (let i = 0; i < 7; i++) {
+                const num1 = Math.floor(Math.random() * 6) + 1;
+                const num2 = Math.floor(Math.random() * 6) + 1;
+                if (num1 + num2 <= 10) {
+                    let dibujo;
+                    do {
+                        dibujo = dibujosDisponibles[Math.floor(Math.random() * dibujosDisponibles.length)];
+                    } while (dibujosUsados.has(dibujo.descripcion));
+                    dibujosUsados.add(dibujo.descripcion);
+                    
+                    ejercicios.push({
+                        tipo: "suma",
+                        num1: num1,
+                        num2: num2,
+                        dibujo: dibujo.dibujo
+                    });
+                } else {
+                    i--;
+                }
+            }
+            
+            for (let i = 0; i < 8; i++) {
+                const num1 = Math.floor(Math.random() * 6) + 5;
+                const num2 = Math.floor(Math.random() * (num1 - 1)) + 1;
+                
+                let dibujo;
+                do {
+                    dibujo = dibujosDisponibles[Math.floor(Math.random() * dibujosDisponibles.length)];
+                } while (dibujosUsados.has(dibujo.descripcion));
+                dibujosUsados.add(dibujo.descripcion);
+                
+                ejercicios.push({
+                    tipo: "resta",
+                    num1: num1,
+                    num2: num2,
+                    dibujo: dibujo.dibujo
+                });
+            }
+            
+            return ejercicios;
+        }
+
+        function generarCuantoFalta() {
+            const ejercicios = [];
+            for (let i = 0; i < 10; i++) {
+                const total = Math.floor(Math.random() * 6) + 5;
+                const tiene = Math.floor(Math.random() * (total - 1)) + 1;
+                const falta = total - tiene;
+                const dibujo = dibujosDisponibles[Math.floor(Math.random() * dibujosDisponibles.length)];
+                
+                ejercicios.push({
+                    total: total,
+                    tiene: tiene,
+                    falta: falta,
+                    dibujo: dibujo.dibujo
+                });
+            }
+            return ejercicios;
+        }
+
+        function generarRestasSimples() {
+            const ejercicios = [];
+            for (let i = 0; i < 10; i++) {
+                const num1 = Math.floor(Math.random() * 11);
+                const num2 = Math.floor(Math.random() * (num1 + 1));
+                
+                ejercicios.push({
+                    num1: num1,
+                    num2: num2
+                });
+            }
+            return ejercicios;
+        }
+
+        function generarRestaImagenes() {
+            const ejercicios = [];
+            const dibujosUsados = new Set();
+            
+            for (let i = 0; i < 10; i++) {
+                const total = Math.floor(Math.random() * 6) + 2;
+                const quita = Math.floor(Math.random() * (total - 1)) + 1;
+                const resultado = total - quita;
+                
+                let dibujo;
+                do {
+                    dibujo = dibujosDisponibles[Math.floor(Math.random() * dibujosDisponibles.length)];
+                } while (dibujosUsados.has(dibujo.descripcion) && dibujosUsados.size < dibujosDisponibles.length);
+                dibujosUsados.add(dibujo.descripcion);
+                
+                ejercicios.push({
+                    total: total,
+                    quita: quita,
+                    resultado: resultado,
+                    dibujo: dibujo.dibujo
+                });
+            }
+            return ejercicios;
+        }
+
+        function generarTablasMultiplicar() {
+            const ejercicios = [];
+            for (let i = 0; i < 10; i++) {
+                const num1 = Math.floor(Math.random() * 12) + 1; // 1 a 12
+                const num2 = Math.floor(Math.random() * 12) + 1; // 1 a 12
+                
+                ejercicios.push({
+                    num1: num1,
+                    num2: num2,
+                    resultado: num1 * num2
+                });
+            }
+            return ejercicios;
+        }
+
+        // ============ NAVEGACIÓN ============
+        function irA(seccion) {
+            document.querySelectorAll('.seccion').forEach(s => s.classList.remove('active'));
+            document.getElementById(seccion).classList.add('active');
+            
+            if (seccion === 'recta' && document.getElementById('ejercicios-recta').innerHTML === '') {
+                renderEjerciciosRecta();
+            } else if (seccion === 'cuanto-falta' && document.getElementById('ejercicios-cuanto-falta').innerHTML === '') {
+                renderEjerciciosCuantoFalta();
+            } else if (seccion === 'restas-simples' && document.getElementById('ejercicios-restas-simples').innerHTML === '') {
+                renderEjerciciosRestasSimples();
+            } else if (seccion === 'resta-imagenes' && document.getElementById('ejercicios-resta-imagenes').innerHTML === '') {
+                renderEjerciciosRestaImagenes();
+            } else if (seccion === 'tablas-multiplicar' && document.getElementById('ejercicios-tablas-multiplicar').innerHTML === '') {
+                renderEjerciciosTablasMultiplicar();
+            }
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ============ RECTA NUMÉRICA ============
+        function crearRecta(operacion, mostrarSolucion = false) {
+            const color = operacion.tipo === "suma" ? "#667eea" : "#f97316";
+            const respuesta = operacion.num1 + (operacion.tipo === "suma" ? operacion.num2 : -operacion.num2);
+            
+            let svg = `<svg viewBox="0 0 650 140" xmlns="http://www.w3.org/2000/svg">`;
+            
+            svg += `<line x1="50" y1="70" x2="600" y2="70" stroke="#333" stroke-width="3"/>`;
+            
+            for (let i = 0; i <= 10; i++) {
+                const x = 50 + (i * 55);
+                svg += `<circle cx="${x}" cy="70" r="6" fill="#333"/>`;
+                svg += `<text x="${x}" y="105" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">${i}</text>`;
+            }
+            
+            if (mostrarSolucion) {
+                if (operacion.tipo === "suma") {
+                    const x1 = 50 + (operacion.num1 * 55);
+                    
+                    for (let i = 0; i < operacion.num2; i++) {
+                        const xInicio = 50 + ((operacion.num1 + i) * 55);
+                        const xFin = 50 + ((operacion.num1 + i + 1) * 55);
+                        const yArco = 30 - (i * 8);
+                        svg += `<path d="M ${xInicio} 70 Q ${(xInicio + xFin) / 2} ${yArco}, ${xFin} 70" stroke="${color}" stroke-width="2.5" fill="none" stroke-linecap="round"/>`;
+                        svg += `<polygon points="${xFin},70 ${xFin - 6},66 ${xFin - 4},74" fill="${color}"/>`;
+                    }
+                    
+                    svg += `<text x="${x1}" y="25" text-anchor="middle" font-size="24">${operacion.dibujo}</text>`;
+                } else {
+                    const x1 = 50 + (operacion.num1 * 55);
+                    
+                    for (let i = 0; i < operacion.num2; i++) {
+                        const xInicio = 50 + ((operacion.num1 - i) * 55);
+                        const xFin = 50 + ((operacion.num1 - i - 1) * 55);
+                        const yArco = 30 - (i * 8);
+                        svg += `<path d="M ${xInicio} 70 Q ${(xInicio + xFin) / 2} ${yArco}, ${xFin} 70" stroke="${color}" stroke-width="2.5" fill="none" stroke-linecap="round"/>`;
+                        svg += `<polygon points="${xFin},70 ${xFin + 6},66 ${xFin + 4},74" fill="${color}"/>`;
+                    }
+                    
+                    svg += `<text x="${x1}" y="25" text-anchor="middle" font-size="24">${operacion.dibujo}</text>`;
+                }
+            }
+            
+            svg += `</svg>`;
+            return svg;
+        }
+
+        function renderEjerciciosRecta() {
+            const container = document.getElementById('ejercicios-recta');
+            let html = '';
+            
+            ejercicios.recta.forEach((ej, idx) => {
+                const respuesta = ej.num1 + (ej.tipo === "suma" ? ej.num2 : -ej.num2);
+                const signo = ej.tipo === "suma" ? "+" : "-";
+                const colorSigno = ej.tipo === "suma" ? "#667eea" : "#f97316";
+                
+                html += `
+                    <div class="ejercicio">
+                        <div class="ejercicio-header">
+                            <span class="ejercicio-numero">Ejercicio ${idx + 1}</span>
+                            <span class="operacion" style="border-color: ${colorSigno}; color: ${colorSigno};">
+                                ${ej.num1} ${signo} ${ej.num2} = ?
+                            </span>
+                        </div>
+                        
+                        <div class="recta-container">
+                            <div id="recta-${idx}">
+                                ${crearRecta(ej, false)}
+                            </div>
+                        </div>
+                        
+                        <div class="opciones">
+                            ${[...Array(11)].map((_, num) => `
+                                <button class="numero-btn" onclick="seleccionarRecta(${idx}, ${num})" id="btn-recta-${idx}-${num}">
+                                    ${num}
+                                </button>
+                            `).join('')}
+                        </div>
+                        
+                        <div class="feedback" id="feedback-recta-${idx}"></div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+
+        function seleccionarRecta(idx, num) {
+            const respuesta = ejercicios.recta[idx].num1 + (ejercicios.recta[idx].tipo === "suma" ? ejercicios.recta[idx].num2 : -ejercicios.recta[idx].num2);
+            const feedback = document.getElementById(`feedback-recta-${idx}`);
+            const btn = document.getElementById(`btn-recta-${idx}-${num}`);
+            
+            respuestas.recta[idx] = num;
+            
+            if (num === respuesta) {
+                btn.classList.add('correcto');
+                feedback.classList.add('correcto');
+                feedback.textContent = '✓ ¡Correcto!';
+                
+                const rectaDiv = document.getElementById(`recta-${idx}`);
+                rectaDiv.innerHTML = crearRecta(ejercicios.recta[idx], true);
+                
+                for (let i = 0; i <= 10; i++) {
+                    if (i !== num) {
+                        document.getElementById(`btn-recta-${idx}-${i}`).disabled = true;
+                        document.getElementById(`btn-recta-${idx}-${i}`).style.opacity = '0.5';
+                    }
+                }
+            } else {
+                btn.classList.add('incorrecto');
+                feedback.classList.add('incorrecto');
+                feedback.textContent = '✗ Intenta de nuevo';
+                
+                setTimeout(() => {
+                    btn.classList.remove('incorrecto');
+                    feedback.textContent = '';
+                    feedback.classList.remove('incorrecto');
+                }, 1000);
+            }
+        }
+
+        // ============ ¿CUÁNTO FALTA? ============
+        function renderEjerciciosCuantoFalta() {
+            const container = document.getElementById('ejercicios-cuanto-falta');
+            let html = '';
+            
+            ejercicios['cuanto-falta'].forEach((ej, idx) => {
+                html += `
+                    <div class="ejercicio">
+                        <div class="ejercicio-header">
+                            <span class="ejercicio-numero">Ejercicio ${idx + 1}</span>
+                            <span class="operacion" style="border-color: #667eea; color: #667eea;">
+                                ${ej.tiene} + ? = ${ej.total}
+                            </span>
+                        </div>
+                        
+                        <div style="text-align: center; margin: 20px 0;">
+                            <p style="color: #666; font-weight: bold; margin-bottom: 10px;">Tiene:</p>
+                            <div class="imagenes-contenedor">
+                                ${[...Array(ej.tiene)].map(() => `
+                                    <div class="imagen-item">${ej.dibujo}</div>
+                                `).join('')}
+                            </div>
+                            <p style="color: #999; margin-top: 15px; font-size: 14px;">¿Cuántos faltan para llegar a ${ej.total}?</p>
+                        </div>
+                        
+                        <div class="opciones">
+                            ${[...Array(11)].map((_, num) => `
+                                <button class="numero-btn" onclick="seleccionarCuantoFalta(${idx}, ${num})" id="btn-cf-${idx}-${num}">
+                                    ${num}
+                                </button>
+                            `).join('')}
+                        </div>
+                        
+                        <div class="feedback" id="feedback-cf-${idx}"></div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+
+        function seleccionarCuantoFalta(idx, num) {
+            const respuesta = ejercicios['cuanto-falta'][idx].falta;
+            const feedback = document.getElementById(`feedback-cf-${idx}`);
+            const btn = document.getElementById(`btn-cf-${idx}-${num}`);
+            
+            respuestas['cuanto-falta'][idx] = num;
+            
+            if (num === respuesta) {
+                btn.classList.add('correcto');
+                feedback.classList.add('correcto');
+                feedback.textContent = '✓ ¡Correcto!';
+                
+                for (let i = 0; i <= 10; i++) {
+                    if (i !== num) {
+                        document.getElementById(`btn-cf-${idx}-${i}`).disabled = true;
+                        document.getElementById(`btn-cf-${idx}-${i}`).style.opacity = '0.5';
+                    }
+                }
+            } else {
+                btn.classList.add('incorrecto');
+                feedback.classList.add('incorrecto');
+                feedback.textContent = '✗ Intenta de nuevo';
+                
+                setTimeout(() => {
+                    btn.classList.remove('incorrecto');
+                    feedback.textContent = '';
+                    feedback.classList.remove('incorrecto');
+                }, 1000);
+            }
+        }
+
+        // ============ RESTAS SIMPLES ============
+        function renderEjerciciosRestasSimples() {
+            const container = document.getElementById('ejercicios-restas-simples');
+            let html = '';
+            
+            ejercicios['restas-simples'].forEach((ej, idx) => {
+                const respuesta = ej.num1 - ej.num2;
+                
+                html += `
+                    <div class="ejercicio">
+                        <div class="ejercicio-header">
+                            <span class="ejercicio-numero">Ejercicio ${idx + 1}</span>
+                            <span class="operacion" style="border-color: #f97316; color: #f97316;">
+                                ${ej.num1} - ${ej.num2} = ?
+                            </span>
+                        </div>
+                        
+                        <div class="opciones">
+                            ${[...Array(11)].map((_, num) => `
+                                <button class="numero-btn" onclick="seleccionarRestasSimples(${idx}, ${num})" id="btn-rs-${idx}-${num}">
+                                    ${num}
+                                </button>
+                            `).join('')}
+                        </div>
+                        
+                        <div class="feedback" id="feedback-rs-${idx}"></div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+
+        function seleccionarRestasSimples(idx, num) {
+            const respuesta = ejercicios['restas-simples'][idx].num1 - ejercicios['restas-simples'][idx].num2;
+            const feedback = document.getElementById(`feedback-rs-${idx}`);
+            const btn = document.getElementById(`btn-rs-${idx}-${num}`);
+            
+            respuestas['restas-simples'][idx] = num;
+            
+            if (num === respuesta) {
+                btn.classList.add('correcto');
+                feedback.classList.add('correcto');
+                feedback.textContent = '✓ ¡Correcto!';
+                
+                for (let i = 0; i <= 10; i++) {
+                    if (i !== num) {
+                        document.getElementById(`btn-rs-${idx}-${i}`).disabled = true;
+                        document.getElementById(`btn-rs-${idx}-${i}`).style.opacity = '0.5';
+                    }
+                }
+            } else {
+                btn.classList.add('incorrecto');
+                feedback.classList.add('incorrecto');
+                feedback.textContent = '✗ Intenta de nuevo';
+                
+                setTimeout(() => {
+                    btn.classList.remove('incorrecto');
+                    feedback.textContent = '';
+                    feedback.classList.remove('incorrecto');
+                }, 1000);
+            }
+        }
+
+        // ============ RESTA CON IMÁGENES ============
+        function renderEjerciciosRestaImagenes() {
+            const container = document.getElementById('ejercicios-resta-imagenes');
+            let html = '';
+            
+            ejercicios['resta-imagenes'].forEach((ej, idx) => {
+                html += `
+                    <div class="ejercicio">
+                        <div class="ejercicio-header">
+                            <span class="ejercicio-numero">Ejercicio ${idx + 1}</span>
+                            <span class="operacion" style="border-color: #f97316; color: #f97316;">
+                                ${ej.total} - ${ej.quita} = ?
+                            </span>
+                        </div>
+                        
+                        <div style="text-align: center; margin: 20px 0;">
+                            <p style="color: #666; font-weight: bold; margin-bottom: 10px;">Total:</p>
+                            <div class="imagenes-contenedor">
+                                ${[...Array(ej.total)].map(() => `
+                                    <div class="imagen-item">${ej.dibujo}</div>
+                                `).join('')}
+                            </div>
+                            <p style="color: #999; margin-top: 15px; font-size: 14px;">Se quitan ${ej.quita}. ¿Cuántos quedan?</p>
+                        </div>
+                        
+                        <div class="opciones">
+                            ${[...Array(11)].map((_, num) => `
+                                <button class="numero-btn" onclick="seleccionarRestaImagenes(${idx}, ${num})" id="btn-ri-${idx}-${num}">
+                                    ${num}
+                                </button>
+                            `).join('')}
+                        </div>
+                        
+                        <div class="feedback" id="feedback-ri-${idx}"></div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+
+        function seleccionarRestaImagenes(idx, num) {
+            const respuesta = ejercicios['resta-imagenes'][idx].resultado;
+            const feedback = document.getElementById(`feedback-ri-${idx}`);
+            const btn = document.getElementById(`btn-ri-${idx}-${num}`);
+            
+            respuestas['resta-imagenes'][idx] = num;
+            
+            if (num === respuesta) {
+                btn.classList.add('correcto');
+                feedback.classList.add('correcto');
+                feedback.textContent = '✓ ¡Correcto!';
+                
+                for (let i = 0; i <= 10; i++) {
+                    if (i !== num) {
+                        document.getElementById(`btn-ri-${idx}-${i}`).disabled = true;
+                        document.getElementById(`btn-ri-${idx}-${i}`).style.opacity = '0.5';
+                    }
+                }
+            } else {
+                btn.classList.add('incorrecto');
+                feedback.classList.add('incorrecto');
+                feedback.textContent = '✗ Intenta de nuevo';
+                
+                setTimeout(() => {
+                    btn.classList.remove('incorrecto');
+                    feedback.textContent = '';
+                    feedback.classList.remove('incorrecto');
+                }, 1000);
+            }
+        }
+
+        // ============ TABLAS DE MULTIPLICAR ============
+        function renderEjerciciosTablasMultiplicar() {
+            const container = document.getElementById('ejercicios-tablas-multiplicar');
+            let html = '';
+            
+            ejercicios['tablas-multiplicar'].forEach((ej, idx) => {
+                const decoracion = decoracionesMultiplicar[Math.floor(Math.random() * decoracionesMultiplicar.length)];
+                
+                html += `
+                    <div class="ejercicio">
+                        <div class="ejercicio-header">
+                            <span class="ejercicio-numero">Ejercicio ${idx + 1}</span>
+                            <span class="operacion" style="border-color: #667eea; color: #667eea;">
+                                ${ej.num1} × ${ej.num2} = ?
+                            </span>
+                        </div>
+                        
+                        <div class="decoracion-ejercicio">${decoracion}</div>
+                        
+                        <div class="opciones">
+                            ${generarOpcionesMultiplicar(ej.resultado, ej.num1, ej.num2).map((num, numIdx) => `
+                                <button class="numero-btn" onclick="seleccionarTablasMultiplicar(${idx}, ${num})" id="btn-tm-${idx}-${numIdx}">
+                                    ${num}
+                                </button>
+                            `).join('')}
+                        </div>
+                        
+                        <div class="feedback" id="feedback-tm-${idx}"></div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+
+        function generarOpcionesMultiplicar(respuestaCorrecta, num1, num2) {
+            const opciones = new Set();
+            opciones.add(respuestaCorrecta);
+            
+            // Agregar opciones incorrectas cercanas
+            while (opciones.size < 4) {
+                const variacion = Math.floor(Math.random() * 10) - 5; // -5 a +5
+                const opcion = respuestaCorrecta + variacion;
+                if (opcion >= 0 && opcion !== respuestaCorrecta) {
+                    opciones.add(opcion);
+                }
+            }
+            
+            return Array.from(opciones).sort((a, b) => a - b);
+        }
+
+        function seleccionarTablasMultiplicar(idx, num) {
+            const respuesta = ejercicios['tablas-multiplicar'][idx].resultado;
+            const feedback = document.getElementById(`feedback-tm-${idx}`);
+            
+            // Encontrar el botón clickeado
+            let btnClickeado = null;
+            for (let i = 0; i < 4; i++) {
+                const btn = document.getElementById(`btn-tm-${idx}-${i}`);
+                if (btn && parseInt(btn.textContent) === num) {
+                    btnClickeado = btn;
+                    break;
+                }
+            }
+            
+            respuestas['tablas-multiplicar'][idx] = num;
+            
+            if (num === respuesta) {
+                if (btnClickeado) {
+                    btnClickeado.classList.add('correcto');
+                }
+                feedback.classList.add('correcto');
+                feedback.textContent = '✓ ¡Correcto! ¡Excelente! 🌟';
+                
+                // Desabilitar otros botones
+                for (let i = 0; i < 4; i++) {
+                    const btn = document.getElementById(`btn-tm-${idx}-${i}`);
+                    if (btn && parseInt(btn.textContent) !== num) {
+                        btn.disabled = true;
+                        btn.style.opacity = '0.5';
+                    }
+                }
+            } else {
+                if (btnClickeado) {
+                    btnClickeado.classList.add('incorrecto');
+                }
+                feedback.classList.add('incorrecto');
+                feedback.textContent = '✗ Intenta de nuevo. ¡Tú puedes! 💪';
+                
+                setTimeout(() => {
+                    if (btnClickeado) {
+                        btnClickeado.classList.remove('incorrecto');
+                    }
+                    feedback.textContent = '';
+                    feedback.classList.remove('incorrecto');
+                }, 1200);
+            }
+        }
+
+        // ============ RESULTADOS ============
+        function mostrarResultados(tipo) {
+            let correctas = 0;
+            const total = ejercicios[tipo].length;
+            
+            for (let i = 0; i < total; i++) {
+                let respuestaEsperada;
+                if (tipo === 'recta') {
+                    respuestaEsperada = ejercicios[tipo][i].num1 + (ejercicios[tipo][i].tipo === "suma" ? ejercicios[tipo][i].num2 : -ejercicios[tipo][i].num2);
+                } else if (tipo === 'cuanto-falta') {
+                    respuestaEsperada = ejercicios[tipo][i].falta;
+                } else if (tipo === 'restas-simples') {
+                    respuestaEsperada = ejercicios[tipo][i].num1 - ejercicios[tipo][i].num2;
+                } else if (tipo === 'resta-imagenes') {
+                    respuestaEsperada = ejercicios[tipo][i].resultado;
+                } else if (tipo === 'tablas-multiplicar') {
+                    respuestaEsperada = ejercicios[tipo][i].resultado;
+                }
+                
+                if (respuestas[tipo][i] === respuestaEsperada) {
+                    correctas++;
+                }
+            }
+            
+            const puntuacion = document.getElementById(`puntuacion-${tipo}`);
+            const puntuacionTexto = document.getElementById(`puntuacion-texto-${tipo}`);
+            
+            let mensaje = `Respondiste correctamente ${correctas} de ${total} ejercicios.`;
+            
+            if (correctas === total) {
+                mensaje += " ¡Eres una ESTRELLA! 🌟⭐✨";
+            } else if (correctas >= total * 0.8) {
+                mensaje += " ¡Muy bien hecho! 🎉";
+            } else if (correctas >= total * 0.6) {
+                mensaje += " ¡Buen trabajo! Sigue practicando. 💪";
+            } else {
+                mensaje += " No te desanimes, ¡practica más! 📚";
+            }
+            
+            puntuacionTexto.textContent = mensaje;
+            puntuacion.style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ============ GENERAR NUEVOS EJERCICIOS ============
+        function generarNuevosEjercicios(tipo) {
+            if (tipo === 'recta') {
+                ejercicios.recta = generarRecta();
+                respuestas.recta = {};
+                renderEjerciciosRecta();
+            } else if (tipo === 'cuanto-falta') {
+                ejercicios['cuanto-falta'] = generarCuantoFalta();
+                respuestas['cuanto-falta'] = {};
+                renderEjerciciosCuantoFalta();
+            } else if (tipo === 'restas-simples') {
+                ejercicios['restas-simples'] = generarRestasSimples();
+                respuestas['restas-simples'] = {};
+                renderEjerciciosRestasSimples();
+            } else if (tipo === 'resta-imagenes') {
+                ejercicios['resta-imagenes'] = generarRestaImagenes();
+                respuestas['resta-imagenes'] = {};
+                renderEjerciciosRestaImagenes();
+            } else if (tipo === 'tablas-multiplicar') {
+                ejercicios['tablas-multiplicar'] = generarTablasMultiplicar();
+                respuestas['tablas-multiplicar'] = {};
+                renderEjerciciosTablasMultiplicar();
+            }
+            
+            document.getElementById(`puntuacion-${tipo}`).style.display = 'none';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ============ INICIALIZAR ============
+        generarEjercicios();
+    </script>
+</body>
+</html>
