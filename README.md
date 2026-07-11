@@ -1,2 +1,2 @@
-# ejercicios
-Ejercicios de sumas y restas en recta numérica para primero básico
+# Ejercicios
+Ejercicios de sumas y restas para primero básico y multiplicaciones para imprimir para quinto básico.
