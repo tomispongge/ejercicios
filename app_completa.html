@@ -246,6 +246,115 @@
             justify-content: center;
         }
         
+        /* DECENAS Y UNIDADES */
+        .du-tabla {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .du-columna {
+            background: white;
+            border: 2px solid #667eea;
+            border-radius: 10px;
+            padding: 15px;
+            min-width: 140px;
+            text-align: center;
+        }
+        
+        .du-columna-header {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 12px;
+            font-size: 15px;
+        }
+        
+        .du-bloques-decenas {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            align-items: flex-end;
+            min-height: 130px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+        
+        .du-decena-rod {
+            display: flex;
+            flex-direction: column;
+            width: 22px;
+            border: 2px solid #2a5db0;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        
+        .du-decena-segmento {
+            width: 100%;
+            height: 12px;
+            background: #4a86e8;
+            border-bottom: 1px solid white;
+        }
+        
+        .du-decena-segmento:last-child {
+            border-bottom: none;
+        }
+        
+        .du-bloques-unidades {
+            display: flex;
+            gap: 6px;
+            justify-content: center;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            min-height: 130px;
+            max-width: 110px;
+            margin: 0 auto 12px auto;
+        }
+        
+        .du-unidad-cubo {
+            width: 22px;
+            height: 22px;
+            background: #4a86e8;
+            border: 2px solid #2a5db0;
+            border-radius: 3px;
+        }
+        
+        .du-input {
+            width: 60px;
+            height: 45px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            color: #333;
+        }
+        
+        .du-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .du-input.correcto {
+            background: #4CAF50;
+            color: white;
+            border-color: #4CAF50;
+        }
+        
+        .du-input.incorrecto {
+            background: #f44336;
+            color: white;
+            border-color: #f44336;
+            animation: shake 0.3s;
+        }
+        
+        .du-input.seleccionado {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+        
         .numero-btn {
             min-width: 45px;
             height: 45px;
@@ -280,6 +389,13 @@
             animation: shake 0.3s;
         }
         
+        .numero-btn.seleccionado {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+            transform: scale(1.05);
+        }
+        
         @keyframes shake {
             0%, 100% { transform: translateX(0); }
             25% { transform: translateX(-5px); }
@@ -304,6 +420,10 @@
         
         .feedback.incorrecto {
             color: #f44336;
+        }
+        
+        .feedback.guardado {
+            color: #667eea;
         }
         
         /* BOTONES */
@@ -457,6 +577,10 @@
                     <span class="opcion-emoji">🎨</span>
                     Resta con Imágenes
                 </button>
+                <button class="opcion" onclick="irA('decenas-unidades')">
+                    <span class="opcion-emoji">🔢</span>
+                    Decenas y Unidades
+                </button>
             </div>
         </div>
 
@@ -560,6 +684,27 @@
             <div class="puntuacion" id="puntuacion-resta-imagenes">
                 <h2>¡Felicidades!</h2>
                 <p id="puntuacion-texto-resta-imagenes"></p>
+            </div>
+        </div>
+
+        <!-- DECENAS Y UNIDADES -->
+        <div id="decenas-unidades" class="seccion">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                <h1>🔢 Decenas y Unidades</h1>
+                <button class="btn btn-volver" onclick="irA('menu-1basico')">← Volver</button>
+            </div>
+            <div class="instrucciones">
+                🧮 ¿Cuál es el número? Cuenta las decenas y unidades y escríbelas en los recuadros.
+            </div>
+            <div id="ejercicios-decenas-unidades"></div>
+            <div class="botones-finales">
+                <button class="btn btn-resultados" onclick="mostrarResultados('decenas-unidades')">Ver Mis Resultados</button>
+                <button class="btn btn-resultados" onclick="generarNuevosEjercicios('decenas-unidades')">🔄 Nuevos Ejercicios</button>
+                <button class="btn btn-volver" onclick="irA('menu-1basico')">Volver</button>
+            </div>
+            <div class="puntuacion" id="puntuacion-decenas-unidades">
+                <h2>¡Felicidades!</h2>
+                <p id="puntuacion-texto-decenas-unidades"></p>
             </div>
         </div>
 
@@ -739,6 +884,7 @@
             'cuanto-falta': [],
             'restas-simples': [],
             'resta-imagenes': [],
+            'decenas-unidades': [],
             'tablas-multiplicar': []
         };
 
@@ -747,6 +893,7 @@
             'cuanto-falta': {},
             'restas-simples': {},
             'resta-imagenes': {},
+            'decenas-unidades': {},
             'tablas-multiplicar': {}
         };
 
@@ -762,6 +909,19 @@
             'cuanto-falta': false,
             'restas-simples': false,
             'resta-imagenes': false,
+            'decenas-unidades': false,
+            'tablas-multiplicar': false
+        };
+
+        // Controla si los resultados de un módulo ya fueron revelados,
+        // para no repetir animaciones de revelado (estrellas, pelotitas, saltos)
+        // si el usuario presiona "Ver Mis Resultados" más de una vez.
+        let resultadosRevelados = {
+            recta: false,
+            'cuanto-falta': false,
+            'restas-simples': false,
+            'resta-imagenes': false,
+            'decenas-unidades': false,
             'tablas-multiplicar': false
         };
 
@@ -785,6 +945,8 @@
                     renderEjerciciosRestasSimples();
                 } else if (seccionId === 'resta-imagenes') {
                     renderEjerciciosRestaImagenes();
+                } else if (seccionId === 'decenas-unidades') {
+                    renderEjerciciosDecenasUnidades();
                 } else if (seccionId === 'tablas-multiplicar') {
                     renderEjerciciosTablasMultiplicar();
                 }
@@ -848,6 +1010,16 @@
                     quita,
                     resultado
                 });
+            }
+            return ejercicios;
+        }
+
+        function generarDecenasUnidades() {
+            const ejercicios = [];
+            for (let i = 0; i < 10; i++) {
+                const decenas = Math.floor(Math.random() * 4) + 1; // 1 a 4 decenas
+                const unidades = Math.floor(Math.random() * 10); // 0 a 9 unidades
+                ejercicios.push({ decenas, unidades });
             }
             return ejercicios;
         }
@@ -1227,69 +1399,89 @@
         }
 
         function seleccionarRecta(idx, num) {
-            const resultado = ejercicios.recta[idx].tipo === "suma" ? ejercicios.recta[idx].num1 + ejercicios.recta[idx].num2 : ejercicios.recta[idx].num1 - ejercicios.recta[idx].num2;
-            const feedback = document.getElementById(`feedback-recta-${idx}`);
+            // Si ya respondió este ejercicio, no permite cambiar la respuesta
+            if (respuestas.recta[idx] !== undefined) return;
+            
             const btn = document.getElementById(`btn-recta-${idx}-${num}`);
+            const feedback = document.getElementById(`feedback-recta-${idx}`);
             
             respuestas.recta[idx] = num;
+            btn.classList.add('seleccionado');
             
-            if (num === resultado) {
-                btn.classList.add('correcto');
+            for (let i = 0; i <= 15; i++) {
+                if (i !== num) {
+                    const otro = document.getElementById(`btn-recta-${idx}-${i}`);
+                    otro.disabled = true;
+                    otro.style.opacity = '0.5';
+                }
+            }
+            
+            feedback.classList.add('guardado');
+            feedback.textContent = '📝 Respuesta guardada. ¡Revisa tus resultados al finalizar!';
+        }
+
+        // Revela la respuesta correcta de un ejercicio de recta numérica.
+        // Se llama solo desde mostrarResultados(), nunca al momento de responder.
+        function revelarRecta(idx) {
+            const ej = ejercicios.recta[idx];
+            const resultado = ej.tipo === "suma" ? ej.num1 + ej.num2 : ej.num1 - ej.num2;
+            const respuestaUsuario = respuestas.recta[idx];
+            const feedback = document.getElementById(`feedback-recta-${idx}`);
+            
+            const svg = document.getElementById(`recta-${idx}`);
+            let recta = '<line x1="30" y1="60" x2="570" y2="60" stroke="#333" stroke-width="2"/>';
+            for (let i = 0; i <= 15; i++) {
+                recta += `<line x1="${30 + i * 36}" y1="50" x2="${30 + i * 36}" y2="70" stroke="#333" stroke-width="1"/>`;
+                recta += `<text x="${30 + i * 36}" y="90" text-anchor="middle" font-size="14">${i}</text>`;
+            }
+            
+            const inicio = 30 + ej.num1 * 36;
+            const fin = 30 + resultado * 36;
+            const color = ej.tipo === "suma" ? "#4CAF50" : "#f44336";
+            const markerId = ej.tipo === "suma" ? "arrowgreen" : "arrowred";
+            const paso = ej.tipo === "suma" ? 1 : -1;
+            
+            let valorActual = ej.num1;
+            for (let p = 0; p < ej.num2; p++) {
+                const xSalto1 = 30 + valorActual * 36;
+                valorActual += paso;
+                const xSalto2 = 30 + valorActual * 36;
+                const xMedioSalto = (xSalto1 + xSalto2) / 2;
+                recta += `<path d="M ${xSalto1} 40 Q ${xMedioSalto} 25 ${xSalto2} 40" stroke="${color}" stroke-width="3" fill="none" marker-end="url(#${markerId})"/>`;
+                if (p < ej.num2 - 1) {
+                    recta += `<text x="${xSalto2}" y="106" text-anchor="middle" font-size="13">🐾</text>`;
+                }
+            }
+            
+            recta += `<defs><marker id="arrowgreen" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L0,6 L5,3 z" fill="#4CAF50"/></marker></defs>`;
+            recta += `<defs><marker id="arrowred" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L0,6 L5,3 z" fill="#f44336"/></marker></defs>`;
+            recta += `<text x="${inicio}" y="46" text-anchor="middle" font-size="24">🐰</text>`;
+            recta += `<text x="${fin}" y="44" text-anchor="middle" font-size="26">⭐</text>`;
+            
+            svg.innerHTML = recta;
+            
+            for (let i = 0; i <= 15; i++) {
+                const btn = document.getElementById(`btn-recta-${idx}-${i}`);
+                if (!btn) continue;
+                btn.classList.remove('seleccionado');
+                btn.disabled = true;
+                btn.style.opacity = (i === resultado || i === respuestaUsuario) ? '1' : '0.4';
+                if (i === resultado) {
+                    btn.classList.add('correcto');
+                } else if (i === respuestaUsuario) {
+                    btn.classList.add('incorrecto');
+                }
+            }
+            
+            feedback.classList.remove('guardado');
+            if (respuestaUsuario === resultado) {
                 feedback.classList.add('correcto');
-                feedback.textContent = '✓ ¡Correcto! ¡Excelente razonamiento!';
-                
-                const svg = document.getElementById(`recta-${idx}`);
-                let recta = '<line x1="30" y1="60" x2="570" y2="60" stroke="#333" stroke-width="2"/>';
-                for (let i = 0; i <= 15; i++) {
-                    recta += `<line x1="${30 + i * 36}" y1="50" x2="${30 + i * 36}" y2="70" stroke="#333" stroke-width="1"/>`;
-                    recta += `<text x="${30 + i * 36}" y="90" text-anchor="middle" font-size="14">${i}</text>`;
-                }
-                
-                const ej = ejercicios.recta[idx];
-                const inicio = 30 + ej.num1 * 36;
-                const fin = 30 + resultado * 36;
-                const color = ej.tipo === "suma" ? "#4CAF50" : "#f44336";
-                const markerId = ej.tipo === "suma" ? "arrowgreen" : "arrowred";
-                const paso = ej.tipo === "suma" ? 1 : -1;
-                
-                // Dibujar los saltos de a uno en uno (no un salto directo al resultado),
-                // para que el niño vea el conteo paso a paso en la recta,
-                // dejando una huellita en cada aterrizaje.
-                let valorActual = ej.num1;
-                for (let p = 0; p < ej.num2; p++) {
-                    const xSalto1 = 30 + valorActual * 36;
-                    valorActual += paso;
-                    const xSalto2 = 30 + valorActual * 36;
-                    const xMedioSalto = (xSalto1 + xSalto2) / 2;
-                    recta += `<path d="M ${xSalto1} 40 Q ${xMedioSalto} 25 ${xSalto2} 40" stroke="${color}" stroke-width="3" fill="none" marker-end="url(#${markerId})"/>`;
-                    if (p < ej.num2 - 1) {
-                        recta += `<text x="${xSalto2}" y="106" text-anchor="middle" font-size="13">🐾</text>`;
-                    }
-                }
-                
-                recta += `<defs><marker id="arrowgreen" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L0,6 L5,3 z" fill="#4CAF50"/></marker></defs>`;
-                recta += `<defs><marker id="arrowred" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L0,6 L5,3 z" fill="#f44336"/></marker></defs>`;
-                recta += `<text x="${inicio}" y="46" text-anchor="middle" font-size="24">🐰</text>`;
-                recta += `<text x="${fin}" y="44" text-anchor="middle" font-size="26">⭐</text>`;
-                
-                svg.innerHTML = recta;
-                
-                for (let i = 0; i <= 15; i++) {
-                    if (i !== num) {
-                        document.getElementById(`btn-recta-${idx}-${i}`).disabled = true;
-                        document.getElementById(`btn-recta-${idx}-${i}`).style.opacity = '0.5';
-                    }
-                }
+                feedback.textContent = '✓ ¡Correcto!';
             } else {
-                btn.classList.add('incorrecto');
                 feedback.classList.add('incorrecto');
-                feedback.textContent = '✗ Intenta de nuevo';
-                
-                setTimeout(() => {
-                    btn.classList.remove('incorrecto');
-                    feedback.textContent = '';
-                    feedback.classList.remove('incorrecto');
-                }, 1000);
+                feedback.textContent = respuestaUsuario === undefined
+                    ? `✗ No respondiste. La respuesta correcta era ${resultado}.`
+                    : `✗ La respuesta correcta era ${resultado}.`;
             }
         }
 
@@ -1332,41 +1524,66 @@
         }
 
         function seleccionarCuantoFalta(idx, num) {
-            const respuesta = ejercicios['cuanto-falta'][idx].falta;
-            const feedback = document.getElementById(`feedback-cf-${idx}`);
+            // Si ya respondió este ejercicio, no permite cambiar la respuesta
+            if (respuestas['cuanto-falta'][idx] !== undefined) return;
+            
             const btn = document.getElementById(`btn-cf-${idx}-${num}`);
+            const feedback = document.getElementById(`feedback-cf-${idx}`);
             
             respuestas['cuanto-falta'][idx] = num;
+            btn.classList.add('seleccionado');
             
-            if (num === respuesta) {
-                btn.classList.add('correcto');
-                feedback.classList.add('correcto');
-                feedback.textContent = '✓ ¡Excelente! ¡Lo calculaste bien!';
-                
+            for (let i = 0; i <= ejercicios['cuanto-falta'][idx].objetivo; i++) {
+                if (i !== num) {
+                    const otro = document.getElementById(`btn-cf-${idx}-${i}`);
+                    otro.disabled = true;
+                    otro.style.opacity = '0.5';
+                }
+            }
+            
+            feedback.classList.add('guardado');
+            feedback.textContent = '📝 Respuesta guardada. ¡Revisa tus resultados al finalizar!';
+        }
+
+        // Revela la respuesta correcta de un ejercicio de "¿Cuánto Falta?".
+        // Se llama solo desde mostrarResultados(), nunca al momento de responder.
+        function revelarCuantoFalta(idx) {
+            const ej = ejercicios['cuanto-falta'][idx];
+            const respuestaUsuario = respuestas['cuanto-falta'][idx];
+            const feedback = document.getElementById(`feedback-cf-${idx}`);
+            
+            if (respuestaUsuario === ej.falta) {
                 // Completar visualmente las estrellas que faltaban
                 const contenedor = document.getElementById(`imagenes-cf-${idx}`);
                 let estrellasNuevas = '';
-                for (let i = 0; i < num; i++) {
+                for (let i = 0; i < ej.falta; i++) {
                     estrellasNuevas += `<div class="imagen-item" style="background-color: #c8e6c9;">⭐</div>`;
                 }
                 contenedor.insertAdjacentHTML('beforeend', estrellasNuevas);
-                
-                for (let i = 0; i <= ejercicios['cuanto-falta'][idx].objetivo; i++) {
-                    if (i !== num) {
-                        document.getElementById(`btn-cf-${idx}-${i}`).disabled = true;
-                        document.getElementById(`btn-cf-${idx}-${i}`).style.opacity = '0.5';
-                    }
+            }
+            
+            for (let i = 0; i <= ej.objetivo; i++) {
+                const btn = document.getElementById(`btn-cf-${idx}-${i}`);
+                if (!btn) continue;
+                btn.classList.remove('seleccionado');
+                btn.disabled = true;
+                btn.style.opacity = (i === ej.falta || i === respuestaUsuario) ? '1' : '0.4';
+                if (i === ej.falta) {
+                    btn.classList.add('correcto');
+                } else if (i === respuestaUsuario) {
+                    btn.classList.add('incorrecto');
                 }
+            }
+            
+            feedback.classList.remove('guardado');
+            if (respuestaUsuario === ej.falta) {
+                feedback.classList.add('correcto');
+                feedback.textContent = '✓ ¡Correcto!';
             } else {
-                btn.classList.add('incorrecto');
                 feedback.classList.add('incorrecto');
-                feedback.textContent = '✗ Intenta de nuevo';
-                
-                setTimeout(() => {
-                    btn.classList.remove('incorrecto');
-                    feedback.textContent = '';
-                    feedback.classList.remove('incorrecto');
-                }, 1000);
+                feedback.textContent = respuestaUsuario === undefined
+                    ? `✗ No respondiste. La respuesta correcta era ${ej.falta}.`
+                    : `✗ La respuesta correcta era ${ej.falta}.`;
             }
         }
 
@@ -1410,21 +1627,39 @@
         }
 
         function seleccionarRestasSimples(idx, num) {
-            const respuesta = ejercicios['restas-simples'][idx].num1 - ejercicios['restas-simples'][idx].num2;
-            const feedback = document.getElementById(`feedback-rs-${idx}`);
+            // Si ya respondió este ejercicio, no permite cambiar la respuesta
+            if (respuestas['restas-simples'][idx] !== undefined) return;
+            
             const btn = document.getElementById(`btn-rs-${idx}-${num}`);
+            const feedback = document.getElementById(`feedback-rs-${idx}`);
             
             respuestas['restas-simples'][idx] = num;
+            btn.classList.add('seleccionado');
             
-            if (num === respuesta) {
-                btn.classList.add('correcto');
-                feedback.classList.add('correcto');
-                feedback.textContent = '✓ ¡Correcto! ¡Muy bien!';
-                
+            const num1 = ejercicios['restas-simples'][idx].num1;
+            for (let i = 0; i <= num1; i++) {
+                if (i !== num) {
+                    const otro = document.getElementById(`btn-rs-${idx}-${i}`);
+                    otro.disabled = true;
+                    otro.style.opacity = '0.5';
+                }
+            }
+            
+            feedback.classList.add('guardado');
+            feedback.textContent = '📝 Respuesta guardada. ¡Revisa tus resultados al finalizar!';
+        }
+
+        // Revela la respuesta correcta de un ejercicio de restas simples.
+        // Se llama solo desde mostrarResultados(), nunca al momento de responder.
+        function revelarRestasSimples(idx) {
+            const ej = ejercicios['restas-simples'][idx];
+            const resultado = ej.num1 - ej.num2;
+            const respuestaUsuario = respuestas['restas-simples'][idx];
+            const feedback = document.getElementById(`feedback-rs-${idx}`);
+            
+            if (respuestaUsuario === resultado) {
                 // Quitar visualmente la cantidad de pelotitas que corresponden a la resta
-                const num1 = ejercicios['restas-simples'][idx].num1;
-                const num2 = ejercicios['restas-simples'][idx].num2;
-                for (let i = num1 - num2; i < num1; i++) {
+                for (let i = ej.num1 - ej.num2; i < ej.num1; i++) {
                     const pelota = document.getElementById(`pelota-rs-${idx}-${i}`);
                     if (pelota) {
                         pelota.style.transition = 'opacity 0.4s, transform 0.4s';
@@ -1432,23 +1667,30 @@
                         pelota.style.transform = 'scale(0)';
                     }
                 }
-                
-                for (let i = 0; i <= ejercicios['restas-simples'][idx].num1; i++) {
-                    if (i !== num) {
-                        document.getElementById(`btn-rs-${idx}-${i}`).disabled = true;
-                        document.getElementById(`btn-rs-${idx}-${i}`).style.opacity = '0.5';
-                    }
+            }
+            
+            for (let i = 0; i <= ej.num1; i++) {
+                const btn = document.getElementById(`btn-rs-${idx}-${i}`);
+                if (!btn) continue;
+                btn.classList.remove('seleccionado');
+                btn.disabled = true;
+                btn.style.opacity = (i === resultado || i === respuestaUsuario) ? '1' : '0.4';
+                if (i === resultado) {
+                    btn.classList.add('correcto');
+                } else if (i === respuestaUsuario) {
+                    btn.classList.add('incorrecto');
                 }
+            }
+            
+            feedback.classList.remove('guardado');
+            if (respuestaUsuario === resultado) {
+                feedback.classList.add('correcto');
+                feedback.textContent = '✓ ¡Correcto!';
             } else {
-                btn.classList.add('incorrecto');
                 feedback.classList.add('incorrecto');
-                feedback.textContent = '✗ Intenta de nuevo';
-                
-                setTimeout(() => {
-                    btn.classList.remove('incorrecto');
-                    feedback.textContent = '';
-                    feedback.classList.remove('incorrecto');
-                }, 1000);
+                feedback.textContent = respuestaUsuario === undefined
+                    ? `✗ No respondiste. La respuesta correcta era ${resultado}.`
+                    : `✗ La respuesta correcta era ${resultado}.`;
             }
         }
 
@@ -1499,33 +1741,174 @@
         }
 
         function seleccionarRestaImagenes(idx, num) {
-            const respuesta = ejercicios['resta-imagenes'][idx].resultado;
-            const feedback = document.getElementById(`feedback-ri-${idx}`);
+            // Si ya respondió este ejercicio, no permite cambiar la respuesta
+            if (respuestas['resta-imagenes'][idx] !== undefined) return;
+            
             const btn = document.getElementById(`btn-ri-${idx}-${num}`);
+            const feedback = document.getElementById(`feedback-ri-${idx}`);
             
             respuestas['resta-imagenes'][idx] = num;
+            btn.classList.add('seleccionado');
             
-            if (num === respuesta) {
-                btn.classList.add('correcto');
+            for (let i = 0; i <= 15; i++) {
+                if (i !== num) {
+                    const otro = document.getElementById(`btn-ri-${idx}-${i}`);
+                    otro.disabled = true;
+                    otro.style.opacity = '0.5';
+                }
+            }
+            
+            feedback.classList.add('guardado');
+            feedback.textContent = '📝 Respuesta guardada. ¡Revisa tus resultados al finalizar!';
+        }
+
+        // Revela la respuesta correcta de un ejercicio de resta con imágenes.
+        // Se llama solo desde mostrarResultados(), nunca al momento de responder.
+        function revelarRestaImagenes(idx) {
+            const ej = ejercicios['resta-imagenes'][idx];
+            const respuestaUsuario = respuestas['resta-imagenes'][idx];
+            const feedback = document.getElementById(`feedback-ri-${idx}`);
+            
+            for (let i = 0; i <= 15; i++) {
+                const btn = document.getElementById(`btn-ri-${idx}-${i}`);
+                if (!btn) continue;
+                btn.classList.remove('seleccionado');
+                btn.disabled = true;
+                btn.style.opacity = (i === ej.resultado || i === respuestaUsuario) ? '1' : '0.4';
+                if (i === ej.resultado) {
+                    btn.classList.add('correcto');
+                } else if (i === respuestaUsuario) {
+                    btn.classList.add('incorrecto');
+                }
+            }
+            
+            feedback.classList.remove('guardado');
+            if (respuestaUsuario === ej.resultado) {
                 feedback.classList.add('correcto');
                 feedback.textContent = '✓ ¡Correcto!';
-                
-                for (let i = 0; i <= 10; i++) {
-                    if (i !== num) {
-                        document.getElementById(`btn-ri-${idx}-${i}`).disabled = true;
-                        document.getElementById(`btn-ri-${idx}-${i}`).style.opacity = '0.5';
-                    }
-                }
             } else {
-                btn.classList.add('incorrecto');
                 feedback.classList.add('incorrecto');
-                feedback.textContent = '✗ Intenta de nuevo';
-                
+                feedback.textContent = respuestaUsuario === undefined
+                    ? `✗ No respondiste. La respuesta correcta era ${ej.resultado}.`
+                    : `✗ La respuesta correcta era ${ej.resultado}.`;
+            }
+        }
+
+        // ============ RENDER DECENAS Y UNIDADES ============
+        function renderEjerciciosDecenasUnidades() {
+            const container = document.getElementById('ejercicios-decenas-unidades');
+            let html = '';
+
+            ejercicios['decenas-unidades'].forEach((ej, idx) => {
+                const rods = [...Array(ej.decenas)].map(() => `
+                    <div class="du-decena-rod">
+                        ${[...Array(10)].map(() => '<div class="du-decena-segmento"></div>').join('')}
+                    </div>
+                `).join('');
+
+                const cubos = [...Array(ej.unidades)].map(() => `
+                    <div class="du-unidad-cubo"></div>
+                `).join('');
+
+                html += `
+                    <div class="ejercicio">
+                        <div class="ejercicio-header">
+                            <span class="ejercicio-numero">Ejercicio ${idx + 1}</span>
+                        </div>
+
+                        <div class="du-tabla">
+                            <div class="du-columna">
+                                <div class="du-columna-header">Decenas</div>
+                                <div class="du-bloques-decenas">${rods}</div>
+                                <input type="number" class="du-input" id="du-decenas-${idx}" min="0" max="9" placeholder="?">
+                            </div>
+                            <div class="du-columna">
+                                <div class="du-columna-header">Unidades</div>
+                                <div class="du-bloques-unidades">${cubos}</div>
+                                <input type="number" class="du-input" id="du-unidades-${idx}" min="0" max="9" placeholder="?">
+                            </div>
+                        </div>
+
+                        <div style="text-align: center; margin-top: 10px;">
+                            <button class="btn btn-resultados" style="padding: 10px 24px;" id="btn-verificar-du-${idx}" onclick="seleccionarDecenasUnidades(${idx})">Guardar Respuesta</button>
+                        </div>
+
+                        <div class="feedback" id="feedback-du-${idx}"></div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        function seleccionarDecenasUnidades(idx) {
+            // Si ya respondió este ejercicio, no permite cambiar la respuesta
+            if (respuestas['decenas-unidades'][idx] !== undefined) return;
+            
+            const inputDecenas = document.getElementById(`du-decenas-${idx}`);
+            const inputUnidades = document.getElementById(`du-unidades-${idx}`);
+            const feedback = document.getElementById(`feedback-du-${idx}`);
+            const boton = document.getElementById(`btn-verificar-du-${idx}`);
+
+            const valorDecenas = parseInt(inputDecenas.value, 10);
+            const valorUnidades = parseInt(inputUnidades.value, 10);
+
+            if (isNaN(valorDecenas) || isNaN(valorUnidades)) {
+                feedback.classList.remove('correcto', 'guardado');
+                feedback.classList.add('incorrecto');
+                feedback.textContent = '✗ Completa ambos números';
                 setTimeout(() => {
-                    btn.classList.remove('incorrecto');
                     feedback.textContent = '';
                     feedback.classList.remove('incorrecto');
                 }, 1000);
+                return;
+            }
+
+            respuestas['decenas-unidades'][idx] = valorDecenas * 10 + valorUnidades;
+
+            inputDecenas.disabled = true;
+            inputUnidades.disabled = true;
+            inputDecenas.classList.add('seleccionado');
+            inputUnidades.classList.add('seleccionado');
+            if (boton) boton.disabled = true;
+
+            feedback.classList.add('guardado');
+            feedback.textContent = '📝 Respuesta guardada. ¡Revisa tus resultados al finalizar!';
+        }
+
+        // Revela la respuesta correcta de un ejercicio de decenas y unidades.
+        // Se llama solo desde mostrarResultados(), nunca al momento de responder.
+        function revelarDecenasUnidades(idx) {
+            const ej = ejercicios['decenas-unidades'][idx];
+            const inputDecenas = document.getElementById(`du-decenas-${idx}`);
+            const inputUnidades = document.getElementById(`du-unidades-${idx}`);
+            const feedback = document.getElementById(`feedback-du-${idx}`);
+            const boton = document.getElementById(`btn-verificar-du-${idx}`);
+            const respuestaGuardada = respuestas['decenas-unidades'][idx];
+            
+            inputDecenas.classList.remove('seleccionado');
+            inputUnidades.classList.remove('seleccionado');
+            inputDecenas.disabled = true;
+            inputUnidades.disabled = true;
+            if (boton) boton.disabled = true;
+            
+            const correcta = respuestaGuardada === (ej.decenas * 10 + ej.unidades);
+            
+            feedback.classList.remove('guardado');
+            if (correcta) {
+                inputDecenas.classList.add('correcto');
+                inputUnidades.classList.add('correcto');
+                feedback.classList.add('correcto');
+                feedback.textContent = '✓ ¡Correcto!';
+            } else {
+                inputDecenas.classList.add('incorrecto');
+                inputUnidades.classList.add('incorrecto');
+                inputDecenas.value = ej.decenas;
+                inputUnidades.value = ej.unidades;
+                feedback.classList.add('incorrecto');
+                feedback.textContent = respuestaGuardada === undefined
+                    ? `✗ No respondiste. Era ${ej.decenas} decena(s) y ${ej.unidades} unidad(es).`
+                    : `✗ La respuesta correcta era ${ej.decenas} decena(s) y ${ej.unidades} unidad(es).`;
             }
         }
 
@@ -1580,7 +1963,9 @@
         }
 
         function seleccionarTablasMultiplicar(idx, num) {
-            const respuesta = ejercicios['tablas-multiplicar'][idx].resultado;
+            // Si ya respondió este ejercicio, no permite cambiar la respuesta
+            if (respuestas['tablas-multiplicar'][idx] !== undefined) return;
+            
             const feedback = document.getElementById(`feedback-tm-${idx}`);
             
             let btnClickeado = null;
@@ -1594,34 +1979,52 @@
             
             respuestas['tablas-multiplicar'][idx] = num;
             
-            if (num === respuesta) {
-                if (btnClickeado) {
-                    btnClickeado.classList.add('correcto');
+            if (btnClickeado) {
+                btnClickeado.classList.add('seleccionado');
+            }
+            
+            for (let i = 0; i < 4; i++) {
+                const btn = document.getElementById(`btn-tm-${idx}-${i}`);
+                if (btn && parseInt(btn.textContent) !== num) {
+                    btn.disabled = true;
+                    btn.style.opacity = '0.5';
                 }
+            }
+            
+            feedback.classList.add('guardado');
+            feedback.textContent = '📝 Respuesta guardada. ¡Revisa tus resultados al finalizar!';
+        }
+
+        // Revela la respuesta correcta de un ejercicio de tablas de multiplicar.
+        // Se llama solo desde mostrarResultados(), nunca al momento de responder.
+        function revelarTablasMultiplicar(idx) {
+            const ej = ejercicios['tablas-multiplicar'][idx];
+            const respuestaUsuario = respuestas['tablas-multiplicar'][idx];
+            const feedback = document.getElementById(`feedback-tm-${idx}`);
+            
+            for (let i = 0; i < 4; i++) {
+                const btn = document.getElementById(`btn-tm-${idx}-${i}`);
+                if (!btn) continue;
+                const valorBtn = parseInt(btn.textContent);
+                btn.classList.remove('seleccionado');
+                btn.disabled = true;
+                btn.style.opacity = (valorBtn === ej.resultado || valorBtn === respuestaUsuario) ? '1' : '0.4';
+                if (valorBtn === ej.resultado) {
+                    btn.classList.add('correcto');
+                } else if (valorBtn === respuestaUsuario) {
+                    btn.classList.add('incorrecto');
+                }
+            }
+            
+            feedback.classList.remove('guardado');
+            if (respuestaUsuario === ej.resultado) {
                 feedback.classList.add('correcto');
                 feedback.textContent = '✓ ¡Correcto! ¡Excelente! 🌟';
-                
-                for (let i = 0; i < 4; i++) {
-                    const btn = document.getElementById(`btn-tm-${idx}-${i}`);
-                    if (btn && parseInt(btn.textContent) !== num) {
-                        btn.disabled = true;
-                        btn.style.opacity = '0.5';
-                    }
-                }
             } else {
-                if (btnClickeado) {
-                    btnClickeado.classList.add('incorrecto');
-                }
                 feedback.classList.add('incorrecto');
-                feedback.textContent = '✗ Intenta de nuevo. ¡Tú puedes! 💪';
-                
-                setTimeout(() => {
-                    if (btnClickeado) {
-                        btnClickeado.classList.remove('incorrecto');
-                    }
-                    feedback.textContent = '';
-                    feedback.classList.remove('incorrecto');
-                }, 1200);
+                feedback.textContent = respuestaUsuario === undefined
+                    ? `✗ No respondiste. La respuesta correcta era ${ej.resultado}.`
+                    : `✗ La respuesta correcta era ${ej.resultado}.`;
             }
         }
 
@@ -1640,6 +2043,8 @@
                     respuestaEsperada = ejercicios[tipo][i].num1 - ejercicios[tipo][i].num2;
                 } else if (tipo === 'resta-imagenes') {
                     respuestaEsperada = ejercicios[tipo][i].resultado;
+                } else if (tipo === 'decenas-unidades') {
+                    respuestaEsperada = ejercicios[tipo][i].decenas * 10 + ejercicios[tipo][i].unidades;
                 } else if (tipo === 'tablas-multiplicar') {
                     respuestaEsperada = ejercicios[tipo][i].resultado;
                 }
@@ -1647,7 +2052,27 @@
                 if (respuestas[tipo][i] === respuestaEsperada) {
                     correctas++;
                 }
+                
+                // Revelar la respuesta correcta de cada ejercicio, solo la primera vez
+                // que se presiona "Ver Mis Resultados" (evita repetir animaciones).
+                if (!resultadosRevelados[tipo]) {
+                    if (tipo === 'recta') {
+                        revelarRecta(i);
+                    } else if (tipo === 'cuanto-falta') {
+                        revelarCuantoFalta(i);
+                    } else if (tipo === 'restas-simples') {
+                        revelarRestasSimples(i);
+                    } else if (tipo === 'resta-imagenes') {
+                        revelarRestaImagenes(i);
+                    } else if (tipo === 'decenas-unidades') {
+                        revelarDecenasUnidades(i);
+                    } else if (tipo === 'tablas-multiplicar') {
+                        revelarTablasMultiplicar(i);
+                    }
+                }
             }
+            
+            resultadosRevelados[tipo] = true;
             
             const puntuacion = document.getElementById(`puntuacion-${tipo}`);
             const puntuacionTexto = document.getElementById(`puntuacion-texto-${tipo}`);
@@ -1687,6 +2112,10 @@
                 ejercicios['resta-imagenes'] = generarRestaImagenes();
                 respuestas['resta-imagenes'] = {};
                 renderEjerciciosRestaImagenes();
+            } else if (tipo === 'decenas-unidades') {
+                ejercicios['decenas-unidades'] = generarDecenasUnidades();
+                respuestas['decenas-unidades'] = {};
+                renderEjerciciosDecenasUnidades();
             } else if (tipo === 'tablas-multiplicar') {
                 ejercicios['tablas-multiplicar'] = generarTablasMultiplicar();
                 respuestas['tablas-multiplicar'] = {};
@@ -1696,6 +2125,7 @@
             document.getElementById(`puntuacion-${tipo}`).style.display = 'none';
             window.scrollTo({ top: 0, behavior: 'smooth' });
             yaRenderizado[tipo] = true;
+            resultadosRevelados[tipo] = false;
         }
 
         // ============ INICIALIZAR ============
@@ -1704,6 +2134,7 @@
             ejercicios['cuanto-falta'] = generarCuantoFalta();
             ejercicios['restas-simples'] = generarRestasSimples();
             ejercicios['resta-imagenes'] = generarRestaImagenes();
+            ejercicios['decenas-unidades'] = generarDecenasUnidades();
             ejercicios['tablas-multiplicar'] = generarTablasMultiplicar();
         };
         
