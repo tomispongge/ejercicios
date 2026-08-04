@@ -600,6 +600,14 @@
                     <span class="opcion-emoji">📝</span>
                     Guía de Multiplicación
                 </button>
+                <button class="opcion" onclick="mostrarModuloOrtografia()">
+                    <span class="opcion-emoji">📖</span>
+                    Ortografía
+                </button>
+                <button class="opcion" onclick="mostrarModuloVocabularioIngles()">
+                    <span class="opcion-emoji">🌎</span>
+                    Vocabulario en Inglés
+                </button>
             </div>
         </div>
 
@@ -855,6 +863,209 @@
                 </div>
             </div>
         </div>
+
+        <!-- MÓDULO INTERACTIVO DE ORTOGRAFÍA -->
+        <div id="modulo-ortografia" class="modulo-contenedor">
+            <div style="max-width: 900px; margin: 0 auto; padding: 20px;">
+
+                <!-- CONFIGURACIÓN INICIAL -->
+                <div id="configuracion-ortografia" class="seccion-contenedor">
+                    <h2 style="color: #1a3c6e; margin-bottom: 20px;">Guía de Ortografía — 5° Básico</h2>
+
+                    <div style="background-color: #f5f7fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                        <p style="font-size: 14px; color: #333; margin-bottom: 16px;">
+                            Se presentarán <strong>15 palabras</strong>. Por cada una debes indicar si está escrita
+                            <strong>correctamente</strong> (Verdadero) o si tiene un <strong>error de ortografía</strong> (Falso).
+                        </p>
+
+                        <button id="btn-generar-ortografia" style="
+                            width: 100%;
+                            padding: 12px;
+                            background-color: #2f6f4e;
+                            color: white;
+                            border: none;
+                            border-radius: 4px;
+                            font-size: 16px;
+                            font-weight: 600;
+                            cursor: pointer;
+                            transition: background-color 0.3s;
+                        " onmouseover="this.style.backgroundColor='#1f4a33'" onmouseout="this.style.backgroundColor='#2f6f4e'">
+                            ▶ Comenzar Guía
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ÁREA DE EJERCICIOS -->
+                <div id="area-ejercicios-ortografia" style="display: none;">
+                    <div style="margin-bottom: 20px; display: flex; gap: 10px; flex-wrap: wrap;">
+                        <button id="btn-nuevos-ejercicios-orto" style="
+                            padding: 10px 20px;
+                            background-color: #2f6f4e;
+                            color: white;
+                            border: none;
+                            border-radius: 4px;
+                            font-size: 14px;
+                            cursor: pointer;
+                        ">🔄 Nuevos Ejercicios</button>
+
+                        <button id="btn-imprimir-ortografia" style="
+                            padding: 10px 20px;
+                            background-color: #0066cc;
+                            color: white;
+                            border: none;
+                            border-radius: 4px;
+                            font-size: 14px;
+                            cursor: pointer;
+                        ">🖨️ Imprimir / PDF</button>
+
+                        <button onclick="irA('menu-5basico'); document.getElementById('modulo-ortografia').style.display='none';" style="
+                            padding: 10px 20px;
+                            background-color: #1a3c6e;
+                            color: white;
+                            border: none;
+                            border-radius: 4px;
+                            font-size: 14px;
+                            cursor: pointer;
+                        ">← Volver</button>
+                    </div>
+
+                    <div id="contenedor-ejercicios-ortografia" style="background-color: #fff; padding: 20px; border-radius: 8px; border: 1px solid #ddd;"></div>
+
+                    <div style="margin-top: 20px; text-align: center;">
+                        <button id="btn-revisar-ortografia" style="
+                            padding: 12px 30px;
+                            background-color: #1a3c6e;
+                            color: white;
+                            border: none;
+                            border-radius: 4px;
+                            font-size: 16px;
+                            font-weight: 600;
+                            cursor: pointer;
+                        ">Revisar Respuestas</button>
+                    </div>
+                </div>
+
+                <!-- RESULTADOS -->
+                <div id="resultados-ortografia" style="display: none; background-color: #f5f7fa; padding: 20px; border-radius: 8px;">
+                    <h3 style="color: #1a3c6e; margin-bottom: 20px;">Resultados</h3>
+                    <div id="contenedor-resultados-ortografia" style="background-color: white; padding: 20px; border-radius: 4px;"></div>
+                    <div style="margin-top: 20px;">
+                        <button onclick="irA('menu-5basico'); document.getElementById('modulo-ortografia').style.display='none';" style="
+                            width: 100%;
+                            padding: 12px;
+                            background-color: #1a3c6e;
+                            color: white;
+                            border: none;
+                            border-radius: 4px;
+                            font-size: 14px;
+                            cursor: pointer;
+                        ">← Volver a Menú</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MÓDULO INTERACTIVO DE VOCABULARIO EN INGLÉS -->
+        <div id="modulo-vocabulario-ingles" class="modulo-contenedor">
+            <div style="max-width: 900px; margin: 0 auto; padding: 20px;">
+
+                <!-- CONFIGURACIÓN INICIAL -->
+                <div id="configuracion-vocabulario-ingles" class="seccion-contenedor">
+                    <h2 style="color: #1a3c6e; margin-bottom: 20px;">Vocabulario en Inglés — 5° Básico</h2>
+
+                    <div style="background-color: #f5f7fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                        <p style="font-size: 14px; color: #333; margin-bottom: 16px;">
+                            Se presentarán <strong>20 palabras</strong>. Algunas te pedirán traducir de
+                            <strong>inglés a español</strong> y otras de <strong>español a inglés</strong>.
+                            Elige la alternativa correcta entre las 4 opciones.
+                        </p>
+
+                        <button id="btn-generar-vocabulario-ingles" style="
+                            width: 100%;
+                            padding: 12px;
+                            background-color: #2f6f4e;
+                            color: white;
+                            border: none;
+                            border-radius: 4px;
+                            font-size: 16px;
+                            font-weight: 600;
+                            cursor: pointer;
+                            transition: background-color 0.3s;
+                        " onmouseover="this.style.backgroundColor='#1f4a33'" onmouseout="this.style.backgroundColor='#2f6f4e'">
+                            ▶ Comenzar Guía
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ÁREA DE EJERCICIOS -->
+                <div id="area-ejercicios-vocabulario-ingles" style="display: none;">
+                    <div style="margin-bottom: 20px; display: flex; gap: 10px; flex-wrap: wrap;">
+                        <button id="btn-nuevos-ejercicios-vocabulario-ingles" style="
+                            padding: 10px 20px;
+                            background-color: #2f6f4e;
+                            color: white;
+                            border: none;
+                            border-radius: 4px;
+                            font-size: 14px;
+                            cursor: pointer;
+                        ">🔄 Nuevos Ejercicios</button>
+
+                        <button id="btn-imprimir-vocabulario-ingles" style="
+                            padding: 10px 20px;
+                            background-color: #0066cc;
+                            color: white;
+                            border: none;
+                            border-radius: 4px;
+                            font-size: 14px;
+                            cursor: pointer;
+                        ">🖨️ Imprimir / PDF</button>
+
+                        <button onclick="irA('menu-5basico'); document.getElementById('modulo-vocabulario-ingles').style.display='none';" style="
+                            padding: 10px 20px;
+                            background-color: #1a3c6e;
+                            color: white;
+                            border: none;
+                            border-radius: 4px;
+                            font-size: 14px;
+                            cursor: pointer;
+                        ">← Volver</button>
+                    </div>
+
+                    <div id="contenedor-ejercicios-vocabulario-ingles" style="background-color: #fff; padding: 20px; border-radius: 8px; border: 1px solid #ddd;"></div>
+
+                    <div style="margin-top: 20px; text-align: center;">
+                        <button id="btn-revisar-vocabulario-ingles" style="
+                            padding: 12px 30px;
+                            background-color: #1a3c6e;
+                            color: white;
+                            border: none;
+                            border-radius: 4px;
+                            font-size: 16px;
+                            font-weight: 600;
+                            cursor: pointer;
+                        ">Revisar Respuestas</button>
+                    </div>
+                </div>
+
+                <!-- RESULTADOS -->
+                <div id="resultados-vocabulario-ingles" style="display: none; background-color: #f5f7fa; padding: 20px; border-radius: 8px;">
+                    <h3 style="color: #1a3c6e; margin-bottom: 20px;">Resultados</h3>
+                    <div id="contenedor-resultados-vocabulario-ingles" style="background-color: white; padding: 20px; border-radius: 4px;"></div>
+                    <div style="margin-top: 20px;">
+                        <button onclick="irA('menu-5basico'); document.getElementById('modulo-vocabulario-ingles').style.display='none';" style="
+                            width: 100%;
+                            padding: 12px;
+                            background-color: #1a3c6e;
+                            color: white;
+                            border: none;
+                            border-radius: 4px;
+                            font-size: 14px;
+                            cursor: pointer;
+                        ">← Volver a Menú</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -879,6 +1090,391 @@
 
         const decoracionesMultiplicar = ["🌟", "💫", "✨", "🎯", "🏆", "🎉", "💪", "🚀", "💎", "👑"];
 
+        // ============ BANCO DE PALABRAS - MÓDULO DE ORTOGRAFÍA ============
+        // Cada entrada tiene la forma correcta y una o más variantes con errores típicos
+        // de niños de 5° básico (confusión b/v, g/j, c/s/z, h muda, ll/y, tildes, etc.)
+        const bancoPalabrasOrtografia = [
+            { correcta: "responsabilidad", incorrectas: ["responsavilidad", "responzabilidad"], definicion: "obligación de responder por las propias acciones o decisiones", categoria: "general" },
+            { correcta: "vehículo", incorrectas: ["vehiculo", "behículo"], definicion: "medio de transporte, como un auto, bicicleta o camión", categoria: "general" },
+            { correcta: "exuberante", incorrectas: ["esuberante", "exhuberante"], definicion: "muy abundante y lleno de vida, especialmente la vegetación", categoria: "general" },
+            { correcta: "zanahoria", incorrectas: ["sanahoria", "zanaoria"], definicion: "verdura anaranjada y alargada que se come cruda o cocida", categoria: "general" },
+            { correcta: "ballena", incorrectas: ["vallena", "bayena"], definicion: "mamífero marino de gran tamaño que vive en el mar", categoria: "general" },
+            { correcta: "jirafa", incorrectas: ["girafa", "jiraba"], definicion: "animal africano de cuello muy largo", categoria: "general" },
+            { correcta: "excelente", incorrectas: ["eselente", "ecselente"], definicion: "que es muy bueno, de gran calidad", categoria: "general" },
+            { correcta: "extraordinario", incorrectas: ["estraordinario", "ecstraordinario"], definicion: "que sale de lo común, fuera de lo normal", categoria: "general" },
+            { correcta: "hipopótamo", incorrectas: ["hipopotamo", "ipopótamo"], definicion: "animal grande de piel gruesa que vive cerca de ríos y lagos en África", categoria: "general" },
+            { correcta: "geografía", incorrectas: ["jeografía", "geografia"], definicion: "ciencia que estudia la superficie de la Tierra", categoria: "tilde" },
+            { correcta: "exhibir", incorrectas: ["exsibir", "esibir"], definicion: "mostrar algo públicamente", categoria: "general" },
+            { correcta: "huracán", incorrectas: ["huracan", "uracán"], definicion: "tormenta muy fuerte con vientos que giran en círculo", categoria: "general" },
+            { correcta: "absoluto", incorrectas: ["apsoluto", "avsoluto"], definicion: "que no tiene límite ni excepción; total y completo", categoria: "general" },
+            { correcta: "obstáculo", incorrectas: ["obstaculo", "opstáculo"], definicion: "algo que dificulta o impide avanzar", categoria: "general" },
+            { correcta: "exquisito", incorrectas: ["esquisito", "ecsquisito"], definicion: "de muy buen sabor o de gran calidad", categoria: "general" },
+            { correcta: "prohibido", incorrectas: ["proivido", "prohivido"], definicion: "que no está permitido", categoria: "general" },
+            { correcta: "almohada", incorrectas: ["almuada", "almoada"], definicion: "objeto blando que se usa para apoyar la cabeza al dormir", categoria: "general" },
+            { correcta: "ahorro", incorrectas: ["aorro", "ahoro"], definicion: "acción de guardar dinero u otro recurso para usarlo después", categoria: "general" },
+            { correcta: "inteligencia", incorrectas: ["intelijencia", "inteligenzia"], definicion: "capacidad de entender, aprender y resolver problemas", categoria: "general" },
+            { correcta: "exagerar", incorrectas: ["ecsagerar", "esagerar"], definicion: "agrandar algo más de lo que realmente es", categoria: "general" },
+            { correcta: "vigilante", incorrectas: ["bigilante", "vijilante"], definicion: "persona encargada de cuidar y observar un lugar", categoria: "general" },
+            { correcta: "vergüenza", incorrectas: ["verguenza", "bergüenza"], definicion: "sentimiento incómodo por algo que se hizo o se dijo", categoria: "general" },
+            { correcta: "desarrollo", incorrectas: ["desarollo", "desarroyo"], definicion: "proceso de crecer o avanzar hacia algo mejor", categoria: "general" },
+            { correcta: "maravilloso", incorrectas: ["maraviyoso", "marabilloso"], definicion: "que causa admiración por ser muy bueno o hermoso", categoria: "general" },
+            { correcta: "habilidad", incorrectas: ["avilidad", "abilidad"], definicion: "capacidad de hacer algo bien y con facilidad", categoria: "general" },
+            { correcta: "invierno", incorrectas: ["imbierno", "imvierno"], definicion: "estación del año más fría", categoria: "general" },
+            { correcta: "convivencia", incorrectas: ["combivencia", "conbivencia"], definicion: "acción de vivir juntos y relacionarse con otras personas", categoria: "general" },
+            { correcta: "movimiento", incorrectas: ["mobimiento", "mopimiento"], definicion: "cambio de posición o de lugar de algo", categoria: "general" },
+            { correcta: "gobierno", incorrectas: ["govierno", "gobiernno"], definicion: "conjunto de personas que dirigen un país o una institución", categoria: "general" },
+            { correcta: "reflexión", incorrectas: ["refleccion", "reflexion"], definicion: "acción de pensar con detenimiento sobre algo", categoria: "general" },
+            { correcta: "música", incorrectas: ["musica", "músika"], definicion: "arte de combinar sonidos de forma agradable al oído", categoria: "general" },
+            { correcta: "rápido", incorrectas: ["rapido", "rrapido"], definicion: "que se mueve o hace algo con mucha velocidad", categoria: "tilde" },
+            { correcta: "número", incorrectas: ["numero", "nunmero"], definicion: "signo o palabra que representa una cantidad", categoria: "general" },
+            { correcta: "médico", incorrectas: ["medico", "médiko"], definicion: "persona que estudia y ejerce la medicina", categoria: "tilde" },
+            { correcta: "público", incorrectas: ["publico", "públiko"], definicion: "que puede ser usado o visto por todas las personas", categoria: "general" },
+            { correcta: "árbol", incorrectas: ["arbol", "árvol"], definicion: "planta grande con tronco, ramas y hojas", categoria: "general" },
+            { correcta: "lápiz", incorrectas: ["lapiz", "lápis"], definicion: "instrumento fino con mina que sirve para escribir o dibujar", categoria: "general" },
+            { correcta: "camión", incorrectas: ["camion", "canión"], definicion: "vehículo grande que se usa para transportar carga", categoria: "general" },
+            { correcta: "según", incorrectas: ["segun", "segúm"], definicion: "de acuerdo con algo o alguien", categoria: "general" },
+            { correcta: "décimo", incorrectas: ["decimo", "désimo"], definicion: "número ordinal que sigue al noveno", categoria: "general" },
+            { correcta: "hierba", incorrectas: ["ierba", "iherba"], definicion: "planta pequeña de tallo tierno que crece en el campo", categoria: "general" },
+            { correcta: "huevo", incorrectas: ["uevo", "uhevo"], definicion: "célula reproductiva que ponen las aves y otros animales", categoria: "general" },
+            { correcta: "hospital", incorrectas: ["ospital", "ohspital"], definicion: "lugar donde se atiende y cura a personas enfermas", categoria: "general" },
+            { correcta: "hielo", incorrectas: ["ielo", "ihelo"], definicion: "agua congelada, sólida y fría", categoria: "general" },
+            { correcta: "hueco", incorrectas: ["ueco", "uheco"], definicion: "espacio vacío dentro de algo o en una superficie", categoria: "general" },
+            { correcta: "hormiga", incorrectas: ["ormiga", "ohrmiga"], definicion: "insecto pequeño que vive en colonias muy organizadas", categoria: "general" },
+            { correcta: "exhausto", incorrectas: ["esausto", "ehxausto"], definicion: "muy cansado, sin fuerzas", categoria: "general" },
+            { correcta: "deshacer", incorrectas: ["desacer", "desahcer"], definicion: "desarmar o destruir algo que ya estaba hecho", categoria: "general" },
+            { correcta: "rehén", incorrectas: ["reén", "rheén"], definicion: "persona retenida por la fuerza para exigir algo a cambio", categoria: "general" },
+            { correcta: "ahí", incorrectas: ["ai", "haí"], definicion: "en ese lugar", categoria: "general" },
+            { correcta: "hazaña", incorrectas: ["asaña", "ahzaña"], definicion: "acción difícil y admirable que requiere mucho valor", categoria: "general" },
+            { correcta: "habitar", incorrectas: ["abitar", "ahbitar"], definicion: "vivir en un lugar", categoria: "general" },
+            { correcta: "hallazgo", incorrectas: ["allazgo", "ahllazgo"], definicion: "algo que se encuentra; un descubrimiento", categoria: "general" },
+            { correcta: "hendidura", incorrectas: ["endidura", "ehndidura"], definicion: "abertura o corte estrecho en una superficie", categoria: "general" },
+            { correcta: "hollín", incorrectas: ["ollín", "ohllín"], definicion: "polvo negro que deja el humo al quemarse algo", categoria: "general" },
+            { correcta: "hinchar", incorrectas: ["inchar", "ihnchar"], definicion: "aumentar de tamaño, llenar de aire o líquido", categoria: "general" },
+            { correcta: "hebilla", incorrectas: ["ebilla", "ehbilla"], definicion: "pieza que sirve para ajustar un cinturón u otra correa", categoria: "general" },
+            { correcta: "hondo", incorrectas: ["ondo", "ohndo"], definicion: "que tiene mucha profundidad", categoria: "general" },
+            { correcta: "horadar", incorrectas: ["oradar", "ohradar"], definicion: "hacer un agujero atravesando algo", categoria: "general" },
+            { correcta: "hipoteca", incorrectas: ["ipoteca", "ihpoteca"], definicion: "préstamo de dinero para comprar una casa, dejándola como garantía", categoria: "general" },
+            { correcta: "hilvanar", incorrectas: ["ilvanar", "ihlvanar"], definicion: "coser con puntadas largas y provisionales", categoria: "general" },
+            { correcta: "exhortar", incorrectas: ["esortar", "ehxortar"], definicion: "animar o pedir con insistencia a alguien que haga algo", categoria: "general" },
+            { correcta: "inhalar", incorrectas: ["inalar", "inahlar"], definicion: "aspirar aire u otra sustancia por la nariz o la boca", categoria: "general" },
+            { correcta: "exhumar", incorrectas: ["esumar", "ehxumar"], definicion: "sacar un cuerpo que estaba enterrado", categoria: "general" },
+            { correcta: "cohibir", incorrectas: ["coibir", "coihbir"], definicion: "hacer que alguien se sienta incómodo o se reprima", categoria: "general" },
+            { correcta: "absolver", incorrectas: ["absolber", "absolevr"], definicion: "declarar libre de culpa a alguien", categoria: "general" },
+            { correcta: "hervir", incorrectas: ["herbir", "herivr"], definicion: "poner un líquido a la temperatura en que forma burbujas", categoria: "general" },
+            { correcta: "hervor", incorrectas: ["herbor", "herovr"], definicion: "estado de un líquido cuando hierve", categoria: "general" },
+            { correcta: "abismo", incorrectas: ["avismo", "aibsmo"], definicion: "hoyo muy profundo y sin fondo aparente", categoria: "general" },
+            { correcta: "vibrar", incorrectas: ["bibrar", "ivbrar"], definicion: "moverse rápidamente de un lado a otro con pequeñas sacudidas", categoria: "general" },
+            { correcta: "absorber", incorrectas: ["absorver", "absorebr"], definicion: "atraer y retener un líquido u otra sustancia en su interior", categoria: "general" },
+            { correcta: "vestíbulo", incorrectas: ["bestívulo", "evstíbulo"], definicion: "espacio de entrada de un edificio", categoria: "general" },
+            { correcta: "tuviste", incorrectas: ["tubiste", "tuivste"], definicion: "pasado del verbo tener, segunda persona singular", categoria: "general" },
+            { correcta: "estuvo", incorrectas: ["estubo", "estuov"], definicion: "pasado del verbo estar, tercera persona singular", categoria: "general" },
+            { correcta: "iba", incorrectas: ["iva", "iab"], definicion: "pasado del verbo ir; indicaba una acción en curso", categoria: "general" },
+            { correcta: "hubo", incorrectas: ["huvo", "huob"], definicion: "pasado del verbo haber; indica que algo existió u ocurrió", categoria: "general" },
+            { correcta: "haber", incorrectas: ["haver", "haebr"], definicion: "verbo que indica existencia o que forma tiempos compuestos", categoria: "general" },
+            { correcta: "avestruz", incorrectas: ["abestruz", "aevstruz"], definicion: "ave grande que no vuela y corre muy rápido", categoria: "general" },
+            { correcta: "herbívoro", incorrectas: ["herbíboro", "herbíovro"], definicion: "animal que se alimenta solo de plantas", categoria: "general" },
+            { correcta: "absurdo", incorrectas: ["avsurdo", "asburdo"], definicion: "que no tiene sentido o es contrario a la razón", categoria: "general" },
+            { correcta: "vislumbrar", incorrectas: ["bislumbrar", "ivslumbrar"], definicion: "ver algo de forma poco clara, a lo lejos", categoria: "general" },
+            { correcta: "obvio", incorrectas: ["ovvio", "ovbio"], definicion: "que es muy claro y fácil de entender", categoria: "general" },
+            { correcta: "subvención", incorrectas: ["subbención", "subevnción"], definicion: "ayuda económica que entrega el Estado u otra institución", categoria: "general" },
+            { correcta: "adverbio", incorrectas: ["adberbio", "adevrbio"], definicion: "palabra que modifica a un verbo, adjetivo u otro adverbio", categoria: "general" },
+            { correcta: "envolver", incorrectas: ["embolver", "evnolver"], definicion: "cubrir algo por completo con papel u otro material", categoria: "general" },
+            { correcta: "vivienda", incorrectas: ["bivienda", "ivvienda"], definicion: "lugar donde vive una persona o una familia", categoria: "general" },
+            { correcta: "bóveda", incorrectas: ["bóbeda", "bóevda"], definicion: "techo curvo de una construcción", categoria: "general" },
+            { correcta: "bravura", incorrectas: ["brabura", "brauvra"], definicion: "valentía o fiereza", categoria: "general" },
+            { correcta: "venablo", incorrectas: ["benablo", "evnablo"], definicion: "especie de lanza corta que se arroja con la mano", categoria: "general" },
+            { correcta: "vagabundo", incorrectas: ["bagabundo", "avgabundo"], definicion: "persona que anda sin hogar ni ocupación fija", categoria: "general" },
+            { correcta: "embriaguez", incorrectas: ["emvriaguez", "emrbiaguez"], definicion: "estado de estar borracho por consumir alcohol", categoria: "general" },
+            { correcta: "absolución", incorrectas: ["avsolución", "asbolución"], definicion: "acto de perdonar o declarar libre de culpa a alguien", categoria: "general" },
+            { correcta: "vehicular", incorrectas: ["behicular", "evhicular"], definicion: "relacionado con los vehículos", categoria: "general" },
+            { correcta: "hervidero", incorrectas: ["herbidero", "herivdero"], definicion: "lugar donde algo hierve o bulle con mucha actividad", categoria: "general" },
+            { correcta: "exceso", incorrectas: ["eceso", "ecxeso"], definicion: "cantidad mayor a lo normal o permitido", categoria: "general" },
+            { correcta: "ascensor", incorrectas: ["asensor", "asecnsor"], definicion: "aparato que sube y baja personas entre los pisos de un edificio", categoria: "general" },
+            { correcta: "sucesión", incorrectas: ["susesión", "suecsión"], definicion: "serie de cosas que vienen una después de otra", categoria: "general" },
+            { correcta: "concesión", incorrectas: ["consesión", "conecsión"], definicion: "permiso o autorización que se otorga a alguien", categoria: "general" },
+            { correcta: "discreción", incorrectas: ["discresión", "discreicón"], definicion: "cualidad de actuar con prudencia y reserva", categoria: "general" },
+            { correcta: "cocer", incorrectas: ["coser", "coecr"], definicion: "preparar un alimento hirviéndolo o cociéndolo con calor", categoria: "general" },
+            { correcta: "abrazar", incorrectas: ["abrasar", "abraazr"], definicion: "rodear con los brazos a alguien en señal de cariño", categoria: "general" },
+            { correcta: "actuación", incorrectas: ["actuasión", "actuaicón"], definicion: "manera de comportarse o de desempeñar un papel", categoria: "general" },
+            { correcta: "adolescencia", incorrectas: ["adolescensia", "adolescenica"], definicion: "etapa de la vida entre la niñez y la adultez", categoria: "general" },
+            { correcta: "absceso", incorrectas: ["abseso", "absecso"], definicion: "acumulación de pus en una parte del cuerpo", categoria: "general" },
+            { correcta: "exención", incorrectas: ["exensión", "exenicón"], definicion: "situación de estar libre de una obligación o pago", categoria: "general" },
+            { correcta: "suscripción", incorrectas: ["suscripsión", "suscripicón"], definicion: "acción de inscribirse o pagar para recibir algo periódicamente", categoria: "general" },
+            { correcta: "sensación", incorrectas: ["censación", "esnsación"], definicion: "impresión o efecto que algo produce en el cuerpo o la mente", categoria: "general" },
+            { correcta: "presión", incorrectas: ["preción", "preisón"], definicion: "fuerza que se ejerce sobre algo", categoria: "general" },
+            { correcta: "exposición", incorrectas: ["exposisión", "exposiicón"], definicion: "muestra pública de objetos, obras o ideas", categoria: "general" },
+            { correcta: "sucesivo", incorrectas: ["susesivo", "suecsivo"], definicion: "que sigue en orden, uno después de otro", categoria: "general" },
+            { correcta: "discernir", incorrectas: ["disernir", "disecrnir"], definicion: "distinguir o diferenciar una cosa de otra", categoria: "general" },
+            { correcta: "ascenso", incorrectas: ["asenso", "asecnso"], definicion: "subida o mejora de puesto o categoría", categoria: "general" },
+            { correcta: "exclusión", incorrectas: ["esclusión", "ecxlusión"], definicion: "acción de dejar a alguien o algo fuera de un grupo", categoria: "general" },
+            { correcta: "cesión", incorrectas: ["sesión", "ecsión"], definicion: "acto de ceder o entregar algo a otra persona", categoria: "general" },
+            { correcta: "secesión", incorrectas: ["sesesión", "seecsión"], definicion: "separación de una parte de un territorio o grupo", categoria: "general" },
+            { correcta: "escisión", incorrectas: ["esición", "esicsión"], definicion: "separación o división de una parte de un todo", categoria: "general" },
+            { correcta: "adscripción", incorrectas: ["adscripsión", "adscripicón"], definicion: "acción de inscribir a alguien en un lugar o grupo", categoria: "general" },
+            { correcta: "conciencia", incorrectas: ["consiencia", "conicencia"], definicion: "capacidad de reconocer lo que está bien o mal", categoria: "general" },
+            { correcta: "consciencia", incorrectas: ["conciencia", "concsiencia"], definicion: "estado de darse cuenta de lo que ocurre alrededor o dentro de uno mismo", categoria: "general" },
+            { correcta: "suscitar", incorrectas: ["susitar", "susictar"], definicion: "provocar o dar origen a algo, como una discusión", categoria: "general" },
+            { correcta: "rescisión", incorrectas: ["resisión", "resicsión"], definicion: "anulación de un contrato o acuerdo", categoria: "general" },
+            { correcta: "abstracción", incorrectas: ["abstracsión", "abstracicón"], definicion: "idea o concepto separado de un caso concreto", categoria: "general" },
+            { correcta: "persuasión", incorrectas: ["persuación", "persuaisón"], definicion: "acción de convencer a alguien de algo mediante razones", categoria: "general" },
+            { correcta: "transgresión", incorrectas: ["transgreción", "transgreisón"], definicion: "acción de no respetar una norma o una ley", categoria: "general" },
+            { correcta: "exhaustivo", incorrectas: ["eshaustivo", "ehxaustivo"], definicion: "que se hace de manera completa y detallada, sin dejar nada fuera", categoria: "general" },
+            { correcta: "excavación", incorrectas: ["escavación", "ecxavación"], definicion: "acción de cavar o abrir un hoyo en la tierra", categoria: "general" },
+            { correcta: "examinar", incorrectas: ["esaminar", "eaxminar"], definicion: "revisar algo con atención para evaluarlo", categoria: "general" },
+            { correcta: "auxilio", incorrectas: ["ausilio", "auixlio"], definicion: "ayuda que se presta a alguien en peligro", categoria: "general" },
+            { correcta: "saxofón", incorrectas: ["sasofón", "saoxfón"], definicion: "instrumento musical de viento hecho de metal", categoria: "general" },
+            { correcta: "flexible", incorrectas: ["flesible", "fleixble"], definicion: "que se puede doblar o adaptar con facilidad", categoria: "general" },
+            { correcta: "sexto", incorrectas: ["sesto", "setxo"], definicion: "número que sigue al quinto en una serie", categoria: "general" },
+            { correcta: "extranjero", incorrectas: ["estranjero", "etxranjero"], definicion: "persona que es de otro país", categoria: "general" },
+            { correcta: "contexto", incorrectas: ["contesto", "contetxo"], definicion: "conjunto de circunstancias que rodean un hecho o un texto", categoria: "general" },
+            { correcta: "explícito", incorrectas: ["esplícito", "epxlícito"], definicion: "que se expresa de forma clara y directa", categoria: "general" },
+            { correcta: "excepción", incorrectas: ["escepción", "ecxepción"], definicion: "caso que se aparta de la regla general", categoria: "general" },
+            { correcta: "exuberancia", incorrectas: ["esuberancia", "euxberancia"], definicion: "abundancia grande, especialmente de vegetación", categoria: "general" },
+            { correcta: "exponencial", incorrectas: ["esponencial", "epxonencial"], definicion: "que crece cada vez más rápido, de forma acelerada", categoria: "general" },
+            { correcta: "exhortación", incorrectas: ["eshortación", "ehxortación"], definicion: "acción de animar o incitar a alguien a hacer algo", categoria: "general" },
+            { correcta: "axioma", incorrectas: ["asioma", "aixoma"], definicion: "verdad tan evidente que no necesita demostración", categoria: "general" },
+            { correcta: "taxidermia", incorrectas: ["tasidermia", "taixdermia"], definicion: "técnica para conservar y disecar animales muertos", categoria: "general" },
+            { correcta: "sintaxis", incorrectas: ["sintasis", "sintaixs"], definicion: "orden y relación de las palabras dentro de una oración", categoria: "general" },
+            { correcta: "próximo", incorrectas: ["prósimo", "próixmo"], definicion: "que está muy cerca en el tiempo o en el espacio", categoria: "general" },
+            { correcta: "asfixia", incorrectas: ["asfisia", "asfiixa"], definicion: "dificultad o imposibilidad de respirar", categoria: "general" },
+            { correcta: "laxitud", incorrectas: ["lasitud", "laixtud"], definicion: "estado de cansancio o falta de tensión", categoria: "general" },
+            { correcta: "exorbitante", incorrectas: ["esorbitante", "eoxrbitante"], definicion: "que es excesivo, mucho más de lo normal", categoria: "general" },
+            { correcta: "excursión", incorrectas: ["escursión", "ecxursión"], definicion: "salida o paseo que se hace para conocer un lugar", categoria: "general" },
+            { correcta: "exclamación", incorrectas: ["esclamación", "ecxlamación"], definicion: "expresión que muestra sorpresa, alegría u otro sentimiento fuerte", categoria: "general" },
+            { correcta: "exento", incorrectas: ["esento", "eexnto"], definicion: "que está libre de una obligación", categoria: "general" },
+            { correcta: "exuberar", incorrectas: ["esuberar", "euxberar"], definicion: "crecer o desarrollarse con mucha fuerza y abundancia", categoria: "general" },
+            { correcta: "xilófono", incorrectas: ["silófono", "ixlófono"], definicion: "instrumento musical de placas de madera que se golpean", categoria: "general" },
+            { correcta: "área", incorrectas: ["area", "aréa"], definicion: "espacio o superficie delimitada", categoria: "tilde" },
+            { correcta: "país", incorrectas: ["pais", "páis"], definicion: "territorio con su propio gobierno y población", categoria: "tilde" },
+            { correcta: "baúl", incorrectas: ["baul", "bául"], definicion: "caja grande con tapa para guardar cosas", categoria: "tilde" },
+            { correcta: "raíz", incorrectas: ["raiz", "ráiz"], definicion: "parte de la planta que crece bajo la tierra", categoria: "tilde" },
+            { correcta: "oír", incorrectas: ["oir", "óir"], definicion: "percibir sonidos con el oído", categoria: "tilde" },
+            { correcta: "maíz", incorrectas: ["maiz", "máiz"], definicion: "cereal de granos amarillos que crece en mazorcas", categoria: "tilde" },
+            { correcta: "ataúd", incorrectas: ["ataud", "atáud"], definicion: "caja donde se coloca a una persona fallecida", categoria: "tilde" },
+            { correcta: "transeúnte", incorrectas: ["transeunte", "transéunte"], definicion: "persona que camina o pasa por un lugar", categoria: "tilde" },
+            { correcta: "período", incorrectas: ["periodo", "periódo"], definicion: "espacio de tiempo determinado", categoria: "tilde" },
+            { correcta: "vídeo", incorrectas: ["video", "vidéo"], definicion: "grabación de imágenes en movimiento", categoria: "tilde" },
+            { correcta: "cardíaco", incorrectas: ["cardiaco", "cardiáco"], definicion: "relacionado con el corazón", categoria: "tilde" },
+            { correcta: "proteína", incorrectas: ["proteina", "protéina"], definicion: "sustancia esencial para el cuerpo, presente en carnes y legumbres", categoria: "tilde" },
+            { correcta: "autobús", incorrectas: ["autobus", "autóbus"], definicion: "vehículo grande de transporte público de pasajeros", categoria: "tilde" },
+            { correcta: "análisis", incorrectas: ["analisis", "ánalisis"], definicion: "estudio detallado de algo para comprenderlo mejor", categoria: "tilde" },
+            { correcta: "carácter", incorrectas: ["caracter", "cáracter"], definicion: "conjunto de cualidades que definen la forma de ser de una persona", categoria: "tilde" },
+            { correcta: "régimen", incorrectas: ["regimen", "regímen"], definicion: "conjunto de normas que regulan algo, como una alimentación", categoria: "tilde" },
+            { correcta: "superávit", incorrectas: ["superavit", "supéravit"], definicion: "situación en que los ingresos son mayores que los gastos", categoria: "tilde" },
+            { correcta: "ítem", incorrectas: ["item", "itém"], definicion: "cada uno de los elementos de una lista", categoria: "tilde" },
+            { correcta: "álbum", incorrectas: ["album", "albúm"], definicion: "libro o estuche para guardar fotos, estampillas u otras colecciones", categoria: "tilde" },
+            { correcta: "médula", incorrectas: ["medula", "medúla"], definicion: "sustancia que se encuentra dentro de los huesos", categoria: "tilde" },
+            { correcta: "cráneo", incorrectas: ["craneo", "cranéo"], definicion: "estructura ósea que protege el cerebro", categoria: "tilde" },
+            { correcta: "cráter", incorrectas: ["crater", "cratér"], definicion: "abertura en la boca de un volcán", categoria: "tilde" },
+            { correcta: "fértil", incorrectas: ["fertil", "fertíl"], definicion: "que produce mucho; tierra que da buenas cosechas", categoria: "tilde" },
+            { correcta: "ámbito", incorrectas: ["ambito", "ambíto"], definicion: "espacio o área en la que se desarrolla algo", categoria: "tilde" },
+            { correcta: "túnel", incorrectas: ["tunel", "tunél"], definicion: "paso subterráneo que atraviesa una montaña u otro obstáculo", categoria: "tilde" },
+            { correcta: "brújula", incorrectas: ["brujula", "brujúla"], definicion: "instrumento que indica el norte y sirve para orientarse", categoria: "tilde" },
+            { correcta: "cónyuge", incorrectas: ["conyuge", "conyúge"], definicion: "esposo o esposa de una persona", categoria: "tilde" },
+            { correcta: "vórtice", incorrectas: ["vortice", "vortíce"], definicion: "remolino o centro de un movimiento giratorio", categoria: "tilde" },
+            { correcta: "reír", incorrectas: ["reir", "réir"], definicion: "expresar alegría con sonidos y gestos característicos", categoria: "tilde" },
+            { correcta: "caído", incorrectas: ["caido", "cáido"], definicion: "que se ha caído; participio del verbo caer", categoria: "tilde" },
+            { correcta: "increíble", incorrectas: ["increible", "incréible"], definicion: "que es difícil de creer; asombroso", categoria: "tilde" },
+            { correcta: "día", incorrectas: ["dia", "diá"], definicion: "período de veinticuatro horas; tiempo en que hay luz solar", categoria: "tilde" },
+            { correcta: "policía", incorrectas: ["policia", "policiá"], definicion: "persona o institución encargada de mantener el orden público", categoria: "tilde" },
+            { correcta: "energía", incorrectas: ["energia", "energiá"], definicion: "capacidad para producir movimiento, calor o trabajo", categoria: "tilde" },
+            { correcta: "mecánico", incorrectas: ["mecanico", "mécanico"], definicion: "persona que repara máquinas o vehículos", categoria: "tilde" },
+            { correcta: "cárcel", incorrectas: ["carcel", "carcél"], definicion: "lugar donde se encierra a las personas condenadas por un delito", categoria: "tilde" },
+            { correcta: "difícil", incorrectas: ["dificil", "díficil"], definicion: "que cuesta mucho hacer o entender", categoria: "tilde" },
+            { correcta: "sonreír", incorrectas: ["sonreir", "sonréir"], definicion: "reír levemente, con una sonrisa", categoria: "tilde" },
+            { correcta: "leído", incorrectas: ["leido", "léido"], definicion: "que se ha leído; participio del verbo leer", categoria: "tilde" },
+            { correcta: "oído", incorrectas: ["oido", "óido"], definicion: "órgano con el que se percibe el sonido", categoria: "tilde" },
+            { correcta: "raíces", incorrectas: ["raices", "ráices"], definicion: "plural de raíz; partes de la planta que crecen bajo la tierra", categoria: "tilde" },
+            { correcta: "actúa", incorrectas: ["actua", "actuá"], definicion: "presente del verbo actuar; realiza una acción o representa un papel", categoria: "tilde" },
+            { correcta: "continuo", incorrectas: ["contínuo", "contniuo"], definicion: "que sucede sin interrupción, de manera constante", categoria: "tilde" },
+            { correcta: "evalúa", incorrectas: ["evalua", "evaluá"], definicion: "presente del verbo evaluar; mide o juzga el valor de algo", categoria: "tilde" },
+            { correcta: "insinúa", incorrectas: ["insinua", "insinuá"], definicion: "presente del verbo insinuar; da a entender algo de forma indirecta", categoria: "tilde" },
+            { correcta: "búho", incorrectas: ["buho", "buhó"], definicion: "ave rapaz nocturna de ojos grandes y redondos", categoria: "tilde" },
+            { correcta: "ahíto", incorrectas: ["ahito", "áhito"], definicion: "que está completamente satisfecho, especialmente de comer", categoria: "tilde" },
+            { correcta: "haya", incorrectas: ["halla", "aya"], definicion: "forma del verbo haber usada en subjuntivo, por ejemplo 'que haya llegado'", categoria: "general" },
+            { correcta: "hecho", incorrectas: ["echo", "ehcho"], definicion: "participio del verbo hacer; algo que ya está realizado", categoria: "general" },
+            { correcta: "hola", incorrectas: ["ola", "ohla"], definicion: "saludo que se usa al encontrarse con alguien", categoria: "general" },
+            { correcta: "tubo", incorrectas: ["tuvo", "tuob"], definicion: "pieza cilíndrica y hueca, como una cañería", categoria: "general" },
+            { correcta: "bello", incorrectas: ["vello", "ebllo"], definicion: "que es hermoso o bonito", categoria: "general" },
+            { correcta: "baca", incorrectas: ["vaca", "abca"], definicion: "portaequipajes que se instala en el techo de un auto", categoria: "general" },
+            { correcta: "votar", incorrectas: ["botar", "ovtar"], definicion: "elegir a alguien o algo mediante el voto", categoria: "general" },
+            { correcta: "sabia", incorrectas: ["savia", "saiba"], definicion: "mujer que tiene mucha sabiduría o conocimiento", categoria: "general" },
+            { correcta: "hierro", incorrectas: ["yerro", "iherro"], definicion: "metal duro y resistente muy usado en construcción", categoria: "general" },
+            { correcta: "asar", incorrectas: ["azar", "aasr"], definicion: "cocinar un alimento al fuego o al horno, sin agua", categoria: "general" },
+            { correcta: "cazar", incorrectas: ["casar", "caazr"], definicion: "perseguir animales para atraparlos", categoria: "general" },
+            { correcta: "rebelar", incorrectas: ["revelar", "reeblar"], definicion: "levantarse contra una autoridad o un orden establecido", categoria: "general" },
+            { correcta: "grabar", incorrectas: ["gravar", "graabr"], definicion: "registrar sonidos o imágenes para reproducirlos después", categoria: "general" },
+            { correcta: "errar", incorrectas: ["herrar", "rerar"], definicion: "equivocarse o no acertar", categoria: "general" },
+            { correcta: "ves", incorrectas: ["vez", "vse"], definicion: "presente del verbo ver, segunda persona: 'tú ves'", categoria: "general" },
+            { correcta: "tuvo", incorrectas: ["tubo", "tuov"], definicion: "pasado del verbo tener: 'ella tuvo un problema'", categoria: "general" },
+            { correcta: "onda", incorrectas: ["honda", "noda"], definicion: "ondulación que se propaga en el agua o en el aire, como una onda sonora", categoria: "general" },
+            { correcta: "hasta", incorrectas: ["asta", "ahsta"], definicion: "preposición que indica un límite: 'hasta mañana'", categoria: "general" },
+            { correcta: "ora", incorrectas: ["hora", "roa"], definicion: "presente del verbo orar; reza o suplica", categoria: "general" },
+            { correcta: "exhalación", incorrectas: ["eshalación", "ehxalación"], definicion: "salida del aire de los pulmones al respirar", categoria: "general" },
+            { correcta: "vehemente", incorrectas: ["behemente", "evhemente"], definicion: "que actúa o se expresa con mucha pasión e intensidad", categoria: "general" },
+            { correcta: "hexágono", incorrectas: ["exágono", "ehxágono"], definicion: "figura geométrica de seis lados", categoria: "general" },
+            { correcta: "inhibición", incorrectas: ["inibición", "inihbición"], definicion: "freno o control que impide hacer algo", categoria: "general" },
+            { correcta: "exhibición", incorrectas: ["eshibición", "ehxibición"], definicion: "muestra pública de algo, como obras de arte", categoria: "general" },
+            { correcta: "exhaustividad", incorrectas: ["eshaustividad", "ehxaustividad"], definicion: "cualidad de ser completo y detallado", categoria: "general" },
+            { correcta: "hexaedro", incorrectas: ["exaedro", "ehxaedro"], definicion: "cuerpo geométrico de seis caras", categoria: "general" },
+            { correcta: "exhibicionismo", incorrectas: ["eshibicionismo", "ehxibicionismo"], definicion: "tendencia a mostrarse o exhibirse en exceso", categoria: "general" },
+            { correcta: "hipérbole", incorrectas: ["ipérbole", "ihpérbole"], definicion: "figura retórica que consiste en exagerar algo", categoria: "general" }
+        ];
+
+        // ============ BANCO DE VOCABULARIO - MÓDULO DE INGLÉS (5° BÁSICO) ============
+        const bancoVocabularioIngles = [
+            { en: "excited", es: "emocionado", categoria: "emociones" },
+            { en: "nervous", es: "nervioso", categoria: "emociones" },
+            { en: "surprised", es: "sorprendido", categoria: "emociones" },
+            { en: "angry", es: "enojado", categoria: "emociones" },
+            { en: "scared", es: "asustado", categoria: "emociones" },
+            { en: "bored", es: "aburrido", categoria: "emociones" },
+            { en: "worried", es: "preocupado", categoria: "emociones" },
+            { en: "proud", es: "orgulloso", categoria: "emociones" },
+            { en: "embarrassed", es: "avergonzado", categoria: "emociones" },
+            { en: "calm", es: "tranquilo", categoria: "emociones" },
+            { en: "confused", es: "confundido", categoria: "emociones" },
+            { en: "curious", es: "curioso", categoria: "emociones" },
+            { en: "brave", es: "valiente", categoria: "emociones" },
+            { en: "shy", es: "tímido", categoria: "emociones" },
+            { en: "jealous", es: "celoso", categoria: "emociones" },
+            { en: "hobby", es: "pasatiempo", categoria: "pasatiempos" },
+            { en: "to draw", es: "dibujar", categoria: "pasatiempos" },
+            { en: "to paint", es: "pintar", categoria: "pasatiempos" },
+            { en: "to sing", es: "cantar", categoria: "pasatiempos" },
+            { en: "to dance", es: "bailar", categoria: "pasatiempos" },
+            { en: "to swim", es: "nadar", categoria: "pasatiempos" },
+            { en: "to ride a bike", es: "andar en bicicleta", categoria: "pasatiempos" },
+            { en: "to collect", es: "coleccionar", categoria: "pasatiempos" },
+            { en: "to cook", es: "cocinar", categoria: "pasatiempos" },
+            { en: "to bake", es: "hornear", categoria: "pasatiempos" },
+            { en: "video game", es: "videojuego", categoria: "pasatiempos" },
+            { en: "board game", es: "juego de mesa", categoria: "pasatiempos" },
+            { en: "puzzle", es: "rompecabezas", categoria: "pasatiempos" },
+            { en: "to build", es: "construir", categoria: "pasatiempos" },
+            { en: "to invent", es: "inventar", categoria: "pasatiempos" },
+            { en: "weather", es: "clima", categoria: "clima" },
+            { en: "sunny", es: "soleado", categoria: "clima" },
+            { en: "rainy", es: "lluvioso", categoria: "clima" },
+            { en: "cloudy", es: "nublado", categoria: "clima" },
+            { en: "windy", es: "con viento", categoria: "clima" },
+            { en: "snowy", es: "nevado", categoria: "clima" },
+            { en: "hot", es: "caluroso", categoria: "clima" },
+            { en: "cold", es: "frío", categoria: "clima" },
+            { en: "warm", es: "templado", categoria: "clima" },
+            { en: "storm", es: "tormenta", categoria: "clima" },
+            { en: "spring", es: "primavera", categoria: "clima" },
+            { en: "summer", es: "verano", categoria: "clima" },
+            { en: "autumn", es: "otoño", categoria: "clima" },
+            { en: "winter", es: "invierno", categoria: "clima" },
+            { en: "rainbow", es: "arcoíris", categoria: "clima" },
+            { en: "animal", es: "animal", categoria: "animales" },
+            { en: "dog", es: "perro", categoria: "animales" },
+            { en: "cat", es: "gato", categoria: "animales" },
+            { en: "bird", es: "pájaro", categoria: "animales" },
+            { en: "fish", es: "pez", categoria: "animales" },
+            { en: "horse", es: "caballo", categoria: "animales" },
+            { en: "lion", es: "león", categoria: "animales" },
+            { en: "elephant", es: "elefante", categoria: "animales" },
+            { en: "rabbit", es: "conejo", categoria: "animales" },
+            { en: "turtle", es: "tortuga", categoria: "animales" },
+            { en: "butterfly", es: "mariposa", categoria: "animales" },
+            { en: "spider", es: "araña", categoria: "animales" },
+            { en: "wild", es: "salvaje", categoria: "animales" },
+            { en: "pet", es: "mascota", categoria: "animales" },
+            { en: "farm", es: "granja", categoria: "animales" },
+            { en: "body", es: "cuerpo", categoria: "cuerpo" },
+            { en: "head", es: "cabeza", categoria: "cuerpo" },
+            { en: "hair", es: "pelo", categoria: "cuerpo" },
+            { en: "eyes", es: "ojos", categoria: "cuerpo" },
+            { en: "nose", es: "nariz", categoria: "cuerpo" },
+            { en: "mouth", es: "boca", categoria: "cuerpo" },
+            { en: "ears", es: "orejas", categoria: "cuerpo" },
+            { en: "hands", es: "manos", categoria: "cuerpo" },
+            { en: "feet", es: "pies", categoria: "cuerpo" },
+            { en: "arms", es: "brazos", categoria: "cuerpo" },
+            { en: "legs", es: "piernas", categoria: "cuerpo" },
+            { en: "heart", es: "corazón", categoria: "cuerpo" },
+            { en: "teeth", es: "dientes", categoria: "cuerpo" },
+            { en: "shoulder", es: "hombro", categoria: "cuerpo" },
+            { en: "finger", es: "dedo", categoria: "cuerpo" },
+            { en: "clothes", es: "ropa", categoria: "ropa" },
+            { en: "shirt", es: "camisa", categoria: "ropa" },
+            { en: "pants", es: "pantalones", categoria: "ropa" },
+            { en: "dress", es: "vestido", categoria: "ropa" },
+            { en: "skirt", es: "falda", categoria: "ropa" },
+            { en: "shoes", es: "zapatos", categoria: "ropa" },
+            { en: "socks", es: "calcetines", categoria: "ropa" },
+            { en: "jacket", es: "chaqueta", categoria: "ropa" },
+            { en: "hat", es: "sombrero", categoria: "ropa" },
+            { en: "sweater", es: "chaleco", categoria: "ropa" },
+            { en: "transportation", es: "transporte", categoria: "transporte" },
+            { en: "car", es: "auto", categoria: "transporte" },
+            { en: "bus", es: "bus", categoria: "transporte" },
+            { en: "train", es: "tren", categoria: "transporte" },
+            { en: "airplane", es: "avión", categoria: "transporte" },
+            { en: "bicycle", es: "bicicleta", categoria: "transporte" },
+            { en: "boat", es: "bote", categoria: "transporte" },
+            { en: "subway", es: "metro", categoria: "transporte" },
+            { en: "traffic", es: "tráfico", categoria: "transporte" },
+            { en: "street", es: "calle", categoria: "transporte" },
+            { en: "nature", es: "naturaleza", categoria: "naturaleza" },
+            { en: "mountain", es: "montaña", categoria: "naturaleza" },
+            { en: "river", es: "río", categoria: "naturaleza" },
+            { en: "lake", es: "lago", categoria: "naturaleza" },
+            { en: "sea", es: "mar", categoria: "naturaleza" },
+            { en: "forest", es: "bosque", categoria: "naturaleza" },
+            { en: "beach", es: "playa", categoria: "naturaleza" },
+            { en: "sky", es: "cielo", categoria: "naturaleza" },
+            { en: "sun", es: "sol", categoria: "naturaleza" },
+            { en: "moon", es: "luna", categoria: "naturaleza" },
+            { en: "star", es: "estrella", categoria: "naturaleza" },
+            { en: "tree", es: "árbol", categoria: "naturaleza" },
+            { en: "flower", es: "flor", categoria: "naturaleza" },
+            { en: "park", es: "parque", categoria: "naturaleza" },
+            { en: "city", es: "ciudad", categoria: "naturaleza" },
+            { en: "to understand", es: "entender", categoria: "verbos" },
+            { en: "to remember", es: "recordar", categoria: "verbos" },
+            { en: "to forget", es: "olvidar", categoria: "verbos" },
+            { en: "to decide", es: "decidir", categoria: "verbos" },
+            { en: "to explain", es: "explicar", categoria: "verbos" },
+            { en: "to imagine", es: "imaginar", categoria: "verbos" },
+            { en: "to discover", es: "descubrir", categoria: "verbos" },
+            { en: "to create", es: "crear", categoria: "verbos" },
+            { en: "to improve", es: "mejorar", categoria: "verbos" },
+            { en: "to practice", es: "practicar", categoria: "verbos" },
+            { en: "to share", es: "compartir", categoria: "verbos" },
+            { en: "to borrow", es: "pedir prestado", categoria: "verbos" },
+            { en: "to lend", es: "prestar", categoria: "verbos" },
+            { en: "to solve", es: "resolver", categoria: "verbos" },
+            { en: "to prepare", es: "preparar", categoria: "verbos" },
+            { en: "amazing", es: "increíble", categoria: "adjetivos" },
+            { en: "interesting", es: "interesante", categoria: "adjetivos" },
+            { en: "difficult", es: "difícil", categoria: "adjetivos" },
+            { en: "important", es: "importante", categoria: "adjetivos" },
+            { en: "dangerous", es: "peligroso", categoria: "adjetivos" },
+            { en: "comfortable", es: "cómodo", categoria: "adjetivos" },
+            { en: "helpful", es: "útil", categoria: "adjetivos" },
+            { en: "creative", es: "creativo", categoria: "adjetivos" },
+            { en: "responsible", es: "responsable", categoria: "adjetivos" },
+            { en: "patient", es: "paciente", categoria: "adjetivos" },
+            { en: "and", es: "y", categoria: "conectores" },
+            { en: "but", es: "pero", categoria: "conectores" },
+            { en: "or", es: "o", categoria: "conectores" },
+            { en: "because", es: "porque", categoria: "conectores" },
+            { en: "although", es: "aunque", categoria: "conectores" },
+            { en: "also", es: "también", categoria: "conectores" },
+            { en: "however", es: "sin embargo", categoria: "conectores" },
+            { en: "who", es: "quién", categoria: "conectores" },
+            { en: "what", es: "qué", categoria: "conectores" },
+            { en: "when", es: "cuándo", categoria: "conectores" },
+            { en: "where", es: "dónde", categoria: "conectores" },
+            { en: "why", es: "por qué", categoria: "conectores" },
+            { en: "how", es: "cómo", categoria: "conectores" },
+            { en: "which", es: "cuál", categoria: "conectores" },
+            { en: "whose", es: "de quién", categoria: "conectores" }
+        ];
+
         let ejercicios = {
             recta: [],
             'cuanto-falta': [],
@@ -900,6 +1496,18 @@
         // ============ MÓDULO DE MULTIPLICACIÓN - VARIABLES ============
         let ejerciciosActuales = [];
         let respuestasUsuario = {};
+
+        // ============ ORTOGRAFÍA - VARIABLES DE ESTADO ============
+        let ejerciciosOrtografiaActuales = [];
+        let respuestasOrtografia = {};
+        let respuestasCorreccionOrtografia = {};
+        let colaPalabrasOrtografiaTilde = []; // cola barajada de palabras categoría "tilde"
+        let colaPalabrasOrtografiaGeneral = []; // cola barajada de palabras categoría "general"
+
+        // ============ VOCABULARIO EN INGLÉS - VARIABLES DE ESTADO ============
+        let ejerciciosVocabularioActuales = [];
+        let respuestasVocabulario = {};
+        let colaVocabularioIngles = []; // cola barajada; garantiza que no se repitan palabras hasta agotar el banco completo
 
         // ============ FUNCIONES DE NAVEGACIÓN ============
         // Controla si un módulo ya fue renderizado en esta sesión,
@@ -1340,6 +1948,748 @@
             document.getElementById('area-ejercicios-multiplicacion').style.display = 'none';
             document.getElementById('resultados-multiplicacion').style.display = 'none';
             
+            document.querySelectorAll('.seccion').forEach(s => s.style.display = 'none');
+        }
+
+        // ============================================================
+        // ============ MÓDULO DE ORTOGRAFÍA ============
+        // ============================================================
+
+        // ============ GENERADOR DE EJERCICIOS DE ORTOGRAFÍA ============
+
+        // Baraja (Fisher-Yates) un arreglo y lo devuelve (no muta el original)
+        function barajarArreglo(arr) {
+            const copia = [...arr];
+            for (let i = copia.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [copia[i], copia[j]] = [copia[j], copia[i]];
+            }
+            return copia;
+        }
+
+        // Entrega "cantidad" palabras al azar (de una categoría específica) desde una cola
+        // barajada propia de esa categoría. Cuando la cola se queda corta, se repone con
+        // una nueva barajada completa del subconjunto del banco, de modo que ninguna palabra
+        // se repita hasta que se hayan usado todas las demás de su categoría.
+        function tomarPalabrasOrtografiaCategoria(cantidad, categoria) {
+            if (cantidad <= 0) return [];
+
+            const banco = bancoPalabrasOrtografia.filter(p => p.categoria === categoria);
+            let cola = categoria === 'tilde' ? colaPalabrasOrtografiaTilde : colaPalabrasOrtografiaGeneral;
+
+            const seleccionadas = [];
+            const usadasEnEstaGuia = new Set();
+            const descartadasTemporalmente = [];
+
+            while (seleccionadas.length < cantidad) {
+                if (cola.length === 0) {
+                    cola = barajarArreglo(banco);
+                }
+                const candidata = cola.shift();
+
+                // Caso borde: si al reponer la cola la nueva barajada trae una palabra que
+                // ya se usó en ESTA MISMA guía, la reservamos para el frente de la cola y
+                // probamos con la siguiente, evitando así una repetición dentro de la guía.
+                if (usadasEnEstaGuia.has(candidata.correcta)) {
+                    descartadasTemporalmente.push(candidata);
+                } else {
+                    usadasEnEstaGuia.add(candidata.correcta);
+                    seleccionadas.push(candidata);
+                }
+            }
+
+            // Las palabras reservadas vuelven al frente de la cola para usarse en la próxima guía
+            cola = descartadasTemporalmente.concat(cola);
+            if (categoria === 'tilde') {
+                colaPalabrasOrtografiaTilde = cola;
+            } else {
+                colaPalabrasOrtografiaGeneral = cola;
+            }
+
+            return seleccionadas;
+        }
+
+        function generarEjerciciosOrtografia(cantidad) {
+            cantidad = cantidad || 15;
+
+            // Se garantiza que ~40% de las palabras de cada guía sean de categoría "tilde"
+            // (acentuación / diptongos-hiatos con tilde) y el resto de otras dificultades.
+            const totalTilde = bancoPalabrasOrtografia.filter(p => p.categoria === 'tilde').length;
+            const totalGeneral = bancoPalabrasOrtografia.filter(p => p.categoria === 'general').length;
+            const cantidadTilde = Math.min(Math.round(cantidad * 0.4), totalTilde, cantidad);
+            const cantidadGeneral = Math.min(cantidad - cantidadTilde, totalGeneral);
+
+            let seleccionadas = [
+                ...tomarPalabrasOrtografiaCategoria(cantidadTilde, 'tilde'),
+                ...tomarPalabrasOrtografiaCategoria(cantidadGeneral, 'general')
+            ];
+            // Se mezclan para que no queden agrupadas por categoría en el orden de presentación
+            seleccionadas = barajarArreglo(seleccionadas);
+
+            // Armar un patrón balanceado de verdadero/falso (lo más 50/50 posible) y mezclarlo
+            // (se usa seleccionadas.length, no "cantidad", por si algún límite de categoría
+            // hizo que se entregaran menos palabras de las solicitadas)
+            const totalSeleccionadas = seleccionadas.length;
+            const mitad = Math.floor(totalSeleccionadas / 2);
+            const patron = [];
+            for (let i = 0; i < totalSeleccionadas; i++) patron.push(i < mitad ? true : false);
+            if (totalSeleccionadas % 2 !== 0) patron[patron.length - 1] = Math.random() < 0.5; // desempate aleatorio
+            for (let i = patron.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [patron[i], patron[j]] = [patron[j], patron[i]];
+            }
+
+            const ejerciciosGenerados = seleccionadas.map((entrada, idx) => {
+                const esVerdadera = patron[idx];
+                let palabraMostrada;
+                if (esVerdadera) {
+                    palabraMostrada = entrada.correcta;
+                } else {
+                    const incorrectas = entrada.incorrectas;
+                    palabraMostrada = incorrectas[Math.floor(Math.random() * incorrectas.length)];
+                }
+
+                // Opciones para el mini-quiz "¿Cuál es la forma correcta?": la palabra correcta
+                // más las 2 variantes incorrectas de la misma palabra, en orden aleatorio.
+                const opcionesCorreccion = [entrada.correcta, ...entrada.incorrectas];
+                for (let i = opcionesCorreccion.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [opcionesCorreccion[i], opcionesCorreccion[j]] = [opcionesCorreccion[j], opcionesCorreccion[i]];
+                }
+
+                return {
+                    numero: idx + 1,
+                    palabra: palabraMostrada,
+                    esVerdadera,
+                    palabraCorrecta: entrada.correcta,
+                    definicion: entrada.definicion,
+                    opcionesCorreccion
+                };
+            });
+
+            return ejerciciosGenerados;
+        }
+
+        // ============ MOSTRAR EJERCICIOS DE ORTOGRAFÍA ============
+        function mostrarEjerciciosOrtografia(ejerciciosOrto) {
+            const contenedor = document.getElementById('contenedor-ejercicios-ortografia');
+            let html = '<div style="display: grid; gap: 14px;">';
+
+            ejerciciosOrto.forEach((ej, idx) => {
+                html += `
+                    <div style="background-color: #f9f9f9; padding: 16px; border-radius: 4px; border-left: 4px solid #2f6f4e;">
+                        <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
+                            <div style="display: flex; align-items: center; gap: 16px;">
+                                <span style="font-weight: 600; color: #1a3c6e; min-width: 30px;">${ej.numero}.</span>
+                                <span style="font-size: 20px; font-weight: 600; color: #1a3c6e;">${ej.palabra}</span>
+                            </div>
+                            <div style="display: flex; gap: 10px;" id="opciones-orto-${idx}">
+                                <button type="button" class="btn-vf" id="btn-vf-${idx}-v" onclick="seleccionarRespuestaOrtografia(${idx}, true)" style="
+                                    padding: 8px 18px;
+                                    border: 2px solid #2f6f4e;
+                                    background-color: white;
+                                    color: #2f6f4e;
+                                    border-radius: 4px;
+                                    font-size: 14px;
+                                    font-weight: 600;
+                                    cursor: pointer;
+                                ">✅ Verdadero</button>
+                                <button type="button" class="btn-vf" id="btn-vf-${idx}-f" onclick="seleccionarRespuestaOrtografia(${idx}, false)" style="
+                                    padding: 8px 18px;
+                                    border: 2px solid #c93c3c;
+                                    background-color: white;
+                                    color: #c93c3c;
+                                    border-radius: 4px;
+                                    font-size: 14px;
+                                    font-weight: 600;
+                                    cursor: pointer;
+                                ">❌ Falso</button>
+                            </div>
+                        </div>
+                        <p style="font-size: 13px; color: #666; font-style: italic; margin: 10px 0 0 0;">
+                            💡 ${ej.definicion}
+                        </p>
+                        <div id="correccion-orto-${idx}" style="display: none; margin-top: 14px; padding-top: 14px; border-top: 1px dashed #ccc;">
+                            <p style="font-size: 13px; color: #1a3c6e; font-weight: 600; margin-bottom: 8px;">
+                                ✏️ ¿Cuál es la forma correcta?
+                            </p>
+                            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                                ${ej.opcionesCorreccion.map((opcion, optIdx) => `
+                                    <button type="button" class="btn-correccion" id="btn-correccion-${idx}-${optIdx}" onclick="seleccionarCorreccionOrtografia(${idx}, ${optIdx})" style="
+                                        padding: 8px 16px;
+                                        border: 2px solid #1a3c6e;
+                                        background-color: white;
+                                        color: #1a3c6e;
+                                        border-radius: 4px;
+                                        font-size: 14px;
+                                        cursor: pointer;
+                                    ">${opcion}</button>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            html += '</div>';
+            contenedor.innerHTML = html;
+        }
+
+        // ============ SELECCIONAR RESPUESTA (VERDADERO/FALSO) ============
+        function seleccionarRespuestaOrtografia(idx, valor) {
+            respuestasOrtografia[idx] = valor;
+
+            const btnV = document.getElementById(`btn-vf-${idx}-v`);
+            const btnF = document.getElementById(`btn-vf-${idx}-f`);
+            const contCorreccion = document.getElementById(`correccion-orto-${idx}`);
+
+            if (valor === true) {
+                btnV.style.backgroundColor = '#2f6f4e';
+                btnV.style.color = 'white';
+                btnF.style.backgroundColor = 'white';
+                btnF.style.color = '#c93c3c';
+
+                // Si el estudiante cambia su respuesta a Verdadero, ocultamos el mini-quiz
+                // de corrección y olvidamos la selección previa (si la había).
+                contCorreccion.style.display = 'none';
+                delete respuestasCorreccionOrtografia[idx];
+                contCorreccion.querySelectorAll('.btn-correccion').forEach(btn => {
+                    btn.style.backgroundColor = 'white';
+                    btn.style.color = '#1a3c6e';
+                });
+            } else {
+                btnF.style.backgroundColor = '#c93c3c';
+                btnF.style.color = 'white';
+                btnV.style.backgroundColor = 'white';
+                btnV.style.color = '#2f6f4e';
+
+                // Al marcar Falso, se despliega el mini-quiz para elegir la forma correcta
+                // entre 3 opciones (la correcta + 2 variantes incorrectas de la misma palabra).
+                contCorreccion.style.display = 'block';
+            }
+        }
+
+        // ============ SELECCIONAR LA FORMA CORRECTA (MINI-QUIZ) ============
+        function seleccionarCorreccionOrtografia(idx, opcionIdx) {
+            const palabraElegida = ejerciciosOrtografiaActuales[idx].opcionesCorreccion[opcionIdx];
+            respuestasCorreccionOrtografia[idx] = palabraElegida;
+
+            ejerciciosOrtografiaActuales[idx].opcionesCorreccion.forEach((opcion, i) => {
+                const btn = document.getElementById(`btn-correccion-${idx}-${i}`);
+                if (i === opcionIdx) {
+                    btn.style.backgroundColor = '#1a3c6e';
+                    btn.style.color = 'white';
+                } else {
+                    btn.style.backgroundColor = 'white';
+                    btn.style.color = '#1a3c6e';
+                }
+            });
+        }
+
+        // ============ FUNCIÓN PARA IMPRIMIR/EXPORTAR A PDF - ORTOGRAFÍA ============
+        function imprimirEjerciciosOrtografia() {
+            if (ejerciciosOrtografiaActuales.length === 0) {
+                alert('Por favor, genera ejercicios primero.');
+                return;
+            }
+
+            let htmlPDF = `
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <meta charset="UTF-8">
+                    <style>
+                        body { font-family: Arial, sans-serif; padding: 20px; margin: 0; background: white; }
+                        .header { text-align: center; margin-bottom: 30px; border-bottom: 2px solid #1a3c6e; padding-bottom: 15px; }
+                        .header h1 { margin: 0 0 5px 0; color: #1a3c6e; font-size: 24px; }
+                        .header p { margin: 0; color: #666; font-size: 12px; }
+                        .student-info { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 25px; font-size: 13px; }
+                        .info-field { display: flex; align-items: flex-end; gap: 10px; }
+                        .info-field label { font-weight: bold; color: #333; min-width: 80px; }
+                        .info-field .line { flex: 1; border-bottom: 1px solid #999; height: 20px; }
+                        .exercises { margin-bottom: 20px; }
+                        .exercise {
+                            display: flex; align-items: center; justify-content: space-between;
+                            margin-bottom: 16px; padding: 15px; background-color: #f9f9f9;
+                            border-left: 3px solid #2f6f4e; page-break-inside: avoid;
+                        }
+                        .exercise-number { font-weight: bold; color: #1a3c6e; min-width: 30px; font-size: 14px; }
+                        .exercise-word { font-size: 18px; font-weight: bold; color: #1a3c6e; margin: 0 15px; }
+                        .exercise-opciones { display: flex; gap: 20px; font-size: 14px; }
+                        .exercise-opciones span { border: 1px solid #999; border-radius: 4px; padding: 6px 14px; }
+                        @media print {
+                            body { padding: 10px; }
+                            .exercise { page-break-inside: avoid; }
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="header">
+                        <h1>Guía de Ortografía</h1>
+                        <p>Verdadero o Falso — 5° Básico</p>
+                    </div>
+
+                    <div class="student-info">
+                        <div class="info-field"><label>Nombre:</label><div class="line"></div></div>
+                        <div class="info-field"><label>Curso:</label><div class="line"></div></div>
+                        <div class="info-field"><label>Fecha:</label><div class="line"></div></div>
+                        <div class="info-field"><label>Puntaje:</label><div class="line"></div></div>
+                    </div>
+
+                    <p style="text-align: center; color: #666; font-size: 12px; margin-bottom: 25px;">
+                        <strong>Instrucciones:</strong> Marca con un círculo si la palabra está escrita de forma Verdadera (correcta) o Falsa (incorrecta).
+                    </p>
+
+                    <div class="exercises">
+            `;
+
+            ejerciciosOrtografiaActuales.forEach((ej) => {
+                htmlPDF += `
+                    <div class="exercise">
+                        <div style="display: flex; align-items: center;">
+                            <div class="exercise-number">${ej.numero}.</div>
+                            <div class="exercise-word">${ej.palabra}</div>
+                        </div>
+                        <div class="exercise-opciones">
+                            <span>Verdadero</span>
+                            <span>Falso</span>
+                        </div>
+                    </div>
+                `;
+            });
+
+            htmlPDF += `
+                    </div>
+                </body>
+                </html>
+            `;
+
+            const blob = new Blob([htmlPDF], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const printWindow = window.open(url, '_blank');
+
+            printWindow.onload = function() {
+                setTimeout(() => {
+                    printWindow.print();
+                }, 250);
+            };
+        }
+
+        // ============ GENERAR EJERCICIOS Y MOSTRAR - ORTOGRAFÍA ============
+        document.getElementById('btn-generar-ortografia').addEventListener('click', function() {
+            ejerciciosOrtografiaActuales = generarEjerciciosOrtografia(15);
+            respuestasOrtografia = {};
+            respuestasCorreccionOrtografia = {};
+
+            mostrarEjerciciosOrtografia(ejerciciosOrtografiaActuales);
+
+            document.getElementById('configuracion-ortografia').style.display = 'none';
+            document.getElementById('area-ejercicios-ortografia').style.display = 'block';
+        });
+
+        // ============ BOTÓN NUEVOS EJERCICIOS - ORTOGRAFÍA ============
+        document.getElementById('btn-nuevos-ejercicios-orto').addEventListener('click', function() {
+            ejerciciosOrtografiaActuales = generarEjerciciosOrtografia(15);
+            respuestasOrtografia = {};
+            respuestasCorreccionOrtografia = {};
+
+            mostrarEjerciciosOrtografia(ejerciciosOrtografiaActuales);
+        });
+
+        // ============ BOTÓN IMPRIMIR - ORTOGRAFÍA ============
+        document.getElementById('btn-imprimir-ortografia').addEventListener('click', function() {
+            imprimirEjerciciosOrtografia();
+        });
+
+        // ============ REVISAR RESPUESTAS - ORTOGRAFÍA ============
+        document.getElementById('btn-revisar-ortografia').addEventListener('click', function() {
+            let correctas = 0;
+            let intentosCorreccion = 0;
+            let correccionesAcertadas = 0;
+            let html = '<table style="width: 100%; border-collapse: collapse;">';
+            html += '<tr style="background-color: #1a3c6e; color: white;">' +
+                    '<th style="padding: 12px; text-align: left; border: 1px solid #ccc;">N°</th>' +
+                    '<th style="padding: 12px; text-align: left; border: 1px solid #ccc;">Palabra</th>' +
+                    '<th style="padding: 12px; text-align: center; border: 1px solid #ccc;">Tu Respuesta</th>' +
+                    '<th style="padding: 12px; text-align: center; border: 1px solid #ccc;">Respuesta Correcta</th>' +
+                    '<th style="padding: 12px; text-align: left; border: 1px solid #ccc;">Escritura Correcta</th>' +
+                    '<th style="padding: 12px; text-align: left; border: 1px solid #ccc;">Definición</th>' +
+                    '<th style="padding: 12px; text-align: left; border: 1px solid #ccc;">Tu Corrección</th>' +
+                    '<th style="padding: 12px; text-align: center; border: 1px solid #ccc;">Estado</th>' +
+                    '</tr>';
+
+            ejerciciosOrtografiaActuales.forEach((ej, idx) => {
+                const respuestaUsuario = respuestasOrtografia[idx];
+                const respondio = respuestaUsuario !== undefined;
+                const esCorrecta = respondio && respuestaUsuario === ej.esVerdadera;
+
+                if (esCorrecta) correctas++;
+
+                const estadoIcon = esCorrecta ? '✓' : '✗';
+                const estadoColor = esCorrecta ? '#2f6f4e' : '#c93c3c';
+                const bgColor = esCorrecta ? '#e8f5e9' : '#ffebee';
+                const textoUsuario = !respondio ? '—' : (respuestaUsuario ? 'Verdadero' : 'Falso');
+                const textoCorrecto = ej.esVerdadera ? 'Verdadero' : 'Falso';
+
+                const correccionElegida = respuestasCorreccionOrtografia[idx];
+                let textoCorreccion = '—';
+                if (correccionElegida !== undefined) {
+                    intentosCorreccion++;
+                    const correccionAcertada = correccionElegida === ej.palabraCorrecta;
+                    if (correccionAcertada) correccionesAcertadas++;
+                    const iconoCorreccion = correccionAcertada ? '✓' : '✗';
+                    const colorCorreccion = correccionAcertada ? '#2f6f4e' : '#c93c3c';
+                    textoCorreccion = `<span style="color: ${colorCorreccion}; font-weight: 600;">${correccionElegida} ${iconoCorreccion}</span>`;
+                }
+
+                html += `<tr style="background-color: ${bgColor}; border: 1px solid #ddd;">
+                    <td style="padding: 12px; border: 1px solid #ccc; font-weight: 600;">${ej.numero}</td>
+                    <td style="padding: 12px; border: 1px solid #ccc; font-weight: 600;">${ej.palabra}</td>
+                    <td style="padding: 12px; text-align: center; border: 1px solid #ccc;">${textoUsuario}</td>
+                    <td style="padding: 12px; text-align: center; border: 1px solid #ccc; font-weight: 600;">${textoCorrecto}</td>
+                    <td style="padding: 12px; border: 1px solid #ccc; color: #1a3c6e;">${ej.palabraCorrecta}</td>
+                    <td style="padding: 12px; border: 1px solid #ccc; color: #666; font-size: 13px; font-style: italic;">${ej.definicion}</td>
+                    <td style="padding: 12px; border: 1px solid #ccc;">${textoCorreccion}</td>
+                    <td style="padding: 12px; text-align: center; border: 1px solid #ccc; color: ${estadoColor}; font-weight: 600;">${estadoIcon}</td>
+                </tr>`;
+            });
+
+            html += '</table>';
+
+            const porcentaje = Math.round((correctas / ejerciciosOrtografiaActuales.length) * 100);
+            const mensaje = porcentaje === 100 ? '¡Excelente! 🎉' :
+                            porcentaje >= 80 ? '¡Muy bien! 👏' :
+                            porcentaje >= 60 ? 'Buen esfuerzo 💪' : 'Sigue practicando 📚';
+
+            const resumenCorreccion = intentosCorreccion > 0
+                ? `<p style="font-size: 14px; color: #1a3c6e; margin-top: 6px;">✏️ Correcciones acertadas: ${correccionesAcertadas}/${intentosCorreccion}</p>`
+                : '';
+
+            document.getElementById('contenedor-resultados-ortografia').innerHTML =
+                `<div style="margin-bottom: 20px; text-align: center;">
+                    <p style="font-size: 32px; font-weight: 600; color: #1a3c6e;">${correctas}/${ejerciciosOrtografiaActuales.length}</p>
+                    <p style="font-size: 18px; color: #2f6f4e;">${porcentaje}% — ${mensaje}</p>
+                    ${resumenCorreccion}
+                </div>` + html;
+
+            document.getElementById('area-ejercicios-ortografia').style.display = 'none';
+            document.getElementById('resultados-ortografia').style.display = 'block';
+        });
+
+        // ============ FUNCIÓN PARA MOSTRAR MÓDULO DE ORTOGRAFÍA ============
+        function mostrarModuloOrtografia() {
+            document.getElementById('modulo-ortografia').style.display = 'block';
+            document.getElementById('configuracion-ortografia').style.display = 'block';
+            document.getElementById('area-ejercicios-ortografia').style.display = 'none';
+            document.getElementById('resultados-ortografia').style.display = 'none';
+
+            document.querySelectorAll('.seccion').forEach(s => s.style.display = 'none');
+        }
+
+        // ============================================================
+        // ============ MÓDULO DE VOCABULARIO EN INGLÉS ============
+        // ============================================================
+
+        // Entrega "cantidad" palabras al azar desde una cola barajada (mismo mecanismo
+        // que en Ortografía): ninguna palabra se repite hasta agotar el banco completo.
+        function tomarPalabrasVocabulario(cantidad) {
+            const seleccionadas = [];
+            const usadasEnEstaGuia = new Set();
+            const descartadasTemporalmente = [];
+
+            while (seleccionadas.length < cantidad) {
+                if (colaVocabularioIngles.length === 0) {
+                    colaVocabularioIngles = barajarArreglo(bancoVocabularioIngles);
+                }
+                const candidata = colaVocabularioIngles.shift();
+
+                if (usadasEnEstaGuia.has(candidata.en)) {
+                    descartadasTemporalmente.push(candidata);
+                } else {
+                    usadasEnEstaGuia.add(candidata.en);
+                    seleccionadas.push(candidata);
+                }
+            }
+
+            colaVocabularioIngles = descartadasTemporalmente.concat(colaVocabularioIngles);
+            return seleccionadas;
+        }
+
+        // ============ GENERADOR DE EJERCICIOS DE VOCABULARIO ============
+        function generarEjerciciosVocabulario(cantidad) {
+            cantidad = cantidad || 20;
+
+            const seleccionadas = tomarPalabrasVocabulario(Math.min(cantidad, bancoVocabularioIngles.length));
+
+            const ejerciciosGenerados = seleccionadas.map((entrada, idx) => {
+                // Dirección de la pregunta: 50/50 inglés→español o español→inglés
+                const direccion = Math.random() < 0.5 ? 'en-es' : 'es-en';
+                const pregunta = direccion === 'en-es' ? entrada.en : entrada.es;
+                const respuestaCorrecta = direccion === 'en-es' ? entrada.es : entrada.en;
+
+                // DIFICULTAD: los 3 distractores se buscan primero dentro de la MISMA categoría
+                // semántica (p. ej. otras emociones, otros animales), que son mucho más
+                // difíciles de descartar que palabras de un tema totalmente distinto.
+                // Solo si la categoría no alcanza a dar 3 distractores se completa con el
+                // resto del banco.
+                const distractores = new Set();
+                const mismaCategoria = bancoVocabularioIngles.filter(p => p.categoria === entrada.categoria && p !== entrada);
+                const candidatosOrdenados = barajarArreglo(mismaCategoria).concat(barajarArreglo(bancoVocabularioIngles));
+
+                for (const candidato of candidatosOrdenados) {
+                    if (distractores.size >= 3) break;
+                    const valorCandidato = direccion === 'en-es' ? candidato.es : candidato.en;
+                    if (valorCandidato !== respuestaCorrecta) {
+                        distractores.add(valorCandidato);
+                    }
+                }
+
+                const opciones = barajarArreglo([respuestaCorrecta, ...distractores]);
+
+                return {
+                    numero: idx + 1,
+                    direccion,
+                    pregunta,
+                    respuestaCorrecta,
+                    opciones
+                };
+            });
+
+            return ejerciciosGenerados;
+        }
+
+        // ============ MOSTRAR EJERCICIOS DE VOCABULARIO ============
+        function mostrarEjerciciosVocabulario(ejerciciosVocab) {
+            const contenedor = document.getElementById('contenedor-ejercicios-vocabulario-ingles');
+            let html = '<div style="display: grid; gap: 14px;">';
+
+            ejerciciosVocab.forEach((ej, idx) => {
+                const etiquetaDireccion = ej.direccion === 'en-es' ? '🇬🇧 Inglés → 🇨🇱 Español' : '🇨🇱 Español → 🇬🇧 Inglés';
+
+                html += `
+                    <div style="background-color: #f9f9f9; padding: 16px; border-radius: 4px; border-left: 4px solid #2f6f4e;">
+                        <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 12px;">
+                            <div style="display: flex; align-items: center; gap: 16px;">
+                                <span style="font-weight: 600; color: #1a3c6e; min-width: 30px;">${ej.numero}.</span>
+                                <span style="font-size: 20px; font-weight: 600; color: #1a3c6e;">${ej.pregunta}</span>
+                            </div>
+                            <span style="font-size: 12px; color: #666; background-color: #eef1f8; padding: 4px 10px; border-radius: 12px;">${etiquetaDireccion}</span>
+                        </div>
+                        <div style="display: flex; gap: 10px; flex-wrap: wrap;" id="opciones-vocab-${idx}">
+                            ${ej.opciones.map((opcion, optIdx) => `
+                                <button type="button" class="btn-vocab" id="btn-vocab-${idx}-${optIdx}" onclick="seleccionarRespuestaVocabulario(${idx}, ${optIdx})" style="
+                                    padding: 8px 18px;
+                                    border: 2px solid #1a3c6e;
+                                    background-color: white;
+                                    color: #1a3c6e;
+                                    border-radius: 4px;
+                                    font-size: 14px;
+                                    font-weight: 600;
+                                    cursor: pointer;
+                                ">${opcion}</button>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            });
+
+            html += '</div>';
+            contenedor.innerHTML = html;
+        }
+
+        // ============ SELECCIONAR RESPUESTA DE VOCABULARIO ============
+        function seleccionarRespuestaVocabulario(idx, opcionIdx) {
+            respuestasVocabulario[idx] = ejerciciosVocabularioActuales[idx].opciones[opcionIdx];
+
+            ejerciciosVocabularioActuales[idx].opciones.forEach((opcion, i) => {
+                const btn = document.getElementById(`btn-vocab-${idx}-${i}`);
+                if (i === opcionIdx) {
+                    btn.style.backgroundColor = '#1a3c6e';
+                    btn.style.color = 'white';
+                } else {
+                    btn.style.backgroundColor = 'white';
+                    btn.style.color = '#1a3c6e';
+                }
+            });
+        }
+
+        // ============ FUNCIÓN PARA IMPRIMIR/EXPORTAR A PDF - VOCABULARIO ============
+        function imprimirEjerciciosVocabulario() {
+            if (ejerciciosVocabularioActuales.length === 0) {
+                alert('Por favor, genera ejercicios primero.');
+                return;
+            }
+
+            let htmlPDF = `
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <meta charset="UTF-8">
+                    <style>
+                        body { font-family: Arial, sans-serif; padding: 20px; margin: 0; background: white; }
+                        .header { text-align: center; margin-bottom: 30px; border-bottom: 2px solid #1a3c6e; padding-bottom: 15px; }
+                        .header h1 { margin: 0 0 5px 0; color: #1a3c6e; font-size: 24px; }
+                        .header p { margin: 0; color: #666; font-size: 12px; }
+                        .student-info { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 25px; font-size: 13px; }
+                        .info-field { display: flex; align-items: flex-end; gap: 10px; }
+                        .info-field label { font-weight: bold; color: #333; min-width: 80px; }
+                        .info-field .line { flex: 1; border-bottom: 1px solid #999; height: 20px; }
+                        .exercises { margin-bottom: 20px; }
+                        .exercise {
+                            margin-bottom: 16px; padding: 15px; background-color: #f9f9f9;
+                            border-left: 3px solid #2f6f4e; page-break-inside: avoid;
+                        }
+                        .exercise-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+                        .exercise-number { font-weight: bold; color: #1a3c6e; font-size: 14px; }
+                        .exercise-word { font-size: 18px; font-weight: bold; color: #1a3c6e; margin-left: 10px; }
+                        .exercise-direccion { font-size: 11px; color: #666; background: #eef1f8; padding: 3px 8px; border-radius: 10px; }
+                        .exercise-opciones { display: flex; gap: 16px; flex-wrap: wrap; font-size: 14px; }
+                        .exercise-opciones span { border: 1px solid #999; border-radius: 4px; padding: 6px 14px; }
+                        @media print {
+                            body { padding: 10px; }
+                            .exercise { page-break-inside: avoid; }
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="header">
+                        <h1>Guía de Vocabulario en Inglés</h1>
+                        <p>Selección múltiple — 5° Básico</p>
+                    </div>
+
+                    <div class="student-info">
+                        <div class="info-field"><label>Nombre:</label><div class="line"></div></div>
+                        <div class="info-field"><label>Curso:</label><div class="line"></div></div>
+                        <div class="info-field"><label>Fecha:</label><div class="line"></div></div>
+                        <div class="info-field"><label>Puntaje:</label><div class="line"></div></div>
+                    </div>
+
+                    <p style="text-align: center; color: #666; font-size: 12px; margin-bottom: 25px;">
+                        <strong>Instrucciones:</strong> Marca con un círculo la alternativa correcta para cada palabra.
+                    </p>
+
+                    <div class="exercises">
+            `;
+
+            ejerciciosVocabularioActuales.forEach((ej) => {
+                const etiquetaDireccion = ej.direccion === 'en-es' ? 'Inglés → Español' : 'Español → Inglés';
+                htmlPDF += `
+                    <div class="exercise">
+                        <div class="exercise-top">
+                            <div>
+                                <span class="exercise-number">${ej.numero}.</span>
+                                <span class="exercise-word">${ej.pregunta}</span>
+                            </div>
+                            <span class="exercise-direccion">${etiquetaDireccion}</span>
+                        </div>
+                        <div class="exercise-opciones">
+                            ${ej.opciones.map(op => `<span>${op}</span>`).join('')}
+                        </div>
+                    </div>
+                `;
+            });
+
+            htmlPDF += `
+                    </div>
+                </body>
+                </html>
+            `;
+
+            const blob = new Blob([htmlPDF], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const printWindow = window.open(url, '_blank');
+
+            printWindow.onload = function() {
+                setTimeout(() => {
+                    printWindow.print();
+                }, 250);
+            };
+        }
+
+        // ============ GENERAR EJERCICIOS Y MOSTRAR - VOCABULARIO ============
+        document.getElementById('btn-generar-vocabulario-ingles').addEventListener('click', function() {
+            ejerciciosVocabularioActuales = generarEjerciciosVocabulario(20);
+            respuestasVocabulario = {};
+
+            mostrarEjerciciosVocabulario(ejerciciosVocabularioActuales);
+
+            document.getElementById('configuracion-vocabulario-ingles').style.display = 'none';
+            document.getElementById('area-ejercicios-vocabulario-ingles').style.display = 'block';
+        });
+
+        // ============ BOTÓN NUEVOS EJERCICIOS - VOCABULARIO ============
+        document.getElementById('btn-nuevos-ejercicios-vocabulario-ingles').addEventListener('click', function() {
+            ejerciciosVocabularioActuales = generarEjerciciosVocabulario(20);
+            respuestasVocabulario = {};
+
+            mostrarEjerciciosVocabulario(ejerciciosVocabularioActuales);
+        });
+
+        // ============ BOTÓN IMPRIMIR - VOCABULARIO ============
+        document.getElementById('btn-imprimir-vocabulario-ingles').addEventListener('click', function() {
+            imprimirEjerciciosVocabulario();
+        });
+
+        // ============ REVISAR RESPUESTAS - VOCABULARIO ============
+        document.getElementById('btn-revisar-vocabulario-ingles').addEventListener('click', function() {
+            let correctas = 0;
+            let html = '<table style="width: 100%; border-collapse: collapse;">';
+            html += '<tr style="background-color: #1a3c6e; color: white;">' +
+                    '<th style="padding: 12px; text-align: left; border: 1px solid #ccc;">N°</th>' +
+                    '<th style="padding: 12px; text-align: left; border: 1px solid #ccc;">Dirección</th>' +
+                    '<th style="padding: 12px; text-align: left; border: 1px solid #ccc;">Palabra</th>' +
+                    '<th style="padding: 12px; text-align: center; border: 1px solid #ccc;">Tu Respuesta</th>' +
+                    '<th style="padding: 12px; text-align: center; border: 1px solid #ccc;">Respuesta Correcta</th>' +
+                    '<th style="padding: 12px; text-align: center; border: 1px solid #ccc;">Estado</th>' +
+                    '</tr>';
+
+            ejerciciosVocabularioActuales.forEach((ej, idx) => {
+                const respuestaUsuario = respuestasVocabulario[idx];
+                const respondio = respuestaUsuario !== undefined;
+                const esCorrecta = respondio && respuestaUsuario === ej.respuestaCorrecta;
+
+                if (esCorrecta) correctas++;
+
+                const estadoIcon = esCorrecta ? '✓' : '✗';
+                const estadoColor = esCorrecta ? '#2f6f4e' : '#c93c3c';
+                const bgColor = esCorrecta ? '#e8f5e9' : '#ffebee';
+                const textoUsuario = !respondio ? '—' : respuestaUsuario;
+                const etiquetaDireccion = ej.direccion === 'en-es' ? '🇬🇧→🇨🇱' : '🇨🇱→🇬🇧';
+
+                html += `<tr style="background-color: ${bgColor}; border: 1px solid #ddd;">
+                    <td style="padding: 12px; border: 1px solid #ccc; font-weight: 600;">${ej.numero}</td>
+                    <td style="padding: 12px; border: 1px solid #ccc;">${etiquetaDireccion}</td>
+                    <td style="padding: 12px; border: 1px solid #ccc; font-weight: 600;">${ej.pregunta}</td>
+                    <td style="padding: 12px; text-align: center; border: 1px solid #ccc;">${textoUsuario}</td>
+                    <td style="padding: 12px; text-align: center; border: 1px solid #ccc; font-weight: 600; color: #1a3c6e;">${ej.respuestaCorrecta}</td>
+                    <td style="padding: 12px; text-align: center; border: 1px solid #ccc; color: ${estadoColor}; font-weight: 600;">${estadoIcon}</td>
+                </tr>`;
+            });
+
+            html += '</table>';
+
+            const porcentaje = Math.round((correctas / ejerciciosVocabularioActuales.length) * 100);
+            const mensaje = porcentaje === 100 ? '¡Excelente! 🎉' :
+                            porcentaje >= 80 ? '¡Muy bien! 👏' :
+                            porcentaje >= 60 ? 'Buen esfuerzo 💪' : 'Sigue practicando 📚';
+
+            document.getElementById('contenedor-resultados-vocabulario-ingles').innerHTML =
+                `<div style="margin-bottom: 20px; text-align: center;">
+                    <p style="font-size: 32px; font-weight: 600; color: #1a3c6e;">${correctas}/${ejerciciosVocabularioActuales.length}</p>
+                    <p style="font-size: 18px; color: #2f6f4e;">${porcentaje}% — ${mensaje}</p>
+                </div>` + html;
+
+            document.getElementById('area-ejercicios-vocabulario-ingles').style.display = 'none';
+            document.getElementById('resultados-vocabulario-ingles').style.display = 'block';
+        });
+
+        // ============ FUNCIÓN PARA MOSTRAR MÓDULO DE VOCABULARIO EN INGLÉS ============
+        function mostrarModuloVocabularioIngles() {
+            document.getElementById('modulo-vocabulario-ingles').style.display = 'block';
+            document.getElementById('configuracion-vocabulario-ingles').style.display = 'block';
+            document.getElementById('area-ejercicios-vocabulario-ingles').style.display = 'none';
+            document.getElementById('resultados-vocabulario-ingles').style.display = 'none';
+
             document.querySelectorAll('.seccion').forEach(s => s.style.display = 'none');
         }
 
