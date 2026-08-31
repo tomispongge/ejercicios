@@ -608,6 +608,14 @@
                     <span class="opcion-emoji">🌎</span>
                     Vocabulario en Inglés
                 </button>
+                <button class="opcion" onclick="mostrarModuloCiencias()">
+                    <span class="opcion-emoji">🔬</span>
+                    Ciencias: Prueba
+                </button>
+                <button class="opcion" onclick="mostrarModuloSistemas()">
+                    <span class="opcion-emoji">🫁</span>
+                    Sistemas del Cuerpo
+                </button>
             </div>
         </div>
 
@@ -1201,6 +1209,227 @@
                 </div>
             </div>
         </div>
+
+        <!-- MÓDULO INTERACTIVO DE CIENCIAS NATURALES -->
+        <div id="modulo-ciencias" class="modulo-contenedor">
+            <div style="max-width: 900px; margin: 0 auto; padding: 20px;">
+
+                <!-- CONFIGURACIÓN INICIAL -->
+                <div id="configuracion-ciencias" class="seccion-contenedor">
+                    <h2 style="color: #1a3c6e; margin-bottom: 20px;">Ciencias Naturales — 5° Básico</h2>
+
+                    <div style="background-color: #f5f7fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                        <p style="font-size: 14px; color: #333; margin-bottom: 16px;">
+                            Prueba de <strong>20 preguntas de alternativas</strong> sobre la Unidad 3:
+                            <strong>Sistema Digestivo</strong> y <strong>Sistema Respiratorio</strong>.
+                            Cada pregunta tiene 4 opciones y solo una es correcta. El orden de las
+                            alternativas cambia en cada prueba.
+                        </p>
+
+                        <button id="btn-generar-ciencias" style="
+                            width: 100%;
+                            padding: 12px;
+                            background-color: #2f6f4e;
+                            color: white;
+                            border: none;
+                            border-radius: 4px;
+                            font-size: 16px;
+                            font-weight: 600;
+                            cursor: pointer;
+                            transition: background-color 0.3s;
+                        " onmouseover="this.style.backgroundColor='#1f4a33'" onmouseout="this.style.backgroundColor='#2f6f4e'">
+                            ▶ Comenzar Prueba
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ÁREA DE EJERCICIOS -->
+                <div id="area-ejercicios-ciencias" style="display: none;">
+                    <div style="margin-bottom: 20px; display: flex; gap: 10px; flex-wrap: wrap;">
+                        <button id="btn-nuevos-ejercicios-ciencias" style="
+                            padding: 10px 20px;
+                            background-color: #2f6f4e;
+                            color: white;
+                            border: none;
+                            border-radius: 4px;
+                            font-size: 14px;
+                            cursor: pointer;
+                        ">🔄 Nueva Prueba</button>
+
+                        <button id="btn-imprimir-ciencias" style="
+                            padding: 10px 20px;
+                            background-color: #0066cc;
+                            color: white;
+                            border: none;
+                            border-radius: 4px;
+                            font-size: 14px;
+                            cursor: pointer;
+                        ">🖨️ Imprimir / PDF</button>
+
+                        <button onclick="irA('menu-5basico'); document.getElementById('modulo-ciencias').style.display='none';" style="
+                            padding: 10px 20px;
+                            background-color: #1a3c6e;
+                            color: white;
+                            border: none;
+                            border-radius: 4px;
+                            font-size: 14px;
+                            cursor: pointer;
+                        ">← Volver</button>
+                    </div>
+
+                    <div id="contenedor-ejercicios-ciencias" style="background-color: #fff; padding: 20px; border-radius: 8px; border: 1px solid #ddd;"></div>
+
+                    <div style="margin-top: 20px; text-align: center;">
+                        <button id="btn-revisar-ciencias" style="
+                            padding: 12px 30px;
+                            background-color: #1a3c6e;
+                            color: white;
+                            border: none;
+                            border-radius: 4px;
+                            font-size: 16px;
+                            font-weight: 600;
+                            cursor: pointer;
+                        ">Revisar Respuestas</button>
+                    </div>
+                </div>
+
+                <!-- RESULTADOS -->
+                <div id="resultados-ciencias" style="display: none; background-color: #f5f7fa; padding: 20px; border-radius: 8px;">
+                    <h3 style="color: #1a3c6e; margin-bottom: 20px;">Resultados</h3>
+                    <div id="contenedor-resultados-ciencias" style="background-color: white; padding: 20px; border-radius: 4px;"></div>
+                    <div style="margin-top: 20px;">
+                        <button onclick="irA('menu-5basico'); document.getElementById('modulo-ciencias').style.display='none';" style="
+                            width: 100%;
+                            padding: 12px;
+                            background-color: #1a3c6e;
+                            color: white;
+                            border: none;
+                            border-radius: 4px;
+                            font-size: 14px;
+                            cursor: pointer;
+                        ">← Volver a Menú</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MÓDULO INTERACTIVO DE SISTEMAS DEL CUERPO -->
+        <div id="modulo-sistemas" class="modulo-contenedor">
+            <div style="max-width: 900px; margin: 0 auto; padding: 20px;">
+
+                <!-- CONFIGURACIÓN INICIAL -->
+                <div id="configuracion-sistemas" class="seccion-contenedor">
+                    <h2 style="color: #1a3c6e; margin-bottom: 20px;">Sistemas del Cuerpo — 5° Básico</h2>
+
+                    <div style="background-color: #f5f7fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                        <p style="font-size: 14px; color: #333; margin-bottom: 16px;">
+                            Observa el diagrama y escribe (o elige) el nombre de cada parte señalada
+                            con un número. La numeración cambia en cada guía.
+                        </p>
+
+                        <div style="margin-bottom: 16px;">
+                            <label for="seleccion-sistema" style="display: block; font-size: 13px; font-weight: 600; color: #1a3c6e; margin-bottom: 6px;">¿Qué sistema quieres practicar?</label>
+                            <select id="seleccion-sistema" style="width: 100%; padding: 10px; border: 2px solid #1a3c6e; border-radius: 4px; font-size: 14px; color: #1a3c6e; background-color: white;">
+                                <option value="ambos">Los dos sistemas</option>
+                                <option value="digestivo">Solo sistema digestivo</option>
+                                <option value="respiratorio">Solo sistema respiratorio</option>
+                            </select>
+                        </div>
+
+                        <div style="margin-bottom: 20px;">
+                            <label for="modo-sistema" style="display: block; font-size: 13px; font-weight: 600; color: #1a3c6e; margin-bottom: 6px;">¿Cómo quieres responder?</label>
+                            <select id="modo-sistema" style="width: 100%; padding: 10px; border: 2px solid #1a3c6e; border-radius: 4px; font-size: 14px; color: #1a3c6e; background-color: white;">
+                                <option value="escribir">Escribir el nombre</option>
+                                <option value="lista">Elegir de una lista</option>
+                            </select>
+                        </div>
+
+                        <button id="btn-generar-sistemas" style="
+                            width: 100%;
+                            padding: 12px;
+                            background-color: #2f6f4e;
+                            color: white;
+                            border: none;
+                            border-radius: 4px;
+                            font-size: 16px;
+                            font-weight: 600;
+                            cursor: pointer;
+                            transition: background-color 0.3s;
+                        " onmouseover="this.style.backgroundColor='#1f4a33'" onmouseout="this.style.backgroundColor='#2f6f4e'">
+                            ▶ Comenzar Guía
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ÁREA DE EJERCICIOS -->
+                <div id="area-ejercicios-sistemas" style="display: none;">
+                    <div style="margin-bottom: 20px; display: flex; gap: 10px; flex-wrap: wrap;">
+                        <button id="btn-nuevos-ejercicios-sistemas" style="
+                            padding: 10px 20px;
+                            background-color: #2f6f4e;
+                            color: white;
+                            border: none;
+                            border-radius: 4px;
+                            font-size: 14px;
+                            cursor: pointer;
+                        ">🔄 Nueva Guía</button>
+
+                        <button id="btn-imprimir-sistemas" style="
+                            padding: 10px 20px;
+                            background-color: #0066cc;
+                            color: white;
+                            border: none;
+                            border-radius: 4px;
+                            font-size: 14px;
+                            cursor: pointer;
+                        ">🖨️ Imprimir / PDF</button>
+
+                        <button onclick="irA('menu-5basico'); document.getElementById('modulo-sistemas').style.display='none';" style="
+                            padding: 10px 20px;
+                            background-color: #1a3c6e;
+                            color: white;
+                            border: none;
+                            border-radius: 4px;
+                            font-size: 14px;
+                            cursor: pointer;
+                        ">← Volver</button>
+                    </div>
+
+                    <div id="contenedor-ejercicios-sistemas" style="background-color: #fff; padding: 20px; border-radius: 8px; border: 1px solid #ddd;"></div>
+
+                    <div style="margin-top: 20px; text-align: center;">
+                        <button id="btn-revisar-sistemas" style="
+                            padding: 12px 30px;
+                            background-color: #1a3c6e;
+                            color: white;
+                            border: none;
+                            border-radius: 4px;
+                            font-size: 16px;
+                            font-weight: 600;
+                            cursor: pointer;
+                        ">Revisar Respuestas</button>
+                    </div>
+                </div>
+
+                <!-- RESULTADOS -->
+                <div id="resultados-sistemas" style="display: none; background-color: #f5f7fa; padding: 20px; border-radius: 8px;">
+                    <h3 style="color: #1a3c6e; margin-bottom: 20px;">Resultados</h3>
+                    <div id="contenedor-resultados-sistemas" style="background-color: white; padding: 20px; border-radius: 4px;"></div>
+                    <div style="margin-top: 20px;">
+                        <button onclick="irA('menu-5basico'); document.getElementById('modulo-sistemas').style.display='none';" style="
+                            width: 100%;
+                            padding: 12px;
+                            background-color: #1a3c6e;
+                            color: white;
+                            border: none;
+                            border-radius: 4px;
+                            font-size: 14px;
+                            cursor: pointer;
+                        ">← Volver a Menú</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -1644,6 +1873,15 @@
         let ejerciciosVocabularioActuales = [];
         let respuestasVocabulario = {};
         let colaVocabularioIngles = []; // cola barajada; garantiza que no se repitan palabras hasta agotar el banco completo
+
+        // ============ CIENCIAS NATURALES - VARIABLES DE ESTADO ============
+        let ejerciciosCienciasActuales = [];
+        let respuestasCiencias = {};
+        let colaPreguntasCiencias = []; // cola barajada; agota el banco antes de repetir preguntas
+
+        // ============ SISTEMAS DEL CUERPO - VARIABLES DE ESTADO ============
+        let ejerciciosSistemasActuales = [];
+        let respuestasSistemas = {};
 
         // ============ FUNCIONES DE NAVEGACIÓN ============
         // Controla si un módulo ya fue renderizado en esta sesión,
@@ -2955,6 +3193,695 @@
             document.getElementById('area-ejercicios-vocabulario-ingles').style.display = 'none';
             document.getElementById('resultados-vocabulario-ingles').style.display = 'none';
 
+            document.querySelectorAll('.seccion').forEach(s => s.style.display = 'none');
+        }
+
+
+        // ============ CIENCIAS NATURALES 5° - BANCO DE PREGUNTAS ============
+        // Contenidos: Unidad 3 — Sistema Digestivo y Sistema Respiratorio.
+        // Cada entrada tiene la respuesta correcta y exactamente 3 distractores.
+        // El orden de las alternativas se baraja en cada generación.
+        const bancoPreguntasCiencias = [
+            // ---------- SISTEMA DIGESTIVO ----------
+            { sistema: 'Digestivo', pregunta: '¿Dónde comienza la digestión?', correcta: 'En la boca', incorrectas: ['En el estómago', 'En el esófago', 'En el intestino delgado'] },
+            { sistema: 'Digestivo', pregunta: '¿Con qué dos elementos de la boca se inicia la digestión?', correcta: 'Con los dientes y la saliva', incorrectas: ['Con los labios y la nariz', 'Con las enzimas y el aire', 'Con los bronquios y los alvéolos'] },
+            { sistema: 'Digestivo', pregunta: '¿Cómo se llama el alimento después de ser masticado en la boca?', correcta: 'Bolo alimenticio', incorrectas: ['Quimo', 'Quilo', 'Heces'] },
+            { sistema: 'Digestivo', pregunta: '¿Qué es el bolo alimenticio?', correcta: 'La comida ya masticada que pasa por la faringe', incorrectas: ['El líquido que produce el estómago', 'Los desechos que salen del intestino grueso', 'El aire que entra por la nariz'] },
+            { sistema: 'Digestivo', pregunta: 'Al salir de la boca, ¿por dónde pasa el bolo alimenticio?', correcta: 'Por la faringe', incorrectas: ['Por la tráquea', 'Por el duodeno', 'Por los bronquios'] },
+            { sistema: 'Digestivo', pregunta: '¿Por qué tubo baja el bolo alimenticio hasta el estómago?', correcta: 'Por el esófago', incorrectas: ['Por la tráquea', 'Por el íleon', 'Por los bronquios'] },
+            { sistema: 'Digestivo', pregunta: '¿Cómo se llaman los movimientos que empujan el bolo alimenticio por el esófago?', correcta: 'Movimientos peristálticos', incorrectas: ['Movimientos respiratorios', 'Movimientos circulares', 'Movimientos voluntarios'] },
+            { sistema: 'Digestivo', pregunta: '¿Cuál de estas sustancias NO es un componente del jugo gástrico?', correcta: 'La saliva', incorrectas: ['El ácido clorhídrico', 'La pepsina', 'La lipasa gástrica'] },
+            { sistema: 'Digestivo', pregunta: '¿Qué ácido forma parte del jugo gástrico?', correcta: 'El ácido clorhídrico (HCl)', incorrectas: ['El ácido cítrico', 'El ácido carbónico', 'El ácido láctico'] },
+            { sistema: 'Digestivo', pregunta: '¿Cuál de estas es una enzima del jugo gástrico?', correcta: 'La pepsina', incorrectas: ['El agua', 'El oxígeno', 'La glucosa'] },
+            { sistema: 'Digestivo', pregunta: '¿Qué es una enzima?', correcta: 'Una sustancia que ayuda a descomponer los nutrientes', incorrectas: ['Un órgano del sistema respiratorio', 'Un músculo del estómago', 'Un desecho que sale por el ano'] },
+            { sistema: 'Digestivo', pregunta: '¿Cuánto tiempo pasa aproximadamente el alimento dentro del estómago?', correcta: 'Unas 3 horas', incorrectas: ['Unos 3 minutos', 'Unos 3 días', 'Unos 30 segundos'] },
+            { sistema: 'Digestivo', pregunta: '¿En qué se convierte el bolo alimenticio después de estar en el estómago?', correcta: 'En quimo', incorrectas: ['En quilo', 'En saliva', 'En heces'] },
+            { sistema: 'Digestivo', pregunta: '¿Cómo es el quimo?', correcta: 'Una sustancia semilíquida', incorrectas: ['Un sólido duro', 'Un gas', 'Un polvo seco'] },
+            { sistema: 'Digestivo', pregunta: '¿En qué se transforma el quimo al llegar al intestino delgado?', correcta: 'En quilo', incorrectas: ['En bolo alimenticio', 'En saliva', 'En jugo gástrico'] },
+            { sistema: 'Digestivo', pregunta: '¿Qué es el quilo?', correcta: 'Una sustancia líquida formada por agua y nutrientes', incorrectas: ['Un trozo de comida sin masticar', 'El aire que llega a los pulmones', 'Un desecho sólido del intestino grueso'] },
+            { sistema: 'Digestivo', pregunta: '¿Cuál de estos NO forma parte del quilo?', correcta: 'El dióxido de carbono', incorrectas: ['La glucosa', 'Los ácidos grasos', 'Los aminoácidos'] },
+            { sistema: 'Digestivo', pregunta: '¿Cuál es la función principal del intestino delgado?', correcta: 'La absorción de los nutrientes', incorrectas: ['La entrada del aire al cuerpo', 'La masticación de los alimentos', 'La eliminación del dióxido de carbono'] },
+            { sistema: 'Digestivo', pregunta: '¿Por cuántas partes está formado el intestino delgado?', correcta: 'Por 3 partes', incorrectas: ['Por 2 partes', 'Por 4 partes', 'Por 5 partes'] },
+            { sistema: 'Digestivo', pregunta: '¿Cuáles son las tres partes del intestino delgado?', correcta: 'Duodeno, yeyuno e íleon', incorrectas: ['Boca, esófago y estómago', 'Nariz, tráquea y bronquios', 'Colon, recto y ano'] },
+            { sistema: 'Digestivo', pregunta: '¿Cuál es la primera parte del intestino delgado?', correcta: 'El duodeno', incorrectas: ['El yeyuno', 'El íleon', 'El colon'] },
+            { sistema: 'Digestivo', pregunta: '¿Cuál es la última parte del intestino delgado?', correcta: 'El íleon', incorrectas: ['El duodeno', 'El yeyuno', 'El recto'] },
+            { sistema: 'Digestivo', pregunta: '¿Qué parte del intestino delgado está entre el duodeno y el íleon?', correcta: 'El yeyuno', incorrectas: ['El colon', 'El estómago', 'El esófago'] },
+            { sistema: 'Digestivo', pregunta: '¿Qué órgano recibe el quimo cuando sale del estómago?', correcta: 'El duodeno', incorrectas: ['El esófago', 'La faringe', 'El intestino grueso'] },
+            { sistema: 'Digestivo', pregunta: '¿Qué absorbe principalmente el intestino grueso?', correcta: 'El agua y los electrolitos', incorrectas: ['Las grasas y las proteínas', 'El oxígeno del aire', 'Las vitaminas de la saliva'] },
+            { sistema: 'Digestivo', pregunta: '¿En qué se convierte el quilo dentro del intestino grueso?', correcta: 'En heces', incorrectas: ['En quimo', 'En bolo alimenticio', 'En saliva'] },
+            { sistema: 'Digestivo', pregunta: '¿Por dónde salen las heces del cuerpo?', correcta: 'Por el ano', incorrectas: ['Por la boca', 'Por la nariz', 'Por los alvéolos'] },
+            { sistema: 'Digestivo', pregunta: '¿Cuál es el orden correcto del recorrido de la comida?', correcta: 'Boca, esófago, estómago, intestino delgado, intestino grueso', incorrectas: ['Boca, estómago, esófago, intestino grueso, intestino delgado', 'Esófago, boca, estómago, intestino delgado, intestino grueso', 'Boca, tráquea, pulmones, intestino delgado, ano'] },
+            { sistema: 'Digestivo', pregunta: '¿Para qué sirve el sistema digestivo?', correcta: 'Para digerir los alimentos', incorrectas: ['Para respirar', 'Para bombear la sangre', 'Para mover los huesos'] },
+            { sistema: 'Digestivo', pregunta: '¿Qué pasaría si fallara el sistema digestivo?', correcta: 'No se podría digerir la comida', incorrectas: ['No se podría respirar bien', 'No se podría ver', 'No se podría escuchar'] },
+            { sistema: 'Digestivo', pregunta: '¿Qué órgano produce el jugo gástrico?', correcta: 'El estómago', incorrectas: ['El pulmón', 'La tráquea', 'El intestino grueso'] },
+            { sistema: 'Digestivo', pregunta: '¿Cuál de estos órganos NO pertenece al sistema digestivo?', correcta: 'Los alvéolos', incorrectas: ['El duodeno', 'El esófago', 'El intestino grueso'] },
+
+            // ---------- SISTEMA RESPIRATORIO ----------
+            { sistema: 'Respiratorio', pregunta: '¿Por dónde entra el aire al cuerpo?', correcta: 'Por la nariz', incorrectas: ['Por el esófago', 'Por el estómago', 'Por el ano'] },
+            { sistema: 'Respiratorio', pregunta: 'Además de dejar entrar el aire, ¿qué hace la nariz?', correcta: 'Lo filtra, lo humedece y lo entibia', incorrectas: ['Lo transforma en quimo', 'Lo convierte en sangre', 'Lo lleva al estómago'] },
+            { sistema: 'Respiratorio', pregunta: '¿Cuáles son las tres cosas que la nariz le hace al aire?', correcta: 'Filtrarlo, humedecerlo y entibiarlo', incorrectas: ['Digerirlo, absorberlo y expulsarlo', 'Enfriarlo, secarlo y ensuciarlo', 'Masticarlo, tragarlo y digerirlo'] },
+            { sistema: 'Respiratorio', pregunta: '¿Qué es la tráquea?', correcta: 'Un tubo que conduce el aire de la nariz a los pulmones', incorrectas: ['Un saco de aire dentro del pulmón', 'El tubo que lleva la comida al estómago', 'El órgano que absorbe los nutrientes'] },
+            { sistema: 'Respiratorio', pregunta: '¿Adónde lleva el aire la tráquea?', correcta: 'A los pulmones', incorrectas: ['Al estómago', 'Al intestino delgado', 'A la faringe'] },
+            { sistema: 'Respiratorio', pregunta: '¿Qué son los bronquios?', correcta: 'Tubos que salen de la tráquea', incorrectas: ['Sacos de aire dentro de los pulmones', 'Partes del intestino delgado', 'Enzimas del jugo gástrico'] },
+            { sistema: 'Respiratorio', pregunta: '¿Qué función cumplen los bronquios?', correcta: 'Llevar el aire a cada pulmón', incorrectas: ['Absorber los nutrientes', 'Producir saliva', 'Eliminar las heces'] },
+            { sistema: 'Respiratorio', pregunta: '¿De qué órgano salen los bronquios?', correcta: 'De la tráquea', incorrectas: ['Del estómago', 'Del esófago', 'Del duodeno'] },
+            { sistema: 'Respiratorio', pregunta: '¿Cuáles son los órganos principales de la respiración?', correcta: 'Los pulmones', incorrectas: ['El estómago y el intestino', 'El corazón y la sangre', 'El duodeno y el yeyuno'] },
+            { sistema: 'Respiratorio', pregunta: '¿Qué son los alvéolos?', correcta: 'Sacos de aire que están dentro de los pulmones', incorrectas: ['Tubos que salen de la tráquea', 'Partes del intestino grueso', 'Músculos del esófago'] },
+            { sistema: 'Respiratorio', pregunta: '¿Dónde se encuentran los alvéolos?', correcta: 'Dentro de los pulmones', incorrectas: ['Dentro del estómago', 'Dentro de la nariz', 'Dentro del intestino delgado'] },
+            { sistema: 'Respiratorio', pregunta: '¿Qué ocurre en los alvéolos?', correcta: 'El oxígeno se intercambia con el dióxido de carbono', incorrectas: ['La comida se convierte en quimo', 'El agua se absorbe y pasa a la sangre', 'Se produce la saliva'] },
+            { sistema: 'Respiratorio', pregunta: '¿Qué gas entra al cuerpo cuando respiramos?', correcta: 'El oxígeno', incorrectas: ['El dióxido de carbono', 'El helio', 'El vapor de agua'] },
+            { sistema: 'Respiratorio', pregunta: '¿Qué gas eliminamos cuando respiramos?', correcta: 'El dióxido de carbono', incorrectas: ['El oxígeno', 'El hidrógeno', 'El nitrógeno'] },
+            { sistema: 'Respiratorio', pregunta: '¿Cuántas partes principales tiene el sistema respiratorio?', correcta: '5 partes', incorrectas: ['2 partes', '3 partes', '8 partes'] },
+            { sistema: 'Respiratorio', pregunta: '¿Cuál es el orden correcto del recorrido del aire al entrar?', correcta: 'Nariz, tráquea, bronquios, pulmones, alvéolos', incorrectas: ['Nariz, esófago, estómago, pulmones, alvéolos', 'Boca, tráquea, alvéolos, bronquios, pulmones', 'Nariz, bronquios, tráquea, alvéolos, pulmones'] },
+            { sistema: 'Respiratorio', pregunta: '¿Para qué sirve el sistema respiratorio?', correcta: 'Para respirar', incorrectas: ['Para digerir los alimentos', 'Para absorber el agua', 'Para masticar la comida'] },
+            { sistema: 'Respiratorio', pregunta: '¿Qué pasaría si fallara el sistema respiratorio?', correcta: 'No se podría respirar bien', incorrectas: ['No se podría digerir la comida', 'No se podrían absorber los nutrientes', 'No se podría masticar'] },
+            { sistema: 'Respiratorio', pregunta: '¿Cuál de estos órganos NO pertenece al sistema respiratorio?', correcta: 'El estómago', incorrectas: ['La tráquea', 'Los bronquios', 'Los alvéolos'] },
+            { sistema: 'Respiratorio', pregunta: 'En el camino del aire, ¿qué viene justo después de la tráquea?', correcta: 'Los bronquios', incorrectas: ['La nariz', 'Los alvéolos', 'El esófago'] },
+            { sistema: 'Respiratorio', pregunta: 'La tráquea y el esófago son dos tubos distintos. ¿Cuál de los dos lleva aire?', correcta: 'La tráquea', incorrectas: ['El esófago', 'Los dos llevan aire', 'Ninguno de los dos lleva aire'] },
+            { sistema: 'Respiratorio', pregunta: '¿Qué sistema se encarga del intercambio de oxígeno y dióxido de carbono?', correcta: 'El sistema respiratorio', incorrectas: ['El sistema digestivo', 'El sistema óseo', 'El sistema muscular'] }
+        ];
+
+        // ============ CIENCIAS - TOMAR PREGUNTAS SIN REPETIR ============
+        // Cola barajada: se agotan todas las preguntas del banco antes de repetir ninguna.
+        function tomarPreguntasCiencias(cantidad) {
+            const seleccionadas = [];
+            while (seleccionadas.length < cantidad) {
+                if (colaPreguntasCiencias.length === 0) {
+                    colaPreguntasCiencias = barajarArreglo(bancoPreguntasCiencias);
+                }
+                const siguiente = colaPreguntasCiencias.shift();
+                if (!seleccionadas.includes(siguiente)) {
+                    seleccionadas.push(siguiente);
+                }
+                if (seleccionadas.length >= bancoPreguntasCiencias.length) break;
+            }
+            return seleccionadas;
+        }
+
+        // ============ CIENCIAS - GENERADOR ============
+        function generarEjerciciosCiencias(cantidad) {
+            cantidad = cantidad || 20;
+            const seleccionadas = tomarPreguntasCiencias(Math.min(cantidad, bancoPreguntasCiencias.length));
+
+            return seleccionadas.map((entrada, idx) => ({
+                numero: idx + 1,
+                sistema: entrada.sistema,
+                pregunta: entrada.pregunta,
+                respuestaCorrecta: entrada.correcta,
+                // El orden de las alternativas se baraja: la correcta no queda siempre en la misma posición.
+                opciones: barajarArreglo([entrada.correcta, ...entrada.incorrectas])
+            }));
+        }
+
+        // ============ CIENCIAS - RENDER ============
+        function mostrarEjerciciosCiencias(ejerciciosCien) {
+            const contenedor = document.getElementById('contenedor-ejercicios-ciencias');
+            const letras = ['A', 'B', 'C', 'D'];
+            let html = '<div style="display: grid; gap: 14px;">';
+
+            ejerciciosCien.forEach((ej, idx) => {
+                const colorSistema = ej.sistema === 'Digestivo' ? '#a05a2c' : '#2d7d9a';
+                html += `
+                    <div style="background-color: #f9f9f9; padding: 16px; border-radius: 4px; border-left: 4px solid ${colorSistema};">
+                        <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 12px;">
+                            <div style="display: flex; align-items: flex-start; gap: 12px;">
+                                <span style="font-weight: 600; color: #1a3c6e; min-width: 26px;">${ej.numero}.</span>
+                                <span style="font-size: 16px; font-weight: 600; color: #1a3c6e;">${ej.pregunta}</span>
+                            </div>
+                            <span style="font-size: 12px; color: #fff; background-color: ${colorSistema}; padding: 4px 10px; border-radius: 12px; white-space: nowrap;">${ej.sistema}</span>
+                        </div>
+                        <div style="display: grid; gap: 8px;" id="opciones-ciencias-${idx}">
+                            ${ej.opciones.map((opcion, optIdx) => `
+                                <button type="button" class="btn-ciencias" id="btn-ciencias-${idx}-${optIdx}" onclick="seleccionarRespuestaCiencias(${idx}, ${optIdx})" style="
+                                    padding: 10px 14px;
+                                    border: 2px solid #1a3c6e;
+                                    background-color: white;
+                                    color: #1a3c6e;
+                                    border-radius: 4px;
+                                    font-size: 14px;
+                                    font-weight: 600;
+                                    cursor: pointer;
+                                    text-align: left;
+                                ">${letras[optIdx]}) ${opcion}</button>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            });
+
+            html += '</div>';
+            contenedor.innerHTML = html;
+        }
+
+        // ============ CIENCIAS - SELECCIONAR RESPUESTA ============
+        function seleccionarRespuestaCiencias(idx, opcionIdx) {
+            respuestasCiencias[idx] = ejerciciosCienciasActuales[idx].opciones[opcionIdx];
+
+            ejerciciosCienciasActuales[idx].opciones.forEach((opcion, i) => {
+                const btn = document.getElementById(`btn-ciencias-${idx}-${i}`);
+                if (!btn) return;
+                if (i === opcionIdx) {
+                    btn.style.backgroundColor = '#1a3c6e';
+                    btn.style.color = 'white';
+                } else {
+                    btn.style.backgroundColor = 'white';
+                    btn.style.color = '#1a3c6e';
+                }
+            });
+        }
+
+        // ============ CIENCIAS - IMPRIMIR / PDF ============
+        function imprimirEjerciciosCiencias() {
+            if (ejerciciosCienciasActuales.length === 0) {
+                alert('Por favor, genera la prueba primero.');
+                return;
+            }
+
+            const letras = ['A', 'B', 'C', 'D'];
+            let htmlPDF = `
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <meta charset="UTF-8">
+                    <style>
+                        body { font-family: Arial, sans-serif; padding: 20px; margin: 0; background: white; }
+                        .header { text-align: center; margin-bottom: 30px; border-bottom: 2px solid #1a3c6e; padding-bottom: 15px; }
+                        .header h1 { margin: 0 0 5px 0; color: #1a3c6e; font-size: 24px; }
+                        .header p { margin: 0; color: #666; font-size: 12px; }
+                        .student-info { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 25px; font-size: 13px; }
+                        .info-field { display: flex; align-items: flex-end; gap: 10px; }
+                        .info-field label { font-weight: bold; color: #333; min-width: 80px; }
+                        .info-field .line { flex: 1; border-bottom: 1px solid #999; height: 20px; }
+                        .exercise { margin-bottom: 14px; padding: 12px; background-color: #f9f9f9; border-left: 3px solid #1a3c6e; page-break-inside: avoid; }
+                        .exercise-top { margin-bottom: 8px; }
+                        .exercise-number { font-weight: bold; color: #1a3c6e; font-size: 14px; }
+                        .exercise-word { font-size: 14px; font-weight: bold; color: #1a3c6e; margin-left: 6px; }
+                        .exercise-opciones { display: grid; gap: 5px; font-size: 13px; padding-left: 22px; }
+                        @media print { body { padding: 10px; } .exercise { page-break-inside: avoid; } }
+                    </style>
+                </head>
+                <body>
+                    <div class="header">
+                        <h1>Prueba de Ciencias Naturales</h1>
+                        <p>Unidad 3: Sistema Digestivo y Sistema Respiratorio — 5° Básico</p>
+                    </div>
+
+                    <div class="student-info">
+                        <div class="info-field"><label>Nombre:</label><div class="line"></div></div>
+                        <div class="info-field"><label>Curso:</label><div class="line"></div></div>
+                        <div class="info-field"><label>Fecha:</label><div class="line"></div></div>
+                        <div class="info-field"><label>Puntaje:</label><div class="line"></div></div>
+                    </div>
+
+                    <p style="text-align: center; color: #666; font-size: 12px; margin-bottom: 25px;">
+                        <strong>Instrucciones:</strong> Marca con una X la letra de la alternativa correcta.
+                    </p>
+            `;
+
+            ejerciciosCienciasActuales.forEach((ej) => {
+                htmlPDF += `
+                    <div class="exercise">
+                        <div class="exercise-top">
+                            <span class="exercise-number">${ej.numero}.</span>
+                            <span class="exercise-word">${ej.pregunta}</span>
+                        </div>
+                        <div class="exercise-opciones">
+                            ${ej.opciones.map((op, i) => `<div>${letras[i]}) ${op}</div>`).join('')}
+                        </div>
+                    </div>
+                `;
+            });
+
+            htmlPDF += `</body></html>`;
+
+            const blob = new Blob([htmlPDF], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const printWindow = window.open(url, '_blank');
+            printWindow.onload = function() {
+                setTimeout(() => { printWindow.print(); }, 250);
+            };
+        }
+
+        // ============ CIENCIAS - BOTONES ============
+        document.getElementById('btn-generar-ciencias').addEventListener('click', function() {
+            ejerciciosCienciasActuales = generarEjerciciosCiencias(20);
+            respuestasCiencias = {};
+            mostrarEjerciciosCiencias(ejerciciosCienciasActuales);
+            document.getElementById('configuracion-ciencias').style.display = 'none';
+            document.getElementById('area-ejercicios-ciencias').style.display = 'block';
+        });
+
+        document.getElementById('btn-nuevos-ejercicios-ciencias').addEventListener('click', function() {
+            ejerciciosCienciasActuales = generarEjerciciosCiencias(20);
+            respuestasCiencias = {};
+            mostrarEjerciciosCiencias(ejerciciosCienciasActuales);
+        });
+
+        document.getElementById('btn-imprimir-ciencias').addEventListener('click', function() {
+            imprimirEjerciciosCiencias();
+        });
+
+        document.getElementById('btn-revisar-ciencias').addEventListener('click', function() {
+            let correctas = 0;
+            let html = '<table style="width: 100%; border-collapse: collapse; font-size: 13px;">';
+            html += '<tr style="background-color: #1a3c6e; color: white;">' +
+                    '<th style="padding: 10px; text-align: left; border: 1px solid #ccc;">N°</th>' +
+                    '<th style="padding: 10px; text-align: left; border: 1px solid #ccc;">Pregunta</th>' +
+                    '<th style="padding: 10px; text-align: center; border: 1px solid #ccc;">Tu Respuesta</th>' +
+                    '<th style="padding: 10px; text-align: center; border: 1px solid #ccc;">Respuesta Correcta</th>' +
+                    '<th style="padding: 10px; text-align: center; border: 1px solid #ccc;">Estado</th>' +
+                    '</tr>';
+
+            ejerciciosCienciasActuales.forEach((ej, idx) => {
+                const respuestaUsuario = respuestasCiencias[idx];
+                const respondio = respuestaUsuario !== undefined;
+                const esCorrecta = respondio && respuestaUsuario === ej.respuestaCorrecta;
+                if (esCorrecta) correctas++;
+
+                const estadoIcon = esCorrecta ? '✓' : '✗';
+                const estadoColor = esCorrecta ? '#2f6f4e' : '#c93c3c';
+                const bgColor = esCorrecta ? '#e8f5e9' : '#ffebee';
+                const textoUsuario = !respondio ? '—' : respuestaUsuario;
+
+                html += `<tr style="background-color: ${bgColor}; border: 1px solid #ddd;">
+                    <td style="padding: 10px; border: 1px solid #ccc; font-weight: 600;">${ej.numero}</td>
+                    <td style="padding: 10px; border: 1px solid #ccc;">${ej.pregunta}</td>
+                    <td style="padding: 10px; text-align: center; border: 1px solid #ccc;">${textoUsuario}</td>
+                    <td style="padding: 10px; text-align: center; border: 1px solid #ccc; font-weight: 600; color: #1a3c6e;">${ej.respuestaCorrecta}</td>
+                    <td style="padding: 10px; text-align: center; border: 1px solid #ccc; color: ${estadoColor}; font-weight: 600;">${estadoIcon}</td>
+                </tr>`;
+            });
+
+            html += '</table>';
+
+            const porcentaje = Math.round((correctas / ejerciciosCienciasActuales.length) * 100);
+            const mensaje = porcentaje === 100 ? '¡Excelente! 🎉' :
+                            porcentaje >= 80 ? '¡Muy bien! 👏' :
+                            porcentaje >= 60 ? 'Buen esfuerzo 💪' : 'Sigue practicando 📚';
+
+            document.getElementById('contenedor-resultados-ciencias').innerHTML =
+                `<div style="margin-bottom: 20px; text-align: center;">
+                    <p style="font-size: 32px; font-weight: 600; color: #1a3c6e;">${correctas}/${ejerciciosCienciasActuales.length}</p>
+                    <p style="font-size: 18px; color: #2f6f4e;">${porcentaje}% — ${mensaje}</p>
+                </div>` + html;
+
+            document.getElementById('area-ejercicios-ciencias').style.display = 'none';
+            document.getElementById('resultados-ciencias').style.display = 'block';
+        });
+
+        // ============ CIENCIAS - MOSTRAR MÓDULO ============
+        function mostrarModuloCiencias() {
+            document.getElementById('modulo-ciencias').style.display = 'block';
+            document.getElementById('configuracion-ciencias').style.display = 'block';
+            document.getElementById('area-ejercicios-ciencias').style.display = 'none';
+            document.getElementById('resultados-ciencias').style.display = 'none';
+            document.querySelectorAll('.seccion').forEach(s => s.style.display = 'none');
+        }
+
+        // ============ SISTEMAS DEL CUERPO - DIAGRAMAS Y PARTES ============
+        // Cada diagrama usa marcadores __N1__ ... __Nx__ que se reemplazan por el número
+        // que le tocó a esa parte en el sorteo, de modo que la numeración cambia en cada guía.
+        const svgDigestivo = `<svg viewBox="0 0 430 630" xmlns="http://www.w3.org/2000/svg" style="width:100%; max-width:400px; height:auto; display:block; margin:0 auto;">
+<g fill="none" stroke="#1a3c6e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+<path d="M 228,18 C 256,18 278,38 280,64 C 282,92 270,110 252,118 L 210,118 L 210,106 C 198,106 189,100 186,92 C 179,94 172,90 174,84 L 158,68 C 150,65 151,58 159,54 L 178,46 C 179,28 200,18 228,18 Z" fill="#eef3fa"/>
+<circle cx="216" cy="48" r="3.2" fill="#1a3c6e" stroke="none"/>
+<ellipse cx="197" cy="93" rx="15" ry="7.5" fill="#ffffff"/>
+<path d="M 184,90 L 210,90" stroke-width="1.6"/>
+<path d="M 190,97 C 195,101 203,100 207,96" stroke-width="1.6"/>
+<path d="M 198,118 L 198,234 M 216,118 L 216,234"/>
+<path d="M 206,232 C 176,244 158,270 160,296 C 162,326 186,348 216,348 C 244,348 268,332 280,308 C 268,304 258,306 250,304 C 232,300 224,286 226,268 C 228,252 230,242 228,232 Z" fill="#eef3fa" fill-opacity="0.7"/>
+</g>
+<g fill="none" stroke-linecap="round" stroke-linejoin="round">
+<g stroke="#1a3c6e" stroke-width="9">
+<path d="M 278,308 C 300,322 304,346 292,364 C 280,382 256,386 244,372"/>
+<path d="M 244,372 C 236,396 208,408 184,404 C 160,400 150,416 158,432 C 168,450 202,454 228,446 C 250,439 268,446 270,462"/>
+<path d="M 270,462 C 270,482 246,494 220,490 C 194,486 172,496 174,510 C 176,526 204,536 232,530 C 258,524 280,526 292,536"/>
+</g>
+<g stroke="#ffffff" stroke-width="4">
+<path d="M 278,308 C 300,322 304,346 292,364 C 280,382 256,386 244,372"/>
+<path d="M 244,372 C 236,396 208,408 184,404 C 160,400 150,416 158,432 C 168,450 202,454 228,446 C 250,439 268,446 270,462"/>
+<path d="M 270,462 C 270,482 246,494 220,490 C 194,486 172,496 174,510 C 176,526 204,536 232,530 C 258,524 280,526 292,536"/>
+</g>
+</g>
+<g fill="none" stroke-linecap="round" stroke-linejoin="round">
+<path d="M 306,544 L 306,410 C 306,398 299,392 287,392 L 143,392 C 131,392 124,398 124,410 L 124,510 C 124,522 132,528 144,528 L 166,528 C 182,528 194,538 194,552 L 194,572" stroke="#ffffff" stroke-width="26"/>
+<path d="M 306,544 L 306,410 C 306,398 299,392 287,392 L 143,392 C 131,392 124,398 124,410 L 124,510 C 124,522 132,528 144,528 L 166,528 C 182,528 194,538 194,552 L 194,572" stroke="#1a3c6e" stroke-width="21"/>
+<path d="M 306,544 L 306,410 C 306,398 299,392 287,392 L 143,392 C 131,392 124,398 124,410 L 124,510 C 124,522 132,528 144,528 L 166,528 C 182,528 194,538 194,552 L 194,572" stroke="#ffffff" stroke-width="15"/>
+<path d="M 194,572 L 194,588" stroke="#1a3c6e" stroke-width="9"/>
+<circle cx="194" cy="596" r="6.5" fill="#ffffff" stroke="#1a3c6e" stroke-width="2.5"/>
+</g>
+<g stroke="#c0392b" stroke-width="1.6" fill="none" stroke-dasharray="5 4">
+<path d="M 182,93 L 86,93"/>
+<path d="M 216,176 L 344,176"/>
+<path d="M 165,312 L 82,320"/>
+<path d="M 300,344 L 348,340"/>
+<path d="M 152,428 L 78,422"/>
+<path d="M 174,512 L 78,512"/>
+<path d="M 302,470 L 350,470"/>
+<path d="M 201,596 L 296,584"/>
+</g>
+<g font-family="Arial, sans-serif" font-size="17" font-weight="bold" fill="#fff" text-anchor="middle">
+<circle cx="68" cy="93" r="16" fill="#c0392b"/><text x="68" y="99">__N1__</text>
+<circle cx="362" cy="176" r="16" fill="#c0392b"/><text x="362" y="182">__N2__</text>
+<circle cx="64" cy="321" r="16" fill="#c0392b"/><text x="64" y="327">__N3__</text>
+<circle cx="366" cy="340" r="16" fill="#c0392b"/><text x="366" y="346">__N4__</text>
+<circle cx="60" cy="422" r="16" fill="#c0392b"/><text x="60" y="428">__N5__</text>
+<circle cx="60" cy="512" r="16" fill="#c0392b"/><text x="60" y="518">__N6__</text>
+<circle cx="368" cy="470" r="16" fill="#c0392b"/><text x="368" y="476">__N7__</text>
+<circle cx="314" cy="581" r="16" fill="#c0392b"/><text x="314" y="587">__N8__</text>
+</g>
+</svg>`;
+
+        const svgRespiratorio = `<svg viewBox="0 0 420 470" xmlns="http://www.w3.org/2000/svg" style="width:100%; max-width:400px; height:auto; display:block; margin:0 auto;">
+<g fill="none" stroke="#1a3c6e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+<path d="M 226,20 C 254,20 276,40 278,66 C 280,92 268,108 250,114 L 208,114 L 208,102 C 195,102 185,96 183,87 C 176,90 169,85 172,79 L 157,73 C 149,70 150,63 158,59 L 176,51 C 177,32 198,20 226,20 Z" fill="#eef3fa"/>
+<circle cx="212" cy="52" r="3.2" fill="#1a3c6e" stroke="none"/>
+<path d="M 178,88 L 190,88" stroke-width="2"/>
+<path d="M 191,114 L 191,220 M 215,114 L 215,220"/>
+<path d="M 191,128 L 215,128 M 191,142 L 215,142 M 191,156 L 215,156 M 191,170 L 215,170 M 191,184 L 215,184 M 191,198 L 215,198 M 191,212 L 215,212" stroke-width="1.8"/>
+<path d="M 150,250 C 112,258 96,300 98,342 C 100,384 118,410 142,406 C 162,402 172,378 172,346 L 172,268 C 172,256 164,248 150,250 Z" fill="#eef3fa" fill-opacity="0.6"/>
+<path d="M 256,250 C 294,258 310,300 308,342 C 306,384 288,410 264,406 C 244,402 234,378 234,346 L 234,268 C 234,256 242,248 256,250 Z" fill="#eef3fa" fill-opacity="0.6"/>
+<path d="M 193,220 C 187,240 168,252 150,260" stroke-width="8"/>
+<path d="M 213,220 C 219,240 238,252 256,260" stroke-width="8"/>
+<path d="M 150,260 C 138,270 132,288 132,306 M 150,260 C 152,276 148,294 140,308 M 150,260 C 162,270 168,286 168,302" stroke-width="3.5"/>
+<path d="M 256,260 C 268,270 274,288 274,306 M 256,260 C 254,276 258,294 266,308 M 256,260 C 244,270 238,286 238,302" stroke-width="3.5"/>
+<circle cx="132" cy="318" r="7" fill="#ffffff"/>
+<circle cx="146" cy="324" r="7" fill="#ffffff"/>
+<circle cx="138" cy="336" r="7" fill="#ffffff"/>
+<circle cx="124" cy="332" r="6" fill="#ffffff"/>
+<circle cx="152" cy="336" r="6" fill="#ffffff"/>
+<path d="M 122,338 L 90,390" stroke-width="1.6" stroke-dasharray="4 4"/>
+<circle cx="70" cy="412" r="40" fill="#ffffff"/>
+<path d="M 70,372 L 70,388" stroke-width="4"/>
+<circle cx="56" cy="400" r="12" fill="#eef3fa"/>
+<circle cx="82" cy="399" r="11" fill="#eef3fa"/>
+<circle cx="50" cy="423" r="11" fill="#eef3fa"/>
+<circle cx="76" cy="422" r="13" fill="#eef3fa"/>
+<circle cx="64" cy="441" r="9" fill="#eef3fa"/>
+</g>
+<g stroke="#c0392b" stroke-width="1.6" fill="none" stroke-dasharray="5 4">
+<path d="M 152,66 L 78,66"/>
+<path d="M 215,164 L 342,164"/>
+<path d="M 248,254 L 342,238"/>
+<path d="M 292,330 L 348,330"/>
+<path d="M 110,414 L 172,432"/>
+</g>
+<g font-family="Arial, sans-serif" font-size="17" font-weight="bold" fill="#fff" text-anchor="middle">
+<circle cx="60" cy="66" r="16" fill="#c0392b"/><text x="60" y="72">__N1__</text>
+<circle cx="360" cy="164" r="16" fill="#c0392b"/><text x="360" y="170">__N2__</text>
+<circle cx="360" cy="236" r="16" fill="#c0392b"/><text x="360" y="242">__N3__</text>
+<circle cx="366" cy="330" r="16" fill="#c0392b"/><text x="366" y="336">__N4__</text>
+<circle cx="190" cy="434" r="16" fill="#c0392b"/><text x="190" y="440">__N5__</text>
+</g>
+</svg>`;
+
+        // Las partes van en el MISMO orden que los marcadores __N1__..__Nx__ del SVG.
+        const sistemasCuerpo = {
+            digestivo: {
+                titulo: 'Sistema Digestivo',
+                svg: svgDigestivo,
+                partes: [
+                    { nombre: 'Boca', sinonimos: ['boca'] },
+                    { nombre: 'Esófago', sinonimos: ['esofago'] },
+                    { nombre: 'Estómago', sinonimos: ['estomago'] },
+                    { nombre: 'Duodeno', sinonimos: ['duodeno'] },
+                    { nombre: 'Yeyuno', sinonimos: ['yeyuno'] },
+                    { nombre: 'Íleon', sinonimos: ['ileon'] },
+                    { nombre: 'Intestino grueso', sinonimos: ['intestino grueso', 'colon'] },
+                    { nombre: 'Ano', sinonimos: ['ano'] }
+                ]
+            },
+            respiratorio: {
+                titulo: 'Sistema Respiratorio',
+                svg: svgRespiratorio,
+                partes: [
+                    { nombre: 'Nariz', sinonimos: ['nariz', 'fosas nasales'] },
+                    { nombre: 'Tráquea', sinonimos: ['traquea'] },
+                    { nombre: 'Bronquios', sinonimos: ['bronquios', 'bronquio'] },
+                    { nombre: 'Pulmones', sinonimos: ['pulmones', 'pulmon'] },
+                    { nombre: 'Alvéolos', sinonimos: ['alveolos', 'alveolo'] }
+                ]
+            }
+        };
+
+        // Quita tildes, mayúsculas y espacios sobrantes para comparar lo que escribe el niño.
+        function normalizarTextoSistemas(texto) {
+            return (texto === undefined || texto === null ? '' : String(texto))
+                .toLowerCase()
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .replace(/[^a-z0-9 ]/g, '')
+                .replace(/\s+/g, ' ')
+                .trim();
+        }
+
+        // ============ SISTEMAS - GENERADOR ============
+        function generarEjerciciosSistemas(seleccion, modo) {
+            const claves = seleccion === 'ambos' ? ['digestivo', 'respiratorio'] : [seleccion];
+
+            return claves.map(clave => {
+                const sistema = sistemasCuerpo[clave];
+                // Se baraja qué número le toca a cada parte, para que no se aprenda de memoria
+                // que "el 1 siempre es la boca".
+                const asignacion = barajarArreglo(sistema.partes);
+                let svgHtml = sistema.svg;
+                sistema.partes.forEach((parte, slot) => {
+                    const numero = asignacion.indexOf(parte) + 1;
+                    svgHtml = svgHtml.replace(`__N${slot + 1}__`, String(numero));
+                });
+
+                return {
+                    clave,
+                    titulo: sistema.titulo,
+                    modo,
+                    svgHtml,
+                    asignacion,
+                    opcionesLista: barajarArreglo(sistema.partes.map(p => p.nombre))
+                };
+            });
+        }
+
+        // ============ SISTEMAS - RENDER ============
+        function mostrarEjerciciosSistemas(bloques) {
+            const contenedor = document.getElementById('contenedor-ejercicios-sistemas');
+            let html = '';
+
+            bloques.forEach((bloque, bIdx) => {
+                html += `
+                    <div style="margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid #e0e0e0;">
+                        <h3 style="color: #1a3c6e; margin-bottom: 14px; text-align: center;">${bloque.titulo}</h3>
+                        <div style="background-color: #fbfcfe; border: 1px solid #e3e8f0; border-radius: 6px; padding: 10px; margin-bottom: 16px;">
+                            ${bloque.svgHtml}
+                        </div>
+                        <div style="display: grid; gap: 10px;">
+                `;
+
+                bloque.asignacion.forEach((parte, nIdx) => {
+                    const campoId = `sistema-campo-${bIdx}-${nIdx}`;
+                    let campoHtml;
+
+                    if (bloque.modo === 'lista') {
+                        campoHtml = `
+                            <select id="${campoId}" onchange="seleccionarRespuestaSistemas(${bIdx}, ${nIdx}, this.value)" style="
+                                flex: 1; min-width: 180px; padding: 8px 10px; border: 2px solid #1a3c6e;
+                                border-radius: 4px; font-size: 14px; color: #1a3c6e; background-color: white;">
+                                <option value="">— Elige el nombre —</option>
+                                ${bloque.opcionesLista.map(op => `<option value="${op}">${op}</option>`).join('')}
+                            </select>
+                        `;
+                    } else {
+                        campoHtml = `
+                            <input type="text" id="${campoId}" oninput="seleccionarRespuestaSistemas(${bIdx}, ${nIdx}, this.value)"
+                                placeholder="Escribe el nombre" autocomplete="off" style="
+                                flex: 1; min-width: 180px; padding: 8px 10px; border: 2px solid #1a3c6e;
+                                border-radius: 4px; font-size: 14px; color: #1a3c6e; background-color: white;">
+                        `;
+                    }
+
+                    html += `
+                        <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+                            <span style="display: inline-flex; align-items: center; justify-content: center;
+                                width: 30px; height: 30px; border-radius: 50%; background-color: #c0392b;
+                                color: white; font-weight: 700; font-size: 14px; flex-shrink: 0;">${nIdx + 1}</span>
+                            ${campoHtml}
+                        </div>
+                    `;
+                });
+
+                html += '</div></div>';
+            });
+
+            contenedor.innerHTML = html;
+        }
+
+        // ============ SISTEMAS - GUARDAR RESPUESTA ============
+        function seleccionarRespuestaSistemas(bIdx, nIdx, valor) {
+            respuestasSistemas[`${bIdx}-${nIdx}`] = valor;
+            const campo = document.getElementById(`sistema-campo-${bIdx}-${nIdx}`);
+            if (campo) {
+                // Estilo neutro mientras se responde: el color correcto/incorrecto
+                // solo aparece al presionar "Revisar Respuestas".
+                campo.style.borderColor = valor ? '#1a3c6e' : '#1a3c6e';
+                campo.style.backgroundColor = valor ? '#eef1f8' : 'white';
+            }
+        }
+
+        // ============ SISTEMAS - IMPRIMIR / PDF ============
+        function imprimirEjerciciosSistemas() {
+            if (ejerciciosSistemasActuales.length === 0) {
+                alert('Por favor, genera la guía primero.');
+                return;
+            }
+
+            let htmlPDF = `
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <meta charset="UTF-8">
+                    <style>
+                        body { font-family: Arial, sans-serif; padding: 20px; margin: 0; background: white; }
+                        .header { text-align: center; margin-bottom: 20px; border-bottom: 2px solid #1a3c6e; padding-bottom: 12px; }
+                        .header h1 { margin: 0 0 5px 0; color: #1a3c6e; font-size: 22px; }
+                        .header p { margin: 0; color: #666; font-size: 12px; }
+                        .student-info { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; font-size: 13px; }
+                        .info-field { display: flex; align-items: flex-end; gap: 10px; }
+                        .info-field label { font-weight: bold; color: #333; min-width: 70px; }
+                        .info-field .line { flex: 1; border-bottom: 1px solid #999; height: 18px; }
+                        .bloque { page-break-inside: avoid; page-break-after: always; margin-bottom: 20px; }
+                        .bloque:last-child { page-break-after: auto; }
+                        .bloque h2 { color: #1a3c6e; font-size: 17px; text-align: center; margin: 0 0 10px 0; }
+                        .diagrama { text-align: center; }
+                        .diagrama svg { max-width: 320px !important; height: auto; }
+                        .lineas { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 26px; margin-top: 14px; font-size: 13px; }
+                        .linea { display: flex; align-items: flex-end; gap: 8px; }
+                        .linea .num { font-weight: bold; color: #c0392b; min-width: 20px; }
+                        .linea .raya { flex: 1; border-bottom: 1px solid #999; height: 18px; }
+                        @media print { body { padding: 10px; } }
+                    </style>
+                </head>
+                <body>
+                    <div class="header">
+                        <h1>Partes del Cuerpo Humano</h1>
+                        <p>Escribe el nombre de cada parte señalada — 5° Básico</p>
+                    </div>
+                    <div class="student-info">
+                        <div class="info-field"><label>Nombre:</label><div class="line"></div></div>
+                        <div class="info-field"><label>Curso:</label><div class="line"></div></div>
+                        <div class="info-field"><label>Fecha:</label><div class="line"></div></div>
+                        <div class="info-field"><label>Puntaje:</label><div class="line"></div></div>
+                    </div>
+            `;
+
+            ejerciciosSistemasActuales.forEach(bloque => {
+                htmlPDF += `
+                    <div class="bloque">
+                        <h2>${bloque.titulo}</h2>
+                        <div class="diagrama">${bloque.svgHtml}</div>
+                        <div class="lineas">
+                            ${bloque.asignacion.map((p, i) => `<div class="linea"><span class="num">${i + 1}.</span><span class="raya"></span></div>`).join('')}
+                        </div>
+                    </div>
+                `;
+            });
+
+            htmlPDF += `</body></html>`;
+
+            const blob = new Blob([htmlPDF], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const printWindow = window.open(url, '_blank');
+            printWindow.onload = function() {
+                setTimeout(() => { printWindow.print(); }, 250);
+            };
+        }
+
+        // ============ SISTEMAS - BOTONES ============
+        document.getElementById('btn-generar-sistemas').addEventListener('click', function() {
+            const seleccion = document.getElementById('seleccion-sistema').value;
+            const modo = document.getElementById('modo-sistema').value;
+            ejerciciosSistemasActuales = generarEjerciciosSistemas(seleccion, modo);
+            respuestasSistemas = {};
+            mostrarEjerciciosSistemas(ejerciciosSistemasActuales);
+            document.getElementById('configuracion-sistemas').style.display = 'none';
+            document.getElementById('area-ejercicios-sistemas').style.display = 'block';
+        });
+
+        document.getElementById('btn-nuevos-ejercicios-sistemas').addEventListener('click', function() {
+            const seleccion = document.getElementById('seleccion-sistema').value;
+            const modo = document.getElementById('modo-sistema').value;
+            ejerciciosSistemasActuales = generarEjerciciosSistemas(seleccion, modo);
+            respuestasSistemas = {};
+            mostrarEjerciciosSistemas(ejerciciosSistemasActuales);
+        });
+
+        document.getElementById('btn-imprimir-sistemas').addEventListener('click', function() {
+            imprimirEjerciciosSistemas();
+        });
+
+        document.getElementById('btn-revisar-sistemas').addEventListener('click', function() {
+            let correctas = 0;
+            let total = 0;
+            let html = '';
+
+            ejerciciosSistemasActuales.forEach((bloque, bIdx) => {
+                html += `<h4 style="color: #1a3c6e; margin: 16px 0 8px 0;">${bloque.titulo}</h4>`;
+                html += '<table style="width: 100%; border-collapse: collapse; font-size: 13px;">';
+                html += '<tr style="background-color: #1a3c6e; color: white;">' +
+                        '<th style="padding: 10px; text-align: left; border: 1px solid #ccc;">N°</th>' +
+                        '<th style="padding: 10px; text-align: center; border: 1px solid #ccc;">Tu Respuesta</th>' +
+                        '<th style="padding: 10px; text-align: center; border: 1px solid #ccc;">Respuesta Correcta</th>' +
+                        '<th style="padding: 10px; text-align: center; border: 1px solid #ccc;">Estado</th>' +
+                        '</tr>';
+
+                bloque.asignacion.forEach((parte, nIdx) => {
+                    total++;
+                    const valor = respuestasSistemas[`${bIdx}-${nIdx}`];
+                    const respondio = valor !== undefined && String(valor).trim() !== '';
+                    const normalizada = normalizarTextoSistemas(valor);
+                    const esCorrecta = respondio && parte.sinonimos.indexOf(normalizada) !== -1;
+                    if (esCorrecta) correctas++;
+
+                    const campo = document.getElementById(`sistema-campo-${bIdx}-${nIdx}`);
+                    if (campo) {
+                        campo.style.borderColor = esCorrecta ? '#2f6f4e' : '#c93c3c';
+                        campo.style.backgroundColor = esCorrecta ? '#e8f5e9' : '#ffebee';
+                    }
+
+                    const estadoIcon = esCorrecta ? '✓' : '✗';
+                    const estadoColor = esCorrecta ? '#2f6f4e' : '#c93c3c';
+                    const bgColor = esCorrecta ? '#e8f5e9' : '#ffebee';
+
+                    html += `<tr style="background-color: ${bgColor}; border: 1px solid #ddd;">
+                        <td style="padding: 10px; border: 1px solid #ccc; font-weight: 600;">${nIdx + 1}</td>
+                        <td style="padding: 10px; text-align: center; border: 1px solid #ccc;">${respondio ? valor : '—'}</td>
+                        <td style="padding: 10px; text-align: center; border: 1px solid #ccc; font-weight: 600; color: #1a3c6e;">${parte.nombre}</td>
+                        <td style="padding: 10px; text-align: center; border: 1px solid #ccc; color: ${estadoColor}; font-weight: 600;">${estadoIcon}</td>
+                    </tr>`;
+                });
+
+                html += '</table>';
+            });
+
+            const porcentaje = total === 0 ? 0 : Math.round((correctas / total) * 100);
+            const mensaje = porcentaje === 100 ? '¡Excelente! 🎉' :
+                            porcentaje >= 80 ? '¡Muy bien! 👏' :
+                            porcentaje >= 60 ? 'Buen esfuerzo 💪' : 'Sigue practicando 📚';
+
+            document.getElementById('contenedor-resultados-sistemas').innerHTML =
+                `<div style="margin-bottom: 20px; text-align: center;">
+                    <p style="font-size: 32px; font-weight: 600; color: #1a3c6e;">${correctas}/${total}</p>
+                    <p style="font-size: 18px; color: #2f6f4e;">${porcentaje}% — ${mensaje}</p>
+                </div>` + html;
+
+            document.getElementById('area-ejercicios-sistemas').style.display = 'none';
+            document.getElementById('resultados-sistemas').style.display = 'block';
+        });
+
+        // ============ SISTEMAS - MOSTRAR MÓDULO ============
+        function mostrarModuloSistemas() {
+            document.getElementById('modulo-sistemas').style.display = 'block';
+            document.getElementById('configuracion-sistemas').style.display = 'block';
+            document.getElementById('area-ejercicios-sistemas').style.display = 'none';
+            document.getElementById('resultados-sistemas').style.display = 'none';
             document.querySelectorAll('.seccion').forEach(s => s.style.display = 'none');
         }
 
