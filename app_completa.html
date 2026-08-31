@@ -533,6 +533,269 @@
         #contenedor-ejercicios-pdf {
             display: none;
         }
+        /* ===== DOBLES ===== */
+        .dobles-fila {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+        
+        .dobles-grupo {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+            border: 4px solid #667eea;
+            background: rgba(102, 126, 234, 0.05);
+            border-radius: 40px;
+            max-width: 260px;
+        }
+        
+        .dobles-mas {
+            font-size: 34px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .dobles-grupo-titulo {
+            text-align: center;
+            font-weight: bold;
+            color: #667eea;
+            font-size: 17px;
+            margin-top: 10px;
+        }
+        
+        /* ===== ANTECESOR Y SUCESOR ===== */
+        .camion-fila {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 18px 0;
+            flex-wrap: wrap;
+        }
+        
+        .camion-emoji {
+            font-size: 44px;
+        }
+        
+        .camion-vagones {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .camion-vagon {
+            background: white;
+            border: 3px solid #667eea;
+            border-radius: 10px;
+            padding: 10px 8px 6px 8px;
+            text-align: center;
+            min-width: 92px;
+        }
+        
+        .camion-etiqueta {
+            font-size: 12px;
+            color: #667eea;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+        
+        .as-input {
+            width: 74px;
+            height: 46px;
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            color: #333;
+        }
+        
+        .as-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .as-input.correcto {
+            background: #4CAF50;
+            color: white;
+            border-color: #4CAF50;
+        }
+        
+        .as-input.incorrecto {
+            background: #f44336;
+            color: white;
+            border-color: #f44336;
+            animation: shake 0.3s;
+        }
+        
+        .as-input.seleccionado {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+        
+        .as-fijo {
+            width: 74px;
+            height: 46px;
+            line-height: 46px;
+            font-size: 22px;
+            font-weight: bold;
+            color: white;
+            background: #667eea;
+            border-radius: 8px;
+        }
+        
+        /* ===== DADOS ===== */
+        .dados-fila {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            margin: 18px 0;
+            flex-wrap: wrap;
+        }
+        
+        .dados-total {
+            font-size: 30px;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .dado-cara {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            width: 74px;
+            height: 74px;
+            padding: 7px;
+            background: white;
+            border: 3px solid #2a3f8f;
+            border-radius: 12px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .dado-celda {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .dado-punto {
+            width: 13px;
+            height: 13px;
+            background: #2a3f8f;
+            border-radius: 50%;
+            display: block;
+        }
+        
+        .dado-vacio {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 34px;
+            font-weight: bold;
+            color: #b0b6d8;
+            background: #f2f3fb;
+            border-style: dashed;
+        }
+        
+        .dado-revelado {
+            border-color: #4CAF50;
+            background: #eaf7ea;
+        }
+        
+        .dado-revelado .dado-punto {
+            background: #2e7d32;
+        }
+        
+        /* ===== PROBLEMAS ===== */
+        .problema-enunciado {
+            background: white;
+            border: 2px solid #667eea;
+            border-radius: 10px;
+            padding: 16px 18px;
+            margin: 12px 0;
+            font-size: 19px;
+            line-height: 1.5;
+            color: #333;
+        }
+        
+        /* ===== FIGURAS GEOMÉTRICAS ===== */
+        .figura-caja {
+            background: white;
+            border-radius: 10px;
+            padding: 12px;
+            margin: 14px 0;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .figura-svg {
+            width: 100%;
+            max-width: 190px;
+            min-height: 0;
+            height: auto;
+        }
+        
+        .escena-svg {
+            width: 100%;
+            max-width: 380px;
+            min-height: 0;
+            height: auto;
+        }
+        
+        .figura-pregunta {
+            text-align: center;
+            font-weight: bold;
+            color: #667eea;
+            font-size: 16px;
+            margin-bottom: 6px;
+        }
+        
+        .fig-select {
+            font-size: 18px;
+            font-weight: bold;
+            padding: 11px 16px;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            background: white;
+            color: #333;
+            cursor: pointer;
+            min-width: 230px;
+        }
+        
+        .fig-select:focus {
+            outline: none;
+        }
+        
+        .fig-select.seleccionado {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+        
+        .fig-select.correcto {
+            background: #4CAF50;
+            color: white;
+            border-color: #4CAF50;
+        }
+        
+        .fig-select.incorrecto {
+            background: #f44336;
+            color: white;
+            border-color: #f44336;
+            animation: shake 0.3s;
+        }
+        
     </style>
 </head>
 <body>
@@ -580,6 +843,26 @@
                 <button class="opcion" onclick="irA('decenas-unidades')">
                     <span class="opcion-emoji">🔢</span>
                     Decenas y Unidades
+                </button>
+                <button class="opcion" onclick="irA('dobles')">
+                    <span class="opcion-emoji">👯</span>
+                    Dobles hasta 20
+                </button>
+                <button class="opcion" onclick="irA('antecesor-sucesor')">
+                    <span class="opcion-emoji">🚚</span>
+                    Antecesor y Sucesor
+                </button>
+                <button class="opcion" onclick="irA('dados')">
+                    <span class="opcion-emoji">🎲</span>
+                    Completa el Dado
+                </button>
+                <button class="opcion" onclick="irA('problemas')">
+                    <span class="opcion-emoji">🧩</span>
+                    Resolución de<br>Problemas
+                </button>
+                <button class="opcion" onclick="irA('figuras')">
+                    <span class="opcion-emoji">🔺</span>
+                    Figuras y Cuerpos<br>Geométricos
                 </button>
             </div>
         </div>
@@ -721,6 +1004,111 @@
             <div class="puntuacion" id="puntuacion-decenas-unidades">
                 <h2>¡Felicidades!</h2>
                 <p id="puntuacion-texto-decenas-unidades"></p>
+            </div>
+        </div>
+
+        <!-- DOBLES HASTA 20 -->
+        <div id="dobles" class="seccion">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                <h1>👯 Dobles hasta 20</h1>
+                <button class="btn btn-volver" onclick="irA('menu-1basico')">← Volver</button>
+            </div>
+            <div class="instrucciones">
+                ➕ Observa los grupos y elige el doble. En algunos ejercicios debes descubrir de qué número es el doble.
+            </div>
+            <div id="ejercicios-dobles"></div>
+            <div class="botones-finales">
+                <button class="btn btn-resultados" onclick="mostrarResultados('dobles')">Ver Mis Resultados</button>
+                <button class="btn btn-resultados" onclick="generarNuevosEjercicios('dobles')">🔄 Nuevos Ejercicios</button>
+                <button class="btn btn-volver" onclick="irA('menu-1basico')">Volver</button>
+            </div>
+            <div class="puntuacion" id="puntuacion-dobles">
+                <h2>¡Felicidades!</h2>
+                <p id="puntuacion-texto-dobles"></p>
+            </div>
+        </div>
+
+        <!-- ANTECESOR Y SUCESOR -->
+        <div id="antecesor-sucesor" class="seccion">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                <h1>🚚 Antecesor y Sucesor</h1>
+                <button class="btn btn-volver" onclick="irA('menu-1basico')">← Volver</button>
+            </div>
+            <div class="instrucciones">
+                🔢 Escribe el número que va ANTES y el que va DESPUÉS. Luego presiona "Guardar Respuesta".
+            </div>
+            <div id="ejercicios-antecesor-sucesor"></div>
+            <div class="botones-finales">
+                <button class="btn btn-resultados" onclick="mostrarResultados('antecesor-sucesor')">Ver Mis Resultados</button>
+                <button class="btn btn-resultados" onclick="generarNuevosEjercicios('antecesor-sucesor')">🔄 Nuevos Ejercicios</button>
+                <button class="btn btn-volver" onclick="irA('menu-1basico')">Volver</button>
+            </div>
+            <div class="puntuacion" id="puntuacion-antecesor-sucesor">
+                <h2>¡Felicidades!</h2>
+                <p id="puntuacion-texto-antecesor-sucesor"></p>
+            </div>
+        </div>
+
+        <!-- COMPLETA EL DADO -->
+        <div id="dados" class="seccion">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                <h1>🎲 Completa el Dado</h1>
+                <button class="btn btn-volver" onclick="irA('menu-1basico')">← Volver</button>
+            </div>
+            <div class="instrucciones">
+                🎯 Un dado quedó vacío. ¿Cuántos puntos faltan para llegar al total?
+            </div>
+            <div id="ejercicios-dados"></div>
+            <div class="botones-finales">
+                <button class="btn btn-resultados" onclick="mostrarResultados('dados')">Ver Mis Resultados</button>
+                <button class="btn btn-resultados" onclick="generarNuevosEjercicios('dados')">🔄 Nuevos Ejercicios</button>
+                <button class="btn btn-volver" onclick="irA('menu-1basico')">Volver</button>
+            </div>
+            <div class="puntuacion" id="puntuacion-dados">
+                <h2>¡Felicidades!</h2>
+                <p id="puntuacion-texto-dados"></p>
+            </div>
+        </div>
+
+        <!-- RESOLUCIÓN DE PROBLEMAS -->
+        <div id="problemas" class="seccion">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                <h1>🧩 Resolución de Problemas</h1>
+                <button class="btn btn-volver" onclick="irA('menu-1basico')">← Volver</button>
+            </div>
+            <div class="instrucciones">
+                📖 Lee cada historia matemática, encuentra la diferencia y elige tu respuesta.
+            </div>
+            <div id="ejercicios-problemas"></div>
+            <div class="botones-finales">
+                <button class="btn btn-resultados" onclick="mostrarResultados('problemas')">Ver Mis Resultados</button>
+                <button class="btn btn-resultados" onclick="generarNuevosEjercicios('problemas')">🔄 Nuevos Ejercicios</button>
+                <button class="btn btn-volver" onclick="irA('menu-1basico')">Volver</button>
+            </div>
+            <div class="puntuacion" id="puntuacion-problemas">
+                <h2>¡Felicidades!</h2>
+                <p id="puntuacion-texto-problemas"></p>
+            </div>
+        </div>
+
+        <!-- FIGURAS Y CUERPOS GEOMÉTRICOS -->
+        <div id="figuras" class="seccion">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                <h1>🔺 Figuras y Cuerpos Geométricos</h1>
+                <button class="btn btn-volver" onclick="irA('menu-1basico')">← Volver</button>
+            </div>
+            <div class="instrucciones">
+                🔍 Nombra cada figura en el menú desplegable y cuenta las figuras escondidas en los dibujos.
+            </div>
+            <div id="ejercicios-figuras"></div>
+            <div class="botones-finales">
+                <button class="btn btn-resultados" onclick="mostrarResultados('figuras')">Ver Mis Resultados</button>
+                <button class="btn btn-resultados" onclick="generarNuevosEjercicios('figuras')">🔄 Nuevos Ejercicios</button>
+                <button class="btn btn-volver" onclick="irA('menu-1basico')">Volver</button>
+            </div>
+            <div class="puntuacion" id="puntuacion-figuras">
+                <h2>¡Felicidades!</h2>
+                <p id="puntuacion-texto-figuras"></p>
             </div>
         </div>
 
@@ -1209,7 +1597,6 @@
                 </div>
             </div>
         </div>
-
         <!-- MÓDULO INTERACTIVO DE CIENCIAS NATURALES -->
         <div id="modulo-ciencias" class="modulo-contenedor">
             <div style="max-width: 900px; margin: 0 auto; padding: 20px;">
@@ -1430,6 +1817,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 
     <script>
@@ -1845,7 +2233,12 @@
             'restas-simples': [],
             'resta-imagenes': [],
             'decenas-unidades': [],
-            'tablas-multiplicar': []
+            'tablas-multiplicar': [],
+            'dobles': [],
+            'antecesor-sucesor': [],
+            'dados': [],
+            'problemas': [],
+            'figuras': []
         };
 
         let respuestas = {
@@ -1854,7 +2247,12 @@
             'restas-simples': {},
             'resta-imagenes': {},
             'decenas-unidades': {},
-            'tablas-multiplicar': {}
+            'tablas-multiplicar': {},
+            'dobles': {},
+            'antecesor-sucesor': {},
+            'dados': {},
+            'problemas': {},
+            'figuras': {}
         };
 
         // ============ MÓDULO DE MULTIPLICACIÓN - VARIABLES ============
@@ -1883,6 +2281,7 @@
         let ejerciciosSistemasActuales = [];
         let respuestasSistemas = {};
 
+
         // ============ FUNCIONES DE NAVEGACIÓN ============
         // Controla si un módulo ya fue renderizado en esta sesión,
         // para no perder las respuestas del niño al volver a entrar.
@@ -1892,7 +2291,12 @@
             'restas-simples': false,
             'resta-imagenes': false,
             'decenas-unidades': false,
-            'tablas-multiplicar': false
+            'tablas-multiplicar': false,
+            'dobles': false,
+            'antecesor-sucesor': false,
+            'dados': false,
+            'problemas': false,
+            'figuras': false
         };
 
         // Controla si los resultados de un módulo ya fueron revelados,
@@ -1904,7 +2308,12 @@
             'restas-simples': false,
             'resta-imagenes': false,
             'decenas-unidades': false,
-            'tablas-multiplicar': false
+            'tablas-multiplicar': false,
+            'dobles': false,
+            'antecesor-sucesor': false,
+            'dados': false,
+            'problemas': false,
+            'figuras': false
         };
 
         function irA(seccionId) {
@@ -1931,6 +2340,16 @@
                     renderEjerciciosDecenasUnidades();
                 } else if (seccionId === 'tablas-multiplicar') {
                     renderEjerciciosTablasMultiplicar();
+                } else if (seccionId === 'dobles') {
+                    renderEjerciciosDobles();
+                } else if (seccionId === 'antecesor-sucesor') {
+                    renderEjerciciosAntecesorSucesor();
+                } else if (seccionId === 'dados') {
+                    renderEjerciciosDados();
+                } else if (seccionId === 'problemas') {
+                    renderEjerciciosProblemas();
+                } else if (seccionId === 'figuras') {
+                    renderEjerciciosFiguras();
                 }
                 yaRenderizado[seccionId] = true;
             }
@@ -4570,6 +4989,933 @@
             }
         }
 
+        // ============================================================
+        // ============ MÓDULOS NUEVOS 1º BÁSICO ======================
+        // ============================================================
+
+        // Construye un set de opciones numéricas: la correcta + distractores
+        // plausibles (errores típicos primero, luego vecinos), todo barajado.
+        function opcionesNumericas(correcta, extras, cantidad) {
+            const set = [correcta];
+            const candidatos = (extras || []).concat([
+                correcta - 1, correcta + 1, correcta - 2, correcta + 2,
+                correcta + 3, correcta - 3, correcta + 4, correcta + 5
+            ]);
+            for (const c of candidatos) {
+                if (set.length >= cantidad) break;
+                if (c >= 0 && !set.includes(c)) set.push(c);
+            }
+            let extra = correcta + 6;
+            while (set.length < cantidad) {
+                if (!set.includes(extra)) set.push(extra);
+                extra++;
+            }
+            return barajarArreglo(set);
+        }
+
+        // ============ GENERADOR: DOBLES ============
+        // Dificultad intermedia: dobles hasta 20 (n de 2 a 10).
+        // 7 ejercicios directos ("el doble de n") y 3 inversos ("¿de qué número
+        // es el doble X?"), presentados en orden aleatorio.
+        const emojisDobles = ['🍎', '🐶', '⭐', '🎈', '🐟', '🌻', '🚗', '🍪', '🐝', '🍓'];
+
+        function generarDobles() {
+            const lista = [];
+            for (let i = 0; i < 10; i++) {
+                const inverso = i >= 7;
+                const n = Math.floor(Math.random() * 9) + 2; // 2 a 10
+                const doble = n * 2;
+                const emoji = emojisDobles[Math.floor(Math.random() * emojisDobles.length)];
+                const correcta = inverso ? n : doble;
+                const extras = inverso ? [doble, n + 1, n - 1] : [n, doble + 10, n + 2];
+                lista.push({
+                    n,
+                    doble,
+                    inverso,
+                    emoji,
+                    respuesta: correcta,
+                    opciones: opcionesNumericas(correcta, extras, 6)
+                });
+            }
+            return barajarArreglo(lista);
+        }
+
+        // ============ GENERADOR: ANTECESOR Y SUCESOR ============
+        // Dificultad intermedia: números de 11 a 98, sin repetir dentro de la guía,
+        // incluyendo cruces de decena (ej. 39 → 38 y 40).
+        function generarAntecesorSucesor() {
+            const lista = [];
+            const usados = new Set();
+            let intentos = 0;
+            while (lista.length < 10 && intentos < 500) {
+                intentos++;
+                const numero = Math.floor(Math.random() * 88) + 11; // 11 a 98
+                if (usados.has(numero)) continue;
+                usados.add(numero);
+                lista.push({
+                    numero,
+                    antecesor: numero - 1,
+                    sucesor: numero + 1,
+                    respuesta: `${numero - 1}|${numero + 1}`
+                });
+            }
+            return lista;
+        }
+
+        // ============ GENERADOR: COMPLETA EL DADO ============
+        // Se muestran 3 dados, uno vacío. El niño debe decir cuántos puntos
+        // faltan para llegar al total indicado. Se busca un total entre 9 y 16
+        // (dificultad intermedia); si no se logra, se acepta el que salga.
+        const patronesDado = {
+            1: [4],
+            2: [0, 8],
+            3: [0, 4, 8],
+            4: [0, 2, 6, 8],
+            5: [0, 2, 4, 6, 8],
+            6: [0, 2, 3, 5, 6, 8]
+        };
+
+        function generarDados() {
+            const lista = [];
+            for (let i = 0; i < 10; i++) {
+                let d1, d2, falta, total;
+                let intentos = 0;
+                do {
+                    d1 = Math.floor(Math.random() * 6) + 1;
+                    d2 = Math.floor(Math.random() * 6) + 1;
+                    falta = Math.floor(Math.random() * 6) + 1;
+                    total = d1 + d2 + falta;
+                    intentos++;
+                } while ((total < 9 || total > 16) && intentos < 100);
+
+                const posicion = Math.floor(Math.random() * 3);
+                const caras = [d1, d2];
+                caras.splice(posicion, 0, null);
+
+                lista.push({ total, caras, falta, posicion, respuesta: falta });
+            }
+            return lista;
+        }
+
+        // ============ GENERADOR: RESOLUCIÓN DE PROBLEMAS ============
+        // Historias matemáticas de diferencia ("¿cuántos más?"). Dificultad
+        // intermedia: cantidades hasta 20 y diferencias de 2 a 9.
+        const plantillasProblemas = [
+            { texto: (a, b) => `En el parque hay ${a} perros y ${b} gatos. ¿Cuántos perros más que gatos hay?` },
+            { texto: (a, b) => `Hay ${a} manzanas rojas y ${b} manzanas verdes. ¿Cuántas manzanas rojas más hay?` },
+            { texto: (a, b) => `Dentro de una caja hay ${a} pelotas y afuera hay ${b} pelotas. ¿Cuántas pelotas más hay adentro?` },
+            { texto: (a, b) => `Ana tiene ${a} lápices y Pedro tiene ${b} lápices. ¿Cuántos lápices más tiene Ana?` },
+            { texto: (a, b) => `Lucas leyó ${a} libros y Tomás leyó ${b} libros. ¿Cuántos libros más leyó Lucas?` },
+            { texto: (a, b) => `Sofía tiene ${a} pegatinas y su hermana tiene ${b}. ¿Cuántas pegatinas más tiene Sofía?` },
+            { texto: (a, b) => `En el árbol hay ${a} pájaros y en el techo hay ${b}. ¿Cuántos pájaros más hay en el árbol?` },
+            { texto: (a, b) => `Martina juntó ${a} conchitas y Benjamín juntó ${b}. ¿Cuántas conchitas más juntó Martina?` },
+            { texto: (a, b) => `En el estacionamiento hay ${a} autos y ${b} motos. ¿Cuántos autos más que motos hay?` },
+            { texto: (a, b) => `La profesora repartió ${a} galletas y quedaron ${b} en la bandeja. ¿Cuántas galletas más repartió?` },
+            { texto: (a, b) => `Camila ganó ${a} puntos y Diego ganó ${b} puntos. ¿Cuántos puntos más ganó Camila?` },
+            { texto: (a, b) => `En el jardín hay ${a} flores amarillas y ${b} flores rojas. ¿Cuántas flores amarillas más hay?` },
+            { texto: (a, b) => `Un frasco tiene ${a} dulces y otro tiene ${b} dulces. ¿Cuántos dulces más tiene el primer frasco?` },
+            { texto: (a, b) => `Vicente hizo ${a} goles y Joaquín hizo ${b} goles. ¿Cuántos goles más hizo Vicente?` }
+        ];
+
+        function generarProblemas() {
+            const plantillas = barajarArreglo(plantillasProblemas).slice(0, 10);
+            return plantillas.map(p => {
+                const diferencia = Math.floor(Math.random() * 8) + 2; // 2 a 9
+                const mayor = Math.floor(Math.random() * (20 - (diferencia + 2) + 1)) + diferencia + 2;
+                const menor = mayor - diferencia;
+                return {
+                    enunciado: p.texto(mayor, menor),
+                    mayor,
+                    menor,
+                    respuesta: diferencia,
+                    opciones: opcionesNumericas(diferencia, [mayor, menor, mayor + menor], 6)
+                };
+            });
+        }
+
+        // ============ FIGURAS Y CUERPOS GEOMÉTRICOS ============
+        // Dos tipos de ejercicio en el mismo módulo:
+        //  - "nombrar": se muestra una figura/cuerpo y se elige el nombre en un
+        //    menú desplegable cuyas opciones se barajan cada vez que se genera la guía.
+        //  - "contar": se muestra un dibujo compuesto y hay que identificar cuántas
+        //    figuras de cierto tipo aparecen en él.
+        const nombresFiguras2D = ['círculo', 'cuadrado', 'triángulo', 'rectángulo', 'rombo', 'óvalo', 'pentágono', 'hexágono', 'estrella', 'trapecio'];
+        const nombresCuerpos3D = ['cubo', 'esfera', 'cilindro', 'cono', 'pirámide', 'prisma rectangular'];
+
+        function svgFigura2D(tipo) {
+            const est = 'fill="#667eea" stroke="#2a3f8f" stroke-width="3" stroke-linejoin="round"';
+            const formas = {
+                'círculo': `<circle cx="60" cy="60" r="46" ${est}/>`,
+                'cuadrado': `<rect x="17" y="17" width="86" height="86" ${est}/>`,
+                'rectángulo': `<rect x="6" y="36" width="108" height="48" ${est}/>`,
+                'triángulo': `<polygon points="60,12 110,104 10,104" ${est}/>`,
+                'rombo': `<polygon points="60,10 108,60 60,110 12,60" ${est}/>`,
+                'óvalo': `<ellipse cx="60" cy="60" rx="54" ry="34" ${est}/>`,
+                'pentágono': `<polygon points="60,10 110,46 91,105 29,105 10,46" ${est}/>`,
+                'hexágono': `<polygon points="35,14 85,14 110,60 85,106 35,106 10,60" ${est}/>`,
+                'estrella': `<polygon points="60,8 73,45 112,45 81,68 92,106 60,83 28,106 39,68 8,45 47,45" ${est}/>`,
+                'trapecio': `<polygon points="33,24 87,24 112,96 8,96" ${est}/>`
+            };
+            return formas[tipo] || '';
+        }
+
+        function svgCuerpo3D(tipo) {
+            const b = 'stroke="#2a3f8f" stroke-width="3" stroke-linejoin="round"';
+            const cuerpos = {
+                'cubo': `
+                    <polygon points="25,45 45,25 105,25 85,45" fill="#8fa4f0" ${b}/>
+                    <polygon points="85,45 105,25 105,85 85,105" fill="#4257b8" ${b}/>
+                    <rect x="25" y="45" width="60" height="60" fill="#667eea" ${b}/>`,
+                'prisma rectangular': `
+                    <polygon points="14,52 34,32 110,32 90,52" fill="#8fa4f0" ${b}/>
+                    <polygon points="90,52 110,32 110,76 90,96" fill="#4257b8" ${b}/>
+                    <rect x="14" y="52" width="76" height="44" fill="#667eea" ${b}/>`,
+                'esfera': `
+                    <circle cx="60" cy="60" r="46" fill="#667eea" ${b}/>
+                    <ellipse cx="60" cy="60" rx="46" ry="15" fill="none" stroke="#2a3f8f" stroke-width="2" stroke-dasharray="6,5"/>
+                    <ellipse cx="43" cy="40" rx="13" ry="8" fill="#ffffff" opacity="0.45" transform="rotate(-28 43 40)"/>`,
+                'cilindro': `
+                    <ellipse cx="60" cy="97" rx="36" ry="13" fill="#4257b8" ${b}/>
+                    <rect x="24" y="26" width="72" height="71" fill="#667eea" stroke="none"/>
+                    <line x1="24" y1="26" x2="24" y2="97" ${b}/>
+                    <line x1="96" y1="26" x2="96" y2="97" ${b}/>
+                    <ellipse cx="60" cy="26" rx="36" ry="13" fill="#8fa4f0" ${b}/>`,
+                'cono': `
+                    <ellipse cx="60" cy="95" rx="40" ry="13" fill="#4257b8" ${b}/>
+                    <polygon points="60,14 100,95 20,95" fill="#667eea" ${b}/>
+                    <path d="M20,95 A40,13 0 0,0 100,95" fill="#667eea" ${b}/>`,
+                'pirámide': `
+                    <polygon points="20,92 60,76 100,92" fill="none" stroke="#2a3f8f" stroke-width="2" stroke-dasharray="5,4"/>
+                    <polygon points="60,14 20,92 60,110" fill="#667eea" ${b}/>
+                    <polygon points="60,14 100,92 60,110" fill="#4257b8" ${b}/>`
+            };
+            return cuerpos[tipo] || '';
+        }
+
+        // ---- Escenas compuestas para los ejercicios de contar ----
+        // Cada escena devuelve el SVG y el conteo exacto de cada tipo de figura,
+        // de modo que la respuesta correcta siempre coincide con lo dibujado.
+        function escenaCasa() {
+            const nVentanas = Math.floor(Math.random() * 2) + 1; // 1 a 2
+            const nPinos = Math.floor(Math.random() * 3);        // 0 a 2
+            const nNubes = Math.floor(Math.random() * 3);        // 0 a 2
+            const t = 'stroke="#2a3f8f" stroke-width="2.5" stroke-linejoin="round"';
+            let svg = '';
+            svg += `<polygon points="100,20 165,70 35,70" fill="#e67e5a" ${t}/>`;
+            svg += `<rect x="45" y="70" width="110" height="110" fill="#f2d492" ${t}/>`;
+            svg += `<rect x="88" y="128" width="30" height="52" fill="#8b5e3c" ${t}/>`;
+            for (let i = 0; i < nVentanas; i++) {
+                svg += `<rect x="${58 + i * 60}" y="88" width="28" height="28" fill="#7fc7e8" ${t}/>`;
+            }
+            for (let i = 0; i < nPinos; i++) {
+                const x = 200 + i * 55;
+                svg += `<polygon points="${x},88 ${x + 26},146 ${x - 26},146" fill="#5aa85a" ${t}/>`;
+                svg += `<rect x="${x - 7}" y="146" width="14" height="34" fill="#8b5e3c" ${t}/>`;
+            }
+            svg += `<circle cx="285" cy="35" r="20" fill="#ffd54f" ${t}/>`;
+            for (let i = 0; i < nNubes; i++) {
+                svg += `<circle cx="${30 + i * 40}" cy="20" r="14" fill="#ffffff" ${t}/>`;
+            }
+            return {
+                svg,
+                conteo: {
+                    'círculos': 1 + nNubes,
+                    'cuadrados': 1 + nVentanas,   // fachada (110x110) + ventanas
+                    'triángulos': 1 + nPinos,     // techo + pinos
+                    'rectángulos': 1 + nPinos     // puerta + troncos
+                }
+            };
+        }
+
+        function escenaRobot() {
+            const nBotones = Math.floor(Math.random() * 3) + 1; // 1 a 3
+            const conAntena = Math.random() < 0.6;
+            const t = 'stroke="#2a3f8f" stroke-width="2.5" stroke-linejoin="round"';
+            let svg = '';
+            if (conAntena) {
+                svg += `<polygon points="160,10 172,38 148,38" fill="#e0554f" ${t}/>`;
+            }
+            svg += `<rect x="118" y="40" width="84" height="84" fill="#b0bec5" ${t}/>`;
+            svg += `<circle cx="142" cy="70" r="11" fill="#42a5f5" ${t}/>`;
+            svg += `<circle cx="178" cy="70" r="11" fill="#42a5f5" ${t}/>`;
+            svg += `<rect x="136" y="96" width="48" height="14" fill="#546e7a" ${t}/>`;
+            svg += `<rect x="108" y="128" width="104" height="52" fill="#90a4ae" ${t}/>`;
+            for (let i = 0; i < nBotones; i++) {
+                svg += `<circle cx="${132 + i * 28}" cy="154" r="9" fill="#ffb74d" ${t}/>`;
+            }
+            svg += `<rect x="62" y="134" width="42" height="16" fill="#78909c" ${t}/>`;
+            svg += `<rect x="216" y="134" width="42" height="16" fill="#78909c" ${t}/>`;
+            return {
+                svg,
+                conteo: {
+                    'círculos': 2 + nBotones,     // ojos + botones
+                    'cuadrados': 1,               // cabeza (84x84)
+                    'triángulos': conAntena ? 1 : 0,
+                    'rectángulos': 4              // boca + cuerpo + 2 brazos
+                }
+            };
+        }
+
+        function escenaTren() {
+            const nVagones = Math.floor(Math.random() * 2) + 2; // 2 a 3
+            const t = 'stroke="#2a3f8f" stroke-width="2.5" stroke-linejoin="round"';
+            const colores = ['#ef5350', '#66bb6a', '#42a5f5'];
+            let svg = '';
+            for (let i = 0; i < nVagones; i++) {
+                const x = 20 + i * 100;
+                svg += `<rect x="${x}" y="80" width="84" height="54" fill="${colores[i]}" ${t}/>`;
+                svg += `<rect x="${x + 28}" y="93" width="28" height="28" fill="#e3f2fd" ${t}/>`;
+                svg += `<polygon points="${x + 42},48 ${x + 74},78 ${x + 10},78" fill="#ffca28" ${t}/>`;
+                svg += `<circle cx="${x + 22}" cy="148" r="14" fill="#455a64" ${t}/>`;
+                svg += `<circle cx="${x + 62}" cy="148" r="14" fill="#455a64" ${t}/>`;
+            }
+            return {
+                svg,
+                conteo: {
+                    'círculos': nVagones * 2,     // ruedas
+                    'cuadrados': nVagones,        // ventanas (28x28)
+                    'triángulos': nVagones,       // techos
+                    'rectángulos': nVagones       // vagones
+                }
+            };
+        }
+
+        function escenaCohete() {
+            const nEstrellas = Math.floor(Math.random() * 4); // 0 a 3
+            const conFuego = Math.random() < 0.7;
+            const t = 'stroke="#2a3f8f" stroke-width="2.5" stroke-linejoin="round"';
+            let svg = '';
+            svg += `<polygon points="160,12 190,62 130,62" fill="#ef5350" ${t}/>`;
+            svg += `<rect x="130" y="62" width="60" height="86" fill="#eceff1" ${t}/>`;
+            svg += `<circle cx="160" cy="96" r="17" fill="#42a5f5" ${t}/>`;
+            svg += `<polygon points="130,110 100,158 130,148" fill="#ef5350" ${t}/>`;
+            svg += `<polygon points="190,110 220,158 190,148" fill="#ef5350" ${t}/>`;
+            if (conFuego) {
+                svg += `<polygon points="160,190 184,148 136,148" fill="#ffa726" ${t}/>`;
+            }
+            for (let i = 0; i < nEstrellas; i++) {
+                svg += `<circle cx="${34 + i * 22}" cy="${30 + (i % 2) * 26}" r="8" fill="#ffd54f" ${t}/>`;
+            }
+            return {
+                svg,
+                conteo: {
+                    'círculos': 1 + nEstrellas,
+                    'cuadrados': 0,
+                    'triángulos': (conFuego ? 4 : 3),
+                    'rectángulos': 1
+                }
+            };
+        }
+
+        const escenasFiguras = [escenaCasa, escenaRobot, escenaTren, escenaCohete];
+
+        function generarFiguras() {
+            const lista = [];
+
+            // 5 ejercicios de nombrar (3 figuras planas + 2 cuerpos geométricos)
+            const planas = barajarArreglo(nombresFiguras2D).slice(0, 3);
+            const cuerpos = barajarArreglo(nombresCuerpos3D).slice(0, 2);
+
+            planas.forEach(nombre => {
+                const distractores = barajarArreglo(nombresFiguras2D.filter(f => f !== nombre)).slice(0, 4);
+                lista.push({
+                    tipo: 'nombrar',
+                    familia: '2d',
+                    nombre,
+                    svg: svgFigura2D(nombre),
+                    opciones: barajarArreglo([nombre, ...distractores]),
+                    respuesta: nombre
+                });
+            });
+
+            cuerpos.forEach(nombre => {
+                const distractores = barajarArreglo(nombresCuerpos3D.filter(f => f !== nombre)).slice(0, 4);
+                lista.push({
+                    tipo: 'nombrar',
+                    familia: '3d',
+                    nombre,
+                    svg: svgCuerpo3D(nombre),
+                    opciones: barajarArreglo([nombre, ...distractores]),
+                    respuesta: nombre
+                });
+            });
+
+            // 5 ejercicios de contar figuras dentro de un dibujo
+            for (let i = 0; i < 5; i++) {
+                const escena = escenasFiguras[Math.floor(Math.random() * escenasFiguras.length)]();
+                const tiposPresentes = Object.keys(escena.conteo).filter(k => escena.conteo[k] > 0);
+                const tiposAusentes = Object.keys(escena.conteo).filter(k => escena.conteo[k] === 0);
+                // 20% de las veces se pregunta por una figura que NO aparece (respuesta 0),
+                // para que el niño no asuma que siempre hay al menos una.
+                const usarAusente = tiposAusentes.length > 0 && Math.random() < 0.2;
+                const candidatos = usarAusente ? tiposAusentes : tiposPresentes;
+                const buscado = candidatos[Math.floor(Math.random() * candidatos.length)];
+                lista.push({
+                    tipo: 'contar',
+                    svg: escena.svg,
+                    buscado,
+                    aclaracion: buscado === 'rectángulos' ? ' (los cuadrados no cuentan)' : '',
+                    respuesta: escena.conteo[buscado]
+                });
+            }
+
+            return barajarArreglo(lista);
+        }
+
+        // ============ RENDER: DOBLES ============
+        function renderEjerciciosDobles() {
+            const container = document.getElementById('ejercicios-dobles');
+            let html = '';
+
+            ejercicios['dobles'].forEach((ej, idx) => {
+                let visual;
+                if (ej.inverso) {
+                    visual = `
+                        <div class="dobles-grupo-titulo">En total hay ${ej.doble}</div>
+                        <div class="imagenes-contenedor">
+                            ${[...Array(ej.doble)].map(() => `<div class="imagen-item">${ej.emoji}</div>`).join('')}
+                        </div>`;
+                } else {
+                    visual = `
+                        <div class="dobles-fila">
+                            <div class="dobles-grupo">
+                                ${[...Array(ej.n)].map(() => `<div class="imagen-item">${ej.emoji}</div>`).join('')}
+                            </div>
+                            <div class="dobles-mas">+</div>
+                            <div class="dobles-grupo">
+                                ${[...Array(ej.n)].map(() => `<div class="imagen-item">${ej.emoji}</div>`).join('')}
+                            </div>
+                        </div>`;
+                }
+
+                const pregunta = ej.inverso
+                    ? `El doble de ? es ${ej.doble}`
+                    : `Doble de ${ej.n} = ?`;
+
+                html += `
+                    <div class="ejercicio">
+                        <div class="ejercicio-header">
+                            <span class="ejercicio-numero">Ejercicio ${idx + 1}</span>
+                            <span class="operacion">${pregunta}</span>
+                        </div>
+
+                        ${visual}
+
+                        <div class="opciones">
+                            ${ej.opciones.map(num => `
+                                <button class="numero-btn" onclick="seleccionarDobles(${idx}, ${num})" id="btn-db-${idx}-${num}">
+                                    ${num}
+                                </button>
+                            `).join('')}
+                        </div>
+
+                        <div class="feedback" id="feedback-db-${idx}"></div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        function seleccionarDobles(idx, num) {
+            if (respuestas['dobles'][idx] !== undefined) return;
+
+            const btn = document.getElementById(`btn-db-${idx}-${num}`);
+            const feedback = document.getElementById(`feedback-db-${idx}`);
+
+            respuestas['dobles'][idx] = num;
+            btn.classList.add('seleccionado');
+
+            ejercicios['dobles'][idx].opciones.forEach(op => {
+                if (op !== num) {
+                    const otro = document.getElementById(`btn-db-${idx}-${op}`);
+                    if (otro) {
+                        otro.disabled = true;
+                        otro.style.opacity = '0.5';
+                    }
+                }
+            });
+
+            feedback.classList.add('guardado');
+            feedback.textContent = '📝 Respuesta guardada. ¡Revisa tus resultados al finalizar!';
+        }
+
+        function revelarDobles(idx) {
+            const ej = ejercicios['dobles'][idx];
+            const respuestaUsuario = respuestas['dobles'][idx];
+            const feedback = document.getElementById(`feedback-db-${idx}`);
+
+            ej.opciones.forEach(op => {
+                const btn = document.getElementById(`btn-db-${idx}-${op}`);
+                if (!btn) return;
+                btn.classList.remove('seleccionado');
+                btn.disabled = true;
+                btn.style.opacity = (op === ej.respuesta || op === respuestaUsuario) ? '1' : '0.4';
+                if (op === ej.respuesta) {
+                    btn.classList.add('correcto');
+                } else if (op === respuestaUsuario) {
+                    btn.classList.add('incorrecto');
+                }
+            });
+
+            feedback.classList.remove('guardado');
+            if (respuestaUsuario === ej.respuesta) {
+                feedback.classList.add('correcto');
+                feedback.textContent = '✓ ¡Correcto!';
+            } else {
+                feedback.classList.add('incorrecto');
+                feedback.textContent = respuestaUsuario === undefined
+                    ? `✗ No respondiste. La respuesta correcta era ${ej.respuesta}.`
+                    : `✗ La respuesta correcta era ${ej.respuesta}.`;
+            }
+        }
+
+        // ============ RENDER: ANTECESOR Y SUCESOR ============
+        function renderEjerciciosAntecesorSucesor() {
+            const container = document.getElementById('ejercicios-antecesor-sucesor');
+            let html = '';
+
+            ejercicios['antecesor-sucesor'].forEach((ej, idx) => {
+                html += `
+                    <div class="ejercicio">
+                        <div class="ejercicio-header">
+                            <span class="ejercicio-numero">Ejercicio ${idx + 1}</span>
+                            <span class="operacion">¿Antes y después de ${ej.numero}?</span>
+                        </div>
+
+                        <div class="camion-fila">
+                            <span class="camion-emoji">🚚</span>
+                            <div class="camion-vagones">
+                                <div class="camion-vagon">
+                                    <input type="number" class="as-input" id="as-ant-${idx}" min="0" max="999" placeholder="?">
+                                    <div class="camion-etiqueta">antecesor</div>
+                                </div>
+                                <div class="camion-vagon">
+                                    <div class="as-fijo">${ej.numero}</div>
+                                    <div class="camion-etiqueta">número</div>
+                                </div>
+                                <div class="camion-vagon">
+                                    <input type="number" class="as-input" id="as-suc-${idx}" min="0" max="999" placeholder="?">
+                                    <div class="camion-etiqueta">sucesor</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="text-align: center; margin-top: 10px;">
+                            <button class="btn btn-resultados" style="padding: 10px 24px;" id="btn-verificar-as-${idx}" onclick="seleccionarAntecesorSucesor(${idx})">Guardar Respuesta</button>
+                        </div>
+
+                        <div class="feedback" id="feedback-as-${idx}"></div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        function seleccionarAntecesorSucesor(idx) {
+            if (respuestas['antecesor-sucesor'][idx] !== undefined) return;
+
+            const inputAnt = document.getElementById(`as-ant-${idx}`);
+            const inputSuc = document.getElementById(`as-suc-${idx}`);
+            const feedback = document.getElementById(`feedback-as-${idx}`);
+            const boton = document.getElementById(`btn-verificar-as-${idx}`);
+
+            const valorAnt = parseInt(inputAnt.value, 10);
+            const valorSuc = parseInt(inputSuc.value, 10);
+
+            if (isNaN(valorAnt) || isNaN(valorSuc)) {
+                feedback.classList.remove('correcto', 'guardado');
+                feedback.classList.add('incorrecto');
+                feedback.textContent = '✗ Completa ambos números';
+                setTimeout(() => {
+                    feedback.textContent = '';
+                    feedback.classList.remove('incorrecto');
+                }, 1000);
+                return;
+            }
+
+            respuestas['antecesor-sucesor'][idx] = `${valorAnt}|${valorSuc}`;
+
+            inputAnt.disabled = true;
+            inputSuc.disabled = true;
+            inputAnt.classList.add('seleccionado');
+            inputSuc.classList.add('seleccionado');
+            if (boton) boton.disabled = true;
+
+            feedback.classList.add('guardado');
+            feedback.textContent = '📝 Respuesta guardada. ¡Revisa tus resultados al finalizar!';
+        }
+
+        function revelarAntecesorSucesor(idx) {
+            const ej = ejercicios['antecesor-sucesor'][idx];
+            const inputAnt = document.getElementById(`as-ant-${idx}`);
+            const inputSuc = document.getElementById(`as-suc-${idx}`);
+            const feedback = document.getElementById(`feedback-as-${idx}`);
+            const boton = document.getElementById(`btn-verificar-as-${idx}`);
+            const respuestaGuardada = respuestas['antecesor-sucesor'][idx];
+
+            inputAnt.classList.remove('seleccionado');
+            inputSuc.classList.remove('seleccionado');
+            inputAnt.disabled = true;
+            inputSuc.disabled = true;
+            if (boton) boton.disabled = true;
+
+            const partes = (respuestaGuardada || '').split('|');
+            const ant = parseInt(partes[0], 10);
+            const suc = parseInt(partes[1], 10);
+
+            inputAnt.classList.add(ant === ej.antecesor ? 'correcto' : 'incorrecto');
+            inputSuc.classList.add(suc === ej.sucesor ? 'correcto' : 'incorrecto');
+            if (ant !== ej.antecesor) inputAnt.value = ej.antecesor;
+            if (suc !== ej.sucesor) inputSuc.value = ej.sucesor;
+
+            feedback.classList.remove('guardado');
+            if (respuestaGuardada === ej.respuesta) {
+                feedback.classList.add('correcto');
+                feedback.textContent = '✓ ¡Correcto!';
+            } else {
+                feedback.classList.add('incorrecto');
+                feedback.textContent = respuestaGuardada === undefined
+                    ? `✗ No respondiste. El antecesor es ${ej.antecesor} y el sucesor es ${ej.sucesor}.`
+                    : `✗ Lo correcto era: antecesor ${ej.antecesor} y sucesor ${ej.sucesor}.`;
+            }
+        }
+
+        // ============ RENDER: COMPLETA EL DADO ============
+        function dibujarCaraDado(valor) {
+            const puntos = patronesDado[valor] || [];
+            let celdas = '';
+            for (let i = 0; i < 9; i++) {
+                celdas += `<div class="dado-celda">${puntos.includes(i) ? '<span class="dado-punto"></span>' : ''}</div>`;
+            }
+            return `<div class="dado-cara">${celdas}</div>`;
+        }
+
+        function renderEjerciciosDados() {
+            const container = document.getElementById('ejercicios-dados');
+            let html = '';
+
+            ejercicios['dados'].forEach((ej, idx) => {
+                const caras = ej.caras.map(v =>
+                    v === null
+                        ? `<div class="dado-cara dado-vacio">?</div>`
+                        : dibujarCaraDado(v)
+                ).join('');
+
+                html += `
+                    <div class="ejercicio">
+                        <div class="ejercicio-header">
+                            <span class="ejercicio-numero">Ejercicio ${idx + 1}</span>
+                            <span class="operacion">Total: ${ej.total}</span>
+                        </div>
+
+                        <div class="dados-fila">
+                            <div class="dados-total">${ej.total} →</div>
+                            ${caras}
+                        </div>
+
+                        <div class="opciones">
+                            ${[1, 2, 3, 4, 5, 6].map(num => `
+                                <button class="numero-btn" onclick="seleccionarDados(${idx}, ${num})" id="btn-dd-${idx}-${num}">
+                                    ${num}
+                                </button>
+                            `).join('')}
+                        </div>
+
+                        <div class="feedback" id="feedback-dd-${idx}"></div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        function seleccionarDados(idx, num) {
+            if (respuestas['dados'][idx] !== undefined) return;
+
+            const btn = document.getElementById(`btn-dd-${idx}-${num}`);
+            const feedback = document.getElementById(`feedback-dd-${idx}`);
+
+            respuestas['dados'][idx] = num;
+            btn.classList.add('seleccionado');
+
+            for (let i = 1; i <= 6; i++) {
+                if (i !== num) {
+                    const otro = document.getElementById(`btn-dd-${idx}-${i}`);
+                    if (otro) {
+                        otro.disabled = true;
+                        otro.style.opacity = '0.5';
+                    }
+                }
+            }
+
+            feedback.classList.add('guardado');
+            feedback.textContent = '📝 Respuesta guardada. ¡Revisa tus resultados al finalizar!';
+        }
+
+        function revelarDados(idx) {
+            const ej = ejercicios['dados'][idx];
+            const respuestaUsuario = respuestas['dados'][idx];
+            const feedback = document.getElementById(`feedback-dd-${idx}`);
+
+            for (let i = 1; i <= 6; i++) {
+                const btn = document.getElementById(`btn-dd-${idx}-${i}`);
+                if (!btn) continue;
+                btn.classList.remove('seleccionado');
+                btn.disabled = true;
+                btn.style.opacity = (i === ej.falta || i === respuestaUsuario) ? '1' : '0.4';
+                if (i === ej.falta) {
+                    btn.classList.add('correcto');
+                } else if (i === respuestaUsuario) {
+                    btn.classList.add('incorrecto');
+                }
+            }
+
+            // Completar visualmente el dado que faltaba
+            const contenedor = document.getElementById(`ejercicios-dados`);
+            if (contenedor) {
+                const filas = contenedor.querySelectorAll('.dados-fila');
+                const fila = filas[idx];
+                if (fila) {
+                    const vacio = fila.querySelector('.dado-vacio');
+                    if (vacio) {
+                        vacio.outerHTML = dibujarCaraDado(ej.falta).replace('dado-cara', 'dado-cara dado-revelado');
+                    }
+                }
+            }
+
+            feedback.classList.remove('guardado');
+            if (respuestaUsuario === ej.falta) {
+                feedback.classList.add('correcto');
+                feedback.textContent = '✓ ¡Correcto!';
+            } else {
+                feedback.classList.add('incorrecto');
+                feedback.textContent = respuestaUsuario === undefined
+                    ? `✗ No respondiste. Faltaban ${ej.falta} puntos.`
+                    : `✗ Faltaban ${ej.falta} puntos.`;
+            }
+        }
+
+        // ============ RENDER: RESOLUCIÓN DE PROBLEMAS ============
+        function renderEjerciciosProblemas() {
+            const container = document.getElementById('ejercicios-problemas');
+            let html = '';
+
+            ejercicios['problemas'].forEach((ej, idx) => {
+                html += `
+                    <div class="ejercicio">
+                        <div class="ejercicio-header">
+                            <span class="ejercicio-numero">Ejercicio ${idx + 1}</span>
+                        </div>
+
+                        <div class="problema-enunciado">${ej.enunciado}</div>
+
+                        <div class="opciones">
+                            ${ej.opciones.map(num => `
+                                <button class="numero-btn" onclick="seleccionarProblemas(${idx}, ${num})" id="btn-pr-${idx}-${num}">
+                                    ${num}
+                                </button>
+                            `).join('')}
+                        </div>
+
+                        <div class="feedback" id="feedback-pr-${idx}"></div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        function seleccionarProblemas(idx, num) {
+            if (respuestas['problemas'][idx] !== undefined) return;
+
+            const btn = document.getElementById(`btn-pr-${idx}-${num}`);
+            const feedback = document.getElementById(`feedback-pr-${idx}`);
+
+            respuestas['problemas'][idx] = num;
+            btn.classList.add('seleccionado');
+
+            ejercicios['problemas'][idx].opciones.forEach(op => {
+                if (op !== num) {
+                    const otro = document.getElementById(`btn-pr-${idx}-${op}`);
+                    if (otro) {
+                        otro.disabled = true;
+                        otro.style.opacity = '0.5';
+                    }
+                }
+            });
+
+            feedback.classList.add('guardado');
+            feedback.textContent = '📝 Respuesta guardada. ¡Revisa tus resultados al finalizar!';
+        }
+
+        function revelarProblemas(idx) {
+            const ej = ejercicios['problemas'][idx];
+            const respuestaUsuario = respuestas['problemas'][idx];
+            const feedback = document.getElementById(`feedback-pr-${idx}`);
+
+            ej.opciones.forEach(op => {
+                const btn = document.getElementById(`btn-pr-${idx}-${op}`);
+                if (!btn) return;
+                btn.classList.remove('seleccionado');
+                btn.disabled = true;
+                btn.style.opacity = (op === ej.respuesta || op === respuestaUsuario) ? '1' : '0.4';
+                if (op === ej.respuesta) {
+                    btn.classList.add('correcto');
+                } else if (op === respuestaUsuario) {
+                    btn.classList.add('incorrecto');
+                }
+            });
+
+            feedback.classList.remove('guardado');
+            if (respuestaUsuario === ej.respuesta) {
+                feedback.classList.add('correcto');
+                feedback.textContent = '✓ ¡Correcto!';
+            } else {
+                feedback.classList.add('incorrecto');
+                feedback.textContent = respuestaUsuario === undefined
+                    ? `✗ No respondiste. La diferencia era ${ej.mayor} - ${ej.menor} = ${ej.respuesta}.`
+                    : `✗ La respuesta correcta era ${ej.respuesta} (${ej.mayor} - ${ej.menor}).`;
+            }
+        }
+
+        // ============ RENDER: FIGURAS Y CUERPOS GEOMÉTRICOS ============
+        function renderEjerciciosFiguras() {
+            const container = document.getElementById('ejercicios-figuras');
+            let html = '';
+
+            ejercicios['figuras'].forEach((ej, idx) => {
+                if (ej.tipo === 'nombrar') {
+                    const pregunta = ej.familia === '3d'
+                        ? '¿Cómo se llama este cuerpo geométrico?'
+                        : '¿Cómo se llama esta figura?';
+
+                    html += `
+                        <div class="ejercicio">
+                            <div class="ejercicio-header">
+                                <span class="ejercicio-numero">Ejercicio ${idx + 1}</span>
+                                <span class="operacion" style="font-size: 18px;">${pregunta}</span>
+                            </div>
+
+                            <div class="figura-caja">
+                                <svg viewBox="0 0 120 120" class="figura-svg" role="img">${ej.svg}</svg>
+                            </div>
+
+                            <div style="text-align: center;">
+                                <select class="fig-select" id="fig-select-${idx}" onchange="seleccionarFiguras(${idx}, this.value)">
+                                    <option value="">-- Elige el nombre --</option>
+                                    ${ej.opciones.map(op => `<option value="${op}">${op}</option>`).join('')}
+                                </select>
+                            </div>
+
+                            <div class="feedback" id="feedback-fg-${idx}"></div>
+                        </div>
+                    `;
+                } else {
+                    html += `
+                        <div class="ejercicio">
+                            <div class="ejercicio-header">
+                                <span class="ejercicio-numero">Ejercicio ${idx + 1}</span>
+                                <span class="operacion" style="font-size: 18px;">¿Cuántos ${ej.buscado} hay?</span>
+                            </div>
+
+                            <div class="figura-caja">
+                                <svg viewBox="0 0 320 200" class="escena-svg" role="img">${ej.svg}</svg>
+                            </div>
+
+                            <div class="figura-pregunta">Cuenta los ${ej.buscado} del dibujo${ej.aclaracion}.</div>
+
+                            <div class="opciones">
+                                ${[0, 1, 2, 3, 4, 5, 6, 7, 8].map(num => `
+                                    <button class="numero-btn" onclick="seleccionarFiguras(${idx}, ${num})" id="btn-fg-${idx}-${num}">
+                                        ${num}
+                                    </button>
+                                `).join('')}
+                            </div>
+
+                            <div class="feedback" id="feedback-fg-${idx}"></div>
+                        </div>
+                    `;
+                }
+            });
+
+            container.innerHTML = html;
+        }
+
+        function seleccionarFiguras(idx, valor) {
+            if (respuestas['figuras'][idx] !== undefined) return;
+
+            const ej = ejercicios['figuras'][idx];
+            const feedback = document.getElementById(`feedback-fg-${idx}`);
+
+            if (ej.tipo === 'nombrar') {
+                if (!valor) return; // sigue en "-- Elige el nombre --"
+                const select = document.getElementById(`fig-select-${idx}`);
+                respuestas['figuras'][idx] = valor;
+                select.disabled = true;
+                select.classList.add('seleccionado');
+            } else {
+                const num = Number(valor);
+                respuestas['figuras'][idx] = num;
+                const btn = document.getElementById(`btn-fg-${idx}-${num}`);
+                if (btn) btn.classList.add('seleccionado');
+                for (let i = 0; i <= 8; i++) {
+                    if (i !== num) {
+                        const otro = document.getElementById(`btn-fg-${idx}-${i}`);
+                        if (otro) {
+                            otro.disabled = true;
+                            otro.style.opacity = '0.5';
+                        }
+                    }
+                }
+            }
+
+            feedback.classList.add('guardado');
+            feedback.textContent = '📝 Respuesta guardada. ¡Revisa tus resultados al finalizar!';
+        }
+
+        function revelarFiguras(idx) {
+            const ej = ejercicios['figuras'][idx];
+            const respuestaUsuario = respuestas['figuras'][idx];
+            const feedback = document.getElementById(`feedback-fg-${idx}`);
+            const correcta = respuestaUsuario === ej.respuesta;
+
+            if (ej.tipo === 'nombrar') {
+                const select = document.getElementById(`fig-select-${idx}`);
+                if (select) {
+                    select.disabled = true;
+                    select.classList.remove('seleccionado');
+                    select.classList.add(correcta ? 'correcto' : 'incorrecto');
+                    if (!correcta) select.value = ej.respuesta;
+                }
+            } else {
+                for (let i = 0; i <= 8; i++) {
+                    const btn = document.getElementById(`btn-fg-${idx}-${i}`);
+                    if (!btn) continue;
+                    btn.classList.remove('seleccionado');
+                    btn.disabled = true;
+                    btn.style.opacity = (i === ej.respuesta || i === respuestaUsuario) ? '1' : '0.4';
+                    if (i === ej.respuesta) {
+                        btn.classList.add('correcto');
+                    } else if (i === respuestaUsuario) {
+                        btn.classList.add('incorrecto');
+                    }
+                }
+            }
+
+            feedback.classList.remove('guardado');
+            if (correcta) {
+                feedback.classList.add('correcto');
+                feedback.textContent = '✓ ¡Correcto!';
+            } else {
+                feedback.classList.add('incorrecto');
+                feedback.textContent = respuestaUsuario === undefined
+                    ? `✗ No respondiste. La respuesta correcta era ${ej.respuesta}.`
+                    : `✗ La respuesta correcta era ${ej.respuesta}.`;
+            }
+        }
+
         // ============ MOSTRAR RESULTADOS ============
         function mostrarResultados(tipo) {
             let correctas = 0;
@@ -4589,6 +5935,8 @@
                     respuestaEsperada = ejercicios[tipo][i].decenas * 10 + ejercicios[tipo][i].unidades;
                 } else if (tipo === 'tablas-multiplicar') {
                     respuestaEsperada = ejercicios[tipo][i].resultado;
+                } else if (tipo === 'dobles' || tipo === 'antecesor-sucesor' || tipo === 'dados' || tipo === 'problemas' || tipo === 'figuras') {
+                    respuestaEsperada = ejercicios[tipo][i].respuesta;
                 }
                 
                 if (respuestas[tipo][i] === respuestaEsperada) {
@@ -4610,6 +5958,16 @@
                         revelarDecenasUnidades(i);
                     } else if (tipo === 'tablas-multiplicar') {
                         revelarTablasMultiplicar(i);
+                    } else if (tipo === 'dobles') {
+                        revelarDobles(i);
+                    } else if (tipo === 'antecesor-sucesor') {
+                        revelarAntecesorSucesor(i);
+                    } else if (tipo === 'dados') {
+                        revelarDados(i);
+                    } else if (tipo === 'problemas') {
+                        revelarProblemas(i);
+                    } else if (tipo === 'figuras') {
+                        revelarFiguras(i);
                     }
                 }
             }
@@ -4662,6 +6020,26 @@
                 ejercicios['tablas-multiplicar'] = generarTablasMultiplicar();
                 respuestas['tablas-multiplicar'] = {};
                 renderEjerciciosTablasMultiplicar();
+            } else if (tipo === 'dobles') {
+                ejercicios['dobles'] = generarDobles();
+                respuestas['dobles'] = {};
+                renderEjerciciosDobles();
+            } else if (tipo === 'antecesor-sucesor') {
+                ejercicios['antecesor-sucesor'] = generarAntecesorSucesor();
+                respuestas['antecesor-sucesor'] = {};
+                renderEjerciciosAntecesorSucesor();
+            } else if (tipo === 'dados') {
+                ejercicios['dados'] = generarDados();
+                respuestas['dados'] = {};
+                renderEjerciciosDados();
+            } else if (tipo === 'problemas') {
+                ejercicios['problemas'] = generarProblemas();
+                respuestas['problemas'] = {};
+                renderEjerciciosProblemas();
+            } else if (tipo === 'figuras') {
+                ejercicios['figuras'] = generarFiguras();
+                respuestas['figuras'] = {};
+                renderEjerciciosFiguras();
             }
             
             document.getElementById(`puntuacion-${tipo}`).style.display = 'none';
@@ -4678,6 +6056,11 @@
             ejercicios['resta-imagenes'] = generarRestaImagenes();
             ejercicios['decenas-unidades'] = generarDecenasUnidades();
             ejercicios['tablas-multiplicar'] = generarTablasMultiplicar();
+            ejercicios['dobles'] = generarDobles();
+            ejercicios['antecesor-sucesor'] = generarAntecesorSucesor();
+            ejercicios['dados'] = generarDados();
+            ejercicios['problemas'] = generarProblemas();
+            ejercicios['figuras'] = generarFiguras();
         };
         
         generarEjercicios();
