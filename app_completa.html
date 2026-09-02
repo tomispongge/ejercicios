@@ -899,6 +899,10 @@
                     <span class="opcion-emoji">🫁</span>
                     Sistemas del Cuerpo
                 </button>
+                <button class="opcion" onclick="mostrarModuloHistoria()">
+                    <span class="opcion-emoji">🗺️</span>
+                    Historia: Prueba
+                </button>
             </div>
         </div>
 
@@ -1818,6 +1822,113 @@
             </div>
         </div>
 
+        <!-- MÓDULO INTERACTIVO DE HISTORIA -->
+        <div id="modulo-historia" class="modulo-contenedor">
+            <div style="max-width: 900px; margin: 0 auto; padding: 20px;">
+
+                <!-- CONFIGURACIÓN INICIAL -->
+                <div id="configuracion-historia" class="seccion-contenedor">
+                    <h2 style="color: #1a3c6e; margin-bottom: 20px;">Historia — 5° Básico</h2>
+
+                    <div style="background-color: #f5f7fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                        <p style="font-size: 14px; color: #333; margin-bottom: 16px;">
+                            Prueba de <strong>20 preguntas de alternativas</strong> sobre
+                            <strong>la conquista de América y de Chile</strong>: viajes de exploración,
+                            caída de los grandes imperios, la empresa de conquista y el rol de la Iglesia,
+                            Almagro y Valdivia, y la nueva sociedad colonial.
+                        </p>
+                        <p style="font-size: 13px; color: #555; margin-bottom: 16px;">
+                            Las 20 preguntas se sortean desde un banco de <strong>40</strong>, y tanto el orden de
+                            las preguntas como el de las alternativas cambia en cada prueba.
+                        </p>
+
+                        <button id="btn-generar-historia" style="
+                            width: 100%;
+                            padding: 12px;
+                            background-color: #8c4a2f;
+                            color: white;
+                            border: none;
+                            border-radius: 4px;
+                            font-size: 16px;
+                            font-weight: 600;
+                            cursor: pointer;
+                            transition: background-color 0.3s;
+                        " onmouseover="this.style.backgroundColor='#6b3722'" onmouseout="this.style.backgroundColor='#8c4a2f'">
+                            ▶ Comenzar Prueba
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ÁREA DE EJERCICIOS -->
+                <div id="area-ejercicios-historia" style="display: none;">
+                    <div style="margin-bottom: 20px; display: flex; gap: 10px; flex-wrap: wrap;">
+                        <button id="btn-nuevos-ejercicios-historia" style="
+                            padding: 10px 20px;
+                            background-color: #8c4a2f;
+                            color: white;
+                            border: none;
+                            border-radius: 4px;
+                            font-size: 14px;
+                            cursor: pointer;
+                        ">🔄 Nueva Prueba</button>
+
+                        <button id="btn-imprimir-historia" style="
+                            padding: 10px 20px;
+                            background-color: #0066cc;
+                            color: white;
+                            border: none;
+                            border-radius: 4px;
+                            font-size: 14px;
+                            cursor: pointer;
+                        ">🖨️ Imprimir / PDF</button>
+
+                        <button onclick="irA('menu-5basico'); document.getElementById('modulo-historia').style.display='none';" style="
+                            padding: 10px 20px;
+                            background-color: #1a3c6e;
+                            color: white;
+                            border: none;
+                            border-radius: 4px;
+                            font-size: 14px;
+                            cursor: pointer;
+                        ">← Volver</button>
+                    </div>
+
+                    <div id="contenedor-ejercicios-historia" style="background-color: #fff; padding: 20px; border-radius: 8px; border: 1px solid #ddd;"></div>
+
+                    <div style="margin-top: 20px; text-align: center;">
+                        <button id="btn-revisar-historia" style="
+                            padding: 12px 30px;
+                            background-color: #1a3c6e;
+                            color: white;
+                            border: none;
+                            border-radius: 4px;
+                            font-size: 16px;
+                            font-weight: 600;
+                            cursor: pointer;
+                        ">Revisar Respuestas</button>
+                    </div>
+                </div>
+
+                <!-- RESULTADOS -->
+                <div id="resultados-historia" style="display: none; background-color: #f5f7fa; padding: 20px; border-radius: 8px;">
+                    <h3 style="color: #1a3c6e; margin-bottom: 20px;">Resultados</h3>
+                    <div id="contenedor-resultados-historia" style="background-color: white; padding: 20px; border-radius: 4px;"></div>
+                    <div style="margin-top: 20px;">
+                        <button onclick="irA('menu-5basico'); document.getElementById('modulo-historia').style.display='none';" style="
+                            width: 100%;
+                            padding: 12px;
+                            background-color: #1a3c6e;
+                            color: white;
+                            border: none;
+                            border-radius: 4px;
+                            font-size: 14px;
+                            cursor: pointer;
+                        ">← Volver a Menú</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <script>
@@ -2271,6 +2382,11 @@
         let ejerciciosVocabularioActuales = [];
         let respuestasVocabulario = {};
         let colaVocabularioIngles = []; // cola barajada; garantiza que no se repitan palabras hasta agotar el banco completo
+
+        // ============ HISTORIA - VARIABLES DE ESTADO ============
+        let ejerciciosHistoriaActuales = [];
+        let respuestasHistoria = {};
+        let colaPreguntasHistoria = []; // cola barajada; agota el banco antes de repetir preguntas
 
         // ============ CIENCIAS NATURALES - VARIABLES DE ESTADO ============
         let ejerciciosCienciasActuales = [];
@@ -4301,6 +4417,318 @@
             document.getElementById('configuracion-sistemas').style.display = 'block';
             document.getElementById('area-ejercicios-sistemas').style.display = 'none';
             document.getElementById('resultados-sistemas').style.display = 'none';
+            document.querySelectorAll('.seccion').forEach(s => s.style.display = 'none');
+        }
+
+        // ============ HISTORIA 5° - BANCO DE PREGUNTAS ============
+        // Contenidos: viajes de exploración, conquista de América, empresa de conquista
+        // y rol de la Iglesia, exploración y conquista de Chile, y la nueva sociedad.
+        // 40 preguntas en total; en cada prueba se sortean 20 al azar.
+        // Cada entrada tiene la respuesta correcta y exactamente 3 distractores.
+        const bancoPreguntasHistoria = [
+            // ---------- VIAJES DE EXPLORACIÓN (10) ----------
+            { tema: 'Exploración', pregunta: '¿Por qué los europeos comenzaron a buscar nuevas rutas hacia el Lejano Oriente?', correcta: 'Porque viajar por tierra se había vuelto peligroso y el camino era muy largo', incorrectas: ['Porque en Europa ya no quedaban alimentos', 'Porque el Papa les prohibió comerciar con Asia', 'Porque América ya había sido descubierta'] },
+            { tema: 'Exploración', pregunta: '¿Qué productos de Asia buscaban principalmente los europeos?', correcta: 'Las especias, como el clavo de olor, la canela y la pimienta', incorrectas: ['La papa, el maíz y el tomate', 'El carbón y el hierro', 'La madera y la lana'] },
+            { tema: 'Exploración', pregunta: '¿En qué fecha y desde qué lugar inició Cristóbal Colón su primer viaje?', correcta: 'El 3 de agosto de 1492, desde el puerto de Palos, España', incorrectas: ['El 12 de octubre de 1492, desde Lisboa, Portugal', 'El 3 de agosto de 1519, desde Sevilla, España', 'El 12 de febrero de 1541, desde el puerto de Palos'] },
+            { tema: 'Exploración', pregunta: '¿En qué fecha llegó Cristóbal Colón a nuestro continente?', correcta: 'El 12 de octubre de 1492', incorrectas: ['El 3 de agosto de 1492', 'El 12 de febrero de 1541', 'El 12 de octubre de 1592'] },
+            { tema: 'Exploración', pregunta: '¿Por qué Cristóbal Colón pensó que había llegado a las Indias?', correcta: 'Porque usó cálculos errados y no sabía que existía otro continente entre Europa y la India', incorrectas: ['Porque los habitantes del lugar le dijeron que estaba en la India', 'Porque encontró especias asiáticas apenas desembarcó', 'Porque su brújula marcaba el rumbo hacia Asia'] },
+            { tema: 'Exploración', pregunta: '¿Quién fue Américo Vespucio y cuál fue su aporte a los viajes de exploración?', correcta: 'Un explorador que determinó que las costas halladas no pertenecían a Asia, sino a un continente nuevo', incorrectas: ['Un capitán que conquistó el imperio inca', 'El navegante que dio la primera vuelta al mundo', 'El fundador de la ciudad de Santiago'] },
+            { tema: 'Exploración', pregunta: '¿Quién fue el primer navegante en cruzar desde el océano Atlántico hasta el océano Pacífico y por qué fue importante su viaje?', correcta: 'Hernando de Magallanes, porque encontró una ruta hacia Asia navegando por el oeste', incorrectas: ['Cristóbal Colón, porque fue el primero en llegar al Caribe', 'Américo Vespucio, porque dio nombre al nuevo continente', 'Vasco da Gama, porque llegó a la India rodeando África'] },
+            { tema: 'Exploración', pregunta: '¿Cuál de estas fue una dificultad que enfrentaron los exploradores durante sus viajes?', correcta: 'Las enfermedades a bordo, los motines de la tripulación y las tormentas', incorrectas: ['El exceso de agua dulce en los barcos', 'La prohibición de navegar durante el día', 'La falta de interés de los reyes por explorar'] },
+            { tema: 'Exploración', pregunta: '¿Qué fue el Tratado de Tordesillas y por qué fue importante?', correcta: 'Un acuerdo para repartir los territorios entre España y Portugal, para que dejaran de pelear por ellos', incorrectas: ['Un permiso del Papa para evangelizar a los indígenas', 'Un contrato entre el capitán de conquista y su hueste', 'Una ley que prohibió la encomienda en América'] },
+
+            // ---------- CONQUISTA DE AMÉRICA (7) ----------
+            { tema: 'Conquista de América', pregunta: '¿Cómo era América antes de la llegada de los españoles?', correcta: 'Estaba habitada por grandes civilizaciones, como los aztecas, los mayas y los incas', incorrectas: ['Estaba completamente deshabitada', 'Solo vivían allí exploradores portugueses', 'Estaba habitada únicamente por pueblos que venían de Asia cada año'] },
+            { tema: 'Conquista de América', pregunta: '¿Qué imperio conquistó Hernán Cortés?', correcta: 'El imperio azteca', incorrectas: ['El imperio inca', 'El imperio maya', 'El pueblo mapuche'] },
+            { tema: 'Conquista de América', pregunta: '¿Quién era el líder azteca cuando llegaron los españoles?', correcta: 'Moctezuma', incorrectas: ['Atahualpa', 'Lautaro', 'Hernán Cortés'] },
+            { tema: 'Conquista de América', pregunta: '¿Cómo se conoce la derrota que sufrieron los españoles al huir de la ciudad azteca?', correcta: 'La Noche Triste', incorrectas: ['La Batalla de Cajamarca', 'El Desastre de Curalaba', 'La Noche de Tordesillas'] },
+            { tema: 'Conquista de América', pregunta: '¿Qué imperio conquistó Francisco Pizarro y dónde capturó a su líder?', correcta: 'El imperio inca, y capturó a Atahualpa en Cajamarca', incorrectas: ['El imperio azteca, y capturó a Moctezuma en Tenochtitlán', 'El imperio maya, y capturó a su líder en Yucatán', 'El imperio inca, y capturó a Moctezuma en Cuzco'] },
+            { tema: 'Conquista de América', pregunta: '¿Con qué se pagó el rescate del líder inca Atahualpa?', correcta: 'Con oro y plata', incorrectas: ['Con especias y telas', 'Con caballos y armas de fuego', 'Con tierras y ciudades'] },
+            { tema: 'Conquista de América', pregunta: '¿Cómo se explica que un grupo pequeño de españoles venciera a imperios tan grandes?', correcta: 'Por su superioridad técnica y militar, por las alianzas con otros pueblos indígenas y por las enfermedades que trajeron', incorrectas: ['Porque los imperios americanos no tenían ejércitos', 'Porque los españoles llegaron en un número mucho mayor', 'Porque los pueblos indígenas les entregaron voluntariamente el poder'] },
+
+            // ---------- EMPRESA DE CONQUISTA Y ROL DE LA IGLESIA (9) ----------
+            { tema: 'Empresa e Iglesia', pregunta: '¿Qué era una empresa de conquista?', correcta: 'Una empresa privada que se formaba para financiar y realizar la conquista de nuevos territorios', incorrectas: ['Un ejército pagado completamente por el rey de España', 'Una orden religiosa dedicada solo a evangelizar', 'Un tribunal que juzgaba a los conquistadores'] },
+            { tema: 'Empresa e Iglesia', pregunta: '¿Cuáles eran los tres elementos necesarios para formar una empresa de conquista?', correcta: 'Financiamiento, hueste de conquista y capitulación', incorrectas: ['Cabildo, encomienda y evangelización', 'Bula, tratado y Plaza de Armas', 'Oro, especias y barcos'] },
+            { tema: 'Empresa e Iglesia', pregunta: '¿Qué era la hueste de conquista?', correcta: 'El ejército de hombres que reunía el capitán de conquista', incorrectas: ['El contrato firmado con la Corona española', 'El dinero reunido para comprar barcos y armas', 'El grupo de sacerdotes que evangelizaba a los indígenas'] },
+            { tema: 'Empresa e Iglesia', pregunta: '¿Qué era la capitulación?', correcta: 'Un contrato firmado entre la Corona española y el capitán de conquista', incorrectas: ['La rendición de un pueblo indígena ante los españoles', 'El reparto de indígenas entre los vecinos de una ciudad', 'El documento del Papa que autorizaba la conquista'] },
+            { tema: 'Empresa e Iglesia', pregunta: '¿Qué beneficios obtenía cada parte de una empresa de conquista?', correcta: 'La Corona ampliaba su imperio, y el capitán y su hueste recibían tierras, títulos y parte de las riquezas', incorrectas: ['La Corona recibía tierras y el capitán solo un sueldo mensual', 'Ambos recibían únicamente el derecho a evangelizar', 'El capitán se quedaba con todo y la Corona no obtenía nada'] },
+            { tema: 'Empresa e Iglesia', pregunta: '¿Cuál de estas era una motivación de los conquistadores para venir a América?', correcta: 'Mejorar su futuro económico, convertirse en nobles y obtener reconocimiento y fama', incorrectas: ['Estudiar la geografía y la flora del continente', 'Aprender las lenguas de los pueblos indígenas', 'Fundar universidades en Europa'] },
+            { tema: 'Empresa e Iglesia', pregunta: '¿Cuál fue uno de los principales roles de la Iglesia católica durante la conquista?', correcta: 'Evangelizar, es decir, cristianizar a los pueblos indígenas americanos', incorrectas: ['Financiar todos los viajes de exploración', 'Dirigir militarmente las huestes de conquista', 'Repartir las tierras entre los indígenas'] },
+
+            // ---------- DOS VISIONES SOBRE LA CONQUISTA (2) ----------
+            { tema: 'Empresa e Iglesia', pregunta: '¿En qué se contraponen las visiones de Juan Ginés de Sepúlveda y de Bartolomé de las Casas?', correcta: 'Sepúlveda defendía el derecho a conquistar y evangelizar América, mientras que Las Casas denunciaba los abusos cometidos contra los indígenas', incorrectas: ['Sepúlveda denunciaba los abusos y Las Casas defendía la conquista', 'Ambos se oponían por completo a la conquista de América', 'Ambos defendían que los indígenas debían ser esclavizados'] },
+
+            // ---------- EXPLORACIÓN Y CONQUISTA DE CHILE (8) ----------
+            { tema: 'Conquista de Chile', pregunta: '¿Quiénes fueron los dos principales protagonistas de la ocupación del territorio de Chile?', correcta: 'Diego de Almagro y Pedro de Valdivia', incorrectas: ['Hernán Cortés y Francisco Pizarro', 'Cristóbal Colón y Américo Vespucio', 'Moctezuma y Atahualpa'] },
+            { tema: 'Conquista de Chile', pregunta: '¿En qué años se realizó la expedición de Diego de Almagro a Chile?', correcta: 'Entre 1535 y 1536', incorrectas: ['Entre 1540 y 1541', 'Entre 1492 y 1493', 'Entre 1519 y 1521'] },
+            { tema: 'Conquista de Chile', pregunta: '¿En qué años se realizó la expedición de Pedro de Valdivia a Chile?', correcta: 'Entre 1540 y 1541', incorrectas: ['Entre 1535 y 1536', 'Entre 1492 y 1493', 'Entre 1550 y 1551'] },
+            { tema: 'Conquista de Chile', pregunta: '¿Qué ruta escogió cada expedición para llegar a Chile?', correcta: 'Almagro cruzó por la cordillera y Valdivia avanzó por el desierto', incorrectas: ['Almagro avanzó por el desierto y Valdivia cruzó por la cordillera', 'Ambos llegaron navegando por el océano Pacífico', 'Ambos cruzaron por la cordillera de los Andes'] },
+            { tema: 'Conquista de Chile', pregunta: '¿Cuál era el principal objetivo del viaje de Diego de Almagro?', correcta: 'Encontrar riquezas', incorrectas: ['Fundar ciudades en el territorio', 'Evangelizar a los pueblos del sur', 'Firmar un tratado con el Perú'] },
+            { tema: 'Conquista de Chile', pregunta: '¿Cuál era el principal objetivo del viaje de Pedro de Valdivia?', correcta: 'Fundar ciudades y ocupar el territorio', incorrectas: ['Encontrar oro rápidamente y regresar al Perú', 'Explorar la costa del océano Atlántico', 'Buscar una ruta hacia Asia por el sur'] },
+            { tema: 'Conquista de Chile', pregunta: '¿Cuál fue el resultado de cada una de las dos expediciones?', correcta: 'La de Almagro fracasó porque no encontró riquezas; la de Valdivia fue un éxito porque logró fundar Santiago', incorrectas: ['La de Almagro fue un éxito y la de Valdivia fracasó', 'Ambas expediciones fracasaron por completo', 'Ambas expediciones lograron fundar ciudades'] },
+            { tema: 'Conquista de Chile', pregunta: '¿Cuándo se fundó la ciudad de Santiago y qué nombre recibió?', correcta: 'El 12 de febrero de 1541, con el nombre de Santiago de la Nueva Extremadura', incorrectas: ['El 12 de octubre de 1492, con el nombre de Santiago del Nuevo Mundo', 'El 12 de febrero de 1535, con el nombre de Santiago de la Nueva España', 'El 3 de agosto de 1541, con el nombre de Santiago de Tordesillas'] },
+
+            // ---------- UNA NUEVA SOCIEDAD (4) ----------
+            { tema: 'Nueva sociedad', pregunta: '¿Por qué los conquistadores fundaban ciudades?', correcta: 'Porque era la principal estrategia para asegurar y dominar los territorios conquistados', incorrectas: ['Porque el Papa se los ordenaba en una bula', 'Porque querían imitar las ciudades indígenas', 'Porque necesitaban puertos para regresar a España'] },
+            { tema: 'Nueva sociedad', pregunta: '¿Por qué fue necesario organizar una nueva sociedad en América?', correcta: 'Para consolidar los nuevos gobiernos, repartir las tierras y expandir el cristianismo', incorrectas: ['Para devolver el poder a los pueblos indígenas', 'Para preparar el regreso definitivo de los españoles a Europa', 'Para terminar con el comercio entre América y España'] },
+            { tema: 'Nueva sociedad', pregunta: '¿Qué era la encomienda?', correcta: 'Un grupo de indígenas entregado a un español para que trabajaran para él, a cambio de protegerlos y evangelizarlos', incorrectas: ['Un impuesto que los españoles pagaban a la Corona', 'Un tipo de barco usado durante la conquista', 'Un acuerdo firmado entre España y Portugal'] },
+            { tema: 'Nueva sociedad', pregunta: '¿Cuáles eran los principales grupos sociales que se formaron en esta época?', correcta: 'La aristocracia de capitanes, los vecinos encomenderos y los indígenas encomendados', incorrectas: ['Los reyes, los sacerdotes y los campesinos europeos', 'Los navegantes, los cartógrafos y los comerciantes', 'Los mineros, los ganaderos y los pescadores'] },
+            { tema: 'Nueva sociedad', pregunta: '¿Qué era el cabildo?', correcta: 'El organismo que se encargaba del gobierno de la ciudad', incorrectas: ['El templo principal de la ciudad', 'La casa donde vivía el encomendero', 'El mercado donde se vendía el oro'] },
+            { tema: 'Nueva sociedad', pregunta: '¿Cómo era el plano de las ciudades fundadas por los españoles?', correcta: 'Un trazado en forma de damero, con la Plaza de Armas al centro rodeada por los edificios públicos', incorrectas: ['Un trazado circular con el río al centro', 'Un trazado sin ningún orden, que crecía hacia el cerro', 'Un trazado alargado a lo largo de la costa'] },
+            { tema: 'Nueva sociedad', pregunta: '¿Cuál era la situación de las mujeres en la sociedad de esta época?', correcta: 'Su condición dependía del hombre y no tenían los mismos derechos', incorrectas: ['Tenían exactamente los mismos derechos que los hombres', 'Podían ser capitanas de una empresa de conquista', 'Gobernaban el cabildo de las ciudades'] },
+            { tema: 'Nueva sociedad', pregunta: '¿Cuáles fueron los principales impactos de la conquista en América?', correcta: 'Una fuerte crisis demográfica, una nueva economía y un choque cultural y religioso', incorrectas: ['Un aumento rápido de la población indígena y el fin del comercio', 'La desaparición de la agricultura y de la ganadería', 'La conservación intacta de las culturas indígenas'] }
+        ];
+
+        // ============ HISTORIA - TOMAR PREGUNTAS SIN REPETIR ============
+        // Cola barajada: se agotan todas las preguntas del banco antes de repetir ninguna.
+        function tomarPreguntasHistoria(cantidad) {
+            const seleccionadas = [];
+            while (seleccionadas.length < cantidad) {
+                if (colaPreguntasHistoria.length === 0) {
+                    colaPreguntasHistoria = barajarArreglo(bancoPreguntasHistoria);
+                }
+                const siguiente = colaPreguntasHistoria.shift();
+                if (!seleccionadas.includes(siguiente)) {
+                    seleccionadas.push(siguiente);
+                }
+                if (seleccionadas.length >= bancoPreguntasHistoria.length) break;
+            }
+            return seleccionadas;
+        }
+
+        // ============ HISTORIA - GENERADOR ============
+        function generarEjerciciosHistoria(cantidad) {
+            cantidad = cantidad || 20;
+            const seleccionadas = tomarPreguntasHistoria(Math.min(cantidad, bancoPreguntasHistoria.length));
+
+            return seleccionadas.map((entrada, idx) => ({
+                numero: idx + 1,
+                tema: entrada.tema,
+                pregunta: entrada.pregunta,
+                respuestaCorrecta: entrada.correcta,
+                // El orden de las alternativas se baraja: la correcta no queda siempre en la misma posición.
+                opciones: barajarArreglo([entrada.correcta, ...entrada.incorrectas])
+            }));
+        }
+
+        // ============ HISTORIA - COLOR POR TEMA ============
+        function colorTemaHistoria(tema) {
+            if (tema === 'Exploración') return '#2d7d9a';
+            if (tema === 'Conquista de América') return '#a05a2c';
+            if (tema === 'Empresa e Iglesia') return '#6b4c9a';
+            if (tema === 'Conquista de Chile') return '#c0392b';
+            return '#2f6f4e';
+        }
+
+        // ============ HISTORIA - RENDER ============
+        function mostrarEjerciciosHistoria(ejerciciosHist) {
+            const contenedor = document.getElementById('contenedor-ejercicios-historia');
+            const letras = ['A', 'B', 'C', 'D'];
+            let html = '<div style="display: grid; gap: 14px;">';
+
+            ejerciciosHist.forEach((ej, idx) => {
+                const colorTema = colorTemaHistoria(ej.tema);
+                html += `
+                    <div style="background-color: #f9f9f9; padding: 16px; border-radius: 4px; border-left: 4px solid ${colorTema};">
+                        <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 12px;">
+                            <div style="display: flex; align-items: flex-start; gap: 12px;">
+                                <span style="font-weight: 600; color: #1a3c6e; min-width: 26px;">${ej.numero}.</span>
+                                <span style="font-size: 16px; font-weight: 600; color: #1a3c6e;">${ej.pregunta}</span>
+                            </div>
+                            <span style="font-size: 12px; color: #fff; background-color: ${colorTema}; padding: 4px 10px; border-radius: 12px; white-space: nowrap;">${ej.tema}</span>
+                        </div>
+                        <div style="display: grid; gap: 8px;" id="opciones-historia-${idx}">
+                            ${ej.opciones.map((opcion, optIdx) => `
+                                <button type="button" class="btn-historia" id="btn-historia-${idx}-${optIdx}" onclick="seleccionarRespuestaHistoria(${idx}, ${optIdx})" style="
+                                    padding: 10px 14px;
+                                    border: 2px solid #1a3c6e;
+                                    background-color: white;
+                                    color: #1a3c6e;
+                                    border-radius: 4px;
+                                    font-size: 14px;
+                                    font-weight: 600;
+                                    cursor: pointer;
+                                    text-align: left;
+                                ">${letras[optIdx]}) ${opcion}</button>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            });
+
+            html += '</div>';
+            contenedor.innerHTML = html;
+        }
+
+        // ============ HISTORIA - SELECCIONAR RESPUESTA ============
+        // Se puede cambiar la respuesta hasta presionar "Revisar Respuestas".
+        // No se muestra ningún color de corrección antes de revisar.
+        function seleccionarRespuestaHistoria(idx, opcionIdx) {
+            respuestasHistoria[idx] = ejerciciosHistoriaActuales[idx].opciones[opcionIdx];
+
+            ejerciciosHistoriaActuales[idx].opciones.forEach((opcion, i) => {
+                const btn = document.getElementById(`btn-historia-${idx}-${i}`);
+                if (!btn) return;
+                if (i === opcionIdx) {
+                    btn.style.backgroundColor = '#1a3c6e';
+                    btn.style.color = 'white';
+                } else {
+                    btn.style.backgroundColor = 'white';
+                    btn.style.color = '#1a3c6e';
+                }
+            });
+        }
+
+        // ============ HISTORIA - IMPRIMIR / PDF ============
+        function imprimirEjerciciosHistoria() {
+            if (ejerciciosHistoriaActuales.length === 0) {
+                alert('Por favor, genera la prueba primero.');
+                return;
+            }
+
+            const letras = ['A', 'B', 'C', 'D'];
+            let htmlPDF = `
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <meta charset="UTF-8">
+                    <style>
+                        body { font-family: Arial, sans-serif; padding: 20px; margin: 0; background: white; }
+                        .header { text-align: center; margin-bottom: 30px; border-bottom: 2px solid #1a3c6e; padding-bottom: 15px; }
+                        .header h1 { margin: 0 0 5px 0; color: #1a3c6e; font-size: 24px; }
+                        .header p { margin: 0; color: #666; font-size: 12px; }
+                        .student-info { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 25px; font-size: 13px; }
+                        .info-field { display: flex; align-items: flex-end; gap: 10px; }
+                        .info-field label { font-weight: bold; color: #333; min-width: 80px; }
+                        .info-field .line { flex: 1; border-bottom: 1px solid #999; height: 20px; }
+                        .exercise { margin-bottom: 14px; padding: 12px; background-color: #f9f9f9; border-left: 3px solid #1a3c6e; page-break-inside: avoid; }
+                        .exercise-top { margin-bottom: 8px; }
+                        .exercise-number { font-weight: bold; color: #1a3c6e; font-size: 14px; }
+                        .exercise-word { font-size: 14px; font-weight: bold; color: #1a3c6e; margin-left: 6px; }
+                        .exercise-opciones { display: grid; gap: 5px; font-size: 13px; padding-left: 22px; }
+                        @media print { body { padding: 10px; } .exercise { page-break-inside: avoid; } }
+                    </style>
+                </head>
+                <body>
+                    <div class="header">
+                        <h1>Prueba de Historia</h1>
+                        <p>La conquista de América y de Chile &mdash; 5&deg; Básico</p>
+                    </div>
+
+                    <div class="student-info">
+                        <div class="info-field"><label>Nombre:</label><div class="line"></div></div>
+                        <div class="info-field"><label>Curso:</label><div class="line"></div></div>
+                        <div class="info-field"><label>Fecha:</label><div class="line"></div></div>
+                        <div class="info-field"><label>Puntaje:</label><div class="line"></div></div>
+                    </div>
+
+                    <p style="text-align: center; color: #666; font-size: 12px; margin-bottom: 25px;">
+                        <strong>Instrucciones:</strong> Marca con una X la letra de la alternativa correcta.
+                    </p>
+            `;
+
+            ejerciciosHistoriaActuales.forEach((ej) => {
+                htmlPDF += `
+                    <div class="exercise">
+                        <div class="exercise-top">
+                            <span class="exercise-number">${ej.numero}.</span>
+                            <span class="exercise-word">${ej.pregunta}</span>
+                        </div>
+                        <div class="exercise-opciones">
+                            ${ej.opciones.map((op, i) => `<div>${letras[i]}) ${op}</div>`).join('')}
+                        </div>
+                    </div>
+                `;
+            });
+
+            htmlPDF += `</body></html>`;
+
+            const blob = new Blob([htmlPDF], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const printWindow = window.open(url, '_blank');
+            printWindow.onload = function() {
+                setTimeout(() => { printWindow.print(); }, 250);
+            };
+        }
+
+        // ============ HISTORIA - BOTONES ============
+        document.getElementById('btn-generar-historia').addEventListener('click', function() {
+            ejerciciosHistoriaActuales = generarEjerciciosHistoria(20);
+            respuestasHistoria = {};
+            mostrarEjerciciosHistoria(ejerciciosHistoriaActuales);
+            document.getElementById('configuracion-historia').style.display = 'none';
+            document.getElementById('area-ejercicios-historia').style.display = 'block';
+        });
+
+        document.getElementById('btn-nuevos-ejercicios-historia').addEventListener('click', function() {
+            ejerciciosHistoriaActuales = generarEjerciciosHistoria(20);
+            respuestasHistoria = {};
+            mostrarEjerciciosHistoria(ejerciciosHistoriaActuales);
+            document.getElementById('area-ejercicios-historia').style.display = 'block';
+            document.getElementById('resultados-historia').style.display = 'none';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        document.getElementById('btn-imprimir-historia').addEventListener('click', function() {
+            imprimirEjerciciosHistoria();
+        });
+
+        // ============ HISTORIA - REVISAR RESPUESTAS ============
+        document.getElementById('btn-revisar-historia').addEventListener('click', function() {
+            let correctas = 0;
+            let html = '<table style="width: 100%; border-collapse: collapse; font-size: 13px;">';
+            html += '<tr style="background-color: #1a3c6e; color: white;">' +
+                    '<th style="padding: 10px; text-align: left; border: 1px solid #ccc;">N°</th>' +
+                    '<th style="padding: 10px; text-align: left; border: 1px solid #ccc;">Pregunta</th>' +
+                    '<th style="padding: 10px; text-align: center; border: 1px solid #ccc;">Tu Respuesta</th>' +
+                    '<th style="padding: 10px; text-align: center; border: 1px solid #ccc;">Respuesta Correcta</th>' +
+                    '<th style="padding: 10px; text-align: center; border: 1px solid #ccc;">Estado</th>' +
+                    '</tr>';
+
+            ejerciciosHistoriaActuales.forEach((ej, idx) => {
+                const respuestaUsuario = respuestasHistoria[idx];
+                const respondio = respuestaUsuario !== undefined;
+                const esCorrecta = respondio && respuestaUsuario === ej.respuestaCorrecta;
+                if (esCorrecta) correctas++;
+
+                const estadoIcon = esCorrecta ? '✓' : '✗';
+                const estadoColor = esCorrecta ? '#2f6f4e' : '#c93c3c';
+                const bgColor = esCorrecta ? '#e8f5e9' : '#ffebee';
+                const textoUsuario = !respondio ? '—' : respuestaUsuario;
+
+                html += `<tr style="background-color: ${bgColor}; border: 1px solid #ddd;">
+                    <td style="padding: 10px; border: 1px solid #ccc; font-weight: 600;">${ej.numero}</td>
+                    <td style="padding: 10px; border: 1px solid #ccc;">${ej.pregunta}</td>
+                    <td style="padding: 10px; text-align: center; border: 1px solid #ccc;">${textoUsuario}</td>
+                    <td style="padding: 10px; text-align: center; border: 1px solid #ccc; font-weight: 600; color: #1a3c6e;">${ej.respuestaCorrecta}</td>
+                    <td style="padding: 10px; text-align: center; border: 1px solid #ccc; color: ${estadoColor}; font-weight: 600;">${estadoIcon}</td>
+                </tr>`;
+            });
+
+            html += '</table>';
+
+            const porcentaje = Math.round((correctas / ejerciciosHistoriaActuales.length) * 100);
+            const mensaje = porcentaje === 100 ? '¡Excelente! 🎉' :
+                            porcentaje >= 80 ? '¡Muy bien! 👏' :
+                            porcentaje >= 60 ? 'Buen esfuerzo 💪' : 'Sigue practicando 📚';
+
+            document.getElementById('contenedor-resultados-historia').innerHTML =
+                `<div style="margin-bottom: 20px; text-align: center;">
+                    <p style="font-size: 32px; font-weight: 600; color: #1a3c6e;">${correctas}/${ejerciciosHistoriaActuales.length}</p>
+                    <p style="font-size: 18px; color: #2f6f4e;">${porcentaje}% — ${mensaje}</p>
+                </div>` + html;
+
+            document.getElementById('area-ejercicios-historia').style.display = 'none';
+            document.getElementById('resultados-historia').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ============ HISTORIA - MOSTRAR MÓDULO ============
+        function mostrarModuloHistoria() {
+            document.getElementById('modulo-historia').style.display = 'block';
+            document.getElementById('configuracion-historia').style.display = 'block';
+            document.getElementById('area-ejercicios-historia').style.display = 'none';
+            document.getElementById('resultados-historia').style.display = 'none';
             document.querySelectorAll('.seccion').forEach(s => s.style.display = 'none');
         }
 
