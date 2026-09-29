@@ -903,6 +903,10 @@
                     <span class="opcion-emoji">🗺️</span>
                     Historia: Prueba
                 </button>
+                <button class="opcion" onclick="mostrarModuloCombinadas()">
+                    <span class="opcion-emoji">🧮</span>
+                    Operaciones<br>Combinadas
+                </button>
             </div>
         </div>
 
@@ -1915,6 +1919,161 @@
                     <div id="contenedor-resultados-historia" style="background-color: white; padding: 20px; border-radius: 4px;"></div>
                     <div style="margin-top: 20px;">
                         <button onclick="irA('menu-5basico'); document.getElementById('modulo-historia').style.display='none';" style="
+                            width: 100%;
+                            padding: 12px;
+                            background-color: #1a3c6e;
+                            color: white;
+                            border: none;
+                            border-radius: 4px;
+                            font-size: 14px;
+                            cursor: pointer;
+                        ">← Volver a Menú</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MÓDULO INTERACTIVO DE OPERACIONES COMBINADAS -->
+        <div id="modulo-combinadas" class="modulo-contenedor">
+            <div style="max-width: 900px; margin: 0 auto; padding: 20px;">
+
+                <!-- CONFIGURACIÓN INICIAL -->
+                <div id="configuracion-combinadas" class="seccion-contenedor">
+                    <h2 style="color: #1a3c6e; margin-bottom: 20px;">Operaciones Combinadas — 5° Básico</h2>
+
+                    <div style="background-color: #f5f7fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                        <p style="font-size: 14px; color: #333; margin-bottom: 16px;">
+                            Ejercicios que respetan la <strong>jerarquía de las operaciones</strong>: primero los
+                            paréntesis (de adentro hacia afuera), luego las multiplicaciones y divisiones, y al final
+                            las sumas y restas. Todas las divisiones son exactas y ningún paso intermedio queda negativo.
+                        </p>
+
+                        <!-- Tipo de actividad -->
+                        <div style="margin-bottom: 20px;">
+                            <label style="display: block; font-weight: 600; color: #1a3c6e; margin-bottom: 8px;">
+                                Tipo de actividad:
+                            </label>
+                            <select id="tipo-actividad-combinadas" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px;">
+                                <option value="problema" selected>Problemas (plantear la operación y resolver)</option>
+                                <option value="operatoria">Operatoria combinada</option>
+                                <option value="mixto">Mixto (problemas y operatoria)</option>
+                            </select>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 16px;">
+                            <div>
+                                <label style="display: block; font-weight: 600; color: #1a3c6e; margin-bottom: 8px;">
+                                    Cantidad de ejercicios:
+                                </label>
+                                <select id="cantidad-ejercicios-combinadas" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px;">
+                                    <option value="4">4 ejercicios</option>
+                                    <option value="6">6 ejercicios</option>
+                                    <option value="8" selected>8 ejercicios</option>
+                                    <option value="10">10 ejercicios</option>
+                                    <option value="12">12 ejercicios</option>
+                                    <option value="16">16 ejercicios</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label style="display: block; font-weight: 600; color: #1a3c6e; margin-bottom: 8px;">
+                                    Nivel de dificultad:
+                                </label>
+                                <select id="nivel-combinadas" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px;">
+                                    <option value="basico">Básico (2 operaciones)</option>
+                                    <option value="intermedio" selected>Intermedio (3 operaciones con paréntesis)</option>
+                                    <option value="avanzado">Avanzado (3 a 4 operaciones, paréntesis anidados)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div style="margin-bottom: 16px;">
+                            <label style="display: block; font-weight: 600; color: #1a3c6e; margin-bottom: 8px;">
+                                Tamaño de los números principales (cifras):
+                            </label>
+                            <select id="cifras-combinadas" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px;">
+                                <option value="2">2 cifras (hasta 99)</option>
+                                <option value="3" selected>3 cifras (hasta 999)</option>
+                                <option value="4">4 cifras</option>
+                                <option value="5">5 cifras</option>
+                                <option value="6">6 cifras</option>
+                                <option value="7">7 cifras</option>
+                                <option value="8">8 cifras</option>
+                            </select>
+                        </div>
+
+                        <button id="btn-generar-combinadas" style="
+                            width: 100%;
+                            padding: 12px;
+                            background-color: #2f6f4e;
+                            color: white;
+                            border: none;
+                            border-radius: 4px;
+                            font-size: 16px;
+                            font-weight: 600;
+                            cursor: pointer;
+                            transition: background-color 0.3s;
+                        " onmouseover="this.style.backgroundColor='#1f4a33'" onmouseout="this.style.backgroundColor='#2f6f4e'">
+                            ▶ Generar Ejercicios
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ÁREA DE EJERCICIOS -->
+                <div id="area-ejercicios-combinadas" style="display: none;">
+                    <div style="margin-bottom: 20px; display: flex; gap: 10px; flex-wrap: wrap;">
+                        <button id="btn-nuevos-ejercicios-combinadas" style="
+                            padding: 10px 20px;
+                            background-color: #2f6f4e;
+                            color: white;
+                            border: none;
+                            border-radius: 4px;
+                            font-size: 14px;
+                            cursor: pointer;
+                        ">🔄 Nuevos Ejercicios</button>
+
+                        <button id="btn-imprimir-combinadas" style="
+                            padding: 10px 20px;
+                            background-color: #0066cc;
+                            color: white;
+                            border: none;
+                            border-radius: 4px;
+                            font-size: 14px;
+                            cursor: pointer;
+                        ">🖨️ Imprimir / PDF</button>
+
+                        <button onclick="irA('menu-5basico'); document.getElementById('modulo-combinadas').style.display='none';" style="
+                            padding: 10px 20px;
+                            background-color: #1a3c6e;
+                            color: white;
+                            border: none;
+                            border-radius: 4px;
+                            font-size: 14px;
+                            cursor: pointer;
+                        ">← Volver</button>
+                    </div>
+
+                    <div id="contenedor-ejercicios-combinadas" style="background-color: #fff; padding: 20px; border-radius: 8px; border: 1px solid #ddd;"></div>
+
+                    <div style="margin-top: 20px; text-align: center;">
+                        <button id="btn-revisar-combinadas" style="
+                            padding: 12px 30px;
+                            background-color: #1a3c6e;
+                            color: white;
+                            border: none;
+                            border-radius: 4px;
+                            font-size: 16px;
+                            font-weight: 600;
+                            cursor: pointer;
+                        ">Revisar Respuestas</button>
+                    </div>
+                </div>
+
+                <!-- RESULTADOS -->
+                <div id="resultados-combinadas" style="display: none; background-color: #f5f7fa; padding: 20px; border-radius: 8px;">
+                    <h3 style="color: #1a3c6e; margin-bottom: 20px;">Resultados</h3>
+                    <div id="contenedor-resultados-combinadas" style="background-color: white; padding: 20px; border-radius: 4px; overflow-x: auto;"></div>
+                    <div style="margin-top: 20px;">
+                        <button onclick="irA('menu-5basico'); document.getElementById('modulo-combinadas').style.display='none';" style="
                             width: 100%;
                             padding: 12px;
                             background-color: #1a3c6e;
@@ -6491,6 +6650,886 @@
             ejercicios['figuras'] = generarFiguras();
         };
         
+
+        // ============================================================
+        // ============ MÓDULO DE OPERACIONES COMBINADAS (5°) ==========
+        // ============================================================
+        // Ejercicios de jerarquía de las operaciones con paréntesis.
+        // Dos formatos: operatoria pura y problemas contextualizados.
+        // Invariantes garantizados por los generadores:
+        //   - todas las divisiones son exactas
+        //   - ningún paso intermedio ni el resultado final es negativo
+        //   - los números principales respetan la cantidad de cifras elegida
+
+        let ejerciciosCombinadasActuales = [];
+        let respuestasCombinadas = {};
+        let colasCombinadas = {}; // colas barajadas por "tipo-nivel"
+
+        // ---- Utilidades numéricas ----
+        function combRandInt(min, max) {
+            if (max < min) max = min;
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function combRangoCifras(cifras) {
+            const c = Math.max(2, Math.min(8, parseInt(cifras, 10) || 3));
+            return [Math.pow(10, c - 1), Math.pow(10, c) - 1];
+        }
+
+        function combGrande(cifras) {
+            const r = combRangoCifras(cifras);
+            return combRandInt(r[0], r[1]);
+        }
+
+        function combPequeno(min, max) {
+            return combRandInt(min === undefined ? 2 : min, max === undefined ? 12 : max);
+        }
+
+        // Número de la cantidad de cifras pedida que sea múltiplo exacto de d
+        function combMultiplo(cifras, d) {
+            const r = combRangoCifras(cifras);
+            const qMin = Math.ceil(r[0] / d);
+            const qMax = Math.floor(r[1] / d);
+            if (qMax < qMin) return null;
+            return combRandInt(qMin, qMax) * d;
+        }
+
+        // Número de la cantidad de cifras pedida, estrictamente mayor que "piso"
+        function combGrandeMayorQue(cifras, piso) {
+            const r = combRangoCifras(cifras);
+            const min = Math.max(r[0], piso + 1);
+            if (min > r[1]) return null;
+            return combRandInt(min, r[1]);
+        }
+
+        // Número de la cantidad de cifras pedida, menor o igual que "tope"
+        function combGrandeHasta(cifras, tope) {
+            const r = combRangoCifras(cifras);
+            const max = Math.min(r[1], tope);
+            if (max < r[0]) return null;
+            return combRandInt(r[0], max);
+        }
+
+        // Par de factores pequeños cuyo producto sea menor que "limite"
+        function combParProductoMenor(limite, maxFactor) {
+            const tope = maxFactor || 12;
+            for (let i = 0; i < 80; i++) {
+                const b = combRandInt(2, tope);
+                const c = combRandInt(2, tope);
+                if (b * c < limite) return [b, c];
+            }
+            if (limite > 4) return [2, 2];
+            return null;
+        }
+
+        // Devuelve B (de la cantidad de cifras pedida) tal que (A + B) sea divisible por k
+        function combAjustarMultiplo(cifras, A, k) {
+            const r = combRangoCifras(cifras);
+            const base = combRandInt(r[0], r[1]);
+            let B = base + ((k - ((A + base) % k)) % k);
+            if (B > r[1]) B -= k;
+            if (B < r[0]) return null;
+            return B;
+        }
+
+        // Divisor pequeño y exacto de "valor" dentro del rango [minD, maxD]
+        function combDivisorPequeno(valor, minD, maxD) {
+            const lo = minD || 2;
+            const hi = maxD || 12;
+            const divisores = [];
+            for (let d = lo; d <= hi; d++) {
+                if (valor % d === 0) divisores.push(d);
+            }
+            if (divisores.length === 0) return null;
+            return divisores[combRandInt(0, divisores.length - 1)];
+        }
+
+        // ---- BANCO DE PLANTILLAS ----
+        // Cada plantilla devuelve { expresion, valor } y, si es problema, { enunciado }.
+        // Devuelve null cuando la combinación de cifras no admite una solución válida;
+        // el generador reintenta con otros números.
+        const plantillasCombinadas = [
+
+            // ================= OPERATORIA — BÁSICO (2 operaciones) =================
+            { id: 'ob1', tipo: 'operatoria', nivel: 'basico', generar: function (c) {
+                const A = combGrande(c), B = combGrande(c), k = combPequeno(2, 9);
+                return { expresion: A + ' + ' + B + ' × ' + k, valor: A + B * k };
+            }},
+            { id: 'ob2', tipo: 'operatoria', nivel: 'basico', generar: function (c) {
+                const A = combGrande(c);
+                const par = combParProductoMenor(A);
+                if (!par) return null;
+                return { expresion: A + ' − ' + par[0] + ' × ' + par[1], valor: A - par[0] * par[1] };
+            }},
+            { id: 'ob3', tipo: 'operatoria', nivel: 'basico', generar: function (c) {
+                const k = combPequeno(2, 9);
+                const B = combMultiplo(c, k);
+                if (B === null) return null;
+                const A = combGrande(c);
+                return { expresion: A + ' + ' + B + ' ÷ ' + k, valor: A + B / k };
+            }},
+            { id: 'ob4', tipo: 'operatoria', nivel: 'basico', generar: function (c) {
+                const k = combPequeno(2, 9);
+                const B = combMultiplo(c, k);
+                if (B === null) return null;
+                const A = combGrandeMayorQue(c, B / k);
+                if (A === null) return null;
+                return { expresion: A + ' − ' + B + ' ÷ ' + k, valor: A - B / k };
+            }},
+            { id: 'ob5', tipo: 'operatoria', nivel: 'basico', generar: function (c) {
+                const A = combGrande(c), B = combGrande(c), k = combPequeno(2, 9);
+                return { expresion: '(' + A + ' + ' + B + ') × ' + k, valor: (A + B) * k };
+            }},
+            { id: 'ob6', tipo: 'operatoria', nivel: 'basico', generar: function (c) {
+                const B = combGrande(c);
+                const A = combGrandeMayorQue(c, B);
+                if (A === null) return null;
+                const k = combPequeno(2, 9);
+                return { expresion: '(' + A + ' − ' + B + ') × ' + k, valor: (A - B) * k };
+            }},
+            { id: 'ob7', tipo: 'operatoria', nivel: 'basico', generar: function (c) {
+                const k = combPequeno(2, 9);
+                const A = combGrande(c);
+                const B = combAjustarMultiplo(c, A, k);
+                if (B === null) return null;
+                return { expresion: '(' + A + ' + ' + B + ') ÷ ' + k, valor: (A + B) / k };
+            }},
+            { id: 'ob8', tipo: 'operatoria', nivel: 'basico', generar: function (c) {
+                const B = combGrande(c), k = combPequeno(2, 9), A = combGrande(c);
+                return { expresion: B + ' × ' + k + ' + ' + A, valor: B * k + A };
+            }},
+
+            // ============ OPERATORIA — INTERMEDIO (3 operaciones) ============
+            { id: 'oi1', tipo: 'operatoria', nivel: 'intermedio', generar: function (c) {
+                const A = combGrande(c), B = combGrande(c), k = combPequeno(2, 9);
+                const D = combGrandeHasta(c, A + B * k);
+                if (D === null) return null;
+                return { expresion: A + ' + ' + B + ' × ' + k + ' − ' + D, valor: A + B * k - D };
+            }},
+            { id: 'oi2', tipo: 'operatoria', nivel: 'intermedio', generar: function (c) {
+                const A = combGrande(c), B = combGrande(c), k = combPequeno(2, 9);
+                const D = combGrandeHasta(c, (A + B) * k);
+                if (D === null) return null;
+                return { expresion: '(' + A + ' + ' + B + ') × ' + k + ' − ' + D, valor: (A + B) * k - D };
+            }},
+            { id: 'oi3', tipo: 'operatoria', nivel: 'intermedio', generar: function (c) {
+                const A = combGrande(c), j = combPequeno(2, 9), B = combGrande(c), k = combPequeno(2, 9);
+                return { expresion: A + ' × ' + j + ' + ' + B + ' × ' + k, valor: A * j + B * k };
+            }},
+            { id: 'oi4', tipo: 'operatoria', nivel: 'intermedio', generar: function (c) {
+                const k = combPequeno(2, 9);
+                const B = combGrande(c);
+                const r = combRangoCifras(c);
+                const qMax = Math.floor((r[1] - B) / k);
+                if (qMax < 1) return null;
+                const q = combRandInt(1, qMax);
+                const A = B + k * q;
+                const D = combGrande(c);
+                return { expresion: '(' + A + ' − ' + B + ') ÷ ' + k + ' + ' + D, valor: q + D };
+            }},
+            { id: 'oi5', tipo: 'operatoria', nivel: 'intermedio', generar: function (c) {
+                const A = combGrande(c);
+                const par = combParProductoMenor(A);
+                if (!par) return null;
+                const D = combGrande(c);
+                return { expresion: A + ' − (' + par[0] + ' × ' + par[1] + ') + ' + D, valor: A - par[0] * par[1] + D };
+            }},
+            { id: 'oi6', tipo: 'operatoria', nivel: 'intermedio', generar: function (c) {
+                const k = combPequeno(2, 9);
+                const A = combGrande(c);
+                const B = combAjustarMultiplo(c, A, k);
+                if (B === null) return null;
+                const j = combPequeno(2, 9);
+                return { expresion: '(' + A + ' + ' + B + ') ÷ ' + k + ' × ' + j, valor: (A + B) / k * j };
+            }},
+            { id: 'oi7', tipo: 'operatoria', nivel: 'intermedio', generar: function (c) {
+                const A = combGrande(c), b = combPequeno(2, 9), e = combPequeno(2, 9);
+                const D = combGrandeHasta(c, A * (b + e));
+                if (D === null) return null;
+                return { expresion: A + ' × (' + b + ' + ' + e + ') − ' + D, valor: A * (b + e) - D };
+            }},
+            { id: 'oi8', tipo: 'operatoria', nivel: 'intermedio', generar: function (c) {
+                const A = combGrande(c), B = combGrande(c), C = combGrande(c), k = combPequeno(2, 9);
+                return { expresion: '(' + A + ' + ' + B + ') + (' + C + ' × ' + k + ')', valor: (A + B) + C * k };
+            }},
+
+            // ====== OPERATORIA — AVANZADO (4 operaciones, anidadas) ======
+            { id: 'oa1', tipo: 'operatoria', nivel: 'avanzado', generar: function (c) {
+                const k = combPequeno(2, 9);
+                const A = combGrande(c);
+                const B = combAjustarMultiplo(c, A, k);
+                if (B === null) return null;
+                const e = combPequeno(2, 8);
+                const d = combPequeno(e + 1, 12);
+                return {
+                    expresion: '((' + A + ' + ' + B + ') ÷ ' + k + ') × (' + d + ' − ' + e + ')',
+                    valor: (A + B) / k * (d - e)
+                };
+            }},
+            { id: 'oa2', tipo: 'operatoria', nivel: 'avanzado', generar: function (c) {
+                const d = combPequeno(2, 9), e = combPequeno(2, 9);
+                const s = d + e;
+                const k = combPequeno(2, 9);
+                const B = combMultiplo(c, s);
+                if (B === null) return null;
+                const cociente = (B / s) * k;
+                const A = combGrandeMayorQue(c, cociente);
+                if (A === null) return null;
+                return {
+                    expresion: A + ' − ((' + B + ' × ' + k + ') ÷ (' + d + ' + ' + e + '))',
+                    valor: A - cociente
+                };
+            }},
+            { id: 'oa3', tipo: 'operatoria', nivel: 'avanzado', generar: function (c) {
+                const e = combPequeno(2, 8);
+                const b = combPequeno(e + 1, 12);
+                const A = combGrande(c), D = combGrande(c), k = combPequeno(2, 9);
+                return {
+                    expresion: '(' + A + ' × (' + b + ' − ' + e + ')) + (' + D + ' × ' + k + ')',
+                    valor: A * (b - e) + D * k
+                };
+            }},
+            { id: 'oa4', tipo: 'operatoria', nivel: 'avanzado', generar: function (c) {
+                const k = combPequeno(2, 9);
+                const B = combGrande(c);
+                const r = combRangoCifras(c);
+                const qMax = Math.floor((r[1] - B) / k);
+                if (qMax < 1) return null;
+                const q = combRandInt(1, qMax);
+                const A = B + k * q;
+                const D = combGrande(c), e = combPequeno(2, 9);
+                return {
+                    expresion: '((' + A + ' − ' + B + ') ÷ ' + k + ' + ' + D + ') × ' + e,
+                    valor: (q + D) * e
+                };
+            }},
+            { id: 'oa5', tipo: 'operatoria', nivel: 'avanzado', generar: function (c) {
+                const A = combGrande(c), B = combGrande(c), C = combGrande(c);
+                const e = combPequeno(2, 8);
+                const d = combPequeno(e + 1, 12);
+                return {
+                    expresion: A + ' + ((' + B + ' + ' + C + ') × (' + d + ' − ' + e + '))',
+                    valor: A + (B + C) * (d - e)
+                };
+            }},
+            { id: 'oa6', tipo: 'operatoria', nivel: 'avanzado', generar: function (c) {
+                const f = combPequeno(2, 6);
+                const e = combPequeno(f + 1, 10);
+                const b = combPequeno(e - f + 1, 12);
+                const A = combGrande(c), D = combGrande(c);
+                return {
+                    expresion: '(' + A + ' × (' + b + ' − (' + e + ' − ' + f + '))) + ' + D,
+                    valor: A * (b - (e - f)) + D
+                };
+            }},
+            { id: 'oa7', tipo: 'operatoria', nivel: 'avanzado', generar: function (c) {
+                const k = combPequeno(3, 9);
+                const B = combGrande(c);
+                const C = combAjustarMultiplo(c, B, k);
+                if (C === null) return null;
+                const cociente = (B + C) / k;
+                const A = combGrandeMayorQue(c, cociente);
+                if (A === null) return null;
+                const D = combGrande(c);
+                return {
+                    expresion: '(' + A + ' − ((' + B + ' + ' + C + ') ÷ ' + k + ')) + ' + D,
+                    valor: (A - cociente) + D
+                };
+            }},
+            { id: 'oa8', tipo: 'operatoria', nivel: 'avanzado', generar: function (c) {
+                const k = combPequeno(2, 9);
+                const A = combMultiplo(c, k);
+                if (A === null) return null;
+                const B = combGrande(c);
+                const e = combPequeno(2, 8);
+                const d = combPequeno(e + 1, 12);
+                return {
+                    expresion: '(' + A + ' ÷ ' + k + ' + ' + B + ') × (' + d + ' − ' + e + ')',
+                    valor: (A / k + B) * (d - e)
+                };
+            }},
+
+            // ================= PROBLEMAS — BÁSICO (2 operaciones) =================
+            { id: 'pb1', tipo: 'problema', nivel: 'basico', generar: function (c) {
+                const a = combPequeno(3, 12), b = combGrande(c), d = combGrande(c);
+                return {
+                    enunciado: 'Para una campaña solidaria, un curso reúne ' + a + ' cajas con ' + b + ' cuadernos cada una y luego agrega ' + d + ' cuadernos más. ¿Cuántos cuadernos reúnen en total?',
+                    expresion: a + ' × ' + b + ' + ' + d,
+                    valor: a * b + d
+                };
+            }},
+            { id: 'pb2', tipo: 'problema', nivel: 'basico', generar: function (c) {
+                const k = combPequeno(3, 9);
+                const A = combMultiplo(c, k);
+                if (A === null) return null;
+                const d = combPequeno(5, 40);
+                return {
+                    enunciado: 'Un grupo tiene ' + A + ' láminas y las reparte en ' + k + ' sobres iguales. Después agrega ' + d + ' láminas más a cada sobre. ¿Cuántas láminas quedan en cada sobre?',
+                    expresion: A + ' ÷ ' + k + ' + ' + d,
+                    valor: A / k + d
+                };
+            }},
+            { id: 'pb3', tipo: 'problema', nivel: 'basico', generar: function (c) {
+                const a = combPequeno(4, 15), b = combGrande(c), d = combGrande(c);
+                return {
+                    enunciado: 'Un estadio tiene ' + a + ' sectores con ' + b + ' asientos cada uno. Para un concierto se agregan ' + d + ' asientos en la cancha. ¿Cuántos asientos hay en total?',
+                    expresion: a + ' × ' + b + ' + ' + d,
+                    valor: a * b + d
+                };
+            }},
+            { id: 'pb4', tipo: 'problema', nivel: 'basico', generar: function (c) {
+                const A = combGrande(c);
+                const par = combParProductoMenor(A);
+                if (!par) return null;
+                return {
+                    enunciado: 'Una biblioteca tiene ' + A + ' libros. Se prestan ' + par[0] + ' cajas con ' + par[1] + ' libros cada una. ¿Cuántos libros quedan en la biblioteca?',
+                    expresion: A + ' − ' + par[0] + ' × ' + par[1],
+                    valor: A - par[0] * par[1]
+                };
+            }},
+            { id: 'pb5', tipo: 'problema', nivel: 'basico', generar: function (c) {
+                const A = combGrande(c), B = combGrande(c), k = combPequeno(2, 9);
+                return {
+                    enunciado: 'Un colegio arma ' + A + ' bolsas el lunes y ' + B + ' bolsas el martes. En cada bolsa pone ' + k + ' dulces. ¿Cuántos dulces usa en total?',
+                    expresion: '(' + A + ' + ' + B + ') × ' + k,
+                    valor: (A + B) * k
+                };
+            }},
+            { id: 'pb6', tipo: 'problema', nivel: 'basico', generar: function (c) {
+                const a = combPequeno(3, 12), b = combGrande(c);
+                const d = combGrandeHasta(c, a * b);
+                if (d === null) return null;
+                return {
+                    enunciado: 'Una panadería hornea ' + a + ' bandejas con ' + b + ' panes cada una y regala ' + d + ' panes. ¿Cuántos panes le quedan?',
+                    expresion: a + ' × ' + b + ' − ' + d,
+                    valor: a * b - d
+                };
+            }},
+            { id: 'pb7', tipo: 'problema', nivel: 'basico', generar: function (c) {
+                const k = combPequeno(3, 9);
+                const A = combGrande(c);
+                const B = combAjustarMultiplo(c, A, k);
+                if (B === null) return null;
+                return {
+                    enunciado: 'Un almacén tiene ' + A + ' botellas y recibe ' + B + ' botellas más. Las guarda en ' + k + ' cajas iguales. ¿Cuántas botellas quedan en cada caja?',
+                    expresion: '(' + A + ' + ' + B + ') ÷ ' + k,
+                    valor: (A + B) / k
+                };
+            }},
+            { id: 'pb8', tipo: 'problema', nivel: 'basico', generar: function (c) {
+                const k = combPequeno(3, 9);
+                const B = combGrande(c);
+                const r = combRangoCifras(c);
+                const qMax = Math.floor((r[1] - B) / k);
+                if (qMax < 1) return null;
+                const q = combRandInt(1, qMax);
+                const A = B + k * q;
+                return {
+                    enunciado: 'Para un taller se compran ' + A + ' hojas y se usan ' + B + '. El resto se reparte entre ' + k + ' grupos por igual. ¿Cuántas hojas recibe cada grupo?',
+                    expresion: '(' + A + ' − ' + B + ') ÷ ' + k,
+                    valor: q
+                };
+            }},
+
+            // ============= PROBLEMAS — INTERMEDIO (3 operaciones) =============
+            { id: 'pi1', tipo: 'problema', nivel: 'intermedio', generar: function (c) {
+                const a = combPequeno(4, 15), b = combGrande(c);
+                const total = a * b;
+                const d = combGrandeHasta(c, total - 1);
+                if (d === null) return null;
+                const resto = total - d;
+                const e = combDivisorPequeno(resto, 2, 9);
+                if (e === null) return null;
+                return {
+                    enunciado: 'En una convivencia se preparan ' + a + ' bandejas con ' + b + ' empanadas cada una. Se venden ' + d + ' empanadas y las restantes se reparten en ' + e + ' mesas por igual. ¿Cuántas empanadas quedan en cada mesa?',
+                    expresion: '(' + a + ' × ' + b + ' − ' + d + ') ÷ ' + e,
+                    valor: resto / e
+                };
+            }},
+            { id: 'pi2', tipo: 'problema', nivel: 'intermedio', generar: function (c) {
+                const a = combPequeno(4, 12), b = combGrande(c);
+                const total = a * b;
+                const d = combGrandeHasta(c, total - 1);
+                if (d === null) return null;
+                const resto = total - d;
+                const e = combDivisorPequeno(resto, 2, 9);
+                if (e === null) return null;
+                return {
+                    enunciado: 'Una profesora compra ' + a + ' paquetes con ' + b + ' lápices cada uno. Usa ' + d + ' lápices y reparte el resto en ' + e + ' cajas iguales. ¿Cuántos lápices pone en cada caja?',
+                    expresion: '(' + a + ' × ' + b + ' − ' + d + ') ÷ ' + e,
+                    valor: resto / e
+                };
+            }},
+            { id: 'pi3', tipo: 'problema', nivel: 'intermedio', generar: function (c) {
+                const a = combPequeno(3, 12), b = combGrande(c), d = combPequeno(3, 12), e = combGrande(c);
+                return {
+                    enunciado: 'En una rifa, ' + a + ' cursos venden ' + b + ' números cada uno y ' + d + ' apoderados venden ' + e + ' números cada uno. ¿Cuántos números se vendieron en total?',
+                    expresion: a + ' × ' + b + ' + ' + d + ' × ' + e,
+                    valor: a * b + d * e
+                };
+            }},
+            { id: 'pi4', tipo: 'problema', nivel: 'intermedio', generar: function (c) {
+                const a = combPequeno(4, 12), b = combGrande(c), d = combPequeno(2, 9);
+                const e = combGrandeHasta(c, Math.floor((a * b - 1) / d));
+                if (e === null) return null;
+                return {
+                    enunciado: 'Un kiosco compra ' + a + ' cajas con ' + b + ' jugos cada una y vende ' + d + ' packs de ' + e + ' jugos. ¿Cuántos jugos le quedan?',
+                    expresion: a + ' × ' + b + ' − ' + d + ' × ' + e,
+                    valor: a * b - d * e
+                };
+            }},
+            { id: 'pi5', tipo: 'problema', nivel: 'intermedio', generar: function (c) {
+                const k = combPequeno(3, 9);
+                const A = combMultiplo(c, k);
+                if (A === null) return null;
+                const b = combPequeno(2, 9), d = combGrande(c);
+                return {
+                    enunciado: 'Un club reparte ' + A + ' stickers en ' + k + ' álbumes iguales. Después agrega a cada álbum ' + b + ' planchas de ' + d + ' stickers. ¿Cuántos stickers tiene cada álbum?',
+                    expresion: A + ' ÷ ' + k + ' + ' + b + ' × ' + d,
+                    valor: A / k + b * d
+                };
+            }},
+            { id: 'pi6', tipo: 'problema', nivel: 'intermedio', generar: function (c) {
+                const k = combPequeno(3, 9);
+                const A = combGrande(c);
+                const B = combAjustarMultiplo(c, A, k);
+                if (B === null) return null;
+                const cociente = (A + B) / k;
+                if (cociente < 4) return null;
+                const d = combPequeno(2, Math.min(60, cociente - 1));
+                return {
+                    enunciado: 'Una bodega tiene ' + A + ' cajas y recibe ' + B + ' cajas más. Todas se reparten en ' + k + ' camiones iguales. Si de un camión se bajan ' + d + ' cajas, ¿cuántas cajas quedan en ese camión?',
+                    expresion: '(' + A + ' + ' + B + ') ÷ ' + k + ' − ' + d,
+                    valor: cociente - d
+                };
+            }},
+            { id: 'pi7', tipo: 'problema', nivel: 'intermedio', generar: function (c) {
+                const a = combPequeno(4, 12), b = combGrande(c), e = combPequeno(2, 9);
+                const d = combAjustarMultiplo(c, a * b, e);
+                if (d === null) return null;
+                return {
+                    enunciado: 'En un teatro hay ' + a + ' filas con ' + b + ' butacas cada una, más ' + d + ' butacas sueltas. Todas se agrupan en ' + e + ' sectores iguales. ¿Cuántas butacas tiene cada sector?',
+                    expresion: '(' + a + ' × ' + b + ' + ' + d + ') ÷ ' + e,
+                    valor: (a * b + d) / e
+                };
+            }},
+            { id: 'pi8', tipo: 'problema', nivel: 'intermedio', generar: function (c) {
+                const A = combGrande(c);
+                const par = combParProductoMenor(A);
+                if (!par) return null;
+                const e = combGrandeHasta(c, A - par[0] * par[1]);
+                if (e === null) return null;
+                return {
+                    enunciado: 'Un huerto tiene ' + A + ' plantas. Se trasplantan ' + par[0] + ' maceteros con ' + par[1] + ' plantas cada uno y además se pierden ' + e + ' plantas. ¿Cuántas plantas quedan en el huerto?',
+                    expresion: A + ' − ' + par[0] + ' × ' + par[1] + ' − ' + e,
+                    valor: A - par[0] * par[1] - e
+                };
+            }},
+
+            // ========= PROBLEMAS — AVANZADO (4 operaciones, anidadas) =========
+            { id: 'pa1', tipo: 'problema', nivel: 'avanzado', generar: function (c) {
+                const a = combPequeno(3, 12), b = combGrande(c), d = combPequeno(3, 12), e = combGrande(c);
+                const total = a * b + d * e;
+                const f = combDivisorPequeno(total, 2, 9);
+                if (f === null) return null;
+                return {
+                    enunciado: 'Para un almuerzo se preparan ' + a + ' bandejas con ' + b + ' porciones y ' + d + ' ollas con ' + e + ' porciones. Todo se reparte en ' + f + ' mesas iguales. ¿Cuántas porciones recibe cada mesa?',
+                    expresion: '(' + a + ' × ' + b + ' + ' + d + ' × ' + e + ') ÷ ' + f,
+                    valor: total / f
+                };
+            }},
+            { id: 'pa2', tipo: 'problema', nivel: 'avanzado', generar: function (c) {
+                const a = combPequeno(4, 12), b = combGrande(c);
+                const total = a * b;
+                const d = combGrandeHasta(c, total - 1);
+                if (d === null) return null;
+                const resto = total - d;
+                const e = combDivisorPequeno(resto, 2, 9);
+                if (e === null) return null;
+                const f = combPequeno(2, 12);
+                return {
+                    enunciado: 'Una fábrica produce ' + a + ' cajas con ' + b + ' galletas cada una. Se descartan ' + d + ' galletas y el resto se reparte en ' + e + ' bolsas iguales. Si a cada bolsa se le agregan ' + f + ' galletas de regalo, ¿cuántas galletas lleva cada bolsa?',
+                    expresion: '(' + a + ' × ' + b + ' − ' + d + ') ÷ ' + e + ' + ' + f,
+                    valor: resto / e + f
+                };
+            }},
+            { id: 'pa3', tipo: 'problema', nivel: 'avanzado', generar: function (c) {
+                const k = combPequeno(3, 9);
+                const B = combGrande(c);
+                const r = combRangoCifras(c);
+                const qMax = Math.floor((r[1] - B) / k);
+                if (qMax < 1) return null;
+                const q = combRandInt(1, qMax);
+                const A = B + k * q;
+                const d = combPequeno(2, k - 1);
+                return {
+                    enunciado: 'Un supermercado recibe ' + A + ' botellas y se rompen ' + B + '. Las restantes se guardan en ' + k + ' estantes iguales. ¿Cuántas botellas hay en ' + d + ' estantes?',
+                    expresion: '(' + A + ' − ' + B + ') ÷ ' + k + ' × ' + d,
+                    valor: q * d
+                };
+            }},
+            { id: 'pa4', tipo: 'problema', nivel: 'avanzado', generar: function (c) {
+                const a = combPequeno(4, 12), b = combGrande(c), e = combGrande(c);
+                const totalPersonas = a * (b + e);
+                const d = combPequeno(2, 9);
+                const f = combGrandeHasta(c, Math.floor(totalPersonas / d));
+                if (f === null) return null;
+                return {
+                    enunciado: 'Un tren tiene ' + a + ' vagones y en cada uno viajan ' + b + ' adultos y ' + e + ' niños. En una estación bajan ' + d + ' grupos de ' + f + ' personas. ¿Cuántas personas siguen viajando?',
+                    expresion: a + ' × (' + b + ' + ' + e + ') − ' + d + ' × ' + f,
+                    valor: totalPersonas - d * f
+                };
+            }},
+            { id: 'pa5', tipo: 'problema', nivel: 'avanzado', generar: function (c) {
+                const k = combPequeno(3, 9);
+                const A = combMultiplo(c, k);
+                if (A === null) return null;
+                const b = combGrande(c);
+                const d = combPequeno(2, k - 1);
+                return {
+                    enunciado: 'Una imprenta reparte ' + A + ' hojas en ' + k + ' pedidos iguales y agrega ' + b + ' hojas a cada pedido. Si se despachan ' + d + ' pedidos, ¿cuántas hojas se despachan?',
+                    expresion: '(' + A + ' ÷ ' + k + ' + ' + b + ') × ' + d,
+                    valor: (A / k + b) * d
+                };
+            }},
+            { id: 'pa6', tipo: 'problema', nivel: 'avanzado', generar: function (c) {
+                const a = combPequeno(4, 12), b = combGrande(c), d = combGrande(c);
+                const total = a * b + d;
+                const e = combDivisorPequeno(total, 2, 9);
+                if (e === null) return null;
+                const cociente = total / e;
+                if (cociente < 4) return null;
+                const f = combPequeno(2, Math.min(60, cociente - 1));
+                return {
+                    enunciado: 'En una feria se arman ' + a + ' cajones con ' + b + ' paltas cada uno y se suman ' + d + ' paltas sueltas. Todo se reparte en ' + e + ' puestos iguales y cada puesto vende ' + f + ' paltas. ¿Cuántas paltas le quedan a cada puesto?',
+                    expresion: '(' + a + ' × ' + b + ' + ' + d + ') ÷ ' + e + ' − ' + f,
+                    valor: cociente - f
+                };
+            }},
+            { id: 'pa7', tipo: 'problema', nivel: 'avanzado', generar: function (c) {
+                const a = combPequeno(4, 12), b = combGrande(c);
+                const total = a * b;
+                const d = combPequeno(2, 9);
+                const e = combGrandeHasta(c, Math.floor((total - 1) / d));
+                if (e === null) return null;
+                const f = combGrandeHasta(c, total - d * e);
+                if (f === null) return null;
+                return {
+                    enunciado: 'En un campamento hay ' + a + ' carpas con ' + b + ' personas cada una. Se retiran ' + d + ' grupos de ' + e + ' personas y después ' + f + ' personas más. ¿Cuántas personas quedan?',
+                    expresion: a + ' × ' + b + ' − (' + d + ' × ' + e + ' + ' + f + ')',
+                    valor: total - (d * e + f)
+                };
+            }},
+            { id: 'pa8', tipo: 'problema', nivel: 'avanzado', generar: function (c) {
+                const k = combPequeno(3, 9);
+                const A = combGrande(c);
+                const B = combAjustarMultiplo(c, A, k);
+                if (B === null) return null;
+                const d = combPequeno(2, 9), e = combGrande(c);
+                return {
+                    enunciado: 'Una maratón entrega ' + A + ' medallas el sábado y ' + B + ' el domingo, repartidas en ' + k + ' puntos de control iguales. Si además cada punto recibe ' + d + ' cajas con ' + e + ' medallas, ¿cuántas medallas hay en cada punto?',
+                    expresion: '(' + A + ' + ' + B + ') ÷ ' + k + ' + ' + d + ' × ' + e,
+                    valor: (A + B) / k + d * e
+                };
+            }}
+        ];
+
+        // ---- GENERADOR: bolsa barajada por tipo y nivel ----
+        function combPlantillasDe(tipo, nivel) {
+            return plantillasCombinadas.filter(function (p) { return p.tipo === tipo && p.nivel === nivel; });
+        }
+
+        function combTomarPlantillas(tipo, nivel, cantidad) {
+            const banco = combPlantillasDe(tipo, nivel);
+            if (banco.length === 0 || cantidad <= 0) return [];
+            const clave = tipo + '-' + nivel;
+            let cola = colasCombinadas[clave] || [];
+            const seleccionadas = [];
+            const usadas = new Set();
+            const reservadas = [];
+            let guardia = 0;
+
+            while (seleccionadas.length < cantidad && guardia < cantidad * 200) {
+                guardia++;
+                if (cola.length === 0) cola = barajarArreglo(banco);
+                const candidata = cola.shift();
+                // Guard de deduplicación: no repetir plantilla dentro de la misma guía
+                // mientras queden plantillas sin usar en el banco.
+                if (usadas.has(candidata.id) && usadas.size < banco.length) {
+                    reservadas.push(candidata);
+                } else {
+                    usadas.add(candidata.id);
+                    seleccionadas.push(candidata);
+                }
+            }
+
+            colasCombinadas[clave] = reservadas.concat(cola);
+            return seleccionadas;
+        }
+
+        // Respaldo siempre resoluble, por si una plantilla no logra números válidos.
+        function combRespaldo(cifras) {
+            const A = combGrande(cifras), B = combGrande(cifras), k = combPequeno(2, 9);
+            return { expresion: A + ' + ' + B + ' × ' + k, valor: A + B * k, enunciado: '' };
+        }
+
+        function generarEjerciciosCombinadas(cantidad, tipo, nivel, cifras) {
+            cantidad = parseInt(cantidad, 10) || 8;
+            let plantillas;
+
+            if (tipo === 'mixto') {
+                const nProblemas = Math.round(cantidad / 2);
+                plantillas = barajarArreglo(
+                    combTomarPlantillas('problema', nivel, nProblemas)
+                        .concat(combTomarPlantillas('operatoria', nivel, cantidad - nProblemas))
+                );
+            } else {
+                plantillas = combTomarPlantillas(tipo, nivel, cantidad);
+            }
+
+            const lista = [];
+            const usados = new Set();
+
+            plantillas.forEach(function (p) {
+                let dato = null;
+                for (let i = 0; i < 80 && dato === null; i++) {
+                    const candidato = p.generar(cifras);
+                    if (!candidato) continue;
+                    if (!Number.isInteger(candidato.valor) || candidato.valor < 0) continue;
+                    const firma = candidato.expresion + '|' + (candidato.enunciado || '');
+                    if (usados.has(firma)) continue;
+                    dato = candidato;
+                }
+                if (dato === null) dato = combRespaldo(cifras);
+
+                usados.add(dato.expresion + '|' + (dato.enunciado || ''));
+                lista.push({
+                    numero: lista.length + 1,
+                    tipo: p.tipo,
+                    nivel: p.nivel,
+                    plantilla: p.id,
+                    enunciado: dato.enunciado || '',
+                    expresion: dato.expresion,
+                    resultado: dato.valor
+                });
+            });
+
+            return lista;
+        }
+
+        // ---- RENDER ----
+        function mostrarEjerciciosCombinadas(lista) {
+            const contenedor = document.getElementById('contenedor-ejercicios-combinadas');
+            let html = '<div style="display: grid; gap: 14px;">';
+
+            lista.forEach(function (ej, idx) {
+                const esProblema = ej.tipo === 'problema';
+                const color = esProblema ? '#6b4c9a' : '#2f6f4e';
+                const cuerpo = esProblema
+                    ? '<div style="font-size: 15px; color: #333; line-height: 1.5;">' + ej.enunciado + '</div>'
+                    : '<div style="font-size: 20px; font-weight: 600; color: #1a3c6e;">' + ej.expresion + ' =</div>';
+
+                html += '<div style="background-color: #f9f9f9; padding: 16px; border-radius: 4px; border-left: 4px solid ' + color + ';">' +
+                    '<div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 12px;">' +
+                        '<div style="display: flex; align-items: flex-start; gap: 12px; flex: 1; min-width: 220px;">' +
+                            '<span style="font-weight: 600; color: #1a3c6e; min-width: 26px;">' + ej.numero + '.</span>' +
+                            cuerpo +
+                        '</div>' +
+                        '<span style="font-size: 12px; color: #fff; background-color: ' + color + '; padding: 4px 10px; border-radius: 12px; white-space: nowrap;">' + (esProblema ? 'Problema' : 'Operatoria') + '</span>' +
+                    '</div>' +
+                    '<div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">' +
+                        '<span style="font-size: 14px; font-weight: 600; color: #1a3c6e;">Respuesta:</span>' +
+                        '<input type="number" id="resp-comb-' + idx + '" oninput="registrarRespuestaCombinadas(' + idx + ', this.value)" placeholder="tu respuesta" style="flex: 1; min-width: 150px; padding: 8px 12px; border: 2px solid #1a3c6e; border-radius: 4px; font-size: 14px; color: #1a3c6e; background-color: white;">' +
+                    '</div>' +
+                '</div>';
+            });
+
+            html += '</div>';
+            contenedor.innerHTML = html;
+        }
+
+        // ---- HANDLER: guardar respuesta ----
+        // Convención 5° básico: se puede cambiar la respuesta hasta presionar
+        // "Revisar Respuestas"; no se muestra ningún color de corrección antes.
+        function registrarRespuestaCombinadas(idx, valor) {
+            respuestasCombinadas[idx] = valor;
+            const campo = document.getElementById('resp-comb-' + idx);
+            if (campo) {
+                campo.style.backgroundColor = (valor !== undefined && String(valor).trim() !== '') ? '#eef1f8' : 'white';
+            }
+        }
+
+        // ---- REVELADOR: corrección y resultados ----
+        function revelarResultadosCombinadas() {
+            let correctas = 0;
+            let html = '<table style="width: 100%; border-collapse: collapse; font-size: 13px;">';
+            html += '<tr style="background-color: #1a3c6e; color: white;">' +
+                    '<th style="padding: 10px; text-align: left; border: 1px solid #ccc;">N°</th>' +
+                    '<th style="padding: 10px; text-align: left; border: 1px solid #ccc;">Ejercicio</th>' +
+                    '<th style="padding: 10px; text-align: left; border: 1px solid #ccc;">Operación combinada</th>' +
+                    '<th style="padding: 10px; text-align: center; border: 1px solid #ccc;">Tu Respuesta</th>' +
+                    '<th style="padding: 10px; text-align: center; border: 1px solid #ccc;">Respuesta Correcta</th>' +
+                    '<th style="padding: 10px; text-align: center; border: 1px solid #ccc;">Estado</th>' +
+                    '</tr>';
+
+            ejerciciosCombinadasActuales.forEach(function (ej, idx) {
+                const valor = respuestasCombinadas[idx];
+                const respondio = valor !== undefined && String(valor).trim() !== '';
+                const esCorrecta = respondio && Number(valor) === ej.resultado;
+                if (esCorrecta) correctas++;
+
+                const campo = document.getElementById('resp-comb-' + idx);
+                if (campo) {
+                    campo.style.borderColor = esCorrecta ? '#2f6f4e' : '#c93c3c';
+                    campo.style.backgroundColor = esCorrecta ? '#e8f5e9' : '#ffebee';
+                }
+
+                const estadoIcon = esCorrecta ? '✓' : '✗';
+                const estadoColor = esCorrecta ? '#2f6f4e' : '#c93c3c';
+                const bgColor = esCorrecta ? '#e8f5e9' : '#ffebee';
+                const descripcion = ej.tipo === 'problema' ? ej.enunciado : ej.expresion;
+
+                html += '<tr style="background-color: ' + bgColor + '; border: 1px solid #ddd;">' +
+                    '<td style="padding: 10px; border: 1px solid #ccc; font-weight: 600;">' + ej.numero + '</td>' +
+                    '<td style="padding: 10px; border: 1px solid #ccc;">' + descripcion + '</td>' +
+                    '<td style="padding: 10px; border: 1px solid #ccc; color: #1a3c6e; font-weight: 600; white-space: nowrap;">' + ej.expresion + '</td>' +
+                    '<td style="padding: 10px; text-align: center; border: 1px solid #ccc;">' + (respondio ? valor : '—') + '</td>' +
+                    '<td style="padding: 10px; text-align: center; border: 1px solid #ccc; font-weight: 600; color: #1a3c6e;">' + ej.resultado + '</td>' +
+                    '<td style="padding: 10px; text-align: center; border: 1px solid #ccc; color: ' + estadoColor + '; font-weight: 600;">' + estadoIcon + '</td>' +
+                '</tr>';
+            });
+
+            html += '</table>';
+
+            const total = ejerciciosCombinadasActuales.length;
+            const porcentaje = total === 0 ? 0 : Math.round((correctas / total) * 100);
+            const mensaje = porcentaje === 100 ? '¡Excelente! 🎉' :
+                            porcentaje >= 80 ? '¡Muy bien! 👏' :
+                            porcentaje >= 60 ? 'Buen esfuerzo 💪' : 'Sigue practicando 📚';
+
+            document.getElementById('contenedor-resultados-combinadas').innerHTML =
+                '<div style="margin-bottom: 20px; text-align: center;">' +
+                    '<p style="font-size: 32px; font-weight: 600; color: #1a3c6e;">' + correctas + '/' + total + '</p>' +
+                    '<p style="font-size: 18px; color: #2f6f4e;">' + porcentaje + '% — ' + mensaje + '</p>' +
+                    '<p style="font-size: 13px; color: #666; margin-top: 6px;">Recuerda el orden: primero los paréntesis, luego × y ÷, y al final + y −.</p>' +
+                '</div>' + html;
+
+            document.getElementById('area-ejercicios-combinadas').style.display = 'none';
+            document.getElementById('resultados-combinadas').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ---- IMPRIMIR / PDF ----
+        function imprimirEjerciciosCombinadas() {
+            if (ejerciciosCombinadasActuales.length === 0) {
+                alert('Por favor, genera los ejercicios primero.');
+                return;
+            }
+
+            let htmlPDF = '<!DOCTYPE html><html><head><meta charset="UTF-8"><style>' +
+                'body { font-family: Arial, sans-serif; padding: 20px; margin: 0; background: white; }' +
+                '.header { text-align: center; margin-bottom: 26px; border-bottom: 2px solid #1a3c6e; padding-bottom: 14px; }' +
+                '.header h1 { margin: 0 0 5px 0; color: #1a3c6e; font-size: 22px; }' +
+                '.header p { margin: 0; color: #666; font-size: 12px; }' +
+                '.student-info { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; font-size: 13px; }' +
+                '.info-field { display: flex; align-items: flex-end; gap: 10px; }' +
+                '.info-field label { font-weight: bold; color: #333; min-width: 70px; }' +
+                '.info-field .line { flex: 1; border-bottom: 1px solid #999; height: 18px; }' +
+                '.exercise { margin-bottom: 14px; padding: 12px; background-color: #f9f9f9; border-left: 3px solid #1a3c6e; page-break-inside: avoid; }' +
+                '.exercise-number { font-weight: bold; color: #1a3c6e; font-size: 14px; }' +
+                '.exercise-texto { font-size: 13px; color: #333; margin-left: 6px; }' +
+                '.exercise-oper { font-size: 16px; font-weight: bold; color: #1a3c6e; margin-left: 6px; }' +
+                '.respuesta { margin-top: 10px; display: flex; align-items: flex-end; gap: 8px; font-size: 13px; }' +
+                '.respuesta .raya { flex: 1; border-bottom: 1px solid #999; height: 20px; max-width: 320px; }' +
+                '@media print { body { padding: 10px; } .exercise { page-break-inside: avoid; } }' +
+                '</style></head><body>' +
+                '<div class="header"><h1>Ejercitación: Operaciones Combinadas</h1>' +
+                '<p>Jerarquía de las operaciones &mdash; 5&deg; Básico</p></div>' +
+                '<div class="student-info">' +
+                '<div class="info-field"><label>Nombre:</label><div class="line"></div></div>' +
+                '<div class="info-field"><label>Curso:</label><div class="line"></div></div>' +
+                '<div class="info-field"><label>Fecha:</label><div class="line"></div></div>' +
+                '<div class="info-field"><label>Puntaje:</label><div class="line"></div></div>' +
+                '</div>' +
+                '<p style="text-align: center; color: #666; font-size: 12px; margin-bottom: 22px;">' +
+                '<strong>Instrucciones:</strong> Resuelve en tu cuaderno respetando la jerarquía de las operaciones. ' +
+                'En los problemas, plantea primero la operación combinada y luego resuélvela.</p>';
+
+            ejerciciosCombinadasActuales.forEach(function (ej) {
+                if (ej.tipo === 'problema') {
+                    htmlPDF += '<div class="exercise">' +
+                        '<span class="exercise-number">' + ej.numero + '.</span>' +
+                        '<span class="exercise-texto">' + ej.enunciado + '</span>' +
+                        '<div class="respuesta"><span>Operación:</span><span class="raya"></span>' +
+                        '<span>Respuesta:</span><span class="raya"></span></div>' +
+                    '</div>';
+                } else {
+                    htmlPDF += '<div class="exercise">' +
+                        '<span class="exercise-number">' + ej.numero + '.</span>' +
+                        '<span class="exercise-oper">' + ej.expresion + ' =</span>' +
+                        '<div class="respuesta"><span>Respuesta:</span><span class="raya"></span></div>' +
+                    '</div>';
+                }
+            });
+
+            htmlPDF += '</body></html>';
+
+            const blob = new Blob([htmlPDF], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const printWindow = window.open(url, '_blank');
+            printWindow.onload = function () {
+                setTimeout(function () { printWindow.print(); }, 250);
+            };
+        }
+
+        // ---- LECTURA DE LA CONFIGURACIÓN ----
+        function combLeerConfiguracion() {
+            return {
+                cantidad: parseInt(document.getElementById('cantidad-ejercicios-combinadas').value, 10),
+                tipo: document.getElementById('tipo-actividad-combinadas').value,
+                nivel: document.getElementById('nivel-combinadas').value,
+                cifras: parseInt(document.getElementById('cifras-combinadas').value, 10)
+            };
+        }
+
+        // ---- BOTONES ----
+        document.getElementById('btn-generar-combinadas').addEventListener('click', function () {
+            const cfg = combLeerConfiguracion();
+            ejerciciosCombinadasActuales = generarEjerciciosCombinadas(cfg.cantidad, cfg.tipo, cfg.nivel, cfg.cifras);
+            respuestasCombinadas = {};
+            mostrarEjerciciosCombinadas(ejerciciosCombinadasActuales);
+            document.getElementById('configuracion-combinadas').style.display = 'none';
+            document.getElementById('area-ejercicios-combinadas').style.display = 'block';
+            document.getElementById('resultados-combinadas').style.display = 'none';
+        });
+
+        document.getElementById('btn-nuevos-ejercicios-combinadas').addEventListener('click', function () {
+            const cfg = combLeerConfiguracion();
+            ejerciciosCombinadasActuales = generarEjerciciosCombinadas(cfg.cantidad, cfg.tipo, cfg.nivel, cfg.cifras);
+            respuestasCombinadas = {};
+            mostrarEjerciciosCombinadas(ejerciciosCombinadasActuales);
+            document.getElementById('area-ejercicios-combinadas').style.display = 'block';
+            document.getElementById('resultados-combinadas').style.display = 'none';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        document.getElementById('btn-imprimir-combinadas').addEventListener('click', function () {
+            imprimirEjerciciosCombinadas();
+        });
+
+        document.getElementById('btn-revisar-combinadas').addEventListener('click', function () {
+            revelarResultadosCombinadas();
+        });
+
+        // ---- MOSTRAR MÓDULO ----
+        function mostrarModuloCombinadas() {
+            document.getElementById('modulo-combinadas').style.display = 'block';
+            document.getElementById('configuracion-combinadas').style.display = 'block';
+            document.getElementById('area-ejercicios-combinadas').style.display = 'none';
+            document.getElementById('resultados-combinadas').style.display = 'none';
+            document.querySelectorAll('.seccion').forEach(function (s) { s.style.display = 'none'; });
+        }
+
         generarEjercicios();
     </script>
 </body>
