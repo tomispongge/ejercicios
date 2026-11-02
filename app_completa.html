@@ -960,6 +960,83 @@
             height: auto;
         }
 
+        .alg-lista {
+            display: grid;
+            gap: 14px;
+        }
+
+        .alg-item {
+            background-color: #f9f9f9;
+            padding: 16px;
+            border-radius: 4px;
+            border-left: 4px solid #1a3c6e;
+        }
+
+        .alg-contexto {
+            background: white;
+            border: 2px solid #1a3c6e;
+            border-radius: 8px;
+            padding: 12px 14px;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #333;
+        }
+
+        .alg-pregunta {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #1a3c6e;
+            line-height: 1.5;
+        }
+
+        .alg-numero {
+            min-width: 26px;
+        }
+
+        .alg-opciones {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 8px;
+        }
+
+        .alg-opcion {
+            padding: 10px 14px;
+            border: 2px solid #1a3c6e;
+            background-color: white;
+            color: #1a3c6e;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: left;
+        }
+
+        .alg-opcion.elegida {
+            background-color: #1a3c6e;
+            color: white;
+        }
+
+        .alg-boton {
+            padding: 10px 20px;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .alg-comenzar {
+            width: 100%;
+            padding: 12px;
+            background-color: #2f6f4e;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
         .hist-filtros {
             display: flex;
             gap: 8px;
@@ -1237,9 +1314,44 @@
                     <span class="opcion-emoji">🔣</span>
                     Operaciones<br>Combinadas
                 </button>
-                <button class="opcion" onclick="mostrarModuloEcuaciones()">
+                <button class="opcion" onclick="irA('menu-5basico-ecuaciones')">
                     <span class="opcion-emoji">⚖️</span>
                     Ecuaciones e<br>Inecuaciones
+                </button>
+            </div>
+        </div>
+
+        <!-- SUBMENÚ 5º BÁSICO: ECUACIONES E INECUACIONES -->
+        <div id="menu-5basico-ecuaciones" class="seccion">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                <h1>⚖️ Ecuaciones e Inecuaciones · 5º Básico</h1>
+                <button class="btn btn-volver" onclick="irA('menu-5basico-matematica')">← Volver</button>
+            </div>
+
+            <div class="menu-principal">
+                <button class="opcion" onclick="mostrarModuloAlgLenguaje()">
+                    <span class="opcion-emoji">🗣️</span>
+                    Lenguaje Algebraico
+                </button>
+                <button class="opcion" onclick="mostrarModuloAlgValorizar()">
+                    <span class="opcion-emoji">🔢</span>
+                    Valorizar Expresiones
+                </button>
+                <button class="opcion" onclick="mostrarModuloEcuaciones()">
+                    <span class="opcion-emoji">⚖️</span>
+                    Resolver Ecuaciones e Inecuaciones
+                </button>
+                <button class="opcion" onclick="mostrarModuloAlgVerificar()">
+                    <span class="opcion-emoji">✅</span>
+                    Verificar Soluciones
+                </button>
+                <button class="opcion" onclick="mostrarModuloAlgProblemas()">
+                    <span class="opcion-emoji">🧩</span>
+                    Resolución de Problemas
+                </button>
+                <button class="opcion" onclick="mostrarModuloAlgPrueba()">
+                    <span class="opcion-emoji">📝</span>
+                    Prueba de Práctica (24 puntos)
                 </button>
             </div>
         </div>
@@ -2691,7 +2803,7 @@
                 <!-- CONFIGURACIÓN INICIAL -->
                 <div id="configuracion-ecuaciones" class="seccion-contenedor">
                     <div style="display: flex; justify-content: flex-end; margin-bottom: 12px;">
-                        <button class="btn btn-volver" onclick="irA('menu-5basico-matematica'); document.getElementById('modulo-ecuaciones').style.display='none';">← Volver</button>
+                        <button class="btn btn-volver" onclick="irA('menu-5basico-ecuaciones'); document.getElementById('modulo-ecuaciones').style.display='none';">← Volver</button>
                     </div>
                     <h2 style="color: #1a3c6e; margin-bottom: 20px;">⚖️ Ecuaciones e Inecuaciones — 5° Básico</h2>
 
@@ -2776,7 +2888,7 @@
                             cursor: pointer;
                         ">🖨️ Imprimir / PDF</button>
 
-                        <button onclick="irA('menu-5basico-matematica'); document.getElementById('modulo-ecuaciones').style.display='none';" style="
+                        <button onclick="irA('menu-5basico-ecuaciones'); document.getElementById('modulo-ecuaciones').style.display='none';" style="
                             padding: 10px 20px;
                             background-color: #1a3c6e;
                             color: white;
@@ -2818,7 +2930,7 @@
                             font-size: 14px;
                             cursor: pointer;
                         ">🔄 Nuevos Ejercicios</button>
-                        <button onclick="irA('menu-5basico-matematica'); document.getElementById('modulo-ecuaciones').style.display='none';" style="
+                        <button onclick="irA('menu-5basico-ecuaciones'); document.getElementById('modulo-ecuaciones').style.display='none';" style="
                             width: 100%;
                             padding: 12px;
                             background-color: #1a3c6e;
@@ -2832,6 +2944,9 @@
                 </div>
             </div>
         </div>
+
+        <!-- SUBMÓDULOS DE ÁLGEBRA (se crean desde el script, uno por indicador) -->
+        <div id="modulos-algebra"></div>
 
         <!-- REVISIÓN DE TAREAS (HISTORIAL GUARDADO EN EL DISPOSITIVO) -->
         <div id="historial" class="seccion">
@@ -9828,6 +9943,961 @@
         }
 
         // ============================================================
+        // ============ ÁLGEBRA: SUBMÓDULOS DE ECUACIONES (5° BÁSICO) =
+        // ============================================================
+        // Cubren los indicadores de la evaluación de patrones y álgebra:
+        //  Ítem 1: lenguaje cotidiano ↔ algebraico, identificar ecuaciones e inecuaciones.
+        //  Ítem 2: valorizar expresiones.   Ítem 3: resolver y verificar soluciones.
+        //  Ítem 4: resolver problemas planteando una ecuación.
+        // Usan la misma fórmula del módulo de Ecuaciones: las mismas tres dificultades
+        // (rangosEcuaciones y generarEcuacionForma), alternativas A–D, respuesta editable
+        // hasta "Revisar Respuestas", bolsa barajada y deduplicación por firma.
+
+        const OPS_ALGEBRA = ['suma', 'resta', 'mult', 'div'];
+
+        const seccionesAlgebra = {
+            aAlgebraico: { titulo: 'Del lenguaje cotidiano al algebraico', emoji: '🗣️', color: '#2d7d9a' },
+            aCotidiano:  { titulo: 'Del lenguaje algebraico al cotidiano', emoji: '📖', color: '#6b4c9a' },
+            identificar: { titulo: 'Identifica el tipo de expresión', emoji: '🔎', color: '#a05a2c' },
+            plantear:    { titulo: 'Escribe en símbolos', emoji: '✍️', color: '#2f6f4e' },
+            situacion:   { titulo: 'Situaciones breves', emoji: '💡', color: '#c0562f' },
+            valor:       { titulo: 'Valor de una expresión', emoji: '🔢', color: '#1a3c6e' },
+            valorizar:   { titulo: 'Reemplaza y calcula', emoji: '🔢', color: '#1a3c6e' },
+            verificar:   { titulo: 'Comprueba la solución', emoji: '✅', color: '#2f6f4e' },
+            problema:    { titulo: 'Problemas', emoji: '🧩', color: '#6b4c9a' },
+            item1:       { titulo: 'Ítem 1: Lenguaje algebraico (6 puntos)', emoji: '🗣️', color: '#2d7d9a' },
+            item2:       { titulo: 'Ítem 2: Valorizar expresiones (6 puntos)', emoji: '🔢', color: '#1a3c6e' },
+            item3:       { titulo: 'Ítem 3: Ecuaciones e inecuaciones (6 puntos)', emoji: '⚖️', color: '#2f6f4e' },
+            item4:       { titulo: 'Ítem 4: Resolución de problemas (6 puntos)', emoji: '🧩', color: '#6b4c9a' }
+        };
+
+        const ordenSeccionesLenguaje = ['aAlgebraico', 'aCotidiano', 'identificar', 'plantear', 'situacion', 'valor'];
+
+        const indicadoresAlgebra = {
+            1: 'Relaciona el lenguaje cotidiano con el algebraico, reconoce el valor de una expresión e identifica ecuaciones e inecuaciones.',
+            2: 'Valoriza expresiones algebraicas reemplazando la variable por el valor dado.',
+            3: 'Resuelve ecuaciones e inecuaciones con operaciones inversas y verifica la solución.',
+            4: 'Resuelve problemas: identifica la incógnita, plantea la ecuación, la resuelve y comunica la respuesta.'
+        };
+
+        function algElegir(lista) { return lista[ecAzar(0, lista.length - 1)]; }
+
+        // Alternativas de texto: la correcta + 3 distractores distintos.
+        function algOpciones(correcta, malas) {
+            const vistas = new Set([correcta]);
+            const elegidas = [];
+            barajarArreglo(malas).forEach(m => {
+                if (m !== undefined && m !== null && !vistas.has(m) && elegidas.length < 3) {
+                    vistas.add(m);
+                    elegidas.push(m);
+                }
+            });
+            return barajarArreglo([correcta].concat(elegidas));
+        }
+
+        // Toma de la bolsa barajada y evita repetir el mismo ejercicio en la guía.
+        function armarGuiaAlgebra(cola, banco, cantidad, crear) {
+            const firmas = new Set();
+            return tomarDeColaEcuaciones(cola, banco, cantidad).map(clave => {
+                let item, intentos = 0;
+                do {
+                    item = crear(clave);
+                    intentos++;
+                } while (firmas.has(item.firma) && intentos < 40);
+                firmas.add(item.firma);
+                return item;
+            });
+        }
+
+        // ---------- Ítem 1: lenguaje algebraico ----------
+        // Cada frase: [lenguaje cotidiano, lenguaje algebraico, equivocaciones típicas].
+        function frasesAlgebra(dificultad) {
+            const R = rangosEcuaciones[dificultad];
+            const a = ecAzar(4, Math.max(9, R.tabla));
+            const b = ecAzar(4, Math.max(9, R.tabla));
+            let frases;
+            if (dificultad === 'facil') {
+                frases = [
+                    [`Un número aumentado en ${a}`, `x + ${a}`, [`x − ${a}`, `${a} · x`, `x ÷ ${a}`, `${a} − x`]],
+                    [`Un número disminuido en ${a}`, `x − ${a}`, [`${a} − x`, `x + ${a}`, `${a} · x`, `x ÷ ${a}`]],
+                    [`${a} menos que un número`, `x − ${a}`, [`${a} − x`, `x + ${a}`, `${a} · x`, `x ÷ ${a}`]],
+                    ['El doble de un número', '2 · x', ['x + 2', 'x ÷ 2', 'x − 2', 'x · x']],
+                    ['El triple de un número', '3 · x', ['x + 3', 'x ÷ 3', 'x − 3', 'x · x · x']],
+                    ['La mitad de un número', 'x ÷ 2', ['2 · x', 'x − 2', '2 ÷ x', 'x + 2']],
+                    ['La tercera parte de un número', 'x ÷ 3', ['3 · x', 'x − 3', '3 ÷ x', 'x + 3']],
+                    [`El producto entre ${a} y un número`, `${a} · x`, [`${a} + x`, `x ÷ ${a}`, `x − ${a}`, `${a} ÷ x`]],
+                    [`El cociente entre un número y ${a}`, `x ÷ ${a}`, [`${a} ÷ x`, `${a} · x`, `x − ${a}`, `x + ${a}`]]
+                ];
+            } else if (dificultad === 'intermedio') {
+                frases = [
+                    [`El doble de un número, aumentado en ${a}`, `2 · x + ${a}`, [`2 · (x + ${a})`, `2 · x − ${a}`, `2 + x + ${a}`, `x + ${a}`]],
+                    [`El triple de un número, disminuido en ${a}`, `3 · x − ${a}`, [`3 · (x − ${a})`, `3 · x + ${a}`, `3 + x − ${a}`, `x − ${a}`]],
+                    [`La mitad de un número, aumentada en ${a}`, `x ÷ 2 + ${a}`, [`(x + ${a}) ÷ 2`, `2 · x + ${a}`, `x ÷ 2 − ${a}`, `x + ${a}`]],
+                    [`La mitad de un número, disminuida en ${a}`, `x ÷ 2 − ${a}`, [`(x − ${a}) ÷ 2`, `2 · x − ${a}`, `x ÷ 2 + ${a}`, `x − ${a}`]],
+                    [`${a} veces un número, aumentado en ${b}`, `${a} · x + ${b}`, [`${a} · (x + ${b})`, `${a} + x + ${b}`, `${a} · x − ${b}`, `x + ${b}`]],
+                    [`${a} veces un número, disminuido en ${b}`, `${a} · x − ${b}`, [`${a} · (x − ${b})`, `${a} + x − ${b}`, `${a} · x + ${b}`, `x − ${b}`]],
+                    [`${a} menos que el triple de un número`, `3 · x − ${a}`, [`${a} − 3 · x`, `3 · x + ${a}`, `3 · (x − ${a})`, `x − ${a}`]]
+                ];
+            } else {
+                frases = [
+                    [`El doble de la suma entre un número y ${a}`, `2 · (x + ${a})`, [`2 · x + ${a}`, `2 · (x − ${a})`, `2 + x + ${a}`, `x + 2 · ${a}`]],
+                    [`El triple de la suma entre un número y ${a}`, `3 · (x + ${a})`, [`3 · x + ${a}`, `3 · (x − ${a})`, `3 + x + ${a}`, `x + 3 · ${a}`]],
+                    [`El doble de la diferencia entre un número y ${a}`, `2 · (x − ${a})`, [`2 · x − ${a}`, `2 · (x + ${a})`, `2 − x − ${a}`, `x − 2 · ${a}`]],
+                    [`El triple de la diferencia entre un número y ${a}`, `3 · (x − ${a})`, [`3 · x − ${a}`, `3 · (x + ${a})`, `3 − x − ${a}`, `x − 3 · ${a}`]],
+                    [`La mitad de la suma entre un número y ${a}`, `(x + ${a}) ÷ 2`, [`x ÷ 2 + ${a}`, `(x − ${a}) ÷ 2`, `2 · (x + ${a})`, `x + ${a} ÷ 2`]],
+                    ['La suma entre un número y su doble', 'x + 2 · x', ['x + 2', '2 · (x + 2)', 'x · 2 · x', 'x + x']],
+                    ['La suma entre un número y su sucesor', 'x + (x + 1)', ['x + 1', 'x + (x − 1)', 'x · (x + 1)', 'x + x']],
+                    [`El doble de un número, menos su mitad`, '2 · x − x ÷ 2', ['2 · (x − 2)', 'x − x ÷ 2', '2 · x − 2', '2 · x ÷ 2']]
+                ];
+            }
+            return frases.map(f => ({ texto: f[0], expr: f[1], malas: f[2] }));
+        }
+
+        // Situaciones breves: [enunciado, expresión, equivocaciones típicas].
+        function situacionesAlgebra(dificultad) {
+            const R = rangosEcuaciones[dificultad];
+            const a = ecAzar(3, Math.max(9, R.tabla));
+            const b = ecAzar(2, 12) * 500;
+            const c = ecAzar(3, Math.max(9, R.tabla));
+            const base = [
+                [`Camila tiene x láminas y le regalan ${a} más. ¿Qué expresión representa las láminas que tiene ahora?`, `x + ${a}`, [`x − ${a}`, `${a} · x`, `${a} − x`]],
+                [`Un lápiz cuesta x pesos. ¿Qué expresión representa el precio de ${a} lápices?`, `${a} · x`, [`x + ${a}`, `x ÷ ${a}`, `x − ${a}`]],
+                [`Benjamín tiene x pesos y gasta ${a * 100}. ¿Qué expresión representa el dinero que le queda?`, `x − ${a * 100}`, [`${a * 100} − x`, `x + ${a * 100}`, `${a * 100} · x`]],
+                [`Se reparten x galletas en partes iguales entre ${a} niños. ¿Qué expresión representa lo que recibe cada niño?`, `x ÷ ${a}`, [`${a} ÷ x`, `${a} · x`, `x − ${a}`]],
+                [`Martina tiene x años. ¿Qué expresión representa su edad dentro de ${a} años?`, `x + ${a}`, [`x − ${a}`, `${a} · x`, `${a} − x`]],
+                [`Tomás tiene x años. ¿Qué expresión representa la edad que tenía hace ${a} años?`, `x − ${a}`, [`x + ${a}`, `${a} − x`, `${a} · x`]],
+                ['El lado de un cuadrado mide x cm. ¿Qué expresión representa su perímetro?', '4 · x', ['x + 4', 'x · x', '2 · x']]
+            ];
+            const dosPasos = [
+                [`Una polera cuesta x pesos y un gorro cuesta ${b} pesos. ¿Qué expresión representa el precio de 2 poleras y un gorro?`, `2 · x + ${b}`, [`2 · (x + ${b})`, `x + 2 · ${b}`, `2 · x − ${b}`]],
+                [`Hay ${a} cajas con x huevos cada una y ${c} huevos sueltos. ¿Qué expresión representa el total de huevos?`, `${a} · x + ${c}`, [`${a} · (x + ${c})`, `${a} + x + ${c}`, `x + ${c}`]],
+                [`Un rectángulo mide x cm de largo y ${a} cm de ancho. ¿Qué expresión representa su perímetro?`, `2 · x + 2 · ${a}`, [`x + ${a}`, `x · ${a}`, `2 · x + ${a}`]],
+                [`Renata tiene x pesos y compra ${a} cuadernos de ${b} pesos cada uno. ¿Qué expresión representa el dinero que le queda?`, `x − ${a} · ${b}`, [`(x − ${a}) · ${b}`, `x + ${a} · ${b}`, `${a} · ${b} − x`]]
+            ];
+            const lista = dificultad === 'facil' ? base : dosPasos.concat(base.slice(0, 3));
+            return lista.map(s => ({ texto: s[0], expr: s[1], malas: s[2] }));
+        }
+
+        function itemLenguaje(tipo, dificultad) {
+            const R = rangosEcuaciones[dificultad];
+            if (tipo === 'aAlgebraico') {
+                const f = algElegir(frasesAlgebra(dificultad));
+                return {
+                    seccion: tipo, tipo: 'texto', pregunta: `¿Qué expresión representa: «${f.texto}»?`,
+                    opciones: algOpciones(f.expr, f.malas), respuestaCorrecta: f.expr,
+                    explicacion: `«${f.texto}» se escribe ${f.expr}.`, firma: f.texto
+                };
+            }
+            if (tipo === 'aCotidiano') {
+                const frases = frasesAlgebra(dificultad);
+                const f = algElegir(frases);
+                const otras = frases.filter(o => o.expr !== f.expr).map(o => o.texto);
+                return {
+                    seccion: tipo, tipo: 'texto', pregunta: '¿Cómo se dice esta expresión en lenguaje cotidiano?', expresion: f.expr,
+                    opciones: algOpciones(f.texto, otras), respuestaCorrecta: f.texto,
+                    explicacion: `${f.expr} se lee: «${f.texto}».`, firma: f.expr
+                };
+            }
+            if (tipo === 'identificar') {
+                const e = generarEcuacionForma(algElegir(formasEcuaciones(dificultad, OPS_ALGEBRA)), dificultad);
+                const q = generarInecuacionForma(algElegir(formasInecuaciones(dificultad, OPS_ALGEBRA)), dificultad);
+                const expresionSola = e.expr.split(' = ')[0];
+                const n = ecAzar(2, 20), m = ecAzar(2, 20);
+                const operacion = `${n} + ${m} = ${n + m}`;
+                const objetivo = algElegir(['ecuacion', 'inecuacion', 'expresion']);
+                const casos = {
+                    ecuacion: {
+                        nombre: 'una ecuación', correcta: e.expr, malas: [q.expr, expresionSola, operacion],
+                        por: 'Una ecuación tiene incógnita y un signo =.'
+                    },
+                    inecuacion: {
+                        nombre: 'una inecuación', correcta: q.expr, malas: [e.expr, expresionSola, operacion],
+                        por: 'Una inecuación tiene incógnita y un signo < o >.'
+                    },
+                    expresion: {
+                        nombre: 'una expresión algebraica (sin signo =, < ni >)', correcta: expresionSola, malas: [e.expr, q.expr, operacion],
+                        por: 'Una expresión algebraica tiene letras y números, pero no tiene signo =, < ni >.'
+                    }
+                };
+                const c = casos[objetivo];
+                return {
+                    seccion: tipo, tipo: 'texto', pregunta: `¿Cuál de estas es ${c.nombre}?`,
+                    opciones: algOpciones(c.correcta, c.malas), respuestaCorrecta: c.correcta,
+                    explicacion: c.por, firma: objetivo + c.correcta
+                };
+            }
+            if (tipo === 'plantear') {
+                const f = algElegir(frasesAlgebra(dificultad));
+                const n = ecAzar(10, Math.floor(R.max / 2));
+                const r = algElegir([['es igual a', '='], ['es mayor que', '>'], ['es menor que', '<']]);
+                const correcta = `${f.expr} ${r[1]} ${n}`;
+                const otrosSignos = ['=', '>', '<'].filter(s => s !== r[1]).map(s => `${f.expr} ${s} ${n}`);
+                return {
+                    seccion: tipo, tipo: 'texto', pregunta: `Escribe en símbolos: «${f.texto} ${r[0]} ${n}».`,
+                    opciones: algOpciones(correcta, otrosSignos.concat(f.malas.map(m => `${m} ${r[1]} ${n}`))), respuestaCorrecta: correcta,
+                    explicacion: `«${r[0]}» se escribe ${r[1]}, por eso queda ${correcta}.`, firma: f.texto + r[1] + n
+                };
+            }
+            if (tipo === 'situacion') {
+                const s = algElegir(situacionesAlgebra(dificultad));
+                return {
+                    seccion: tipo, tipo: 'texto', pregunta: s.texto,
+                    opciones: algOpciones(s.expr, s.malas), respuestaCorrecta: s.expr,
+                    explicacion: `La expresión es ${s.expr}.`, firma: s.texto
+                };
+            }
+            return Object.assign(itemValorizar(algElegir(formasValorizar[dificultad]), dificultad), { seccion: 'valor' });
+        }
+
+        function generarGuiaLenguaje(cantidad, dificultad) {
+            const lista = armarGuiaAlgebra(`lenguaje/${dificultad}`, ordenSeccionesLenguaje, cantidad, t => itemLenguaje(t, dificultad));
+            return lista.sort((p, q) => ordenSeccionesLenguaje.indexOf(p.seccion) - ordenSeccionesLenguaje.indexOf(q.seccion));
+        }
+
+        // ---------- Ítem 2: valorizar expresiones ----------
+        const formasValorizar = {
+            facil: ['x+a', 'x-a', 'a*x', 'x/a'],
+            intermedio: ['a*x+b', 'a*x-b', 'x/a+b', 'a+b*x'],
+            dificil: ['a*(x+b)', 'a*(x-b)', '(x+a)/b', 'a*x+b*y', 'a*x-b*y']
+        };
+
+        // Devuelve la expresión, los datos a reemplazar, el valor y las equivocaciones típicas
+        // (juntar los dígitos en vez de multiplicar, operar de izquierda a derecha, etc.).
+        function generarValor(forma, dificultad) {
+            const R = rangosEcuaciones[dificultad];
+            const a = ecAzar(2, R.tabla), b = ecAzar(2, R.tabla);
+            const junto = (p, q) => Number(`${p}${q}`);
+            let x, y, q, v, expr, sust, errores, datos;
+            switch (forma) {
+                case 'x+a':
+                    x = ecAzar(2, Math.floor(R.max / 2)); v = x + a;
+                    expr = `x + ${a}`; sust = `${x} + ${a} = ${v}`; errores = [x, a, Math.abs(x - a), junto(x, a)];
+                    break;
+                case 'x-a':
+                    x = a + ecAzar(1, Math.floor(R.max / 2)); v = x - a;
+                    expr = `x − ${a}`; sust = `${x} − ${a} = ${v}`; errores = [x + a, x, a, v + 2];
+                    break;
+                case 'a*x':
+                    x = ecAzar(2, R.xMax); v = a * x;
+                    expr = `${a} · x`; sust = `${a} · ${x} = ${v}`; errores = [a + x, junto(a, x), v + a, v - a];
+                    break;
+                case 'x/a':
+                    q = ecAzar(2, R.xMax); x = a * q; v = q;
+                    expr = `x ÷ ${a}`; sust = `${x} ÷ ${a} = ${v}`; errores = [x - a, x + a, q + 1, q + a];
+                    break;
+                case 'a*x+b':
+                    x = ecAzar(2, R.xMax); v = a * x + b;
+                    expr = `${a} · x + ${b}`; sust = `${a} · ${x} + ${b} = ${a * x} + ${b} = ${v}`;
+                    errores = [a * (x + b), a + x + b, junto(a, x) + b, a * x - b];
+                    break;
+                case 'a*x-b':
+                    x = ecAzar(2, R.xMax); v = a * x - Math.min(b, a * x - 1);
+                    expr = `${a} · x − ${a * x - v}`; sust = `${a} · ${x} − ${a * x - v} = ${a * x} − ${a * x - v} = ${v}`;
+                    errores = [a * x + (a * x - v), a + x, junto(a, x) - (a * x - v), v + 2];
+                    break;
+                case 'x/a+b':
+                    q = ecAzar(2, R.xMax); x = a * q; v = q + b;
+                    expr = `x ÷ ${a} + ${b}`; sust = `${x} ÷ ${a} + ${b} = ${q} + ${b} = ${v}`;
+                    errores = [ecEntero((x + b) / a), x + b, q, q * b];
+                    break;
+                case 'a+b*x':
+                    x = ecAzar(2, R.xMax); v = a + b * x;
+                    expr = `${a} + ${b} · x`; sust = `${a} + ${b} · ${x} = ${a} + ${b * x} = ${v}`;
+                    errores = [(a + b) * x, a + b + x, junto(b, x) + a, b * x];
+                    break;
+                case 'a*(x+b)':
+                    x = ecAzar(2, R.xMax); v = a * (x + b);
+                    expr = `${a} · (x + ${b})`; sust = `${a} · (${x} + ${b}) = ${a} · ${x + b} = ${v}`;
+                    errores = [a * x + b, a + x + b, v + a, v - a];
+                    break;
+                case 'a*(x-b)':
+                    x = b + ecAzar(2, R.xMax); v = a * (x - b);
+                    expr = `${a} · (x − ${b})`; sust = `${a} · (${x} − ${b}) = ${a} · ${x - b} = ${v}`;
+                    errores = [a * x - b, a + x - b, a * (x + b), v + a];
+                    break;
+                case '(x+a)/b':
+                    q = ecAzar(2, R.xMax);
+                    { const suma = q * b, s = ecAzar(1, Math.max(1, suma - 1)); x = suma - s;
+                      v = q;
+                      expr = `(x + ${s}) ÷ ${b}`; sust = `(${x} + ${s}) ÷ ${b} = ${suma} ÷ ${b} = ${v}`;
+                      errores = [ecEntero(x / b + s), x + s, q + b, q + 1]; }
+                    break;
+                case 'a*x+b*y':
+                    x = ecAzar(2, Math.min(12, R.xMax)); y = ecAzar(2, Math.min(12, R.xMax)); v = a * x + b * y;
+                    expr = `${a} · x + ${b} · y`; datos = `x = ${x} e y = ${y}`;
+                    sust = `${a} · ${x} + ${b} · ${y} = ${a * x} + ${b * y} = ${v}`;
+                    errores = [a * y + b * x, a + x + b + y, a * x + b + y, v + a];
+                    break;
+                case 'a*x-b*y':
+                    y = ecAzar(2, Math.min(12, R.xMax));
+                    x = Math.ceil((b * y + 1) / a) + ecAzar(0, 5); v = a * x - b * y;
+                    expr = `${a} · x − ${b} · y`; datos = `x = ${x} e y = ${y}`;
+                    sust = `${a} · ${x} − ${b} · ${y} = ${a * x} − ${b * y} = ${v}`;
+                    errores = [a * x + b * y, a * x - b - y, v + a, v + b];
+                    break;
+                default:
+                    throw new Error('Forma de expresión desconocida: ' + forma);
+            }
+            return { expr, datos: datos || `x = ${x}`, valor: v, errores: errores.filter(e => e !== null), sust };
+        }
+
+        function itemValorizar(forma, dificultad) {
+            const g = generarValor(forma, dificultad);
+            return {
+                seccion: 'valorizar', tipo: 'num', pregunta: `Si ${g.datos}, ¿cuál es el valor de esta expresión?`, expresion: g.expr,
+                opciones: opcionesNumSuc(g.valor, g.errores), respuestaCorrecta: g.valor,
+                explicacion: `Se reemplaza y se calcula: ${g.sust}`, firma: g.datos + g.expr
+            };
+        }
+
+        function generarGuiaValorizar(cantidad, dificultad) {
+            return armarGuiaAlgebra(`valorizar/${dificultad}`, formasValorizar[dificultad], cantidad, f => itemValorizar(f, dificultad));
+        }
+
+        // ---------- Ítem 3: verificar soluciones ----------
+        // Se reemplaza un valor dado en una ecuación o inecuación. Los distractores son
+        // cálculos equivocados o la conclusión contraria, así que hay que calcular de verdad.
+        const formasVerificar = {
+            facil: ['x+a', 'x-a', 'a*x', 'x/a'],
+            intermedio: ['x+a', 'x-a', 'a*x', 'x/a', 'a*x+b', 'a*x-b'],
+            dificil: ['a*x+b', 'a*x-b', 'x/a+b', 'a+b*x', 'a*(x+b)']
+        };
+
+        function itemVerificar(clave, dificultad) {
+            const corte = clave.indexOf('|');
+            const clase = clave.slice(0, corte);
+            const g = generarValor(clave.slice(corte + 1), dificultad);
+            const L = g.valor;
+            const delta = ecAzar(1, Math.max(3, Math.min(9, L - 1)));
+            const candidatos = g.errores.concat([L + delta + 1, L + 2, L + 10, L + 20]);
+            const malos = barajarArreglo(Array.from(new Set(candidatos))).filter(w => Number.isInteger(w) && w > 0 && w !== L);
+
+            if (clase === 'ecuacion') {
+                const esSolucion = Math.random() < 0.5;
+                const R = esSolucion ? L : L + (L > delta && Math.random() < 0.5 ? -delta : delta);
+                const otros = malos.filter(w => w !== R);
+                const si = v => `Sí: al reemplazar da ${v}`;
+                const no = v => `No: al reemplazar da ${v}, no ${R}`;
+                const correcta = esSolucion ? si(L) : no(L);
+                // Siempre hay alternativas de "Sí" y de "No": no se puede adivinar por la forma.
+                const malas = esSolucion ? [si(otros[0]), no(otros[1]), no(otros[2])] : [si(R), no(otros[0]), si(otros[1])];
+                return {
+                    seccion: 'verificar', tipo: 'texto', pregunta: `Reemplaza y comprueba: ¿${g.datos} es solución de la ecuación?`,
+                    expresion: `${g.expr} = ${R}`, opciones: algOpciones(correcta, malas), respuestaCorrecta: correcta,
+                    explicacion: `${g.sust}. ${esSolucion ? 'Da lo mismo, así que sí es solución.' : `Da ${L} y no ${R}, así que no es solución.`}`,
+                    firma: g.datos + g.expr + R
+                };
+            }
+
+            const signo = algElegir(['<', '>']);
+            const palabra = signo === '<' ? 'menor' : 'mayor';
+            const quiereCumplir = Math.random() < 0.5;
+            const R = (signo === '<') === quiereCumplir ? L + delta : Math.max(1, L - delta);
+            const cumpleCon = v => (signo === '<' ? v < R : v > R);
+            const cumple = cumpleCon(L);
+            const si = v => `Sí: da ${v}, que es ${palabra} que ${R}`;
+            const no = v => `No: da ${v}, que no es ${palabra} que ${R}`;
+            const correcta = cumple ? si(L) : no(L);
+            const contraria = cumple ? no(L) : si(L);
+            const otras = malos.filter(w => w !== R).map(w => (cumpleCon(w) ? si(w) : no(w)));
+            return {
+                seccion: 'verificar', tipo: 'texto', pregunta: `Reemplaza y comprueba: ¿${g.datos} cumple la inecuación?`,
+                expresion: `${g.expr} ${signo} ${R}`, opciones: algOpciones(correcta, [contraria, otras[0], otras[1]]), respuestaCorrecta: correcta,
+                explicacion: `${g.sust}. ${L} ${cumple ? 'sí' : 'no'} es ${palabra} que ${R}, así que ${cumple ? 'cumple' : 'no cumple'}.`,
+                firma: g.datos + g.expr + signo + R
+            };
+        }
+
+        function generarGuiaVerificar(cantidad, dificultad) {
+            const banco = [];
+            formasVerificar[dificultad].forEach(f => banco.push('ecuacion|' + f, 'inecuacion|' + f));
+            return armarGuiaAlgebra(`verificar/${dificultad}`, banco, cantidad, k => itemVerificar(k, dificultad));
+        }
+
+        // ---------- Ítem 4: resolución de problemas ----------
+        // Las cuentas salen de generarEcuacionForma, con los mismos rangos de Ecuaciones.
+        // {a}, {b}, {c} = números de la ecuación en orden; {x} = solución.
+        //   t: enunciado · x: qué es la incógnita · no: incógnitas equivocadas
+        //   r: respuesta en contexto · noR: respuestas con el número bien, pero mal comunicadas
+        const problemasAlgebra = {
+            'x+a': [
+                { t: 'Sofía tenía algunas láminas. Su abuela le regaló {a} y ahora tiene {b}. ¿Cuántas láminas tenía al comienzo?',
+                  x: 'Las láminas que Sofía tenía al comienzo', no: ['Las láminas que le regaló su abuela', 'Las láminas que Sofía tiene ahora', 'El total de láminas de su abuela'],
+                  r: 'Sofía tenía {x} láminas al comienzo.', noR: ['Su abuela le regaló {x} láminas.', 'Ahora Sofía tiene {x} láminas.'] },
+                { t: 'En un tren viajaban algunas personas. En una estación subieron {a} y ahora viajan {b}. ¿Cuántas personas viajaban antes de la estación?',
+                  x: 'Las personas que viajaban antes de la estación', no: ['Las personas que subieron', 'Las personas que viajan ahora', 'Las estaciones del recorrido'],
+                  r: 'Antes de la estación viajaban {x} personas.', noR: ['En la estación subieron {x} personas.', 'Ahora viajan {x} personas.'] },
+                { t: 'Diego juntó algunas monedas en enero. En febrero juntó {a} más y llegó a {b} monedas. ¿Cuántas monedas juntó en enero?',
+                  x: 'Las monedas que Diego juntó en enero', no: ['Las monedas que juntó en febrero', 'El total de monedas que tiene', 'Los meses que estuvo juntando'],
+                  r: 'En enero Diego juntó {x} monedas.', noR: ['En febrero Diego juntó {x} monedas.', 'En total Diego tiene {x} monedas.'] },
+                { t: 'Una biblioteca tenía algunos libros. Llegaron {a} libros nuevos y ahora tiene {b}. ¿Cuántos libros tenía antes?',
+                  x: 'Los libros que la biblioteca tenía antes', no: ['Los libros nuevos que llegaron', 'Los libros que tiene ahora', 'Los libros que se prestaron'],
+                  r: 'La biblioteca tenía {x} libros antes.', noR: ['Llegaron {x} libros nuevos.', 'Ahora la biblioteca tiene {x} libros.'] }
+            ],
+            'x-a': [
+                { t: 'Matías tenía algunas fichas de juego. Perdió {a} en una partida y le quedaron {b}. ¿Cuántas fichas tenía?',
+                  x: 'Las fichas que Matías tenía al comienzo', no: ['Las fichas que perdió', 'Las fichas que le quedaron', 'Las partidas que jugó'],
+                  r: 'Matías tenía {x} fichas al comienzo.', noR: ['Matías perdió {x} fichas.', 'A Matías le quedaron {x} fichas.'] },
+                { t: 'Una panadería hizo muchos panes. Vendió {a} y le quedaron {b}. ¿Cuántos panes hizo?',
+                  x: 'Los panes que hizo la panadería', no: ['Los panes que vendió', 'Los panes que le quedaron', 'El precio de cada pan'],
+                  r: 'La panadería hizo {x} panes.', noR: ['La panadería vendió {x} panes.', 'A la panadería le quedaron {x} panes.'] },
+                { t: 'Había algunos alumnos en el patio. {a} entraron a la sala y quedaron {b} en el patio. ¿Cuántos alumnos había al comienzo?',
+                  x: 'Los alumnos que había al comienzo en el patio', no: ['Los alumnos que entraron a la sala', 'Los alumnos que quedaron en el patio', 'Las salas del colegio'],
+                  r: 'Al comienzo había {x} alumnos en el patio.', noR: ['A la sala entraron {x} alumnos.', 'En el patio quedaron {x} alumnos.'] },
+                { t: 'Catalina tenía una colección de stickers. Regaló {a} y le quedaron {b}. ¿Cuántos stickers tenía?',
+                  x: 'Los stickers que Catalina tenía al comienzo', no: ['Los stickers que regaló', 'Los stickers que le quedaron', 'Las amigas a las que les regaló'],
+                  r: 'Catalina tenía {x} stickers al comienzo.', noR: ['Catalina regaló {x} stickers.', 'A Catalina le quedaron {x} stickers.'] }
+            ],
+            'a*x': [
+                { t: 'Se compraron {a} cajas iguales de lápices y en total son {b} lápices. ¿Cuántos lápices trae cada caja?',
+                  x: 'Los lápices que trae cada caja', no: ['Las cajas que se compraron', 'El total de lápices', 'El precio de cada caja'],
+                  r: 'Cada caja trae {x} lápices.', noR: ['Se compraron {x} cajas.', 'En total son {x} lápices.'] },
+                { t: 'Laura jugó {a} partidas y en cada una ganó los mismos puntos. En total ganó {b} puntos. ¿Cuántos puntos ganó en cada partida?',
+                  x: 'Los puntos que ganó en cada partida', no: ['La cantidad de partidas', 'El total de puntos', 'Las personas que jugaron'],
+                  r: 'En cada partida Laura ganó {x} puntos.', noR: ['Laura jugó {x} partidas.', 'En total Laura ganó {x} puntos.'] },
+                { t: 'En un gimnasio hay {a} filas con la misma cantidad de sillas y en total son {b} sillas. ¿Cuántas sillas tiene cada fila?',
+                  x: 'Las sillas que tiene cada fila', no: ['La cantidad de filas', 'El total de sillas', 'Las personas sentadas'],
+                  r: 'Cada fila tiene {x} sillas.', noR: ['En el gimnasio hay {x} filas.', 'En total hay {x} sillas.'] },
+                { t: 'Un ciclista recorrió {b} km en {a} horas, avanzando lo mismo cada hora. ¿Cuántos km recorrió cada hora?',
+                  x: 'Los km que recorrió cada hora', no: ['Las horas de viaje', 'El total de km del viaje', 'Las paradas que hizo'],
+                  r: 'El ciclista recorrió {x} km cada hora.', noR: ['El ciclista viajó {x} horas.', 'El viaje completo fue de {x} km.'] },
+            ],
+            'x/a': [
+                { t: 'Se repartieron unas galletas en partes iguales entre {a} amigos y cada uno recibió {b}. ¿Cuántas galletas había?',
+                  x: 'El total de galletas que había', no: ['La cantidad de amigos', 'Las galletas que recibió cada amigo', 'Las galletas que sobraron'],
+                  r: 'Había {x} galletas.', noR: ['Cada amigo recibió {x} galletas.', 'Eran {x} amigos.'] },
+                { t: 'Una cuerda se cortó en {a} trozos iguales y cada trozo mide {b} metros. ¿Cuánto medía la cuerda completa?',
+                  x: 'El largo de la cuerda completa', no: ['La cantidad de trozos', 'El largo de cada trozo', 'Los cortes que se hicieron'],
+                  r: 'La cuerda completa medía {x} metros.', noR: ['Cada trozo mide {x} metros.', 'La cuerda se cortó en {x} trozos.'] },
+                { t: 'Un premio de puntos se dividió en partes iguales entre {a} jugadores y cada uno recibió {b}. ¿De cuántos puntos era el premio?',
+                  x: 'El total de puntos del premio', no: ['La cantidad de jugadores', 'Los puntos que recibió cada jugador', 'Los puntos que sobraron'],
+                  r: 'El premio era de {x} puntos.', noR: ['Cada jugador recibió {x} puntos.', 'El premio se dividió entre {x} jugadores.'] },
+                { t: 'En una actividad del colegio se formaron {a} grupos iguales y cada grupo quedó con {b} alumnos. ¿Cuántos alumnos participaron?',
+                  x: 'El total de alumnos que participaron', no: ['La cantidad de grupos', 'Los alumnos de cada grupo', 'Los profesores que ayudaron'],
+                  r: 'Participaron {x} alumnos.', noR: ['Cada grupo tiene {x} alumnos.', 'Se formaron {x} grupos.'] },
+            ],
+            'a+x': [
+                { t: 'En un campeonato participan {a} niñas. Si en total son {b} participantes, ¿cuántos niños participan?',
+                  x: 'La cantidad de niños que participan', no: ['La cantidad de niñas', 'El total de participantes', 'Los equipos del campeonato'],
+                  r: 'En el campeonato participan {x} niños.', noR: ['En el campeonato participan {x} niñas.', 'En total son {x} participantes.'] },
+                { t: 'Joaquín leyó {a} páginas en la mañana. En la tarde siguió leyendo y completó {b} páginas en el día. ¿Cuántas páginas leyó en la tarde?',
+                  x: 'Las páginas que Joaquín leyó en la tarde', no: ['Las páginas que leyó en la mañana', 'Las páginas que leyó en todo el día', 'Las páginas que tiene el libro'],
+                  r: 'En la tarde Joaquín leyó {x} páginas.', noR: ['En la mañana Joaquín leyó {x} páginas.', 'En todo el día leyó {x} páginas.'] }
+            ],
+            'a-x': [
+                { t: 'Un tren llevaba {a} pasajeros. En una estación bajaron algunos y quedaron {b}. ¿Cuántos pasajeros bajaron?',
+                  x: 'Los pasajeros que bajaron', no: ['Los pasajeros que llevaba el tren al comienzo', 'Los pasajeros que quedaron', 'Las estaciones del recorrido'],
+                  r: 'Bajaron {x} pasajeros.', noR: ['El tren llevaba {x} pasajeros al comienzo.', 'En el tren quedaron {x} pasajeros.'] },
+                { t: 'Valentina tenía {a} fichas. Perdió algunas en un juego y le quedaron {b}. ¿Cuántas fichas perdió?',
+                  x: 'Las fichas que Valentina perdió', no: ['Las fichas que tenía al comienzo', 'Las fichas que le quedaron', 'Los juegos que jugó'],
+                  r: 'Valentina perdió {x} fichas.', noR: ['Valentina tenía {x} fichas al comienzo.', 'A Valentina le quedaron {x} fichas.'] }
+            ],
+            'a/x': [
+                { t: 'Con {a} alumnos se formaron algunos equipos, todos con {b} integrantes. ¿Cuántos equipos se formaron?',
+                  x: 'La cantidad de equipos', no: ['El total de alumnos', 'Los integrantes de cada equipo', 'Los partidos que jugaron'],
+                  r: 'Se formaron {x} equipos.', noR: ['Cada equipo tiene {x} integrantes.', 'Participaron {x} alumnos en total.'] },
+                { t: 'Se repartieron {a} dulces en partes iguales entre un grupo de niños y cada uno recibió {b}. ¿Cuántos niños había?',
+                  x: 'La cantidad de niños del grupo', no: ['El total de dulces', 'Los dulces que recibió cada niño', 'Los dulces que sobraron'],
+                  r: 'En el grupo había {x} niños.', noR: ['Cada niño recibió {x} dulces.', 'Se repartieron {x} dulces.'] }
+            ],
+            'mult|suma': [
+                { t: 'En un juego, Antonia ganó {a} rondas con el mismo puntaje y además recibió {b} puntos de bonus. En total sumó {c} puntos. ¿Cuántos puntos ganó en cada ronda?',
+                  x: 'Los puntos que ganó en cada ronda', no: ['La cantidad de rondas', 'Los puntos de bonus', 'El total de puntos'],
+                  r: 'En cada ronda Antonia ganó {x} puntos.', noR: ['Antonia recibió {x} puntos de bonus.', 'Antonia ganó {x} rondas.'] },
+                { t: 'Para un paseo se arrendaron {a} buses con la misma cantidad de personas, y otras {b} personas fueron en auto. En total viajaron {c} personas. ¿Cuántas personas iban en cada bus?',
+                  x: 'Las personas que iban en cada bus', no: ['La cantidad de buses', 'Las personas que fueron en auto', 'El total de personas'],
+                  r: 'En cada bus iban {x} personas.', noR: ['En auto fueron {x} personas.', 'Se arrendaron {x} buses.'] },
+                { t: 'En una bodega hay {a} cajas con la misma cantidad de botellas y {b} botellas sueltas. En total son {c} botellas. ¿Cuántas botellas trae cada caja?',
+                  x: 'Las botellas que trae cada caja', no: ['La cantidad de cajas', 'Las botellas sueltas', 'El total de botellas'],
+                  r: 'Cada caja trae {x} botellas.', noR: ['En la bodega hay {x} cajas.', 'Hay {x} botellas sueltas.'] },
+                { t: 'Un estanque tenía {b} litros de agua y se le agregaron {a} bidones iguales. Ahora tiene {c} litros. ¿Cuántos litros trae cada bidón?',
+                  x: 'Los litros que trae cada bidón', no: ['La cantidad de bidones', 'Los litros que tenía el estanque', 'Los litros que tiene ahora'],
+                  r: 'Cada bidón trae {x} litros.', noR: ['El estanque tenía {x} litros al comienzo.', 'Se agregaron {x} bidones.'] }
+            ],
+            'mult|resta': [
+                { t: 'Renata armó {a} paquetes iguales de stickers. Regaló {b} stickers y le quedaron {c}. ¿Cuántos stickers tenía cada paquete?',
+                  x: 'Los stickers que tenía cada paquete', no: ['La cantidad de paquetes', 'Los stickers que regaló', 'Los stickers que le quedaron'],
+                  r: 'Cada paquete tenía {x} stickers.', noR: ['Renata regaló {x} stickers.', 'Renata armó {x} paquetes.'] },
+                { t: 'Un agricultor llenó {a} sacos iguales de papas. Vendió {b} kilos y le quedan {c} kilos. ¿Cuántos kilos tenía cada saco?',
+                  x: 'Los kilos que tenía cada saco', no: ['La cantidad de sacos', 'Los kilos que vendió', 'Los kilos que le quedan'],
+                  r: 'Cada saco tenía {x} kilos.', noR: ['El agricultor vendió {x} kilos.', 'El agricultor llenó {x} sacos.'] },
+                { t: 'Un colegio compró {a} paquetes iguales de hojas. Usó {b} hojas y le quedan {c}. ¿Cuántas hojas traía cada paquete?',
+                  x: 'Las hojas que traía cada paquete', no: ['La cantidad de paquetes', 'Las hojas que usó', 'Las hojas que le quedan'],
+                  r: 'Cada paquete traía {x} hojas.', noR: ['El colegio usó {x} hojas.', 'El colegio compró {x} paquetes.'] },
+                { t: 'Una excursión salió en {a} buses con la misma cantidad de personas. En el camino se bajaron {b} personas y llegaron {c}. ¿Cuántas personas salieron en cada bus?',
+                  x: 'Las personas que salieron en cada bus', no: ['La cantidad de buses', 'Las personas que se bajaron', 'Las personas que llegaron'],
+                  r: 'En cada bus salieron {x} personas.', noR: ['En el camino se bajaron {x} personas.', 'La excursión salió en {x} buses.'] }
+            ],
+            'div|suma': [
+                { t: 'Ignacio repartió sus láminas en partes iguales entre {a} amigos. Uno de ellos ya tenía {b} y ahora tiene {c}. ¿Cuántas láminas repartió Ignacio?',
+                  x: 'El total de láminas que repartió Ignacio', no: ['La cantidad de amigos', 'Las láminas que ya tenía el amigo', 'Las láminas que tiene ahora el amigo'],
+                  r: 'Ignacio repartió {x} láminas.', noR: ['Cada amigo recibió {x} láminas.', 'El amigo tiene ahora {x} láminas.'] },
+                { t: 'Una cinta se cortó en {a} trozos iguales. A uno de los trozos se le unió otro de {b} cm y midió {c} cm. ¿Cuánto medía la cinta completa?',
+                  x: 'El largo de la cinta completa', no: ['La cantidad de trozos', 'El largo del trozo que se unió', 'El largo final de la unión'],
+                  r: 'La cinta completa medía {x} cm.', noR: ['Cada trozo medía {x} cm.', 'La cinta se cortó en {x} trozos.'] },
+                { t: 'Un premio de puntos se dividió en partes iguales entre {a} personas. Una de ellas ya tenía {b} puntos y ahora tiene {c}. ¿De cuántos puntos era el premio?',
+                  x: 'El total de puntos del premio', no: ['La cantidad de personas', 'Los puntos que ya tenía esa persona', 'Los puntos que tiene ahora esa persona'],
+                  r: 'El premio era de {x} puntos.', noR: ['Cada persona recibió {x} puntos.', 'Esa persona tiene ahora {x} puntos.'] },
+                { t: 'Se repartieron libros en partes iguales entre {a} cursos. Un curso ya tenía {b} libros y ahora tiene {c}. ¿Cuántos libros se repartieron?',
+                  x: 'El total de libros que se repartieron', no: ['La cantidad de cursos', 'Los libros que ya tenía el curso', 'Los libros que tiene ahora el curso'],
+                  r: 'Se repartieron {x} libros.', noR: ['Cada curso recibió {x} libros.', 'Ese curso tiene ahora {x} libros.'] }
+            ],
+            'div|resta': [
+                { t: 'Se repartió una bolsa de dulces en partes iguales entre {a} niños. Cada niño se comió {b} y le quedaron {c}. ¿Cuántos dulces traía la bolsa?',
+                  x: 'El total de dulces de la bolsa', no: ['La cantidad de niños', 'Los dulces que se comió cada niño', 'Los dulces que le quedaron a cada niño'],
+                  r: 'La bolsa traía {x} dulces.', noR: ['Cada niño recibió {x} dulces.', 'A cada niño le quedaron {x} dulces.'] },
+                { t: 'Se repartieron puntos en partes iguales entre {a} jugadores. Uno de ellos gastó {b} puntos y le quedaron {c}. ¿Cuántos puntos se repartieron?',
+                  x: 'El total de puntos que se repartieron', no: ['La cantidad de jugadores', 'Los puntos que gastó ese jugador', 'Los puntos que le quedaron'],
+                  r: 'Se repartieron {x} puntos.', noR: ['Cada jugador recibió {x} puntos.', 'A ese jugador le quedaron {x} puntos.'] },
+                { t: 'Una cuerda se cortó en {a} trozos iguales. A uno de ellos le cortaron {b} metros más y quedó de {c} metros. ¿Cuánto medía la cuerda completa?',
+                  x: 'El largo de la cuerda completa', no: ['La cantidad de trozos', 'Los metros que le cortaron después', 'El largo final de ese trozo'],
+                  r: 'La cuerda completa medía {x} metros.', noR: ['Cada trozo medía {x} metros.', 'El trozo quedó de {x} metros.'] },
+                { t: 'Un curso juntó tapitas para reciclar y las repartió en partes iguales entre {a} grupos. Cada grupo entregó {b} y le quedaron {c}. ¿Cuántas tapitas juntó el curso?',
+                  x: 'El total de tapitas que juntó el curso', no: ['La cantidad de grupos', 'Las tapitas que entregó cada grupo', 'Las tapitas que le quedaron a cada grupo'],
+                  r: 'El curso juntó {x} tapitas.', noR: ['Cada grupo recibió {x} tapitas.', 'A cada grupo le quedaron {x} tapitas.'] }
+            ]
+        };
+
+        const formasProblemas = {
+            facil: ['x+a', 'x-a', 'a*x', 'x/a'],
+            intermedio: ['x+a', 'x-a', 'a*x', 'x/a', 'a+x', 'a-x', 'a/x'],
+            dificil: ['mult|suma', 'mult|resta', 'div|suma', 'div|resta']
+        };
+
+        // Planteos equivocados típicos: operación contraria o datos cambiados de lugar.
+        function ecuacionesMalas(forma, a, b, c) {
+            switch (forma) {
+                case 'x+a': return [`x − ${a} = ${b}`, `x + ${b} = ${a}`, `${a} · x = ${b}`, `x ÷ ${a} = ${b}`];
+                case 'a+x': return [`x − ${a} = ${b}`, `${b} + x = ${a}`, `${a} · x = ${b}`, `x ÷ ${a} = ${b}`];
+                case 'x-a': return [`x + ${a} = ${b}`, `${a} − x = ${b}`, `x ÷ ${a} = ${b}`, `${a} · x = ${b}`];
+                case 'a-x': return [`x − ${a} = ${b}`, `${a} + x = ${b}`, `${b} − x = ${a}`, `${a} · x = ${b}`];
+                case 'a*x': return [`x + ${a} = ${b}`, `x ÷ ${a} = ${b}`, `${b} · x = ${a}`, `x − ${a} = ${b}`];
+                case 'x/a': return [`${a} · x = ${b}`, `x − ${a} = ${b}`, `${a} ÷ x = ${b}`, `x + ${a} = ${b}`];
+                case 'a/x': return [`x ÷ ${a} = ${b}`, `${a} · x = ${b}`, `${a} − x = ${b}`, `x − ${a} = ${b}`];
+                case 'mult|suma': return [`${a} · x − ${b} = ${c}`, `${a} · (x + ${b}) = ${c}`, `x + ${a} + ${b} = ${c}`, `${b} · x + ${a} = ${c}`];
+                case 'mult|resta': return [`${a} · x + ${b} = ${c}`, `${a} · (x − ${b}) = ${c}`, `x + ${a} − ${b} = ${c}`, `${b} · x − ${a} = ${c}`];
+                case 'div|suma': return [`x ÷ ${a} − ${b} = ${c}`, `(x + ${b}) ÷ ${a} = ${c}`, `${a} · x + ${b} = ${c}`, `x ÷ ${b} + ${a} = ${c}`];
+                default: return [`x ÷ ${a} + ${b} = ${c}`, `(x − ${b}) ÷ ${a} = ${c}`, `${a} · x − ${b} = ${c}`, `x ÷ ${b} − ${a} = ${c}`];
+            }
+        }
+
+        // Cada problema son los 4 pasos del indicador: identificar la incógnita, plantear
+        // la ecuación, resolverla y comunicar la respuesta. "pasos" permite usar solo algunos.
+        function preguntasProblema(forma, dificultad, plantilla, numero, seccion, pasos) {
+            const e = generarEcuacionForma(forma, dificultad);
+            const nums = e.expr.match(/\d+/g).map(Number);
+            const [a, b, c] = nums;
+            const poner = s => s.replace(/\{a\}/g, a).replace(/\{b\}/g, b).replace(/\{c\}/g, c).replace(/\{x\}/g, e.x);
+            const contexto = `Problema ${numero}. ${poner(plantilla.t)}`;
+            const respuesta = poner(plantilla.r);
+            const numeroMalo = (e.errores.filter(w => Number.isInteger(w) && w > 0 && w !== e.x).concat([e.x + 1]))[0];
+            const malasRespuesta = plantilla.noR.map(poner).concat(plantilla.r.replace(/\{x\}/g, numeroMalo));
+            const firma = plantilla.t + e.expr;
+            const todos = {
+                incognita: {
+                    pregunta: '¿Qué representa x en este problema?', tipo: 'texto',
+                    opciones: algOpciones(plantilla.x, plantilla.no), respuestaCorrecta: plantilla.x,
+                    explicacion: `x es lo que no sabemos: ${plantilla.x.toLowerCase()}.`
+                },
+                ecuacion: {
+                    pregunta: '¿Qué ecuación representa la situación?', tipo: 'texto',
+                    opciones: algOpciones(e.expr, ecuacionesMalas(forma, a, b, c)), respuestaCorrecta: e.expr,
+                    explicacion: `La situación se escribe ${e.expr}.`
+                },
+                resolver: {
+                    pregunta: `Resuelve la ecuación ${e.expr}. ¿Cuánto vale x?`, tipo: 'num',
+                    opciones: opcionesNumSuc(e.x, e.errores), respuestaCorrecta: e.x,
+                    explicacion: e.pasos
+                },
+                comunicar: {
+                    pregunta: '¿Cuál es la respuesta correcta al problema?', tipo: 'texto',
+                    opciones: algOpciones(respuesta, malasRespuesta), respuestaCorrecta: respuesta,
+                    explicacion: `Como x = ${e.x}: ${respuesta}`
+                }
+            };
+            return pasos.map((p, i) => Object.assign(todos[p], {
+                seccion, contexto, firma, numero: numero + 'abcd'.charAt(i)
+            }));
+        }
+
+        const PASOS_PROBLEMA = ['incognita', 'ecuacion', 'resolver', 'comunicar'];
+
+        // Bolsa de problemas: agota todos los enunciados de la dificultad antes de repetir.
+        function plantillasAlgebra(cola, dificultad, cantidad) {
+            const banco = [];
+            formasProblemas[dificultad].forEach(f => problemasAlgebra[f].forEach((_, i) => banco.push(f + '#' + i)));
+            return tomarDeColaEcuaciones(cola, banco, cantidad).map(k => {
+                const [forma, i] = k.split('#');
+                return { forma, plantilla: problemasAlgebra[forma][Number(i)] };
+            });
+        }
+
+        function generarGuiaProblemas(cantidad, dificultad) {
+            const lista = [];
+            plantillasAlgebra(`problemas/${dificultad}`, dificultad, cantidad).forEach((p, i) => {
+                preguntasProblema(p.forma, dificultad, p.plantilla, i + 1, 'problema', PASOS_PROBLEMA).forEach(q => lista.push(q));
+            });
+            return lista;
+        }
+
+        // ---------- Prueba de práctica: 4 ítems de 6 puntos = 24 puntos ----------
+        function adaptarEcuacion(item) {
+            return {
+                seccion: 'item3', tipo: item.tipo, sufijo: item.sufijo, pregunta: item.enunciado, expresion: item.expresion,
+                opciones: item.opciones, respuestaCorrecta: item.respuestaCorrecta, explicacion: item.explicacion, firma: item.firma
+            };
+        }
+
+        function generarGuiaPrueba(cantidad, dificultad) {
+            const conItem = (lista, n) => lista.map(q => Object.assign(q, { seccion: 'item' + n, item: n }));
+            const item1 = conItem(generarGuiaLenguaje(6, dificultad), 1);
+            const item2 = conItem(generarGuiaValorizar(6, dificultad), 2);
+
+            const ec = () => adaptarEcuacion(itemEcuacion('ecuacion', algElegir(formasEcuaciones(dificultad, OPS_ALGEBRA)), dificultad));
+            const ine = () => adaptarEcuacion(itemEcuacion('inecuacion', algElegir(formasInecuaciones(dificultad, OPS_ALGEBRA)), dificultad));
+            const ver = generarGuiaVerificar(2, dificultad);
+            const item3 = conItem([ec(), ec(), ine(), ine()].concat(ver), 3);
+
+            // Dos problemas de 3 pasos: entre ambos se evalúan los 4 pasos del indicador.
+            const [p1, p2] = plantillasAlgebra(`prueba/${dificultad}`, dificultad, 2);
+            const item4 = conItem(
+                preguntasProblema(p1.forma, dificultad, p1.plantilla, 1, 'item4', ['incognita', 'ecuacion', 'resolver'])
+                    .concat(preguntasProblema(p2.forma, dificultad, p2.plantilla, 2, 'item4', ['ecuacion', 'resolver', 'comunicar'])), 4);
+
+            return item1.concat(item2, item3, item4);
+        }
+
+        // ---------- Motor común de los submódulos ----------
+        const definicionesAlgebra = {
+            algLenguaje: {
+                titulo: 'Lenguaje Algebraico', emoji: '🗣️', unidad: 'ejercicios', generar: generarGuiaLenguaje,
+                intro: 'Pasa del lenguaje cotidiano al algebraico y viceversa, identifica ecuaciones e inecuaciones, y aplica lo aprendido en situaciones breves.',
+                recordatorio: 'Recuerda: una ecuación tiene =, una inecuación tiene < o >, y una expresión algebraica no tiene ninguno de esos signos.',
+                instruccionPdf: 'Marca con una X la alternativa correcta.'
+            },
+            algValorizar: {
+                titulo: 'Valorizar Expresiones', emoji: '🔢', unidad: 'ejercicios', generar: generarGuiaValorizar,
+                intro: 'Reemplaza la variable por el valor que te dan y resuelve las operaciones. Primero los paréntesis, luego · y ÷, y al final + y −.',
+                recordatorio: 'Recuerda: 3 · x con x = 4 es 3 · 4 = 12, no 34.',
+                instruccionPdf: 'Reemplaza el valor en tu cuaderno, calcula y marca con una X la alternativa correcta.'
+            },
+            algVerificar: {
+                titulo: 'Verificar Soluciones', emoji: '✅', unidad: 'ejercicios', generar: generarGuiaVerificar,
+                intro: 'Comprueba si un valor es solución: reemplázalo en la ecuación o inecuación, calcula y compara los dos lados.',
+                recordatorio: 'Recuerda: un valor es solución si, al reemplazarlo, la igualdad o la desigualdad se cumple.',
+                instruccionPdf: 'Reemplaza el valor en tu cuaderno, calcula y marca con una X la alternativa correcta.'
+            },
+            algProblemas: {
+                titulo: 'Resolución de Problemas', emoji: '🧩', unidad: 'problemas', generar: generarGuiaProblemas,
+                intro: 'Cada problema tiene 4 pasos: identifica la incógnita, plantea la ecuación, resuélvela y comunica la respuesta.',
+                recordatorio: 'Recuerda los 4 pasos: ¿qué es x?, plantea la ecuación, resuélvela y responde con palabras.',
+                instruccionPdf: 'Lee cada problema, resuelve en tu cuaderno y marca con una X la alternativa correcta de cada paso.'
+            },
+            algPrueba: {
+                titulo: 'Prueba de Práctica', emoji: '📝', unidad: null, generar: generarGuiaPrueba, porItem: true,
+                intro: 'Una prueba completa de 24 puntos: 4 ítems de 6 puntos cada uno, con los mismos indicadores de la evaluación. Cada respuesta correcta vale 1 punto.',
+                recordatorio: 'Revisa en qué ítem perdiste puntos y practica ese submódulo.',
+                instruccionPdf: 'Marca con una X la alternativa correcta. Cada respuesta vale 1 punto.'
+            }
+        };
+
+        function htmlSubmoduloAlgebra(clave, def) {
+            const volver = `volverAlgebra('${clave}')`;
+            const cantidad = def.unidad ? `
+                            <div>
+                                <label class="cfg-label" for="cantidad-${clave}">Cantidad de ${def.unidad}:</label>
+                                <select id="cantidad-${clave}" class="cfg-select">
+                                    <option value="5" selected>5 ${def.unidad}</option>
+                                    <option value="10">10 ${def.unidad}</option>
+                                    <option value="15">15 ${def.unidad}</option>
+                                </select>
+                            </div>` : '';
+            return `
+        <div id="modulo-${clave}" class="modulo-contenedor">
+            <div style="max-width: 900px; margin: 0 auto; padding: 20px;">
+                <div id="configuracion-${clave}" class="seccion-contenedor">
+                    <div style="display: flex; justify-content: flex-end; margin-bottom: 12px;">
+                        <button class="btn btn-volver" onclick="${volver}">← Volver</button>
+                    </div>
+                    <h2 style="color: #1a3c6e; margin-bottom: 20px;">${def.emoji} ${def.titulo} — 5° Básico</h2>
+                    <div style="background-color: #f5f7fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                        <div style="font-size: 14px; color: #333; margin-bottom: 16px; line-height: 1.5;">
+                            ${def.intro} Puedes cambiar tu respuesta hasta presionar <strong>Revisar Respuestas</strong>.
+                        </div>
+                        <div class="cfg-grid">
+                            <div>
+                                <label class="cfg-label" for="dificultad-${clave}">Dificultad:</label>
+                                <select id="dificultad-${clave}" class="cfg-select">
+                                    <option value="facil" selected>Fácil (un paso, números hasta 50)</option>
+                                    <option value="intermedio">Intermedio (un paso, x en cualquier lugar, hasta 200)</option>
+                                    <option value="dificil">Difícil (dos pasos, hasta 1.000)</option>
+                                </select>
+                            </div>${cantidad}
+                        </div>
+                        <button id="btn-generar-${clave}" class="alg-boton alg-comenzar">▶ Comenzar Guía</button>
+                    </div>
+                </div>
+
+                <div id="area-ejercicios-${clave}" style="display: none;">
+                    <div style="margin-bottom: 20px; display: flex; gap: 10px; flex-wrap: wrap;">
+                        <button id="btn-nuevos-ejercicios-${clave}" class="alg-boton" style="background-color: #2f6f4e;">🔄 Nuevos Ejercicios</button>
+                        <button id="btn-imprimir-${clave}" class="alg-boton" style="background-color: #0066cc;">🖨️ Imprimir / PDF</button>
+                        <button class="alg-boton" style="background-color: #1a3c6e;" onclick="${volver}">← Volver</button>
+                    </div>
+                    <div id="contenedor-ejercicios-${clave}" style="background-color: #fff; padding: 20px; border-radius: 8px; border: 1px solid #ddd;"></div>
+                    <div style="margin-top: 20px; text-align: center;">
+                        <button id="btn-revisar-${clave}" class="alg-boton" style="background-color: #1a3c6e; font-size: 16px; font-weight: 600; padding: 12px 30px;">Revisar Respuestas</button>
+                    </div>
+                </div>
+
+                <div id="resultados-${clave}" style="display: none; background-color: #f5f7fa; padding: 20px; border-radius: 8px;">
+                    <h3 style="color: #1a3c6e; margin-bottom: 20px;">Resultados</h3>
+                    <div id="contenedor-resultados-${clave}" style="background-color: white; padding: 20px; border-radius: 4px; overflow-x: auto;"></div>
+                    <div style="margin-top: 20px; display: grid; gap: 10px;">
+                        <button id="btn-nuevos-resultados-${clave}" class="alg-boton" style="width: 100%; padding: 12px; background-color: #2f6f4e;">🔄 Nuevos Ejercicios</button>
+                        <button class="alg-boton" style="width: 100%; padding: 12px; background-color: #1a3c6e;" onclick="${volver}">← Volver a Menú</button>
+                    </div>
+                </div>
+            </div>
+        </div>`;
+        }
+
+        function volverAlgebra(clave) {
+            irA('menu-5basico-ecuaciones');
+            document.getElementById('modulo-' + clave).style.display = 'none';
+        }
+
+        function imprimirGuiaAlgebra(def, lista) {
+            if (lista.length === 0) {
+                alert('Por favor, genera la guía primero.');
+                return;
+            }
+            const letras = ['A', 'B', 'C', 'D'];
+            let htmlPDF = '<!DOCTYPE html><html><head><meta charset="UTF-8"><style>' +
+                'body { font-family: Arial, sans-serif; padding: 20px; margin: 0; background: white; }' +
+                '.header { text-align: center; margin-bottom: 26px; border-bottom: 2px solid #1a3c6e; padding-bottom: 14px; }' +
+                '.header h1 { margin: 0 0 5px 0; color: #1a3c6e; font-size: 22px; }' +
+                '.header p { margin: 0; color: #666; font-size: 12px; }' +
+                '.student-info { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; font-size: 13px; }' +
+                '.info-field { display: flex; align-items: flex-end; gap: 10px; }' +
+                '.info-field label { font-weight: bold; color: #333; min-width: 70px; }' +
+                '.info-field .line { flex: 1; border-bottom: 1px solid #999; height: 18px; }' +
+                'h2 { color: #1a3c6e; font-size: 15px; margin: 18px 0 8px 0; }' +
+                '.contexto { font-size: 13px; margin: 12px 0 8px 0; padding: 10px 12px; border: 1px solid #1a3c6e; border-radius: 6px; page-break-inside: avoid; }' +
+                '.exercise { margin-bottom: 12px; padding: 12px; background-color: #f9f9f9; border-left: 3px solid #1a3c6e; page-break-inside: avoid; }' +
+                '.num { font-weight: bold; color: #1a3c6e; font-size: 14px; }' +
+                '.texto { font-size: 13px; color: #333; margin-left: 6px; }' +
+                '.expr { font-size: 17px; font-weight: bold; margin: 8px 0 6px 22px; letter-spacing: 1px; }' +
+                '.ops { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; font-size: 13px; padding-left: 22px; margin-top: 6px; }' +
+                '@media print { body { padding: 10px; } .exercise { page-break-inside: avoid; } }' +
+                '</style></head><body>' +
+                `<div class="header"><h1>${def.titulo}</h1><p>Patrones y álgebra &mdash; 5&deg; Básico</p></div>` +
+                '<div class="student-info">' +
+                '<div class="info-field"><label>Nombre:</label><div class="line"></div></div>' +
+                '<div class="info-field"><label>Curso:</label><div class="line"></div></div>' +
+                '<div class="info-field"><label>Fecha:</label><div class="line"></div></div>' +
+                '<div class="info-field"><label>Puntaje:</label><div class="line"></div></div>' +
+                '</div>' +
+                `<p style="text-align: center; color: #666; font-size: 12px; margin-bottom: 22px;"><strong>Instrucciones:</strong> ${def.instruccionPdf}</p>`;
+
+            let seccionPrevia = null;
+            let contextoPrevio = null;
+            lista.forEach(ej => {
+                if (ej.seccion !== seccionPrevia) {
+                    htmlPDF += `<h2>${seccionesAlgebra[ej.seccion].titulo}</h2>`;
+                    seccionPrevia = ej.seccion;
+                }
+                if (ej.contexto && ej.contexto !== contextoPrevio) {
+                    htmlPDF += `<div class="contexto">${ecEsc(ej.contexto)}</div>`;
+                    contextoPrevio = ej.contexto;
+                }
+                htmlPDF += '<div class="exercise">' +
+                    `<span class="num">${ej.numero}.</span><span class="texto">${ecEsc(ej.pregunta)}</span>` +
+                    (ej.expresion ? `<div class="expr">${ecEsc(ej.expresion)}</div>` : '') +
+                    `<div class="ops">${ej.opciones.map((op, i) => `<div>${letras[i]}) ${ecEsc(textoOpcionEcuaciones(ej, op))}</div>`).join('')}</div>` +
+                    '</div>';
+            });
+            htmlPDF += '</body></html>';
+
+            const blob = new Blob([htmlPDF], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const printWindow = window.open(url, '_blank');
+            printWindow.onload = function () {
+                setTimeout(function () { printWindow.print(); }, 250);
+            };
+        }
+
+        // Crea el submódulo (pantallas, botones y funciones globales) y devuelve su entrada
+        // para modulos5: así guarda el progreso y aparece en Revisión de Tareas como los demás.
+        function crearSubmoduloAlgebra(clave) {
+            const def = definicionesAlgebra[clave];
+            const sufijo = clave.charAt(0).toUpperCase() + clave.slice(1);
+            const mostrar = 'mostrarModulo' + sufijo;
+            const seleccionar = 'seleccionarRespuesta' + sufijo;
+            const id = nombre => document.getElementById(`${nombre}-${clave}`);
+            const est = { lista: [], resp: {} };
+
+            document.getElementById('modulos-algebra').insertAdjacentHTML('beforeend', htmlSubmoduloAlgebra(clave, def));
+
+            const dibujar = () => {
+                const letras = ['A', 'B', 'C', 'D'];
+                let html = '<div class="alg-lista">';
+                let seccionPrevia = null;
+                let contextoPrevio = null;
+                est.lista.forEach((ej, idx) => {
+                    const info = seccionesAlgebra[ej.seccion];
+                    if (ej.seccion !== seccionPrevia) {
+                        html += `<h3 style="color: ${info.color}; margin: 10px 0 0 0; font-size: 18px;">${info.emoji} ${info.titulo}</h3>`;
+                        seccionPrevia = ej.seccion;
+                    }
+                    if (ej.contexto && ej.contexto !== contextoPrevio) {
+                        html += `<div class="alg-contexto" style="border-color: ${info.color};">${ecEsc(ej.contexto)}</div>`;
+                        contextoPrevio = ej.contexto;
+                    }
+                    html += `
+                        <div class="alg-item" style="border-left-color: ${info.color};">
+                            <div class="alg-pregunta"><span class="alg-numero">${ej.numero}.</span><span>${ecEsc(ej.pregunta)}</span></div>
+                            ${ej.expresion ? `<div class="ec-expresion">${ecEsc(ej.expresion)}</div>` : ''}
+                            <div class="alg-opciones">
+                                ${ej.opciones.map((opcion, i) => `<button type="button" class="alg-opcion" id="op-${clave}-${idx}-${i}" onclick="${seleccionar}(${idx}, ${i})">${letras[i]}) ${ecEsc(textoOpcionEcuaciones(ej, opcion))}</button>`).join('')}
+                            </div>
+                        </div>`;
+                });
+                id('contenedor-ejercicios').innerHTML = html + '</div>';
+            };
+
+            window[seleccionar] = function (idx, opcionIdx) {
+                const ej = est.lista[idx];
+                if (!ej) return;
+                est.resp[idx] = ej.opciones[opcionIdx];
+                ej.opciones.forEach((_, i) => {
+                    const btn = document.getElementById(`op-${clave}-${idx}-${i}`);
+                    if (btn) btn.classList.toggle('elegida', i === opcionIdx);
+                });
+            };
+
+            const tablaPorItem = () => {
+                let filas = '';
+                [1, 2, 3, 4].forEach(n => {
+                    const delItem = est.lista.map((ej, i) => ({ ej, i })).filter(o => o.ej.item === n);
+                    const buenas = delItem.filter(o => est.resp[o.i] === o.ej.respuestaCorrecta).length;
+                    filas += `<tr>
+                        <td style="padding: 10px; border: 1px solid #ccc; font-size: 13px;">${indicadoresAlgebra[n]}</td>
+                        <td style="padding: 10px; border: 1px solid #ccc; text-align: center; white-space: nowrap;">Ítem ${n}</td>
+                        <td style="padding: 10px; border: 1px solid #ccc; text-align: center; font-weight: 600; white-space: nowrap;">${buenas} de ${delItem.length}</td>
+                    </tr>`;
+                });
+                return `<table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+                    <tr style="background-color: #1a3c6e; color: white;">
+                        <th style="padding: 10px; text-align: left; border: 1px solid #ccc;">Indicador</th>
+                        <th style="padding: 10px; border: 1px solid #ccc;">Pregunta</th>
+                        <th style="padding: 10px; border: 1px solid #ccc;">Puntaje</th>
+                    </tr>${filas}</table>`;
+            };
+
+            const revelar = () => {
+                let correctas = 0;
+                let html = '<table style="width: 100%; border-collapse: collapse; font-size: 13px;">';
+                html += '<tr style="background-color: #1a3c6e; color: white;">' +
+                        '<th style="padding: 10px; text-align: left; border: 1px solid #ccc;">N°</th>' +
+                        '<th style="padding: 10px; text-align: left; border: 1px solid #ccc;">Ejercicio</th>' +
+                        '<th style="padding: 10px; text-align: center; border: 1px solid #ccc;">Tu Respuesta</th>' +
+                        '<th style="padding: 10px; text-align: center; border: 1px solid #ccc;">Respuesta Correcta</th>' +
+                        '<th style="padding: 10px; text-align: left; border: 1px solid #ccc;">Cómo se resuelve</th>' +
+                        '<th style="padding: 10px; text-align: center; border: 1px solid #ccc;">Estado</th>' +
+                        '</tr>';
+                est.lista.forEach((ej, idx) => {
+                    const r = est.resp[idx];
+                    const respondio = r !== undefined;
+                    const bien = respondio && r === ej.respuestaCorrecta;
+                    if (bien) correctas++;
+                    const desc = ecEsc(ej.pregunta) + (ej.expresion ? `<br><strong>${ecEsc(ej.expresion)}</strong>` : '');
+                    html += `<tr style="background-color: ${bien ? '#e8f5e9' : '#ffebee'};">
+                        <td style="padding: 10px; border: 1px solid #ccc; font-weight: 600;">${ej.numero}</td>
+                        <td style="padding: 10px; border: 1px solid #ccc;">${desc}</td>
+                        <td style="padding: 10px; text-align: center; border: 1px solid #ccc;">${respondio ? ecEsc(textoOpcionEcuaciones(ej, r)) : '—'}</td>
+                        <td style="padding: 10px; text-align: center; border: 1px solid #ccc; font-weight: 600; color: #1a3c6e;">${ecEsc(textoOpcionEcuaciones(ej, ej.respuestaCorrecta))}</td>
+                        <td style="padding: 10px; border: 1px solid #ccc; color: #555; font-size: 12px;">${ecEsc(ej.explicacion)}</td>
+                        <td style="padding: 10px; text-align: center; border: 1px solid #ccc; color: ${bien ? '#2f6f4e' : '#c93c3c'}; font-weight: 600;">${bien ? '✓' : '✗'}</td>
+                    </tr>`;
+                });
+                html += '</table>';
+
+                const total = est.lista.length;
+                const porcentaje = total === 0 ? 0 : Math.round((correctas / total) * 100);
+                const mensaje = porcentaje === 100 ? '¡Excelente! 🎉' :
+                                porcentaje >= 80 ? '¡Muy bien! 👏' :
+                                porcentaje >= 60 ? 'Buen esfuerzo 💪' : 'Sigue practicando 📚';
+                id('contenedor-resultados').innerHTML =
+                    `<div style="margin-bottom: 20px; text-align: center;">
+                        <p style="font-size: 32px; font-weight: 600; color: #1a3c6e;">${correctas}/${total}</p>
+                        <p style="font-size: 18px; color: #2f6f4e;">${porcentaje}% — ${mensaje}</p>
+                        <p style="font-size: 13px; color: #666; margin-top: 6px;">${def.recordatorio}</p>
+                    </div>` + (def.porItem ? tablaPorItem() : '') + html;
+
+                id('area-ejercicios').style.display = 'none';
+                id('resultados').style.display = 'block';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            };
+
+            const iniciar = () => {
+                const dificultad = id('dificultad').value;
+                const cantidad = def.unidad ? parseInt(id('cantidad').value, 10) : 0;
+                est.lista = def.generar(cantidad, dificultad);
+                est.lista.forEach((ej, i) => { if (def.porItem || ej.numero === undefined) ej.numero = i + 1; });
+                est.resp = {};
+                dibujar();
+                id('configuracion').style.display = 'none';
+                id('area-ejercicios').style.display = 'block';
+                id('resultados').style.display = 'none';
+            };
+
+            id('btn-generar').addEventListener('click', iniciar);
+            ['btn-nuevos-ejercicios', 'btn-nuevos-resultados'].forEach(b => id(b).addEventListener('click', () => {
+                iniciar();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }));
+            id('btn-imprimir').addEventListener('click', () => imprimirGuiaAlgebra(def, est.lista));
+            id('btn-revisar').addEventListener('click', revelar);
+
+            window[mostrar] = function () {
+                id('modulo').style.display = 'block';
+                id('configuracion').style.display = 'block';
+                id('area-ejercicios').style.display = 'none';
+                id('resultados').style.display = 'none';
+                document.querySelectorAll('.seccion').forEach(s => s.style.display = 'none');
+            };
+
+            return {
+                clave, titulo: def.titulo,
+                modulo: 'modulo-' + clave, config: 'configuracion-' + clave, area: 'area-ejercicios-' + clave,
+                resultados: 'resultados-' + clave, mostrar,
+                generar: ['btn-generar-' + clave, 'btn-nuevos-ejercicios-' + clave, 'btn-nuevos-resultados-' + clave],
+                revisar: 'btn-revisar-' + clave, selectores: [seleccionar],
+                capturar: () => ({ lista: est.lista, resp: est.resp }),
+                restaurar: s => {
+                    est.lista = s.lista;
+                    est.resp = {};
+                    dibujar();
+                    Object.keys(s.resp || {}).forEach(k => {
+                        const j = indiceOpcion(est.lista[k] && est.lista[k].opciones, s.resp[k]);
+                        if (j !== -1) window[seleccionar](Number(k), j);
+                    });
+                },
+                detalle: () => est.lista.map((e, i) => {
+                    const r = est.resp[i];
+                    return {
+                        n: e.numero, p: (e.contexto ? e.contexto + ' ' : '') + e.pregunta + (e.expresion ? ' ' + e.expresion : ''),
+                        r: r === undefined ? '—' : textoOpcionEcuaciones(e, r), c: textoOpcionEcuaciones(e, e.respuestaCorrecta),
+                        ok: r === e.respuestaCorrecta, nota: e.explicacion
+                    };
+                })
+            };
+        }
+
+        const submodulosAlgebra = Object.keys(definicionesAlgebra).map(crearSubmoduloAlgebra);
+
+        // ============================================================
         // ============ SUCESIONES PERSONALIZADAS (5° BÁSICO) ==========
         // ============================================================
         // Guía configurable: dificultad, operaciones de la sucesión (checkbox, incluida
@@ -10698,7 +11768,8 @@
                         ok: r === e.respuestaCorrecta, nota: e.explicacion
                     };
                 })
-            }
+            },
+            ...submodulosAlgebra
         ];
 
         function guardarEstadoModulo5(m) {
@@ -10932,5 +12003,6 @@
             setTimeout(() => URL.revokeObjectURL(url), 1000);
         }
     </script>
+    <script src="https://tomispongge.github.io/rutinapp/js/puente-applicatzo.js"></script>
 </body>
 </html>
