@@ -10484,14 +10484,21 @@
         // Cada problema son los 4 pasos del indicador: identificar la incógnita, plantear
         // la ecuación, resolverla y comunicar la respuesta. "pasos" permite usar solo algunos.
         function preguntasProblema(forma, dificultad, plantilla, numero, seccion, pasos) {
-            const e = generarEcuacionForma(forma, dificultad);
+            // x parte en 2: los enunciados están escritos en plural ("{x} monedas").
+            let e;
+            do { e = generarEcuacionForma(forma, dificultad); } while (e.x < 2);
             const nums = e.expr.match(/\d+/g).map(Number);
             const [a, b, c] = nums;
             const poner = s => s.replace(/\{a\}/g, a).replace(/\{b\}/g, b).replace(/\{c\}/g, c).replace(/\{x\}/g, e.x);
             const contexto = `Problema ${numero}. ${poner(plantilla.t)}`;
             const respuesta = poner(plantilla.r);
-            const numeroMalo = (e.errores.filter(w => Number.isInteger(w) && w > 0 && w !== e.x).concat([e.x + 1]))[0];
-            const malasRespuesta = plantilla.noR.map(poner).concat(plantilla.r.replace(/\{x\}/g, numeroMalo));
+            const numeroMalo = (e.errores.filter(w => Number.isInteger(w) && w > 1 && w !== e.x).concat([e.x + 1]))[0];
+            // Todos los pasos se ven a la vez: ninguno puede revelar la respuesta de otro.
+            // El número correcto y uno equivocado aparecen dos veces cada uno, para que
+            // las alternativas de la respuesta no delaten cuánto vale x.
+            const conNumero = (frase, n) => poner(frase.replace(/\{x\}/g, n));
+            const [contexto1, contexto2] = barajarArreglo(plantilla.noR);
+            const malasRespuesta = [conNumero(plantilla.r, numeroMalo), conNumero(contexto1, e.x), conNumero(contexto2, numeroMalo)];
             const firma = plantilla.t + e.expr;
             const todos = {
                 incognita: {
@@ -10505,9 +10512,9 @@
                     explicacion: `La situación se escribe ${e.expr}.`
                 },
                 resolver: {
-                    pregunta: `Resuelve la ecuación ${e.expr}. ¿Cuánto vale x?`, tipo: 'num',
+                    pregunta: 'Resuelve la ecuación que representa la situación. ¿Cuánto vale x?', tipo: 'num',
                     opciones: opcionesNumSuc(e.x, e.errores), respuestaCorrecta: e.x,
-                    explicacion: e.pasos
+                    explicacion: `${e.expr}  →  ${e.pasos}`
                 },
                 comunicar: {
                     pregunta: '¿Cuál es la respuesta correcta al problema?', tipo: 'texto',
