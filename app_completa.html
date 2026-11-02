@@ -1037,6 +1037,109 @@
             font-weight: 600;
         }
 
+        .micro-pestanas {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 18px;
+        }
+
+        .micro-pestana {
+            padding: 8px 14px;
+            border: 2px solid #2f6f4e;
+            border-radius: 20px;
+            background: white;
+            color: #2f6f4e;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .micro-pestana.activa {
+            background: #2f6f4e;
+            color: white;
+        }
+
+        .micro-tema {
+            display: none;
+        }
+
+        .micro-tema.activo {
+            display: block;
+        }
+
+        .micro-bloque {
+            background-color: #f9f9f9;
+            padding: 16px 18px;
+            border-radius: 4px;
+            border-left: 4px solid #1a3c6e;
+            margin-bottom: 14px;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .micro-bloque h3 {
+            color: #1a3c6e;
+            font-size: 19px;
+            margin: 0 0 8px 0;
+        }
+
+        .micro-bloque p {
+            margin: 0 0 8px 0;
+        }
+
+        .micro-bloque ul {
+            margin: 0 0 8px 0;
+            padding-left: 22px;
+        }
+
+        .micro-fotos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 240px));
+            justify-content: center;
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .micro-fotos-ancha {
+            grid-template-columns: minmax(0, 620px);
+        }
+
+        .micro-fotos figure {
+            margin: 0;
+            padding: 8px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .micro-fotos img {
+            display: block;
+            width: 100%;
+            max-height: 190px;
+            object-fit: contain;
+        }
+
+        .micro-fotos figcaption {
+            margin-top: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a3c6e;
+        }
+
+        .micro-creditos {
+            margin-top: 18px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .micro-creditos ul {
+            margin-top: 8px;
+            padding-left: 18px;
+        }
+
         .hist-filtros {
             display: flex;
             gap: 8px;
@@ -1401,6 +1504,53 @@
                 <button class="opcion" onclick="mostrarModuloSistemas()">
                     <span class="opcion-emoji">🫁</span>
                     Sistemas del Cuerpo
+                </button>
+                <button class="opcion" onclick="irA('menu-5basico-microorganismos')">
+                    <span class="opcion-emoji">🦠</span>
+                    Microorganismos y Salud
+                </button>
+            </div>
+        </div>
+
+        <!-- SUBMENÚ 5º BÁSICO: MICROORGANISMOS Y SALUD -->
+        <div id="menu-5basico-microorganismos" class="seccion">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                <h1>🦠 Microorganismos y Salud · 5º Básico</h1>
+                <button class="btn btn-volver" onclick="irA('menu-5basico-ciencias')">← Volver</button>
+            </div>
+
+            <div class="menu-principal">
+                <button class="opcion" onclick="irA('contenidos-micro')">
+                    <span class="opcion-emoji">📖</span>
+                    Contenidos
+                </button>
+                <button class="opcion" onclick="mostrarModuloMicroEnfermedades()">
+                    <span class="opcion-emoji">🚬</span>
+                    Enfermedades y cigarrillos
+                </button>
+                <button class="opcion" onclick="mostrarModuloMicroOrganismos()">
+                    <span class="opcion-emoji">🔬</span>
+                    Microorganismos y células
+                </button>
+                <button class="opcion" onclick="mostrarModuloMicroBacterias()">
+                    <span class="opcion-emoji">🦠</span>
+                    Bacterias
+                </button>
+                <button class="opcion" onclick="mostrarModuloMicroBiota()">
+                    <span class="opcion-emoji">🥛</span>
+                    Microbiota, probióticos y prebióticos
+                </button>
+                <button class="opcion" onclick="mostrarModuloMicroHongos()">
+                    <span class="opcion-emoji">🍄</span>
+                    Hongos
+                </button>
+                <button class="opcion" onclick="mostrarModuloMicroMapa()">
+                    <span class="opcion-emoji">🗺️</span>
+                    Mapa Conceptual
+                </button>
+                <button class="opcion" onclick="mostrarModuloMicroPrueba()">
+                    <span class="opcion-emoji">📝</span>
+                    Prueba de Práctica (32 puntos)
                 </button>
             </div>
         </div>
@@ -2947,6 +3097,219 @@
 
         <!-- SUBMÓDULOS DE ÁLGEBRA (se crean desde el script, uno por indicador) -->
         <div id="modulos-algebra"></div>
+
+        <!-- MICROORGANISMOS Y SALUD: CONTENIDOS DEL CUADERNO -->
+        <div id="contenidos-micro" class="seccion">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; gap: 10px; flex-wrap: wrap;">
+                <h1>📖 Contenidos · Microorganismos y Salud</h1>
+                <button class="btn btn-volver" onclick="irA('menu-5basico-microorganismos')">← Volver</button>
+            </div>
+
+            <div class="micro-pestanas">
+                <button class="micro-pestana activa" onclick="verTemaMicro(0)">🚬 Enfermedades y cigarrillos</button>
+                <button class="micro-pestana" onclick="verTemaMicro(1)">🔬 Microorganismos y células</button>
+                <button class="micro-pestana" onclick="verTemaMicro(2)">🦠 Bacterias</button>
+                <button class="micro-pestana" onclick="verTemaMicro(3)">🥛 Microbiota</button>
+                <button class="micro-pestana" onclick="verTemaMicro(4)">🍄 Hongos</button>
+            </div>
+
+            <!-- TEMA 1 -->
+            <div class="micro-tema activo">
+                <div class="micro-bloque" style="border-left-color: #a05a2c;">
+                    <h3>Enfermedades</h3>
+                    <ul>
+                        <li>Alteración del estado funcional del cuerpo.</li>
+                        <li>Puede ser por causas físicas, mentales o sociales.</li>
+                        <li>En el caso físico, podemos encontrar:
+                            <ul>
+                                <li>Drogas (cigarros, alcohol).</li>
+                                <li>Microorganismos (bacterias, hongos, virus, etc.).</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="micro-bloque" style="border-left-color: #a05a2c;">
+                    <h3>Cigarrillos</h3>
+                    <p>Con el tabaco, la nicotina, el alquitrán y el monóxido de carbono se hace el cigarrillo.</p>
+                    <ul>
+                        <li><strong>Nicotina:</strong> responsable de la adicción y estimula el cerebro rápida e intensamente.</li>
+                        <li><strong>Alquitrán:</strong> mezcla de sustancias pegajosas que se forman al quemar el tabaco.</li>
+                        <li><strong>Monóxido de carbono:</strong> gas tóxico que reduce la capacidad de llevar oxígeno.</li>
+                    </ul>
+                    <div class="micro-fotos">
+                        <figure><img src="img/ciencias/cigarrillo.jpg" alt="Un cigarrillo" loading="lazy"><figcaption>Cigarrillo</figcaption></figure>
+                    </div>
+                </div>
+                <div class="micro-bloque" style="border-left-color: #a05a2c;">
+                    <h3>Efectos del cigarro</h3>
+                    <ul>
+                        <li>Tos, faringitis y dolor de cabeza.</li>
+                        <li>Disminuye la sensibilidad para oler.</li>
+                        <li>Aumenta la presión cardíaca y el ritmo cardíaco.</li>
+                        <li>Disminuye la capacidad respiratoria.</li>
+                    </ul>
+                </div>
+                <button class="alg-boton alg-comenzar" onclick="verTemaMicro(1)">Siguiente tema →</button>
+            </div>
+
+            <!-- TEMA 2 -->
+            <div class="micro-tema">
+                <div class="micro-bloque" style="border-left-color: #6b4c9a;">
+                    <h3>Microorganismos</h3>
+                    <p>Los microorganismos son organismos diminutos que solo pueden ser observados con herramientas.</p>
+                    <div class="micro-fotos">
+                        <figure><img src="img/ciencias/microscopio.jpg" alt="Un microscopio" loading="lazy"><figcaption>Microscopio</figcaption></figure>
+                    </div>
+                </div>
+                <div class="micro-bloque" style="border-left-color: #6b4c9a;">
+                    <h3>Tipos de microorganismos</h3>
+                    <div class="micro-fotos">
+                        <figure><img src="img/ciencias/levaduras.jpg" alt="Hongos vistos con microscopio" loading="lazy"><figcaption>Hongos</figcaption></figure>
+                        <figure><img src="img/ciencias/bacterias.jpg" alt="Bacterias vistas con microscopio" loading="lazy"><figcaption>Bacterias</figcaption></figure>
+                        <figure><img src="img/ciencias/protozoo.jpg" alt="Un protozoo visto con microscopio" loading="lazy"><figcaption>Protozoos</figcaption></figure>
+                    </div>
+                </div>
+                <div class="micro-bloque" style="border-left-color: #6b4c9a;">
+                    <h3>¿Qué son las células?</h3>
+                    <p>Las células son las unidades básicas de la vida. Todos los organismos vivos están compuestos de células.</p>
+                    <div class="micro-fotos">
+                        <figure><img src="img/ciencias/celula-procarionte.jpg" alt="Dibujo de una célula procarionte" loading="lazy"><figcaption>Procariontes</figcaption></figure>
+                        <figure><img src="img/ciencias/celula-eucarionte.jpg" alt="Dibujo de una célula eucarionte" loading="lazy"><figcaption>Eucariontes</figcaption></figure>
+                    </div>
+                </div>
+                <button class="alg-boton alg-comenzar" onclick="verTemaMicro(2)">Siguiente tema →</button>
+            </div>
+
+            <!-- TEMA 3 -->
+            <div class="micro-tema">
+                <div class="micro-bloque" style="border-left-color: #2d7d9a;">
+                    <h3>Bacterias</h3>
+                    <ul>
+                        <li><strong>Diplococos:</strong> aparecen en pares.</li>
+                        <li><strong>Estreptococos:</strong> forman cadenas.</li>
+                        <li><strong>Estafilococos:</strong> forman racimos.</li>
+                    </ul>
+                    <div class="micro-fotos">
+                        <figure><img src="img/ciencias/diplococos.png" alt="Dos bacterias redondas unidas en par" loading="lazy"><figcaption>Diplococos</figcaption></figure>
+                        <figure><img src="img/ciencias/estreptococos.png" alt="Bacterias redondas unidas en cadena" loading="lazy"><figcaption>Estreptococos</figcaption></figure>
+                        <figure><img src="img/ciencias/estafilococos.png" alt="Bacterias redondas agrupadas en racimo" loading="lazy"><figcaption>Estafilococos</figcaption></figure>
+                    </div>
+                </div>
+                <div class="micro-bloque" style="border-left-color: #2d7d9a;">
+                    <h3>¿Cómo se alimentan?</h3>
+                    <ul>
+                        <li><strong>Autótrofas:</strong> producen su propio alimento a partir de la fotosíntesis o ciertos procesos químicos.</li>
+                        <li><strong>Heterótrofas:</strong> obtienen alimento del medio.</li>
+                    </ul>
+                </div>
+                <div class="micro-bloque" style="border-left-color: #2d7d9a;">
+                    <h3>Reproducción</h3>
+                    <p>Las bacterias se reproducen asexualmente por bipartición: a partir de una célula se forman dos células con el mismo material genético.</p>
+                    <div class="micro-fotos micro-fotos-ancha">
+                        <figure><img src="img/ciencias/biparticion.png" alt="Una célula crece y se divide en dos células iguales" loading="lazy"><figcaption>Bipartición</figcaption></figure>
+                    </div>
+                </div>
+                <div class="micro-bloque" style="border-left-color: #2d7d9a;">
+                    <h3>El tétanos</h3>
+                    <ul>
+                        <li>La bacteria Clostridium tetani.</li>
+                        <li>Dolor en la mayor parte del cuerpo y sudoración.</li>
+                        <li>Forma una pieza protectora, llamada espora.</li>
+                    </ul>
+                </div>
+                <button class="alg-boton alg-comenzar" onclick="verTemaMicro(3)">Siguiente tema →</button>
+            </div>
+
+            <!-- TEMA 4 -->
+            <div class="micro-tema">
+                <div class="micro-bloque" style="border-left-color: #2f6f4e;">
+                    <h3>Microbiota</h3>
+                    <p>El cuerpo humano alberga billones de bacterias que forman parte de la microbiota, especialmente en el intestino, la piel, etc.</p>
+                </div>
+                <div class="micro-bloque" style="border-left-color: #2f6f4e;">
+                    <h3>Probióticos y prebióticos</h3>
+                    <p><strong>Probióticos:</strong> son microorganismos vivos, principalmente bacterias (como lactobacillus y bifidobacterium), que aportan beneficios para el sistema digestivo.</p>
+                    <p><strong>Prebióticos:</strong> son fibras vegetales no digeribles que sirven de alimento para las bacterias beneficiosas del intestino.</p>
+                    <div class="micro-fotos">
+                        <figure><img src="img/ciencias/lactobacillus.jpg" alt="Bacterias lactobacillus vistas con microscopio" loading="lazy"><figcaption>Lactobacillus</figcaption></figure>
+                    </div>
+                </div>
+                <div class="micro-bloque" style="border-left-color: #2f6f4e;">
+                    <h3>Funciones de la microbiota</h3>
+                    <ul>
+                        <li>Digestión y metabolismo.</li>
+                        <li>Síntesis de vitaminas.</li>
+                        <li>Protección frente a patógenos.</li>
+                        <li>Regulación del sistema inmune.</li>
+                    </ul>
+                </div>
+                <div class="micro-bloque" style="border-left-color: #2f6f4e;">
+                    <h3>Microbiota en el cerebro</h3>
+                    <p>Influye sobre el desarrollo y funcionamiento cerebral.</p>
+                </div>
+                <div class="micro-bloque" style="border-left-color: #2f6f4e;">
+                    <h3>Probióticos del yogurt</h3>
+                    <p>El yogurt tiene bacterias vivas llamadas probióticos. Estas pueden colonizar el intestino, brindando beneficios en la salud.</p>
+                    <div class="micro-fotos">
+                        <figure><img src="img/ciencias/yogur.jpg" alt="Un pocillo con yogurt" loading="lazy"><figcaption>Yogurt</figcaption></figure>
+                    </div>
+                </div>
+                <button class="alg-boton alg-comenzar" onclick="verTemaMicro(4)">Siguiente tema →</button>
+            </div>
+
+            <!-- TEMA 5 -->
+            <div class="micro-tema">
+                <div class="micro-bloque" style="border-left-color: #c0562f;">
+                    <h3>Hongos</h3>
+                    <p>Los hongos están compuestos por células eucariontes. Pertenecen al Reino Fungi. Pueden ser unicelulares, en el caso de las levaduras. Son heterótrofos y se nutren con materia orgánica.</p>
+                    <p>Viven en casi todos los ambientes en que exista materia orgánica disponible para su alimentación.</p>
+                    <p>La seta (callampa) surge de una estructura microscópica del hongo, que es como la flor de una planta. Es la estructura reproductiva del hongo.</p>
+                    <div class="micro-fotos">
+                        <figure><img src="img/ciencias/seta.jpg" alt="Una seta o callampa en el bosque" loading="lazy"><figcaption>Seta (callampa)</figcaption></figure>
+                    </div>
+                </div>
+                <div class="micro-bloque" style="border-left-color: #c0562f;">
+                    <h3>Reproducción de los hongos</h3>
+                    <p>Se reproducen a partir de dos mecanismos:</p>
+                    <ul>
+                        <li>Gemación.</li>
+                        <li>Esporulación.</li>
+                    </ul>
+                </div>
+                <div class="micro-bloque" style="border-left-color: #c0562f;">
+                    <h3>Gemación</h3>
+                    <p>Consiste en que un organismo desarrolla una protuberancia o brote que crece hasta formar un nuevo individuo. Este puede permanecer unido al organismo original o separarse para vivir de manera independiente.</p>
+                    <p>La gemación es común en hongos unicelulares como las levaduras.</p>
+                    <div class="micro-fotos">
+                        <figure><img src="img/ciencias/gemacion.png" alt="Una célula grande con un brote más pequeño unido a ella" loading="lazy"><figcaption>Célula madre (grande) y célula hija (brote)</figcaption></figure>
+                    </div>
+                </div>
+                <div class="micro-bloque" style="border-left-color: #c0562f;">
+                    <h3>Esporulación</h3>
+                    <p>Los hongos pluricelulares y algunos unicelulares se reproducen por esporulación.</p>
+                    <div class="micro-fotos">
+                        <figure><img src="img/ciencias/esporulacion.jpg" alt="Un hongo liberando una nube de esporas" loading="lazy"><figcaption>Esporulación</figcaption></figure>
+                    </div>
+                </div>
+                <div class="micro-bloque" style="border-left-color: #c0562f;">
+                    <h3>Enfermedades provocadas por hongos</h3>
+                    <p>Se tratan con medicamentos antifúngicos o antimicóticos.</p>
+                </div>
+                <div class="micro-bloque" style="border-left-color: #c0562f;">
+                    <h3>¿Qué es el Candida?</h3>
+                    <p>El Candida es un tipo de hongo (levadura) que vive de forma natural y sin causar daño en pequeñas cantidades en el cuerpo humano.</p>
+                </div>
+                <button class="alg-boton alg-comenzar" onclick="irA('menu-5basico-microorganismos')">✅ Terminé: ir a la prueba →</button>
+
+                <details class="micro-creditos">
+                    <summary>Créditos de las imágenes</summary>
+                    <ul id="micro-lista-creditos"></ul>
+                </details>
+            </div>
+        </div>
+
+        <!-- SUBMÓDULOS DE MICROORGANISMOS Y SALUD (se crean desde el script, uno por tema) -->
+        <div id="modulos-micro"></div>
 
         <!-- REVISIÓN DE TAREAS (HISTORIAL GUARDADO EN EL DISPOSITIVO) -->
         <div id="historial" class="seccion">
@@ -10905,6 +11268,757 @@
         const submodulosAlgebra = Object.keys(definicionesAlgebra).map(crearSubmoduloAlgebra);
 
         // ============================================================
+        // ============ MICROORGANISMOS Y SALUD (CIENCIAS 5° BÁSICO) ==
+        // ============================================================
+        // Contenidos del cuaderno, 5 preguntas al azar por tema, mapa conceptual y una prueba
+        // de 32 puntos con la misma pauta: cada respuesta correcta vale 2 puntos.
+        //
+        // Cada hecho es una idea del cuaderno con una o más formas de preguntarla. En una guía
+        // entra una sola forma por hecho: todas las preguntas se ven a la vez y ninguna puede
+        // revelar la respuesta de otra.
+        //   nota: lo que dice el cuaderno · p: pregunta · c: correcta · no: distractores
+        //   v: afirmaciones verdaderas · f: [afirmación falsa, cómo es en realidad]
+        const PUNTOS_MICRO = 2;
+        const CANTIDAD_MICRO = 5;
+
+        const temasMicro = {
+            enfermedades: {
+                hechos: {
+                    enfDefinicion: { nota: 'Enfermedad: alteración del estado funcional del cuerpo.', formas: [
+                        { p: '¿Qué es una enfermedad?', c: 'Una alteración del estado funcional del cuerpo', no: ['Un organismo diminuto que vive en la piel', 'Una mezcla pegajosa que se forma en el aire', 'Una estructura que sirve para reproducirse'] }
+                    ] },
+                    enfCausas: { nota: 'Puede ser por causas físicas, mentales o sociales.', formas: [
+                        { p: '¿Por qué causas puede producirse una enfermedad?', c: 'Por causas físicas, mentales o sociales', no: ['Solo por causas físicas, nunca mentales', 'Solo por causas mentales, nunca sociales', 'Solo por causas sociales, nunca físicas'] }
+                    ] },
+                    enfFisico: { nota: 'En el caso físico, podemos encontrar drogas (cigarros, alcohol) y microorganismos (bacterias, hongos, virus, etc.).', formas: [
+                        { p: 'En el caso físico, ¿qué podemos encontrar?', c: 'Drogas y microorganismos', no: ['Solo drogas', 'Solo microorganismos', 'Probióticos y prebióticos'] },
+                        { p: '¿Cuál de estas opciones aparece como droga en el caso físico?', c: 'El alcohol', no: ['El yogurt', 'La levadura', 'La fibra vegetal'] }
+                    ] },
+                    cigNicotina: { nota: 'Nicotina: responsable de la adicción y estimula el cerebro.', formas: [
+                        { p: '¿Qué sustancia del cigarrillo es responsable de la adicción?', c: 'La nicotina', no: ['El alquitrán', 'El monóxido de carbono', 'El oxígeno'] },
+                        { p: '¿De qué es responsable la nicotina?', c: 'De la adicción', no: ['De llevar el oxígeno', 'De quemar el tabaco', 'De la digestión'] }
+                    ] },
+                    cigAlquitran: { nota: 'Alquitrán: mezcla de sustancias pegajosas que se forman al quemar el tabaco.', formas: [
+                        { p: '¿Qué es el alquitrán?', c: 'Una mezcla de sustancias pegajosas', no: ['Un gas que no tiene olor', 'Un tipo de bacteria del tabaco', 'Una fibra vegetal no digerible'] },
+                        { p: '¿Qué se forma al quemar el tabaco?', c: 'Alquitrán', no: ['Oxígeno', 'Vitaminas', 'Probióticos'] }
+                    ] },
+                    cigMonoxido: { nota: 'Monóxido de carbono: gas tóxico que reduce la capacidad de llevar oxígeno.', formas: [
+                        { p: '¿Qué es el monóxido de carbono?', c: 'Un gas tóxico', no: ['Un líquido pegajoso', 'Un tipo de hongo', 'Una vitamina'] },
+                        { p: '¿Qué reduce el monóxido de carbono?', c: 'La capacidad de llevar oxígeno', no: ['El largo del cigarrillo', 'La cantidad de tabaco', 'El tamaño de las células'] }
+                    ] },
+                    cigMolestias: { nota: 'Efectos del cigarro: tos, faringitis y dolor de cabeza.', formas: [
+                        { p: '¿Cuál de estas opciones es un efecto del cigarro?', c: 'Tos, faringitis y dolor de cabeza', no: ['Mejor digestión y más vitaminas', 'Mejor memoria y más energía', 'Huesos y dientes más fuertes'] }
+                    ] },
+                    cigOlfato: { nota: 'El cigarro disminuye la sensibilidad para oler.', formas: [
+                        { p: '¿Qué efecto tiene el cigarro en la sensibilidad para oler?', c: 'La disminuye', no: ['La aumenta', 'No la cambia', 'La mejora con el tiempo'] }
+                    ] },
+                    cigCorazon: { nota: 'El cigarro aumenta la presión cardíaca y el ritmo cardíaco.', formas: [
+                        { p: '¿Qué efecto tiene el cigarro en la presión cardíaca y el ritmo cardíaco?', c: 'Los aumenta', no: ['Los disminuye', 'No los cambia', 'Los mejora con el tiempo'] }
+                    ] },
+                    cigRespiracion: { nota: 'El cigarro disminuye la capacidad respiratoria.', formas: [
+                        { p: '¿Qué efecto tiene el cigarro en la capacidad respiratoria?', c: 'La disminuye', no: ['La aumenta', 'No la cambia', 'La mejora con el tiempo'] }
+                    ] }
+                }
+            },
+            organismos: {
+                hechos: {
+                    orgDefinicion: { nota: 'Los microorganismos son organismos diminutos.', formas: [
+                        { p: '¿Qué son los microorganismos?', c: 'Organismos diminutos', no: ['Organismos gigantes', 'Sustancias del tabaco', 'Fibras vegetales'] }
+                    ] },
+                    orgObservar: { nota: 'Solo pueden ser observados con herramientas.', formas: [
+                        { p: '¿Cómo pueden ser observados los microorganismos?', c: 'Solo con herramientas', no: ['A simple vista', 'Solo de noche', 'Solo bajo el agua'] }
+                    ] },
+                    orgTipos: { nota: 'Tipos de microorganismos: hongos, bacterias y protozoos.', formas: [
+                        { p: '¿Cuáles son los tipos de microorganismos?', c: 'Hongos, bacterias y protozoos', no: ['Nicotina, alquitrán y tabaco', 'Plantas, animales y rocas', 'Yogurt, fibras y vitaminas'] },
+                        { p: '¿Cuál de estos es un tipo de microorganismo?', c: 'Los protozoos', no: ['El alquitrán', 'La nicotina', 'Las fibras vegetales'] },
+                        { p: '¿Cuál de estos NO es un tipo de microorganismo?', c: 'La nicotina', no: ['Los hongos', 'Las bacterias', 'Los protozoos'] }
+                    ] },
+                    celDefinicion: { nota: 'Las células son las unidades básicas de la vida.', formas: [
+                        { p: '¿Qué son las células?', c: 'Las unidades básicas de la vida', no: ['Los órganos más grandes del cuerpo', 'Las sustancias del cigarrillo', 'Las herramientas de observación'] }
+                    ] },
+                    celVivos: { nota: 'Todos los organismos vivos están compuestos de células.', formas: [
+                        { p: '¿Qué organismos están compuestos de células?', c: 'Todos los organismos vivos', no: ['Solo los animales', 'Solo las plantas', 'Solo las bacterias'] }
+                    ] },
+                    celTipos: { nota: 'Vimos dos tipos de células: procariontes y eucariontes.', formas: [
+                        { p: '¿Cuáles son los dos tipos de células que vimos?', c: 'Procariontes y eucariontes', no: ['Diplococos y estreptococos', 'Probióticos y prebióticos', 'Autótrofas y heterótrofas'] }
+                    ] }
+                }
+            },
+            bacterias: {
+                vf: true,
+                hechos: {
+                    grupos1: {
+                        v: ['Los diplococos aparecen en pares.', 'Los estreptococos forman cadenas.'],
+                        f: [['Los diplococos forman cadenas.', 'Los diplococos aparecen en pares.'], ['Los estreptococos aparecen en pares.', 'Los estreptococos forman cadenas.']]
+                    },
+                    grupos2: {
+                        v: ['Los estafilococos forman racimos.'],
+                        f: [['Los estafilococos aparecen solos.', 'Los estafilococos forman racimos.']]
+                    },
+                    alimentacion: {
+                        v: ['Las bacterias autótrofas producen su propio alimento.', 'Las bacterias heterótrofas obtienen alimento del medio.'],
+                        f: [['Las bacterias autótrofas obtienen alimento del medio.', 'Las bacterias autótrofas producen su propio alimento.'], ['Las bacterias heterótrofas producen su propio alimento.', 'Las bacterias heterótrofas obtienen alimento del medio.']]
+                    },
+                    reproduccion: {
+                        v: ['Las bacterias se reproducen por bipartición.', 'Las bacterias se reproducen asexualmente.'],
+                        f: [['Las bacterias se reproducen por gemación.', 'Las bacterias se reproducen por bipartición.'], ['Las bacterias se reproducen por esporulación.', 'Las bacterias se reproducen por bipartición.']]
+                    },
+                    genetico: {
+                        v: ['Al reproducirse una bacteria, las dos células que se forman tienen el mismo material genético.', 'Al reproducirse una bacteria, a partir de una célula se forman dos células.'],
+                        f: [['Al reproducirse una bacteria, las dos células que se forman tienen distinto material genético.', 'Las dos células tienen el mismo material genético.'], ['Al reproducirse una bacteria, a partir de dos células se forma una célula.', 'A partir de una célula se forman dos células.']]
+                    },
+                    cuerpo: {
+                        v: ['El cuerpo humano alberga billones de bacterias.'],
+                        f: [['El cuerpo humano no tiene bacterias.', 'El cuerpo humano alberga billones de bacterias.']]
+                    },
+                    tetano: {
+                        v: ['Clostridium tetani es la bacteria del tétanos.'],
+                        f: [['El tétanos es provocado por un hongo.', 'Clostridium tetani es la bacteria del tétanos.']]
+                    }
+                }
+            },
+            microbiota: {
+                hechos: {
+                    mbBacterias: { nota: 'El cuerpo humano alberga billones de bacterias.', formas: [
+                        { p: '¿Cuántas bacterias alberga el cuerpo humano?', c: 'Billones', no: ['Ninguna', 'Solo unas pocas', 'Solo cien'] }
+                    ] },
+                    mbLugar: { nota: 'La microbiota está especialmente en el intestino, la piel, etc.', formas: [
+                        { p: '¿Dónde se encuentra especialmente la microbiota?', c: 'En el intestino, la piel, etc.', no: ['Solo en los huesos y el pelo', 'Solo en los dientes y las uñas', 'Solo en el corazón y los ojos'] }
+                    ] },
+                    mbFunciones: { nota: 'Funciones: digestión y metabolismo, síntesis de vitaminas, protección frente a patógenos y regulación del sistema inmune.', formas: [
+                        { p: '¿Cuál de estas opciones es una función de la microbiota?', c: 'Digestión y metabolismo', no: ['Producción de nicotina', 'Formación de alquitrán', 'Formación de setas'] },
+                        { p: '¿Cuál de estas opciones es una función de la microbiota?', c: 'Síntesis de vitaminas', no: ['Producción de nicotina', 'Formación de alquitrán', 'Formación de setas'] },
+                        { p: '¿Cuál de estas opciones es una función de la microbiota?', c: 'Protección frente a patógenos', no: ['Producción de nicotina', 'Formación de alquitrán', 'Formación de setas'] },
+                        { p: '¿Cuál de estas opciones es una función de la microbiota?', c: 'Regulación del sistema inmune', no: ['Producción de nicotina', 'Formación de alquitrán', 'Formación de setas'] },
+                        { p: '¿Cuál de estas opciones NO es una función de la microbiota?', c: 'Producción de nicotina', no: ['Digestión y metabolismo', 'Síntesis de vitaminas', 'Protección frente a patógenos'] }
+                    ] },
+                    mbCerebro: { nota: 'Influye sobre el desarrollo y funcionamiento cerebral.', formas: [
+                        { p: '¿Sobre qué influye la microbiota en el cerebro?', c: 'Sobre el desarrollo y funcionamiento cerebral', no: ['Sobre el color y la forma de los ojos', 'Sobre el largo y el color del pelo', 'Sobre la forma y el tamaño de la nariz'] }
+                    ] },
+                    prbDefinicion: { nota: 'Probióticos: son microorganismos vivos, principalmente bacterias.', formas: [
+                        { p: '¿Qué son los probióticos?', c: 'Microorganismos vivos, principalmente bacterias', no: ['Fibras vegetales no digeribles', 'Sustancias que se forman al quemar el tabaco', 'Medicamentos antifúngicos o antimicóticos'] }
+                    ] },
+                    prbEjemplos: { nota: 'Por ejemplo, lactobacillus y bifidobacterium.', formas: [
+                        { p: '¿Cuáles de estas bacterias son ejemplos de probióticos?', c: 'Lactobacillus y bifidobacterium', no: ['Diplococos y estreptococos', 'Estafilococos y levaduras', 'Clostridium tetani y protozoos'] }
+                    ] },
+                    prbBeneficio: { nota: 'Los probióticos aportan beneficios para el sistema digestivo.', formas: [
+                        { p: '¿Para qué sistema aportan beneficios los probióticos?', c: 'Para el sistema digestivo', no: ['Para el sistema óseo', 'Para el sistema muscular', 'Para el sistema nervioso'] }
+                    ] },
+                    pblDefinicion: { nota: 'Prebióticos: son fibras vegetales no digeribles que sirven de alimento para las bacterias beneficiosas del intestino.', formas: [
+                        { p: '¿Qué son los prebióticos?', c: 'Fibras vegetales no digeribles', no: ['Microorganismos vivos, principalmente bacterias', 'Gases tóxicos del cigarrillo', 'Estructuras reproductivas de los hongos'] },
+                        { p: '¿Para qué sirven los prebióticos?', c: 'De alimento para las bacterias beneficiosas', no: ['Para eliminar todas las bacterias', 'Para producir esporas en el intestino', 'Para reducir la capacidad respiratoria'] }
+                    ] },
+                    yogurt: { nota: 'El yogurt tiene bacterias vivas llamadas probióticos. Estas pueden colonizar el intestino, brindando beneficios en la salud.', formas: [
+                        { p: '¿Qué alimento vimos que tiene probióticos?', c: 'El yogurt', no: ['El agua', 'El azúcar', 'La sal'] },
+                        { p: '¿Qué pueden hacer las bacterias del yogurt?', c: 'Colonizar el intestino, brindando beneficios', no: ['Disminuir la sensibilidad para oler', 'Formar alquitrán en los pulmones', 'Aumentar la presión cardíaca'] }
+                    ] }
+                }
+            },
+            hongos: {
+                hechos: {
+                    hgCelulas: { nota: 'Los hongos están compuestos por células eucariontes.', formas: [
+                        { p: '¿Por qué células están compuestos los hongos?', c: 'Por células eucariontes', no: ['Por células procariontes', 'Por diplococos', 'Por estreptococos'] }
+                    ] },
+                    hgReino: { nota: 'Pertenecen al Reino Fungi.', formas: [
+                        { p: '¿A qué reino pertenecen los hongos?', c: 'Al Reino Fungi', no: ['Al Reino Animal', 'Al Reino Vegetal', 'Al Reino Mineral'] }
+                    ] },
+                    hgNutricion: { nota: 'Son heterótrofos y se nutren con materia orgánica.', formas: [
+                        { p: '¿Cómo se nutren los hongos?', c: 'Son heterótrofos y se nutren con materia orgánica', no: ['Son autótrofos y producen su propio alimento', 'Se nutren solo con agua y luz del sol', 'Se nutren solo con tabaco y nicotina'] }
+                    ] },
+                    hgAmbiente: { nota: 'Viven en casi todos los ambientes en que exista materia orgánica disponible para su alimentación.', formas: [
+                        { p: '¿Dónde viven los hongos?', c: 'En casi todos los ambientes', no: ['Solo en el mar', 'Solo en el desierto', 'Solo en el cuerpo humano'] }
+                    ] },
+                    hgSeta: { nota: 'La seta (callampa) es la estructura reproductiva del hongo, que es como la flor de una planta.', formas: [
+                        { p: '¿Qué es la seta (callampa)?', c: 'La estructura reproductiva del hongo', no: ['La raíz que alimenta al hongo', 'El alimento que guarda el hongo', 'Una bacteria que vive en el suelo'] },
+                        { p: 'La seta (callampa) es como... ¿qué parte de una planta?', c: 'La flor', no: ['La raíz', 'El tallo', 'La hoja'] }
+                    ] },
+                    hgMecanismos: { nota: 'Los hongos se reproducen a partir de dos mecanismos: gemación y esporulación.', formas: [
+                        { p: '¿Cuáles son los dos mecanismos de reproducción de los hongos?', c: 'Gemación y esporulación', no: ['Bipartición y fotosíntesis', 'Digestión y metabolismo', 'Fotosíntesis y digestión'] },
+                        { p: '¿Cómo se llama el mecanismo en que un organismo desarrolla un brote que crece hasta formar un nuevo individuo?', c: 'Gemación', no: ['Esporulación', 'Bipartición', 'Fotosíntesis'] },
+                        { p: '¿Cómo se reproducen los hongos pluricelulares?', c: 'Por esporulación', no: ['Por gemación', 'Por bipartición', 'Por fotosíntesis'] }
+                    ] },
+                    hgBrote: { nota: 'Puede permanecer unido al organismo original o separarse para vivir de manera independiente.', formas: [
+                        { p: 'Cuando un hongo forma un brote, ¿qué puede hacer el nuevo individuo?', c: 'Permanecer unido al organismo original o separarse', no: ['Transformarse en una bacteria o en un protozoo', 'Convertirse en una fibra vegetal no digerible', 'Volver a entrar a la célula madre y desaparecer'] }
+                    ] },
+                    hgLevadura: { nota: 'Pueden ser unicelulares, en el caso de las levaduras.', formas: [
+                        { p: '¿Cuál de estos es un ejemplo de hongo unicelular?', c: 'Las levaduras', no: ['Los diplococos', 'Los protozoos', 'Los lactobacillus'] }
+                    ] },
+                    hgCandida: { nota: 'El Candida es un tipo de hongo (levadura) que vive de forma natural y sin causar daño en pequeñas cantidades en el cuerpo humano.', formas: [
+                        { p: '¿Cómo vive el Candida en el cuerpo humano?', c: 'De forma natural y sin causar daño, en pequeñas cantidades', no: ['Siempre causando daño, en grandes cantidades', 'Solo fuera del cuerpo, en el agua', 'Solo dentro de los huesos, sin alimento'] }
+                    ] },
+                    hgTratamiento: { nota: 'Las enfermedades provocadas por hongos se tratan con medicamentos antifúngicos o antimicóticos.', formas: [
+                        { p: '¿Con qué se tratan las enfermedades provocadas por hongos?', c: 'Con medicamentos antifúngicos o antimicóticos', no: ['Con prebióticos y fibras vegetales', 'Con nicotina y alquitrán', 'Con yogurt y vitaminas'] }
+                    ] }
+                }
+            }
+        };
+
+        const seccionesMicro = {
+            enfermedades: { titulo: 'Enfermedades y cigarrillos', emoji: '🚬', color: '#a05a2c' },
+            organismos:   { titulo: 'Microorganismos y células', emoji: '🔬', color: '#6b4c9a' },
+            bacterias:    { titulo: 'Bacterias: indica si es verdadero o falso', emoji: '🦠', color: '#2d7d9a' },
+            microbiota:   { titulo: 'Microbiota, probióticos y prebióticos', emoji: '🥛', color: '#2f6f4e' },
+            hongos:       { titulo: 'Hongos', emoji: '🍄', color: '#c0562f' },
+            mapa:         { titulo: 'Mapa conceptual', emoji: '🗺️', color: '#1a3c6e' },
+            item1:        { titulo: 'Ítem 1: Efectos nocivos del cigarro (10 puntos)', emoji: '🚬', color: '#a05a2c' },
+            item2:        { titulo: 'Ítem 2: Bacterias, verdadero o falso (10 puntos)', emoji: '🦠', color: '#2d7d9a' },
+            item3:        { titulo: 'Ítem 3: Mapa conceptual (12 puntos)', emoji: '🗺️', color: '#1a3c6e' }
+        };
+
+        const indicadoresMicro = {
+            1: 'Determina la alternativa correcta en relación con el contenido: logra identificar los efectos nocivos del cigarro en la salud humana.',
+            2: 'Verdadero y Falso: determina si una afirmación acerca de características de las bacterias es verdadera o falsa.',
+            3: 'Mapa Conceptual: completa un esquema que permite visualizar qué son los probióticos, los prebióticos y la microbiota, junto a su relación.'
+        };
+
+        function preguntaAlternativasMicro(hecho) {
+            const f = algElegir(hecho.formas);
+            return { tipo: 'alternativas', pregunta: f.p, opciones: barajarArreglo([f.c].concat(f.no)), respuestaCorrecta: f.c, explicacion: hecho.nota };
+        }
+
+        function preguntaVFMicro(hecho, verdadera) {
+            const opciones = ['Verdadero', 'Falso'];
+            if (verdadera) {
+                const texto = algElegir(hecho.v);
+                return { tipo: 'vf', pregunta: texto, opciones, respuestaCorrecta: 'Verdadero', explicacion: texto };
+            }
+            const [texto, correccion] = algElegir(hecho.f);
+            return { tipo: 'vf', pregunta: texto, opciones, respuestaCorrecta: 'Falso', explicacion: correccion };
+        }
+
+        // Bolsa de hechos: se agotan todos antes de repetir. "filtro" limita los hechos, por
+        // ejemplo a los del cigarro en el ítem 1 de la prueba.
+        function preguntasTemaMicro(clave, seccion, filtro) {
+            const tema = temasMicro[clave];
+            const banco = Object.keys(tema.hechos).filter(filtro || (() => true));
+            const elegidos = tomarDeColaEcuaciones(`micro/${seccion}`, banco, CANTIDAD_MICRO);
+            // Siempre hay afirmaciones de las dos clases; la quinta se decide al azar.
+            const verdaderas = barajarArreglo([true, true, false, false, Math.random() < 0.5]);
+            return elegidos.map((k, i) => Object.assign(
+                tema.vf ? preguntaVFMicro(tema.hechos[k], verdaderas[i]) : preguntaAlternativasMicro(tema.hechos[k]),
+                { seccion }
+            ));
+        }
+
+        // ---------- Mapa conceptual ----------
+        //   c: lo que va en el casillero · d: qué se pide · nota: lo que dice el cuaderno
+        const nodosMapaMicro = {
+            microbiota:  { c: 'Microbiota', d: 'Las bacterias que forman parte del cuerpo humano', nota: 'El cuerpo humano alberga billones de bacterias que forman parte de la microbiota.' },
+            bacterias:   { c: 'Billones de bacterias', d: 'Lo que alberga el cuerpo humano', nota: 'El cuerpo humano alberga billones de bacterias.' },
+            lugar:       { c: 'El intestino, la piel, etc.', d: 'Dónde está especialmente la microbiota', nota: 'Especialmente en el intestino, la piel, etc.' },
+            probioticos: { c: 'Probióticos', d: 'Los microorganismos vivos que aportan beneficios', nota: 'Probióticos: son microorganismos vivos, principalmente bacterias.' },
+            vivos:       { c: 'Microorganismos vivos', d: 'Qué son los probióticos', nota: 'Probióticos: son microorganismos vivos, principalmente bacterias.' },
+            ejemplos:    { c: 'Lactobacillus y bifidobacterium', d: 'Ejemplos de probióticos', nota: 'Principalmente bacterias, como lactobacillus y bifidobacterium.' },
+            beneficios:  { c: 'Beneficios para el sistema digestivo', d: 'Qué aportan los probióticos', nota: 'Los probióticos aportan beneficios para el sistema digestivo.' },
+            yogurt:      { c: 'El yogurt', d: 'Dónde encontramos probióticos', nota: 'El yogurt tiene bacterias vivas llamadas probióticos.' },
+            prebioticos: { c: 'Prebióticos', d: 'Las fibras vegetales no digeribles', nota: 'Prebióticos: son fibras vegetales no digeribles.' },
+            fibras:      { c: 'Fibras vegetales no digeribles', d: 'Qué son los prebióticos', nota: 'Prebióticos: son fibras vegetales no digeribles.' },
+            alimento:    { c: 'Las bacterias beneficiosas', d: 'A quién alimentan los prebióticos', nota: 'Sirven de alimento para las bacterias beneficiosas del intestino.' },
+            digestion:   { c: 'Digestión y metabolismo', d: 'Una función de la microbiota', nota: 'Es una función de la microbiota.' },
+            vitaminas:   { c: 'Síntesis de vitaminas', d: 'Una función de la microbiota', nota: 'Es una función de la microbiota.' },
+            patogenos:   { c: 'Protección frente a patógenos', d: 'Una función de la microbiota', nota: 'Es una función de la microbiota.' },
+            inmune:      { c: 'Regulación del sistema inmune', d: 'Una función de la microbiota', nota: 'Es una función de la microbiota.' }
+        };
+
+        const ORDEN_MAPA_MICRO = Object.keys(nodosMapaMicro);
+        const FICHAS_EXTRA_MICRO = ['Nicotina', 'Alquitrán', 'Levaduras', 'Esporas', 'Diplococos'];
+
+        // 6 casilleros de 2 puntos: los tres conceptos de la pauta siempre, y tres más al azar.
+        function casillerosMapaMicro(seccion) {
+            const otros = ['bacterias', 'lugar', 'vivos', 'ejemplos', 'beneficios', 'yogurt', 'fibras', 'alimento',
+                algElegir(['digestion', 'vitaminas', 'patogenos', 'inmune'])];
+            const vacios = ['microbiota', 'probioticos', 'prebioticos'].concat(barajarArreglo(otros).slice(0, 3));
+            const fichas = barajarArreglo(vacios.map(k => nodosMapaMicro[k].c).concat(barajarArreglo(FICHAS_EXTRA_MICRO).slice(0, 2)));
+            return ORDEN_MAPA_MICRO.filter(k => vacios.includes(k)).map(k => ({
+                seccion, tipo: 'mapa', nodo: k, pregunta: `Mapa conceptual: ${nodosMapaMicro[k].d}`, opciones: fichas,
+                respuestaCorrecta: nodosMapaMicro[k].c, explicacion: nodosMapaMicro[k].nota
+            }));
+        }
+
+        const ESTILO_MAPA_MICRO =
+            '.mapa-micro { display: grid; gap: 14px; }' +
+            '.mapa-raiz { display: grid; gap: 4px; max-width: 420px; width: 100%; margin: 0 auto; }' +
+            '.mapa-ramas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; align-items: start; }' +
+            '.mapa-rama { display: grid; gap: 4px; padding: 10px; border-radius: 8px; background: #f5f7fa; border-top: 4px solid #1a3c6e; }' +
+            '.mapa-caja { display: flex; align-items: center; justify-content: center; gap: 6px; box-sizing: border-box; width: 100%; min-height: 52px;' +
+            ' padding: 8px; border: 2px solid #1a3c6e; border-radius: 8px; background: white; color: #1a3c6e; font: 600 15px/1.3 Arial, sans-serif; text-align: center; }' +
+            '.mapa-vacia { border-style: dashed; background: #fff8e1; cursor: pointer; }' +
+            '.mapa-llena { border-style: solid; background: #e3f2fd; }' +
+            '.mapa-bien { border-color: #2f6f4e; background: #e8f5e9; }' +
+            '.mapa-mal { border-color: #c93c3c; background: #ffebee; display: block; }' +
+            '.mapa-mal small { display: block; font-weight: 400; color: #c93c3c; }' +
+            '.mapa-num { flex: none; width: 24px; height: 24px; border-radius: 50%; background: #c98a00; color: white; font-size: 13px; line-height: 24px; }' +
+            '.mapa-enlace { text-align: center; font-size: 13px; color: #555; font-style: italic; line-height: 1.3; }' +
+            '.mapa-fichas { display: flex; flex-wrap: wrap; gap: 8px; padding: 10px; background: white; border: 2px solid #1a3c6e; border-radius: 8px; position: sticky; top: 0; z-index: 5; }' +
+            '.mapa-ficha { padding: 8px 12px; border: 2px solid #1a3c6e; border-radius: 20px; background: white; color: #1a3c6e; font: 600 14px/1.2 Arial, sans-serif; cursor: pointer; }' +
+            '.mapa-ficha.elegida { background: #1a3c6e; color: white; }' +
+            '@media (max-width: 640px) { .mapa-ramas { grid-template-columns: 1fr; } }';
+
+        document.head.insertAdjacentHTML('beforeend', `<style>${ESTILO_MAPA_MICRO}</style>`);
+
+        // modo "responder": casilleros que se tocan · "pdf": en blanco · "resuelto": con la corrección.
+        function htmlMapaMicro(lista, modo, opciones) {
+            const { idCaja, tocar, resp } = opciones || {};
+            const caja = nodo => {
+                const idx = lista.findIndex(ej => ej.nodo === nodo);
+                const correcta = nodosMapaMicro[nodo].c;
+                if (idx === -1) return `<div class="mapa-caja">${ecEsc(correcta)}</div>`;
+                const numero = `<span class="mapa-num">${lista[idx].numero}</span>`;
+                if (modo === 'responder') {
+                    return `<button type="button" class="mapa-caja mapa-vacia" id="${idCaja(idx)}" onclick="${tocar}(${idx})">${numero}<span class="mapa-texto"></span></button>`;
+                }
+                if (modo === 'pdf') return `<div class="mapa-caja mapa-vacia">${numero}</div>`;
+                if (resp[idx] === correcta) return `<div class="mapa-caja mapa-bien">✓ ${ecEsc(correcta)}</div>`;
+                return `<div class="mapa-caja mapa-mal">${ecEsc(correcta)}<small>${resp[idx] === undefined ? 'Sin responder' : 'Pusiste: ' + ecEsc(resp[idx])}</small></div>`;
+            };
+            const enlace = texto => `<div class="mapa-enlace">${texto}</div>`;
+            return `<div class="mapa-micro">
+                <div class="mapa-raiz">
+                    ${caja('microbiota')}
+                    ${enlace('↓ son')}
+                    ${caja('bacterias')}
+                    ${enlace('↓ que el cuerpo humano alberga especialmente en')}
+                    ${caja('lugar')}
+                </div>
+                <div class="mapa-ramas">
+                    <div class="mapa-rama" style="border-top-color: #2f6f4e;">
+                        ${enlace('↑ se suman a la microbiota')}
+                        ${caja('probioticos')}
+                        ${enlace('↓ son')}
+                        ${caja('vivos')}
+                        ${enlace('↓ como')}
+                        ${caja('ejemplos')}
+                        ${enlace('↓ aportan')}
+                        ${caja('beneficios')}
+                        ${enlace('↓ están en')}
+                        ${caja('yogurt')}
+                    </div>
+                    <div class="mapa-rama" style="border-top-color: #a05a2c;">
+                        ${enlace('↑ ayudan a la microbiota')}
+                        ${caja('prebioticos')}
+                        ${enlace('↓ son')}
+                        ${caja('fibras')}
+                        ${enlace('↓ sirven de alimento para')}
+                        ${caja('alimento')}
+                    </div>
+                    <div class="mapa-rama" style="border-top-color: #2d7d9a;">
+                        ${enlace('↓ las funciones de la microbiota son')}
+                        ${caja('digestion')}
+                        ${caja('vitaminas')}
+                        ${caja('patogenos')}
+                        ${caja('inmune')}
+                    </div>
+                </div>
+            </div>`;
+        }
+
+        // ---------- Motor común de los submódulos ----------
+        const guiaPruebaMicro = () => {
+            const conItem = (lista, n) => lista.map(q => Object.assign(q, { item: n }));
+            return conItem(preguntasTemaMicro('enfermedades', 'item1', k => k.indexOf('cig') === 0), 1)
+                // "cuerpo" queda fuera: el mapa del ítem 3 puede mostrar esa respuesta.
+                .concat(conItem(preguntasTemaMicro('bacterias', 'item2', k => k !== 'cuerpo'), 2))
+                .concat(conItem(casillerosMapaMicro('item3'), 3));
+        };
+
+        const definicionesMicro = {
+            microEnfermedades: {
+                titulo: 'Enfermedades y cigarrillos', emoji: '🚬', generar: () => preguntasTemaMicro('enfermedades', 'enfermedades'),
+                intro: 'Responde 5 preguntas de alternativas elegidas al azar. Cada respuesta correcta vale 2 puntos.',
+                instruccionPdf: 'Marca con una X la alternativa correcta. Cada respuesta vale 2 puntos.'
+            },
+            microOrganismos: {
+                titulo: 'Microorganismos y células', emoji: '🔬', generar: () => preguntasTemaMicro('organismos', 'organismos'),
+                intro: 'Responde 5 preguntas de alternativas elegidas al azar. Cada respuesta correcta vale 2 puntos.',
+                instruccionPdf: 'Marca con una X la alternativa correcta. Cada respuesta vale 2 puntos.'
+            },
+            microBacterias: {
+                titulo: 'Bacterias', emoji: '🦠', generar: () => preguntasTemaMicro('bacterias', 'bacterias'),
+                intro: 'Indica si cada una de las 5 afirmaciones, elegidas al azar, es verdadera o falsa. Cada respuesta correcta vale 2 puntos.',
+                instruccionPdf: 'Marca con una X si la afirmación es verdadera o falsa. Cada respuesta vale 2 puntos.'
+            },
+            microBiota: {
+                titulo: 'Microbiota, probióticos y prebióticos', emoji: '🥛', generar: () => preguntasTemaMicro('microbiota', 'microbiota'),
+                intro: 'Responde 5 preguntas de alternativas elegidas al azar. Cada respuesta correcta vale 2 puntos.',
+                instruccionPdf: 'Marca con una X la alternativa correcta. Cada respuesta vale 2 puntos.'
+            },
+            microHongos: {
+                titulo: 'Hongos', emoji: '🍄', generar: () => preguntasTemaMicro('hongos', 'hongos'),
+                intro: 'Responde 5 preguntas de alternativas elegidas al azar. Cada respuesta correcta vale 2 puntos.',
+                instruccionPdf: 'Marca con una X la alternativa correcta. Cada respuesta vale 2 puntos.'
+            },
+            microMapa: {
+                titulo: 'Mapa Conceptual', emoji: '🗺️', generar: () => casillerosMapaMicro('mapa'),
+                intro: 'Completa el mapa de los probióticos, los prebióticos y la microbiota. Son 6 casilleros y cada uno vale 2 puntos.',
+                instruccionPdf: 'Escribe en cada casillero la palabra que corresponde. Cada casillero vale 2 puntos.'
+            },
+            microPrueba: {
+                titulo: 'Prueba de Práctica', emoji: '📝', generar: guiaPruebaMicro, porItem: true,
+                intro: 'Una prueba completa de 32 puntos, con la misma pauta de la evaluación: alternativas sobre el cigarro, verdadero o falso sobre las bacterias y un mapa conceptual.',
+                instruccionPdf: 'Responde cada ítem. Cada respuesta vale 2 puntos.'
+            }
+        };
+
+        function htmlSubmoduloMicro(clave, def) {
+            const volver = `volverMicro('${clave}')`;
+            return `
+        <div id="modulo-${clave}" class="modulo-contenedor">
+            <div style="max-width: 900px; margin: 0 auto; padding: 20px;">
+                <div id="configuracion-${clave}" class="seccion-contenedor">
+                    <div style="display: flex; justify-content: flex-end; margin-bottom: 12px;">
+                        <button class="btn btn-volver" onclick="${volver}">← Volver</button>
+                    </div>
+                    <h2 style="color: #1a3c6e; margin-bottom: 20px;">${def.emoji} ${def.titulo} — 5° Básico</h2>
+                    <div style="background-color: #f5f7fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                        <div style="font-size: 14px; color: #333; margin-bottom: 16px; line-height: 1.5;">
+                            ${def.intro} Puedes cambiar tu respuesta hasta presionar <strong>Revisar Respuestas</strong>.
+                        </div>
+                        <button id="btn-generar-${clave}" class="alg-boton alg-comenzar">▶ Comenzar</button>
+                    </div>
+                </div>
+
+                <div id="area-ejercicios-${clave}" style="display: none;">
+                    <div style="margin-bottom: 20px; display: flex; gap: 10px; flex-wrap: wrap;">
+                        <button id="btn-nuevos-ejercicios-${clave}" class="alg-boton" style="background-color: #2f6f4e;">🔄 Nuevos Ejercicios</button>
+                        <button id="btn-imprimir-${clave}" class="alg-boton" style="background-color: #0066cc;">🖨️ Imprimir / PDF</button>
+                        <button class="alg-boton" style="background-color: #1a3c6e;" onclick="${volver}">← Volver</button>
+                    </div>
+                    <div id="contenedor-ejercicios-${clave}" style="background-color: #fff; padding: 20px; border-radius: 8px; border: 1px solid #ddd;"></div>
+                    <div style="margin-top: 20px; text-align: center;">
+                        <button id="btn-revisar-${clave}" class="alg-boton" style="background-color: #1a3c6e; font-size: 16px; font-weight: 600; padding: 12px 30px;">Revisar Respuestas</button>
+                    </div>
+                </div>
+
+                <div id="resultados-${clave}" style="display: none; background-color: #f5f7fa; padding: 20px; border-radius: 8px;">
+                    <h3 style="color: #1a3c6e; margin-bottom: 20px;">Resultados</h3>
+                    <div id="contenedor-resultados-${clave}" style="background-color: white; padding: 20px; border-radius: 4px; overflow-x: auto;"></div>
+                    <div style="margin-top: 20px; display: grid; gap: 10px;">
+                        <button id="btn-nuevos-resultados-${clave}" class="alg-boton" style="width: 100%; padding: 12px; background-color: #2f6f4e;">🔄 Nuevos Ejercicios</button>
+                        <button class="alg-boton" style="width: 100%; padding: 12px; background-color: #1a3c6e;" onclick="${volver}">← Volver a Menú</button>
+                    </div>
+                </div>
+            </div>
+        </div>`;
+        }
+
+        function volverMicro(clave) {
+            irA('menu-5basico-microorganismos');
+            document.getElementById('modulo-' + clave).style.display = 'none';
+        }
+
+        function verTemaMicro(n) {
+            document.querySelectorAll('.micro-tema').forEach((t, i) => t.classList.toggle('activo', i === n));
+            document.querySelectorAll('.micro-pestana').forEach((b, i) => b.classList.toggle('activa', i === n));
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function imprimirGuiaMicro(def, lista) {
+            if (lista.length === 0) {
+                alert('Por favor, genera la guía primero.');
+                return;
+            }
+            const letras = ['A', 'B', 'C', 'D'];
+            let htmlPDF = '<!DOCTYPE html><html><head><meta charset="UTF-8"><style>' +
+                'body { font-family: Arial, sans-serif; padding: 20px; margin: 0; background: white; }' +
+                '.header { text-align: center; margin-bottom: 26px; border-bottom: 2px solid #1a3c6e; padding-bottom: 14px; }' +
+                '.header h1 { margin: 0 0 5px 0; color: #1a3c6e; font-size: 22px; }' +
+                '.header p { margin: 0; color: #666; font-size: 12px; }' +
+                '.student-info { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; font-size: 13px; }' +
+                '.info-field { display: flex; align-items: flex-end; gap: 10px; }' +
+                '.info-field label { font-weight: bold; color: #333; min-width: 70px; }' +
+                '.info-field .line { flex: 1; border-bottom: 1px solid #999; height: 18px; }' +
+                'h2 { color: #1a3c6e; font-size: 15px; margin: 18px 0 8px 0; }' +
+                '.exercise { margin-bottom: 12px; padding: 12px; background-color: #f9f9f9; border-left: 3px solid #1a3c6e; page-break-inside: avoid; }' +
+                '.num { font-weight: bold; color: #1a3c6e; font-size: 14px; }' +
+                '.texto { font-size: 13px; color: #333; margin-left: 6px; }' +
+                '.ops { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; font-size: 13px; padding-left: 22px; margin-top: 6px; }' +
+                '.fichas { font-size: 13px; margin: 8px 0 12px 0; padding: 10px 12px; border: 1px solid #1a3c6e; border-radius: 6px; }' +
+                ESTILO_MAPA_MICRO + ' .mapa-fichas { position: static; } .mapa-micro { page-break-inside: avoid; }' +
+                '@media print { body { padding: 10px; } .exercise { page-break-inside: avoid; } }' +
+                '</style></head><body>' +
+                `<div class="header"><h1>${def.titulo}</h1><p>Microorganismos y Salud &mdash; Ciencias Naturales &mdash; 5&deg; Básico</p></div>` +
+                '<div class="student-info">' +
+                '<div class="info-field"><label>Nombre:</label><div class="line"></div></div>' +
+                '<div class="info-field"><label>Curso:</label><div class="line"></div></div>' +
+                '<div class="info-field"><label>Fecha:</label><div class="line"></div></div>' +
+                '<div class="info-field"><label>Puntaje:</label><div class="line"></div></div>' +
+                '</div>' +
+                `<p style="text-align: center; color: #666; font-size: 12px; margin-bottom: 22px;"><strong>Instrucciones:</strong> ${def.instruccionPdf}</p>`;
+
+            let seccionPrevia = null;
+            let mapaListo = false;
+            lista.forEach(ej => {
+                if (ej.seccion !== seccionPrevia) {
+                    htmlPDF += `<h2>${seccionesMicro[ej.seccion].titulo}</h2>`;
+                    seccionPrevia = ej.seccion;
+                }
+                if (ej.tipo === 'mapa') {
+                    if (!mapaListo) {
+                        htmlPDF += `<div class="fichas"><strong>Palabras para usar:</strong> ${ej.opciones.map(ecEsc).join(' · ')}</div>` +
+                            htmlMapaMicro(lista, 'pdf');
+                        mapaListo = true;
+                    }
+                    return;
+                }
+                htmlPDF += '<div class="exercise">' +
+                    `<span class="num">${ej.numero}.</span><span class="texto">${ecEsc(ej.pregunta)}</span>` +
+                    `<div class="ops">${ej.opciones.map((op, i) => `<div>${ej.tipo === 'vf' ? '( )' : letras[i] + ')'} ${ecEsc(op)}</div>`).join('')}</div>` +
+                    '</div>';
+            });
+            htmlPDF += '</body></html>';
+
+            const blob = new Blob([htmlPDF], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const printWindow = window.open(url, '_blank');
+            printWindow.onload = function () {
+                setTimeout(function () { printWindow.print(); }, 250);
+            };
+        }
+
+        // Crea el submódulo (pantallas, botones y funciones globales) y devuelve su entrada
+        // para modulos5: así guarda el progreso y aparece en Revisión de Tareas como los demás.
+        function crearSubmoduloMicro(clave) {
+            const def = definicionesMicro[clave];
+            const sufijo = clave.charAt(0).toUpperCase() + clave.slice(1);
+            const mostrar = 'mostrarModulo' + sufijo;
+            const seleccionar = 'seleccionarRespuesta' + sufijo;
+            const tocarCaja = 'tocarCasillero' + sufijo;
+            const tocarFicha = 'tocarFicha' + sufijo;
+            const id = nombre => document.getElementById(`${nombre}-${clave}`);
+            const idCaja = idx => `mapa-${clave}-${idx}`;
+            const est = { lista: [], resp: {}, ficha: null };
+
+            document.getElementById('modulos-micro').insertAdjacentHTML('beforeend', htmlSubmoduloMicro(clave, def));
+
+            const pintarMapa = () => {
+                const casilleros = est.lista.filter(ej => ej.tipo === 'mapa');
+                if (!casilleros.length) return;
+                est.lista.forEach((ej, idx) => {
+                    const caja = document.getElementById(idCaja(idx));
+                    if (!caja) return;
+                    const puesta = est.resp[idx];
+                    caja.querySelector('.mapa-texto').textContent = puesta === undefined ? '' : puesta;
+                    caja.classList.toggle('mapa-llena', puesta !== undefined);
+                });
+                const usadas = est.lista.map((ej, idx) => (ej.tipo === 'mapa' ? est.resp[idx] : undefined));
+                casilleros[0].opciones.forEach((op, i) => {
+                    const ficha = document.getElementById(`ficha-${clave}-${i}`);
+                    if (!ficha) return;
+                    ficha.style.display = usadas.includes(op) ? 'none' : '';
+                    ficha.classList.toggle('elegida', op === est.ficha);
+                });
+            };
+
+            const htmlFichas = ej => `
+                <p style="font-size: 14px; color: #333; margin-bottom: 10px;">Toca una palabra y después el casillero donde va. Para sacarla, toca el casillero. Dos palabras sobran.</p>
+                <div class="mapa-fichas">${ej.opciones.map((op, i) =>
+                    `<button type="button" class="mapa-ficha" id="ficha-${clave}-${i}" onclick="${tocarFicha}(${i})">${ecEsc(op)}</button>`).join('')}</div>`;
+
+            const dibujar = () => {
+                const letras = ['A', 'B', 'C', 'D'];
+                let html = '<div class="alg-lista">';
+                let seccionPrevia = null;
+                let mapaListo = false;
+                est.lista.forEach((ej, idx) => {
+                    const info = seccionesMicro[ej.seccion];
+                    if (ej.seccion !== seccionPrevia) {
+                        html += `<h3 style="color: ${info.color}; margin: 10px 0 0 0; font-size: 18px;">${info.emoji} ${info.titulo}</h3>`;
+                        seccionPrevia = ej.seccion;
+                    }
+                    if (ej.tipo === 'mapa') {
+                        if (!mapaListo) {
+                            html += `<div>${htmlFichas(ej)}<div style="margin-top: 14px;">${htmlMapaMicro(est.lista, 'responder', { idCaja, tocar: tocarCaja })}</div></div>`;
+                            mapaListo = true;
+                        }
+                        return;
+                    }
+                    html += `
+                        <div class="alg-item" style="border-left-color: ${info.color};">
+                            <div class="alg-pregunta"><span class="alg-numero">${ej.numero}.</span><span>${ecEsc(ej.pregunta)}</span></div>
+                            <div class="alg-opciones">
+                                ${ej.opciones.map((opcion, i) => `<button type="button" class="alg-opcion" id="op-${clave}-${idx}-${i}" onclick="${seleccionar}(${idx}, ${i})">${ej.tipo === 'vf' ? '' : letras[i] + ') '}${ecEsc(opcion)}</button>`).join('')}
+                            </div>
+                        </div>`;
+                });
+                id('contenedor-ejercicios').innerHTML = html + '</div>';
+                pintarMapa();
+            };
+
+            // opcionIdx -1 = vaciar un casillero del mapa.
+            window[seleccionar] = function (idx, opcionIdx) {
+                const ej = est.lista[idx];
+                if (!ej) return;
+                if (opcionIdx === -1) delete est.resp[idx];
+                else est.resp[idx] = ej.opciones[opcionIdx];
+                if (ej.tipo === 'mapa') {
+                    pintarMapa();
+                    return;
+                }
+                ej.opciones.forEach((_, i) => {
+                    const btn = document.getElementById(`op-${clave}-${idx}-${i}`);
+                    if (btn) btn.classList.toggle('elegida', i === opcionIdx);
+                });
+            };
+
+            window[tocarFicha] = function (i) {
+                const op = est.lista.find(ej => ej.tipo === 'mapa').opciones[i];
+                est.ficha = est.ficha === op ? null : op;
+                pintarMapa();
+            };
+
+            window[tocarCaja] = function (idx) {
+                const ej = est.lista[idx];
+                if (est.ficha !== null) {
+                    const i = ej.opciones.indexOf(est.ficha);
+                    est.ficha = null;
+                    window[seleccionar](idx, i);
+                } else if (est.resp[idx] !== undefined) {
+                    window[seleccionar](idx, -1);
+                }
+            };
+
+            const tablaPorItem = () => {
+                let filas = '';
+                [1, 2, 3].forEach(n => {
+                    const delItem = est.lista.map((ej, i) => ({ ej, i })).filter(o => o.ej.item === n);
+                    const buenas = delItem.filter(o => est.resp[o.i] === o.ej.respuestaCorrecta).length;
+                    filas += `<tr>
+                        <td style="padding: 10px; border: 1px solid #ccc; font-size: 13px;">${indicadoresMicro[n]}</td>
+                        <td style="padding: 10px; border: 1px solid #ccc; text-align: center; white-space: nowrap;">Ítem ${n}</td>
+                        <td style="padding: 10px; border: 1px solid #ccc; text-align: center; font-weight: 600; white-space: nowrap;">${buenas * PUNTOS_MICRO} de ${delItem.length * PUNTOS_MICRO} puntos</td>
+                    </tr>`;
+                });
+                return `<table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+                    <tr style="background-color: #1a3c6e; color: white;">
+                        <th style="padding: 10px; text-align: left; border: 1px solid #ccc;">Indicadores</th>
+                        <th style="padding: 10px; border: 1px solid #ccc;">N° Pregunta</th>
+                        <th style="padding: 10px; border: 1px solid #ccc;">Puntaje</th>
+                    </tr>${filas}</table>`;
+            };
+
+            const revelar = () => {
+                let correctas = 0;
+                let html = '<table style="width: 100%; border-collapse: collapse; font-size: 13px;">';
+                html += '<tr style="background-color: #1a3c6e; color: white;">' +
+                        '<th style="padding: 10px; text-align: left; border: 1px solid #ccc;">N°</th>' +
+                        '<th style="padding: 10px; text-align: left; border: 1px solid #ccc;">Pregunta</th>' +
+                        '<th style="padding: 10px; text-align: center; border: 1px solid #ccc;">Tu Respuesta</th>' +
+                        '<th style="padding: 10px; text-align: center; border: 1px solid #ccc;">Respuesta Correcta</th>' +
+                        '<th style="padding: 10px; text-align: left; border: 1px solid #ccc;">Lo que dice el cuaderno</th>' +
+                        '<th style="padding: 10px; text-align: center; border: 1px solid #ccc;">Estado</th>' +
+                        '</tr>';
+                est.lista.forEach((ej, idx) => {
+                    const r = est.resp[idx];
+                    const bien = r === ej.respuestaCorrecta;
+                    if (bien) correctas++;
+                    html += `<tr style="background-color: ${bien ? '#e8f5e9' : '#ffebee'};">
+                        <td style="padding: 10px; border: 1px solid #ccc; font-weight: 600;">${ej.numero}</td>
+                        <td style="padding: 10px; border: 1px solid #ccc;">${ecEsc(ej.pregunta)}</td>
+                        <td style="padding: 10px; text-align: center; border: 1px solid #ccc;">${r === undefined ? '—' : ecEsc(r)}</td>
+                        <td style="padding: 10px; text-align: center; border: 1px solid #ccc; font-weight: 600; color: #1a3c6e;">${ecEsc(ej.respuestaCorrecta)}</td>
+                        <td style="padding: 10px; border: 1px solid #ccc; color: #555; font-size: 12px;">${ecEsc(ej.explicacion)}</td>
+                        <td style="padding: 10px; text-align: center; border: 1px solid #ccc; color: ${bien ? '#2f6f4e' : '#c93c3c'}; font-weight: 600;">${bien ? '✓' : '✗'}</td>
+                    </tr>`;
+                });
+                html += '</table>';
+
+                const total = est.lista.length;
+                const porcentaje = total === 0 ? 0 : Math.round((correctas / total) * 100);
+                const mensaje = porcentaje === 100 ? '¡Excelente! 🎉' :
+                                porcentaje >= 80 ? '¡Muy bien! 👏' :
+                                porcentaje >= 60 ? 'Buen esfuerzo 💪' : 'Sigue practicando 📚';
+                const conMapa = est.lista.some(ej => ej.tipo === 'mapa');
+                id('contenedor-resultados').innerHTML =
+                    `<div style="margin-bottom: 20px; text-align: center;">
+                        <p style="font-size: 32px; font-weight: 600; color: #1a3c6e;">${correctas * PUNTOS_MICRO}/${total * PUNTOS_MICRO} puntos</p>
+                        <p style="font-size: 18px; color: #2f6f4e;">${porcentaje}% — ${mensaje}</p>
+                    </div>` +
+                    (def.porItem ? tablaPorItem() : '') +
+                    (conMapa ? `<h4 style="color: #1a3c6e; margin-bottom: 10px;">🗺️ El mapa corregido</h4><div style="margin-bottom: 20px;">${htmlMapaMicro(est.lista, 'resuelto', { resp: est.resp })}</div>` : '') +
+                    html;
+
+                id('area-ejercicios').style.display = 'none';
+                id('resultados').style.display = 'block';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            };
+
+            const iniciar = () => {
+                est.lista = def.generar();
+                est.lista.forEach((ej, i) => { ej.numero = i + 1; });
+                est.resp = {};
+                est.ficha = null;
+                dibujar();
+                id('configuracion').style.display = 'none';
+                id('area-ejercicios').style.display = 'block';
+                id('resultados').style.display = 'none';
+            };
+
+            id('btn-generar').addEventListener('click', iniciar);
+            ['btn-nuevos-ejercicios', 'btn-nuevos-resultados'].forEach(b => id(b).addEventListener('click', () => {
+                iniciar();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }));
+            id('btn-imprimir').addEventListener('click', () => imprimirGuiaMicro(def, est.lista));
+            id('btn-revisar').addEventListener('click', revelar);
+
+            window[mostrar] = function () {
+                id('modulo').style.display = 'block';
+                id('configuracion').style.display = 'block';
+                id('area-ejercicios').style.display = 'none';
+                id('resultados').style.display = 'none';
+                document.querySelectorAll('.seccion').forEach(s => s.style.display = 'none');
+            };
+
+            return {
+                clave, titulo: 'Microorganismos: ' + def.titulo,
+                modulo: 'modulo-' + clave, config: 'configuracion-' + clave, area: 'area-ejercicios-' + clave,
+                resultados: 'resultados-' + clave, mostrar,
+                generar: ['btn-generar-' + clave, 'btn-nuevos-ejercicios-' + clave, 'btn-nuevos-resultados-' + clave],
+                revisar: 'btn-revisar-' + clave, selectores: [seleccionar],
+                capturar: () => ({ lista: est.lista, resp: est.resp }),
+                restaurar: s => {
+                    est.lista = s.lista;
+                    est.resp = {};
+                    est.ficha = null;
+                    dibujar();
+                    Object.keys(s.resp || {}).forEach(k => {
+                        const j = indiceOpcion(est.lista[k] && est.lista[k].opciones, s.resp[k]);
+                        if (j !== -1) window[seleccionar](Number(k), j);
+                    });
+                },
+                detalle: () => est.lista.map((e, i) => {
+                    const r = est.resp[i];
+                    return { n: e.numero, p: e.pregunta, r: r === undefined ? '—' : r, c: e.respuestaCorrecta, ok: r === e.respuestaCorrecta, nota: e.explicacion };
+                })
+            };
+        }
+
+        const submodulosMicro = Object.keys(definicionesMicro).map(crearSubmoduloMicro);
+
+        // Todas estas imágenes tienen licencia libre o están en el dominio público.
+        const creditosMicro = [
+            ['Cigarette DS.jpg', 'Augustus Binu', 'CC BY-SA 3.0'],
+            ['Microscope - school laboratory (1).jpg', 'Kvr.lohith', 'CC BY-SA 4.0'],
+            ['Saccharomyces cerevisiae SEM.jpg', 'Mogana Das Murtey y Patchamuthu Ramasamy', 'CC BY 3.0'],
+            ['E coli at 10000x, original.jpg', 'Eric Erbe y Christopher Pooley, USDA ARS', 'Dominio público'],
+            ['Paramecium.jpg', 'Barfooz', 'CC BY-SA 3.0'],
+            ['Prokaryote cell diagram es.svg', 'Mariana Ruiz, traducción de JMPerez', 'Dominio público'],
+            ['Celula eucariota simple.png', 'Faduart', 'CC BY-SA 3.0'],
+            ['Arrangement of cocci bacteria en.svg', 'Mariana Ruiz (recortada, sin rótulos)', 'Dominio público'],
+            ['Binary fission2-es.svg', 'Mcstrother (ordenada en una tira, sin rótulos)', 'CC BY 4.0'],
+            ['Lactobacillus paracasei.jpg', 'Horst Neve, Max Rubner-Institut', 'CC BY-SA 3.0 DE'],
+            ['Yoghurt in bowl 011715.jpg', 'Susan Slater', 'CC BY-SA 4.0'],
+            ['Boletus edulis steinpilz.jpg', 'Holger Krisp', 'CC BY 3.0'],
+            ['201108 budding yeast.png', 'Database Center for Life Science (DBCLS)', 'CC BY 4.0'],
+            ['Puffballs emitting spores.jpg', 'Lesmalvern', 'CC BY-SA 4.0']
+        ];
+
+        document.getElementById('micro-lista-creditos').innerHTML = creditosMicro.map(([archivo, autor, licencia]) => {
+            const pagina = 'https://commons.wikimedia.org/wiki/File:' + encodeURIComponent(archivo.replace(/ /g, '_'));
+            return `<li><a href="${pagina}" target="_blank" rel="noopener">${ecEsc(archivo)}</a>: ${ecEsc(autor)} · ${licencia}</li>`;
+        }).join('');
+
+        // ============================================================
         // ============ SUCESIONES PERSONALIZADAS (5° BÁSICO) ==========
         // ============================================================
         // Guía configurable: dificultad, operaciones de la sucesión (checkbox, incluida
@@ -11776,7 +12890,8 @@
                     };
                 })
             },
-            ...submodulosAlgebra
+            ...submodulosAlgebra,
+            ...submodulosMicro
         ];
 
         function guardarEstadoModulo5(m) {
