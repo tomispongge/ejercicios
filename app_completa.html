@@ -717,6 +717,207 @@
             background: #2e7d32;
         }
         
+        /* ===== CASILLAS PARA ESCRIBIR NÚMEROS (1° BÁSICO) ===== */
+        .n1-hueco {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            vertical-align: middle;
+        }
+
+        .n1-casilla {
+            width: 66px;
+            height: 50px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            border: 2px solid #b8c0f0;
+            border-radius: 8px;
+            background: white;
+            color: #333;
+        }
+
+        .n1-casilla:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.25);
+        }
+
+        .n1-casilla.correcto {
+            background: #4CAF50;
+            color: white;
+            border-color: #4CAF50;
+        }
+
+        .n1-casilla.incorrecto {
+            background: #f44336;
+            color: white;
+            border-color: #f44336;
+            animation: shake 0.3s;
+        }
+
+        .n1-correccion {
+            margin-top: 3px;
+            font-size: 15px;
+            font-weight: bold;
+            color: #2e7d32;
+        }
+
+        .s20-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+        }
+
+        .s20-celda {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px;
+            background: #f8f9ff;
+            border: 2px solid #e3e7fb;
+            border-radius: 10px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .s20-celda > span:first-child {
+            line-height: 50px;
+            white-space: nowrap;
+        }
+
+        .tot-precios {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .tot-precio {
+            width: 100px;
+            padding: 8px 0;
+            background: white;
+            border: 3px solid #333;
+            border-radius: 14px;
+            text-align: center;
+        }
+
+        .tot-precio .tot-valor {
+            font-size: 30px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .tot-emoji {
+            font-size: 46px;
+            line-height: 1.1;
+        }
+
+        .ejercicio.tot-fila {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 16px;
+            padding: 14px;
+        }
+
+        .tot-signo {
+            font-size: 30px;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .ps-dibujo {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin: 12px 0;
+        }
+
+        .ps-grupo {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 4px;
+            max-width: 250px;
+            padding: 8px;
+            background: white;
+            border-radius: 10px;
+            font-size: 28px;
+        }
+
+        .ps-mas {
+            font-size: 34px;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .ps-respuestas {
+            display: grid;
+            gap: 12px;
+            margin-top: 12px;
+            font-size: 19px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .ps-linea {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            gap: 8px;
+            line-height: 50px;
+        }
+
+        .sal-camino {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .sal-num,
+        .n1-casilla.sal-hueco {
+            width: 62px;
+            height: 62px;
+            border: 3px solid #333;
+            border-radius: 50%;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .sal-num {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            color: #333;
+        }
+
+        .n1-casilla.sal-hueco {
+            border-style: dashed;
+            border-color: #667eea;
+        }
+
+        .sal-flecha {
+            line-height: 62px;
+            font-size: 20px;
+            color: #999;
+        }
+
+        .sal-extremo {
+            line-height: 62px;
+            font-size: 40px;
+        }
+
         /* ===== PROBLEMAS ===== */
         .problema-enunciado {
             background: white;
@@ -1308,6 +1509,14 @@
                     <span class="opcion-emoji">📍</span>
                     Sumas y Restas<br>en Recta
                 </button>
+                <button class="opcion" onclick="irA('sumas-20')">
+                    <span class="opcion-emoji">➕</span>
+                    Sumas hasta 20
+                </button>
+                <button class="opcion" onclick="irA('cual-total')">
+                    <span class="opcion-emoji">🍦</span>
+                    ¿Cuál es el total?
+                </button>
                 <button class="opcion" onclick="irA('cuanto-falta')">
                     <span class="opcion-emoji">❓</span>
                     ¿Cuánto Falta?
@@ -1332,6 +1541,10 @@
                     <span class="opcion-emoji">🚚</span>
                     Antecesor y Sucesor
                 </button>
+                <button class="opcion" onclick="irA('camino-saltos')">
+                    <span class="opcion-emoji">🐭</span>
+                    Camino de Saltos
+                </button>
                 <button class="opcion" onclick="irA('dados')">
                     <span class="opcion-emoji">🎲</span>
                     Completa el Dado
@@ -1339,6 +1552,10 @@
                 <button class="opcion" onclick="irA('problemas')">
                     <span class="opcion-emoji">🧩</span>
                     Resolución de<br>Problemas
+                </button>
+                <button class="opcion" onclick="irA('problemas-suma')">
+                    <span class="opcion-emoji">🧮</span>
+                    Problemas de Sumas
                 </button>
                 <button class="opcion" onclick="irA('figuras')">
                     <span class="opcion-emoji">🔺</span>
@@ -1779,6 +1996,9 @@
                 <p id="puntuacion-texto-figuras"></p>
             </div>
         </div>
+
+        <!-- MÁS EJERCICIOS DE MATEMÁTICA DE 1º BÁSICO (se crean desde el script) -->
+        <div id="modulos1-nuevos"></div>
 
         <!-- COPIA EN MI CUADERNO -->
         <div id="copia" class="seccion">
@@ -3746,6 +3966,9 @@
             { en: "whose", es: "de quién", categoria: "conectores" }
         ];
 
+        // Módulos de 1° agregados después: cada uno trae sus propias funciones (ver registrarModulo1).
+        const modulos1Nuevos = {};
+
         let ejercicios = {
             recta: [],
             'cuanto-falta': [],
@@ -3874,6 +4097,8 @@
                     renderEjerciciosProblemas();
                 } else if (seccionId === 'figuras') {
                     renderEjerciciosFiguras();
+                } else if (modulos1Nuevos[seccionId]) {
+                    modulos1Nuevos[seccionId].render();
                 }
                 yaRenderizado[seccionId] = true;
             }
@@ -8478,7 +8703,10 @@
                     respuestaEsperada = ejercicios[tipo][i].respuesta;
                 }
                 
-                if (respuestas[tipo][i] === respuestaEsperada) {
+                const acerto = modulos1Nuevos[tipo]
+                    ? modulos1Nuevos[tipo].correcta(ejercicios[tipo][i], respuestas[tipo][i])
+                    : respuestas[tipo][i] === respuestaEsperada;
+                if (acerto) {
                     correctas++;
                 }
                 
@@ -8507,6 +8735,8 @@
                         revelarProblemas(i);
                     } else if (tipo === 'figuras') {
                         revelarFiguras(i);
+                    } else if (modulos1Nuevos[tipo]) {
+                        modulos1Nuevos[tipo].revelar(i);
                     }
                 }
             }
@@ -8579,6 +8809,10 @@
                 ejercicios['figuras'] = generarFiguras();
                 respuestas['figuras'] = {};
                 renderEjerciciosFiguras();
+            } else if (modulos1Nuevos[tipo]) {
+                ejercicios[tipo] = modulos1Nuevos[tipo].generar();
+                respuestas[tipo] = {};
+                modulos1Nuevos[tipo].render();
             }
             
             document.getElementById(`puntuacion-${tipo}`).style.display = 'none';
@@ -8742,6 +8976,339 @@
         }
 
         parrafoCopiaActual = generarCopia();
+
+        // ============================================================
+        // ============ MÁS EJERCICIOS DE MATEMÁTICA (1º BÁSICO) ======
+        // ============================================================
+        // Cuatro módulos hechos a partir de las guías del colegio: sumas hasta 20,
+        // "¿Cuál es el total?", problemas de sumas con su expresión matemática y caminos
+        // de saltos de 10, 5 y 2. Se registran en modulos1Nuevos y siguen el flujo de los
+        // demás módulos de 1°: "Ver Mis Resultados", "Nuevos Ejercicios", progreso guardado
+        // e historial. Las respuestas se escriben en casillas y se pueden corregir hasta ver
+        // los resultados.
+
+        // Casilla para escribir un número: solo dígitos y teclado numérico en el iPad.
+        function casillaNumero1(id, alEscribir, clase) {
+            return `<span class="n1-hueco"><input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="3" autocomplete="off" class="n1-casilla ${clase || ''}" id="${id}" oninput="${alEscribir}"></span>`;
+        }
+
+        // Deja solo dígitos y devuelve el número escrito, o '' si la casilla está vacía.
+        function leerCasilla1(el) {
+            el.value = el.value.replace(/\D/g, '').slice(0, 3);
+            return el.value === '' ? '' : Number(el.value);
+        }
+
+        // Pinta la casilla y, si está mal o vacía, deja la respuesta correcta debajo.
+        function revelarCasilla1(id, bien, correcta) {
+            const el = document.getElementById(id);
+            if (!el) return;
+            el.disabled = true;
+            el.classList.add(bien ? 'correcto' : 'incorrecto');
+            if (!bien) el.parentElement.insertAdjacentHTML('beforeend', `<span class="n1-correccion">${correcta}</span>`);
+        }
+
+        function htmlModulo1Nuevo(tipo, def) {
+            return `
+        <div id="${tipo}" class="seccion">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                <h1>${def.emoji} ${def.titulo}</h1>
+                <button class="btn btn-volver" onclick="irA('menu-1basico-matematica')">← Volver</button>
+            </div>
+            <div class="instrucciones">${def.instrucciones}</div>
+            <div id="ejercicios-${tipo}"></div>
+            <div class="botones-finales">
+                <button class="btn btn-resultados" onclick="mostrarResultados('${tipo}')">Ver Mis Resultados</button>
+                <button class="btn btn-resultados" onclick="generarNuevosEjercicios('${tipo}')">🔄 Nuevos Ejercicios</button>
+                <button class="btn btn-volver" onclick="irA('menu-1basico-matematica')">Volver</button>
+            </div>
+            <div class="puntuacion" id="puntuacion-${tipo}">
+                <h2>¡Felicidades!</h2>
+                <p id="puntuacion-texto-${tipo}"></p>
+            </div>
+        </div>`;
+        }
+
+        // def: titulo, emoji, instrucciones, generar, render, esperada(ej), describir(ej) y,
+        // para las casillas simples, casilla(idx). Los problemas traen además correcta, texto,
+        // restaurar y revelar propios.
+        function registrarModulo1(tipo, def) {
+            const sufijo = tipo.split('-').map(p => p.charAt(0).toUpperCase() + p.slice(1)).join('');
+            def.selector = 'responder' + sufijo;
+            // Anota la respuesta de un ejercicio; '' = casilla vacía. No cambia tras ver los resultados.
+            window[def.selector] = function (idx, valor) {
+                if (resultadosRevelados[tipo]) return;
+                if (valor === '' || valor === undefined) delete respuestas[tipo][idx];
+                else respuestas[tipo][idx] = valor;
+            };
+            def.correcta = def.correcta || ((ej, r) => r === def.esperada(ej));
+            def.texto = def.texto || (v => String(v));
+            def.restaurar = def.restaurar || ((idx, v) => {
+                const el = document.getElementById(def.casilla(idx));
+                if (el) el.value = v;
+                window[def.selector](idx, v);
+            });
+            def.revelar = def.revelar || (idx => {
+                const ej = ejercicios[tipo][idx];
+                revelarCasilla1(def.casilla(idx), def.correcta(ej, respuestas[tipo][idx]), def.esperada(ej));
+            });
+            modulos1Nuevos[tipo] = def;
+            ejercicios[tipo] = def.generar();
+            respuestas[tipo] = {};
+            yaRenderizado[tipo] = false;
+            resultadosRevelados[tipo] = false;
+            document.getElementById('modulos1-nuevos').insertAdjacentHTML('beforeend', htmlModulo1Nuevo(tipo, def));
+        }
+
+        function azar1(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        // ---------- Sumas hasta 20 ----------
+        // La misma mezcla de la guía: sumas que pasan la decena (8 + 9), de 10 a 19 más
+        // unidades (13 + 4, 5 + 12), las que llegan a 20 (18 + 2) y algunas hasta 10.
+        function generarSumas20() {
+            const tipos = barajarArreglo([
+                'decena', 'decena', 'decena', 'decena', 'decena',
+                'conDiez', 'conDiez', 'conDiez', 'conDiez', 'conDiez',
+                'veinte', 'veinte', 'veinte',
+                'chica', 'chica', 'chica', 'chica',
+                'cualquiera', 'cualquiera', 'cualquiera'
+            ]);
+            const vistas = new Set();
+            return tipos.map(t => {
+                let a, b, intentos = 0;
+                do {
+                    if (t === 'decena') { a = azar1(2, 9); b = azar1(Math.max(2, 11 - a), 9); }
+                    else if (t === 'conDiez') { a = azar1(10, 18); b = azar1(1, 20 - a); }
+                    else if (t === 'veinte') { a = azar1(10, 19); b = 20 - a; }
+                    else if (t === 'chica') { a = azar1(1, 8); b = azar1(1, 10 - a); }
+                    else { a = azar1(1, 19); b = azar1(1, 20 - a); }
+                    if (t !== 'chica' && Math.random() < 0.35) [a, b] = [b, a];
+                    intentos++;
+                } while (vistas.has(a + '+' + b) && intentos < 40);
+                vistas.add(a + '+' + b);
+                return { a, b };
+            });
+        }
+
+        function renderSumas20() {
+            const celdas = ejercicios['sumas-20'].map((ej, idx) =>
+                `<div class="s20-celda"><span>${ej.a} + ${ej.b} =</span>${casillaNumero1(`s20-${idx}`, `responderSumas20(${idx}, leerCasilla1(this))`)}</div>`);
+            document.getElementById('ejercicios-sumas-20').innerHTML = `<div class="s20-grid">${celdas.join('')}</div>`;
+        }
+
+        // ---------- ¿Cuál es el total? ----------
+        // Cuatro dibujos con su valor (dos de 1 a 5, más el 10 y el 20) y filas de tres dibujos
+        // que se suman. Los totales no pasan de 50.
+        const dibujosTotal1 = ['🍦', '🍬', '🍔', '🧃', '🍕', '🍎', '🍪', '🧁', '🍩', '🍌', '🍓', '🌭', '🍫', '🍉', '🥕', '🍐'];
+
+        function generarCualTotal() {
+            const valores = barajarArreglo(barajarArreglo([1, 2, 3, 4, 5]).slice(0, 2).concat([10, 20]));
+            const precios = barajarArreglo(dibujosTotal1).slice(0, 4).map((e, i) => ({ e, v: valores[i] }));
+            const total = fila => fila.reduce((s, k) => s + precios[k].v, 0);
+            // Dos filas con los mismos dibujos en otro orden serían el mismo ejercicio.
+            const clave = fila => fila.slice().sort().join('');
+            const filas = [];
+            const vistas = new Set();
+            // La primera repite un dibujo, como en la guía (🍦 + 🍬 + 🍦).
+            const r = azar1(0, 3);
+            filas.push(barajarArreglo([r, r, (r + azar1(1, 3)) % 4]));
+            vistas.add(clave(filas[0]));
+            while (filas.length < 6) {
+                const fila = [azar1(0, 3), azar1(0, 3), azar1(0, 3)];
+                if (vistas.has(clave(fila)) || new Set(fila).size === 1 || total(fila) > 50) continue;
+                vistas.add(clave(fila));
+                filas.push(fila);
+            }
+            return barajarArreglo(filas).map(fila => ({ precios, fila, total: total(fila) }));
+        }
+
+        function renderCualTotal() {
+            const lista = ejercicios['cual-total'];
+            let html = `<div class="tot-precios">${lista[0].precios.map(p =>
+                `<div class="tot-precio"><div class="tot-emoji">${p.e}</div><div class="tot-valor">${p.v}</div></div>`).join('')}</div>`;
+            lista.forEach((ej, idx) => {
+                html += `
+                    <div class="ejercicio tot-fila">
+                        ${ej.fila.map(k => `<span class="tot-emoji">${ej.precios[k].e}</span>`).join('<span class="tot-signo">+</span>')}
+                        <span class="tot-signo">=</span>
+                        ${casillaNumero1(`tot-${idx}`, `responderCualTotal(${idx}, leerCasilla1(this))`)}
+                    </div>`;
+            });
+            document.getElementById('ejercicios-cual-total').innerHTML = html;
+        }
+
+        // ---------- Problemas de sumas ----------
+        // {n}: un nombre · {a} y {b}: los dos grupos · e1 y e2: el dibujo de cada grupo.
+        const nombresProblemasSuma1 = ['Amanda', 'Benjamín', 'Florencia', 'Agustín', 'Isidora', 'Martina', 'Emilia', 'Lucas', 'Antonia', 'Gaspar'];
+        const plantillasProblemasSuma1 = [
+            { t: '{n} tenía {a} lápices y su mamá le compró {b} lápices más. ¿Cuántos lápices tiene en total?', e1: '✏️', e2: '✏️', total: 'Tiene en total' },
+            { t: 'En la granja había {a} gallinas. Luego llegaron {b} gallinas más. ¿Cuántas gallinas hay en total?', e1: '🐔', e2: '🐔', total: 'Hay en total' },
+            { t: '{n} tenía {a} autitos y su abuelo le regaló {b} autitos más. ¿Cuántos autitos tiene en total?', e1: '🚗', e2: '🚗', total: 'Tiene en total' },
+            { t: 'En el cumpleaños de {n} había {a} globos rojos y {b} globos azules. ¿Cuántos globos hay en total?', e1: '🎈', e2: '🎈', total: 'Hay en total' },
+            { t: 'En una caja hay {a} manzanas rojas y {b} manzanas verdes. ¿Cuántas manzanas hay en total?', e1: '🍎', e2: '🍏', total: 'Hay en total' },
+            { t: 'En la pecera hay {a} peces naranjos y {b} peces azules. ¿Cuántos peces hay en total?', e1: '🐠', e2: '🐟', total: 'Hay en total' },
+            { t: '{n} juntó {a} conchitas en la mañana y {b} conchitas en la tarde. ¿Cuántas conchitas juntó en total?', e1: '🐚', e2: '🐚', total: 'Juntó en total' },
+            { t: '{n} tiene {a} stickers de perritos y {b} stickers de gatitos. ¿Cuántos stickers tiene en total?', e1: '🐶', e2: '🐱', total: 'Tiene en total' },
+            { t: 'En la sala hay {a} niñas y {b} niños. ¿Cuántos niños y niñas hay en total?', e1: '👧', e2: '👦', total: 'Hay en total' },
+            { t: '{n} tenía {a} galletas y su abuela le dio {b} galletas más. ¿Cuántas galletas tiene en total?', e1: '🍪', e2: '🍪', total: 'Tiene en total' },
+            { t: 'En el árbol había {a} pajaritos y llegaron {b} pajaritos más. ¿Cuántos pajaritos hay en total?', e1: '🐦', e2: '🐦', total: 'Hay en total' },
+            { t: 'En el jardín hay {a} flores rojas y {b} flores amarillas. ¿Cuántas flores hay en total?', e1: '🌹', e2: '🌼', total: 'Hay en total' },
+            { t: '{n} tiene {a} pelotas de fútbol y {b} pelotas de básquetbol. ¿Cuántas pelotas tiene en total?', e1: '⚽', e2: '🏀', total: 'Tiene en total' }
+        ];
+
+        function generarProblemasSuma() {
+            const nombres = barajarArreglo(nombresProblemasSuma1);
+            return barajarArreglo(plantillasProblemasSuma1).slice(0, 5).map((p, i) => {
+                let a, b;
+                do { a = azar1(2, 12); b = azar1(2, Math.min(15, 20 - a)); } while (a + b < 8);
+                const enunciado = p.t.replace('{n}', nombres[i]).replace('{a}', a).replace('{b}', b);
+                return { enunciado, a, b, e1: p.e1, e2: p.e2, etiqueta: p.total };
+            });
+        }
+
+        function renderProblemasSuma() {
+            let html = '';
+            ejercicios['problemas-suma'].forEach((ej, idx) => {
+                const casilla = campo => casillaNumero1(`ps-${campo}-${idx}`, `anotarProblemaSuma(${idx})`);
+                const grupo = (e, n) => Array(n).fill(`<span>${e}</span>`).join('');
+                html += `
+                    <div class="ejercicio">
+                        <div class="ejercicio-header">
+                            <span class="ejercicio-numero">Problema ${idx + 1}</span>
+                        </div>
+                        <div class="problema-enunciado">${ej.enunciado}</div>
+                        <div class="ps-dibujo">
+                            <div class="ps-grupo">${grupo(ej.e1, ej.a)}</div>
+                            <span class="ps-mas">+</span>
+                            <div class="ps-grupo">${grupo(ej.e2, ej.b)}</div>
+                        </div>
+                        <div class="ps-respuestas">
+                            <div class="ps-linea">• ${ej.etiqueta} ${casilla('t')}</div>
+                            <div class="ps-linea">• Expresión matemática: ${casilla('a')} + ${casilla('b')} = ${casilla('c')}</div>
+                        </div>
+                        <div class="feedback" id="feedback-ps-${idx}"></div>
+                    </div>`;
+            });
+            document.getElementById('ejercicios-problemas-suma').innerHTML = html;
+        }
+
+        // Junta las cuatro casillas del problema en una sola respuesta.
+        function anotarProblemaSuma(idx) {
+            const r = {};
+            ['t', 'a', 'b', 'c'].forEach(k => { r[k] = leerCasilla1(document.getElementById(`ps-${k}-${idx}`)); });
+            responderProblemasSuma(idx, Object.values(r).every(v => v === '') ? '' : r);
+        }
+
+        // Los sumandos valen en cualquier orden: 5 + 15 o 15 + 5.
+        function sumandosProblemaSuma(ej, r) {
+            const invertido = r.a === ej.b && r.a !== ej.a;
+            return { a: invertido ? ej.b : ej.a, b: invertido ? ej.a : ej.b };
+        }
+
+        // ---------- Camino de saltos ----------
+        // Un camino de 10 números por salto (10, 5 y 2), como el "Camino del 5": los dos
+        // primeros siempre se ven, así se descubre el salto, y faltan 5 de los demás.
+        function generarCaminoSaltos() {
+            const lista = [];
+            [10, 5, 2].forEach((salto, camino) => {
+                const inicio = salto * azar1(1, Math.floor((100 - 9 * salto) / salto));
+                const secuencia = Array.from({ length: 10 }, (_, i) => inicio + i * salto);
+                const huecos = barajarArreglo([2, 3, 4, 5, 6, 7, 8, 9]).slice(0, 5).sort((x, y) => x - y);
+                huecos.forEach(pos => lista.push({ camino, salto, secuencia, huecos, pos }));
+            });
+            return lista;
+        }
+
+        function renderCaminoSaltos() {
+            const lista = ejercicios['camino-saltos'].map((ej, idx) => ({ ej, idx }));
+            let html = '';
+            [...new Set(lista.map(o => o.ej.camino))].forEach(camino => {
+                const delCamino = lista.filter(o => o.ej.camino === camino);
+                const { salto, secuencia } = delCamino[0].ej;
+                const pasos = secuencia.map((n, pos) => {
+                    const hueco = delCamino.find(o => o.ej.pos === pos);
+                    return hueco
+                        ? casillaNumero1(`sal-${hueco.idx}`, `responderCaminoSaltos(${hueco.idx}, leerCasilla1(this))`, 'sal-hueco')
+                        : `<span class="sal-num">${n}</span>`;
+                });
+                html += `
+                    <div class="ejercicio">
+                        <div class="ejercicio-header">
+                            <span class="ejercicio-numero">Camino ${camino + 1}</span>
+                            <span class="operacion">De ${salto} en ${salto}</span>
+                        </div>
+                        <div class="sal-camino">
+                            <span class="sal-extremo">🐭</span>${pasos.join('<span class="sal-flecha">→</span>')}<span class="sal-flecha">→</span><span class="sal-extremo">🧀</span>
+                        </div>
+                    </div>`;
+            });
+            document.getElementById('ejercicios-camino-saltos').innerHTML = html;
+        }
+
+        registrarModulo1('sumas-20', {
+            titulo: 'Sumas hasta 20', emoji: '➕',
+            instrucciones: '✏️ Resuelve las sumas y escribe el resultado en cada casilla. Puedes corregir hasta que presiones «Ver Mis Resultados».',
+            generar: generarSumas20, render: renderSumas20, casilla: idx => `s20-${idx}`,
+            esperada: ej => ej.a + ej.b,
+            describir: ej => `${ej.a} + ${ej.b} = ?`
+        });
+
+        registrarModulo1('cual-total', {
+            titulo: '¿Cuál es el total?', emoji: '🍦',
+            instrucciones: '🔍 Observa cuánto vale cada dibujo y suma los tres dibujos de cada fila. Escribe el total en la casilla.',
+            generar: generarCualTotal, render: renderCualTotal, casilla: idx => `tot-${idx}`,
+            esperada: ej => ej.total,
+            describir: ej => ej.fila.map(k => `${ej.precios[k].e} (${ej.precios[k].v})`).join(' + ') + ' = ?'
+        });
+
+        registrarModulo1('problemas-suma', {
+            titulo: 'Problemas de Sumas', emoji: '🧮',
+            instrucciones: '📖 Lee cada problema. Escribe el total y la expresión matemática: los dos números que se suman y el resultado.',
+            generar: generarProblemasSuma, render: renderProblemasSuma,
+            esperada: ej => ({ t: ej.a + ej.b, a: ej.a, b: ej.b, c: ej.a + ej.b }),
+            describir: ej => ej.enunciado,
+            correcta: (ej, r) => !!r && r.t === ej.a + ej.b && r.c === ej.a + ej.b &&
+                ((r.a === ej.a && r.b === ej.b) || (r.a === ej.b && r.b === ej.a)),
+            texto: r => {
+                const v = x => (x === '' || x === undefined ? '_' : x);
+                return `Total ${v(r.t)} · ${v(r.a)} + ${v(r.b)} = ${v(r.c)}`;
+            },
+            restaurar: (idx, r) => {
+                ['t', 'a', 'b', 'c'].forEach(k => {
+                    const el = document.getElementById(`ps-${k}-${idx}`);
+                    if (el) el.value = r[k] === undefined ? '' : r[k];
+                });
+                responderProblemasSuma(idx, r);
+            },
+            revelar: idx => {
+                const ej = ejercicios['problemas-suma'][idx];
+                const r = respuestas['problemas-suma'][idx] || {};
+                const s = ej.a + ej.b;
+                const orden = sumandosProblemaSuma(ej, r);
+                revelarCasilla1(`ps-t-${idx}`, r.t === s, s);
+                revelarCasilla1(`ps-a-${idx}`, r.a === orden.a, orden.a);
+                revelarCasilla1(`ps-b-${idx}`, r.b === orden.b, orden.b);
+                revelarCasilla1(`ps-c-${idx}`, r.c === s, s);
+                const feedback = document.getElementById(`feedback-ps-${idx}`);
+                if (modulos1Nuevos['problemas-suma'].correcta(ej, respuestas['problemas-suma'][idx])) {
+                    feedback.classList.add('correcto');
+                    feedback.textContent = '✓ ¡Correcto!';
+                } else {
+                    feedback.classList.add('incorrecto');
+                    feedback.textContent = `${respuestas['problemas-suma'][idx] === undefined ? '✗ No respondiste. ' : '✗ '}El total es ${s} y la expresión es ${ej.a} + ${ej.b} = ${s}.`;
+                }
+            }
+        });
+
+        registrarModulo1('camino-saltos', {
+            titulo: 'Camino de Saltos', emoji: '🐭',
+            instrucciones: '🧀 Ayuda al ratón a llegar al queso: completa los números que faltan saltando de 10 en 10, de 5 en 5 y de 2 en 2.',
+            generar: generarCaminoSaltos, render: renderCaminoSaltos, casilla: idx => `sal-${idx}`,
+            esperada: ej => ej.secuencia[ej.pos],
+            describir: ej => `De ${ej.salto} en ${ej.salto}: ` +
+                ej.secuencia.map((n, p) => (p === ej.pos ? '?' : ej.huecos.includes(p) ? '_' : n)).join(', ')
+        });
     </script>
     <script>
 
@@ -12473,9 +13040,15 @@
             'figuras': 'seleccionarFiguras'
         };
 
+        Object.keys(modulos1Nuevos).forEach(tipo => {
+            titulosModulos1[tipo] = modulos1Nuevos[tipo].titulo;
+            selectoresModulos1[tipo] = modulos1Nuevos[tipo].selector;
+        });
+
         function gradoModulo1(tipo) { return tipo === 'tablas-multiplicar' ? '5' : '1'; }
 
         function esperadaModulo1(tipo, ej) {
+            if (modulos1Nuevos[tipo]) return modulos1Nuevos[tipo].esperada(ej);
             if (tipo === 'recta') return ej.num1 + (ej.tipo === 'suma' ? ej.num2 : -ej.num2);
             if (tipo === 'cuanto-falta') return ej.falta;
             if (tipo === 'restas-simples') return ej.num1 - ej.num2;
@@ -12485,6 +13058,7 @@
         }
 
         function describirModulo1(tipo, ej) {
+            if (modulos1Nuevos[tipo]) return modulos1Nuevos[tipo].describir(ej);
             switch (tipo) {
                 case 'recta': return `${ej.num1} ${ej.tipo === 'suma' ? '+' : '−'} ${ej.num2} = ?`;
                 case 'cuanto-falta': return `Tiene ${ej.tienes} estrellas y necesita ${ej.objetivo}. ¿Cuántas faltan?`;
@@ -12505,6 +13079,7 @@
 
         function textoValorModulo1(tipo, v) {
             if (v === undefined || v === null || v === '') return '—';
+            if (modulos1Nuevos[tipo]) return modulos1Nuevos[tipo].texto(v);
             if (tipo === 'antecesor-sucesor') return String(v).replace('|', ' y ');
             return String(v);
         }
@@ -12524,7 +13099,7 @@
             const detalle = lista.map((ej, i) => {
                 const esperada = esperadaModulo1(tipo, ej);
                 const r = respuestas[tipo][i];
-                const ok = r === esperada;
+                const ok = modulos1Nuevos[tipo] ? modulos1Nuevos[tipo].correcta(ej, r) : r === esperada;
                 if (ok) correctas++;
                 return { n: i + 1, p: describirModulo1(tipo, ej), r: textoValorModulo1(tipo, r), c: textoValorModulo1(tipo, esperada), ok };
             });
@@ -12585,6 +13160,8 @@
                         const sel = document.getElementById(`fig-select-${i}`);
                         if (sel && ejercicios.figuras[i] && ejercicios.figuras[i].tipo === 'nombrar') sel.value = v;
                         window.seleccionarFiguras(i, v);
+                    } else if (modulos1Nuevos[tipo]) {
+                        modulos1Nuevos[tipo].restaurar(i, v);
                     } else {
                         window[selectoresModulos1[tipo]](i, v);
                     }
