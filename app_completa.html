@@ -1653,6 +1653,10 @@
             </div>
 
             <div class="menu-principal">
+                <button class="opcion" onclick="mostrarModuloFrLeer()">
+                    <span class="opcion-emoji">🗣️</span>
+                    Leer y Representar Fracciones
+                </button>
                 <button class="opcion" onclick="mostrarModuloFrAmplificar()">
                     <span class="opcion-emoji">🔼</span>
                     Amplificar Fracciones
@@ -1660,6 +1664,18 @@
                 <button class="opcion" onclick="mostrarModuloFrSimplificar()">
                     <span class="opcion-emoji">🔽</span>
                     Simplificar Fracciones
+                </button>
+                <button class="opcion" onclick="mostrarModuloFrEquivalentes()">
+                    <span class="opcion-emoji">💬</span>
+                    Justificar Equivalencias
+                </button>
+                <button class="opcion" onclick="mostrarModuloFrProblemas()">
+                    <span class="opcion-emoji">🧩</span>
+                    Problemas con Fracciones
+                </button>
+                <button class="opcion" onclick="mostrarModuloFrPrueba()">
+                    <span class="opcion-emoji">📝</span>
+                    Prueba de Práctica (18 puntos)
                 </button>
                 <button class="opcion" onclick="mostrarModuloFrSumar()">
                     <span class="opcion-emoji">➕</span>
@@ -13819,10 +13835,372 @@
             }
         };
 
+        // ---------- Según la pauta de evaluación (18 puntos) ----------
+        // Contenidos: leer y escribir fracciones, interpretarlas y representarlas (parte de un todo,
+        // colección y recta numérica), identificar fracciones equivalentes, justificar la
+        // amplificación y la simplificación, y resolver problemas en contexto.
+        const nombresDenominadorFr = { 2: 'medio', 3: 'tercio', 4: 'cuarto', 5: 'quinto', 6: 'sexto', 7: 'séptimo', 8: 'octavo', 9: 'noveno', 10: 'décimo', 11: 'onceavo', 12: 'doceavo' };
+        const numerosFr = ['', 'un', 'dos', 'tres', 'cuatro', 'cinco', 'seis', 'siete', 'ocho', 'nueve', 'diez', 'once', 'doce'];
+        const nombresPersonasFr = ['Amanda', 'Benjamín', 'Florencia', 'Agustín', 'Isidora', 'Martina', 'Emilia', 'Lucas', 'Antonia', 'Gaspar'];
+        const COLOR_FR = '#f4a63a';
+
+        // 3/4 → "tres cuartos" · 1/2 → "un medio". null si el denominador no tiene nombre aquí.
+        function nombreFr(n, d) {
+            if (!nombresDenominadorFr[d] || !numerosFr[n]) return null;
+            return `${numerosFr[n]} ${nombresDenominadorFr[d]}${n === 1 ? '' : 's'}`;
+        }
+
+        // Fracción propia con denominador entre dmin y dmax (puede simplificarse: 4/6 pintado es 4/6).
+        function propiaLibreFr(dmin, dmax) {
+            const d = ecAzar(dmin, dmax);
+            return [ecAzar(1, d - 1), d];
+        }
+
+        // ---------- Dibujos ----------
+        function svgFr(ancho, alto, contenido, etiqueta) {
+            return `<svg viewBox="0 0 ${ancho} ${alto}" role="img" aria-label="${etiqueta}" xmlns="http://www.w3.org/2000/svg">${contenido}</svg>`;
+        }
+
+        function barraFr(n, d) {
+            const w = 300 / d;
+            let s = '';
+            for (let i = 0; i < d; i++) {
+                s += `<rect x="${(4 + i * w).toFixed(2)}" y="4" width="${w.toFixed(2)}" height="48" fill="${i < n ? COLOR_FR : '#fff'}" stroke="#1a3c6e" stroke-width="2"/>`;
+            }
+            return svgFr(308, 56, s, `Barra dividida en ${d} partes iguales, con ${n} pintadas`);
+        }
+
+        function circuloFr(n, d) {
+            const punto = a => `${(64 + 58 * Math.cos(a)).toFixed(2)} ${(64 + 58 * Math.sin(a)).toFixed(2)}`;
+            let s = '';
+            for (let i = 0; i < d; i++) {
+                const a1 = -Math.PI / 2 + i * 2 * Math.PI / d;
+                const a2 = a1 + 2 * Math.PI / d;
+                s += `<path d="M 64 64 L ${punto(a1)} A 58 58 0 0 1 ${punto(a2)} Z" fill="${i < n ? COLOR_FR : '#fff'}" stroke="#1a3c6e" stroke-width="2"/>`;
+            }
+            return svgFr(128, 128, s, `Círculo dividido en ${d} partes iguales, con ${n} pintadas`);
+        }
+
+        // Las pintadas quedan repartidas al azar, como en una colección real.
+        function coleccionFr(n, d) {
+            const pintadas = barajarArreglo(Array.from({ length: d }, (_, i) => i < n));
+            const porFila = Math.min(d, 6);
+            const s = pintadas.map((p, i) =>
+                `<circle cx="${22 + (i % porFila) * 44}" cy="${22 + Math.floor(i / porFila) * 44}" r="17" fill="${p ? COLOR_FR : '#fff'}" stroke="#1a3c6e" stroke-width="2"/>`).join('');
+            return svgFr(porFila * 44, Math.ceil(d / porFila) * 44, s, `${d} bolitas, ${n} pintadas`);
+        }
+
+        function rectaFr(n, d) {
+            const paso = 280 / d;
+            let s = '<line x1="20" y1="30" x2="300" y2="30" stroke="#1a3c6e" stroke-width="3"/>';
+            for (let i = 0; i <= d; i++) {
+                const x = (20 + i * paso).toFixed(2);
+                s += `<line x1="${x}" y1="20" x2="${x}" y2="40" stroke="#1a3c6e" stroke-width="${i === 0 || i === d ? 3 : 2}"/>`;
+            }
+            s += '<text x="20" y="62" text-anchor="middle" font-size="18" font-weight="700" fill="#1a3c6e">0</text>' +
+                 '<text x="300" y="62" text-anchor="middle" font-size="18" font-weight="700" fill="#1a3c6e">1</text>' +
+                 `<circle cx="${(20 + n * paso).toFixed(2)}" cy="30" r="8" fill="#c93c3c"/>`;
+            return svgFr(320, 70, s, `Recta numérica de 0 a 1 dividida en ${d} partes iguales, con un punto rojo`);
+        }
+
+        // Alternativas que son frases: la correcta y errores que no valen lo mismo que ella.
+        // malas: [[texto, valor], ...]
+        function opcionesFraseFr(correcta, valor, malas) {
+            const vistos = [valor];
+            const elegidas = [];
+            malas.forEach(([texto, v]) => {
+                if (elegidas.length >= 3 || !isFinite(v) || v <= 0 || vistos.some(x => Math.abs(x - v) < 1e-9)) return;
+                vistos.push(v);
+                elegidas.push(texto);
+            });
+            return barajarArreglo([correcta].concat(elegidas));
+        }
+
+        // ---------- Ítem 1: leer, escribir, representar e identificar equivalentes ----------
+        function preguntaLeerRepresentarFr(tipo, nivel) {
+            if (tipo === 'equivalente') return Object.assign(preguntaAmplificar('ampEquiv', nivel.amp), { seccion: tipo });
+            const [n, d] = propiaLibreFr(nivel.d[0], nivel.d[1]);
+            const fr = textoFr(n, d);
+            const base = { seccion: tipo, tipo: 'texto', firma: fr };
+            const errores = [textoFr(d - n, d), textoFr(n, d - n), textoFr(d, n), textoFr(n, d + 1)];
+            if (tipo === 'leer') {
+                const correcta = nombreFr(n, d);
+                return Object.assign(base, {
+                    pregunta: '¿Cómo se lee esta fracción?', expresion: fr, respuestaCorrecta: correcta,
+                    opciones: algOpciones(correcta, [nombreFr(d, n), `${n === 1 ? 'uno' : numerosFr[n]} ${numerosFr[d]}`, nombreFr(n, d + 1), nombreFr(n, d - 1), nombreFr(n + 1, d)].filter(Boolean)),
+                    explicacion: `El numerador ${n} se lee «${numerosFr[n]}» y el denominador ${d}, «${nombresDenominadorFr[d]}${n === 1 ? '' : 's'}»: ${correcta}.`
+                });
+            }
+            if (tipo === 'escribir') {
+                return Object.assign(base, {
+                    pregunta: `¿Cómo se escribe «${nombreFr(n, d)}» con números?`, expresion: '', respuestaCorrecta: fr,
+                    opciones: opcionesFr(fr, [textoFr(d, n), textoFr(n, d + 1), textoFr(n + 1, d), textoFr(n, d - 1)], false),
+                    explicacion: `«${numerosFr[n]}» es el numerador (${n}) y «${nombresDenominadorFr[d]}» indica el denominador (${d}): ${fr}.`
+                });
+            }
+            if (tipo === 'parteTodo') {
+                return Object.assign(base, {
+                    pregunta: '¿Qué fracción representa la parte pintada?', expresion: '',
+                    figura: Math.random() < 0.5 ? barraFr(n, d) : circuloFr(n, d), respuestaCorrecta: fr,
+                    opciones: opcionesFr(fr, errores, false),
+                    explicacion: `El entero está dividido en ${d} partes iguales y hay ${n} pintadas: ${fr}.`
+                });
+            }
+            if (tipo === 'coleccion') {
+                return Object.assign(base, {
+                    pregunta: '¿Qué fracción de las bolitas está pintada?', expresion: '', figura: coleccionFr(n, d), respuestaCorrecta: fr,
+                    opciones: opcionesFr(fr, errores, false),
+                    explicacion: `Hay ${d} bolitas en total y ${n} están pintadas: ${fr}.`
+                });
+            }
+            return Object.assign(base, {
+                pregunta: '¿Qué fracción representa el punto rojo en la recta numérica?', expresion: '', figura: rectaFr(n, d), respuestaCorrecta: fr,
+                opciones: opcionesFr(fr, [textoFr(n, d + 1), textoFr(n + 1, d), textoFr(d - n, d), textoFr(n, d - 1)], false),
+                explicacion: `De 0 a 1 hay ${d} partes iguales (no se cuentan las rayitas) y el punto está en la parte ${n}: ${fr}.`
+            });
+        }
+
+        // ---------- Ítem 2: equivalentes por amplificación y simplificación, justificando ----------
+        function preguntaEquivalenteFr(tipo, nivel) {
+            if (tipo === 'ampFalta') return Object.assign(preguntaAmplificar('ampFalta', nivel.amp), { seccion: tipo });
+            if (tipo === 'simIrred') return Object.assign(preguntaSimplificar('simIrred', nivel.sim), { seccion: tipo });
+            const [n, d] = propiaFr(nivel.amp.d[0], nivel.amp.d[1]);
+            const k = ecAzar(nivel.amp.k[0], nivel.amp.k[1]);
+            const N = n * k, D = d * k;
+            const a = textoFr(n, d), b = textoFr(N, D);
+            const base = { seccion: tipo, tipo: 'texto', firma: a };
+            if (tipo === 'procAmp') {
+                const c = `Amplificar por ${k}`;
+                return Object.assign(base, {
+                    pregunta: '¿Qué procedimiento permite pasar de la primera fracción a la segunda?', expresion: `${a}  →  ${b}`, respuestaCorrecta: c,
+                    opciones: algOpciones(c, [`Simplificar por ${k}`, `Amplificar por ${k + 1}`, `Sumar ${k} al numerador y al denominador`]),
+                    explicacion: `${n} · ${k} = ${N} y ${d} · ${k} = ${D}: se amplificó por ${k}.`
+                });
+            }
+            if (tipo === 'procSimp') {
+                const c = `Simplificar por ${k}`;
+                let parcial = null;
+                for (let m = 2; m < k; m++) if (k % m === 0) parcial = m;
+                return Object.assign(base, {
+                    pregunta: '¿Qué procedimiento permite pasar de la primera fracción a la segunda?', expresion: `${b}  →  ${a}`, respuestaCorrecta: c,
+                    opciones: algOpciones(c, [`Amplificar por ${k}`, `Simplificar por ${parcial || k + 1}`, `Restar ${k} al numerador y al denominador`]),
+                    explicacion: `${N} ÷ ${k} = ${n} y ${D} ÷ ${k} = ${d}: se simplificó por ${k}.`
+                });
+            }
+            if (tipo === 'justif') {
+                const c = Math.random() < 0.5
+                    ? `Porque al amplificar ${a} por ${k} se obtiene ${b}`
+                    : `Porque al simplificar ${b} por ${k} se obtiene ${a}`;
+                return Object.assign(base, {
+                    pregunta: '¿Por qué estas fracciones son equivalentes?', expresion: `${a} = ${b}`, respuestaCorrecta: c,
+                    opciones: algOpciones(c, [`Porque al amplificar ${a} por ${k + 1} se obtiene ${b}`, `Porque ${b} tiene números más grandes`, `Porque al numerador y al denominador se les sumó ${N - n}`]),
+                    explicacion: `${n} · ${k} = ${N} y ${d} · ${k} = ${D}: son equivalentes porque una es la amplificación de la otra.`
+                });
+            }
+            // sonEquiv: a veces sí y a veces no, siempre con la razón.
+            if (Math.random() < 0.5) {
+                const c = `Sí, porque ${a} amplificada por ${k} es ${b}`;
+                return Object.assign(base, {
+                    pregunta: '¿Son equivalentes estas fracciones? ¿Por qué?', expresion: `${a}   y   ${b}`, respuestaCorrecta: c,
+                    opciones: algOpciones(c, ['No, porque tienen distinto numerador', `No, porque ${b} tiene números más grandes`, 'Sí, porque las dos son fracciones propias']),
+                    explicacion: `${n} · ${k} = ${N} y ${d} · ${k} = ${D}.`
+                });
+            }
+            const otra = textoFr(N, d * (k + 1));
+            const c = `No, porque ${a} amplificada por ${k} es ${b}, no ${otra}`;
+            return Object.assign(base, {
+                pregunta: '¿Son equivalentes estas fracciones? ¿Por qué?', expresion: `${a}   y   ${otra}`, respuestaCorrecta: c,
+                opciones: algOpciones(c, [`Sí, porque ${a} amplificada por ${k} es ${otra}`, 'Sí, porque las dos son fracciones propias', 'No, porque tienen distinto numerador']),
+                explicacion: `Para llegar a ${N} arriba hay que multiplicar por ${k}, pero ${d} · ${k} = ${D}, no ${d * (k + 1)}.`
+            });
+        }
+
+        // ---------- Ítem 3: problemas en contexto, con la respuesta escrita en una frase ----------
+        // x: nombre · d: partes · a: las que se nombran · f: la fracción · figura: cómo se representa
+        const problemasParteFr = [
+            { t: (x, d, a) => `${x} dividió una pizza en ${d} trozos iguales y se comió ${a}. ¿Qué fracción de la pizza se comió?`, r: f => `Se comió ${f} de la pizza.`, figura: circuloFr },
+            { t: (x, d, a) => `${x} partió una barra de chocolate en ${d} partes iguales y regaló ${a}. ¿Qué fracción de la barra regaló?`, r: f => `Regaló ${f} de la barra.`, figura: barraFr },
+            { t: (x, d, a) => `Una torta se cortó en ${d} trozos iguales y en el cumpleaños de ${x} se comieron ${a}. ¿Qué fracción de la torta se comieron?`, r: f => `Se comieron ${f} de la torta.`, figura: circuloFr }
+        ];
+        const problemasRestoFr = [
+            { t: (x, d, a) => `${x} dividió una pizza en ${d} trozos iguales y se comió ${a}. ¿Qué fracción de la pizza quedó?`, r: f => `Quedó ${f} de la pizza.`, figura: circuloFr },
+            { t: (x, d, a) => `${x} pintó ${a} de las ${d} partes iguales de un mural. ¿Qué fracción del mural le falta pintar?`, r: f => `Le falta pintar ${f} del mural.`, figura: barraFr },
+            { t: (x, d, a) => `${x} infló ${d} globos y se reventaron ${a}. ¿Qué fracción de los globos quedó sin reventar?`, r: f => `Quedó sin reventar ${f} de los globos.`, figura: coleccionFr }
+        ];
+        const problemasColeccionFr = [
+            { t: (x, d, a) => `En una caja hay ${d} lápices: ${a} son rojos y el resto son azules. ¿Qué fracción de los lápices son rojos?`, r: f => `Los lápices rojos son ${f} del total.` },
+            { t: (x, d, a) => `${x} tiene ${d} bolitas y ${a} son de vidrio. ¿Qué fracción de sus bolitas son de vidrio?`, r: f => `Las bolitas de vidrio son ${f} del total.` },
+            { t: (x, d, a) => `En un equipo hay ${d} jugadores y ${a} usan zapatillas blancas. ¿Qué fracción del equipo usa zapatillas blancas?`, r: f => `${f} del equipo usa zapatillas blancas.` }
+        ];
+        const problemasCantidadFr = [
+            { t: (x, total, f) => `En un curso hay ${total} estudiantes y ${f} de ellos practica fútbol. ¿Cuántos estudiantes practican fútbol?`, r: v => `${v} estudiantes practican fútbol.` },
+            { t: (x, total, f) => `${x} tiene ${total} láminas y ${f} de ellas son de animales. ¿Cuántas láminas de animales tiene?`, r: v => `Tiene ${v} láminas de animales.` },
+            { t: (x, total, f) => `En un canasto hay ${total} manzanas y ${f} son verdes. ¿Cuántas manzanas verdes hay?`, r: v => `Hay ${v} manzanas verdes.` }
+        ];
+
+        function preguntaProblemaFr(tipo, nivel) {
+            const x = algElegir(nombresPersonasFr);
+            const [a, d] = propiaLibreFr(Math.max(3, nivel.d[0]), Math.min(nivel.d[1], 12));
+            const base = { seccion: tipo, tipo: 'texto', expresion: '' };
+            if (tipo === 'parte' || tipo === 'resto' || tipo === 'coleccion') {
+                const plantilla = algElegir(tipo === 'parte' ? problemasParteFr : tipo === 'resto' ? problemasRestoFr : problemasColeccionFr);
+                const n = tipo === 'resto' ? d - a : a;
+                const c = plantilla.r(textoFr(n, d));
+                return Object.assign(base, {
+                    pregunta: plantilla.t(x, d, a), figura: (plantilla.figura || coleccionFr)(a, d), respuestaCorrecta: c, firma: textoFr(n, d),
+                    opciones: opcionesFraseFr(c, n / d, [
+                        [plantilla.r(textoFr(d - n, d)), (d - n) / d], [plantilla.r(textoFr(n, d - n)), n / (d - n)],
+                        [plantilla.r(textoFr(d, n)), d / n], [plantilla.r(textoFr(n, d + 1)), n / (d + 1)]
+                    ]),
+                    explicacion: tipo === 'resto'
+                        ? `Son ${d} partes en total y se nombran ${a}; quedan ${d} − ${a} = ${n}: ${textoFr(n, d)}.`
+                        : `Son ${d} partes en total y se nombran ${n}: ${textoFr(n, d)}.`
+                });
+            }
+            if (tipo === 'cantidad') {
+                const [n, dd] = propiaFr(2, 6);
+                const total = dd * ecAzar(3, Math.floor(36 / dd));
+                const v = total / dd * n;
+                const plantilla = algElegir(problemasCantidadFr);
+                const c = plantilla.r(v);
+                return Object.assign(base, {
+                    pregunta: plantilla.t(x, total, textoFr(n, dd)), respuestaCorrecta: c, firma: textoFr(n, dd),
+                    // Errores típicos: una sola parte, lo que no es, sumar los números, el total, contar mal.
+                    opciones: opcionesFraseFr(c, v, [total / dd, total - v, n + dd, v + total / dd, total, v + 1, v - 1].map(x => [plantilla.r(x), x])),
+                    explicacion: `${total} ÷ ${dd} = ${total / dd} en cada parte, y ${n} partes son ${total / dd} · ${n} = ${v}.`
+                });
+            }
+            if (tipo === 'comparar') {
+                const [n, b] = propiaFr(2, 6);
+                const m = ecAzar(2, Math.max(2, Math.floor(12 / b)));
+                const igual = Math.random() < 0.5;
+                const otroNum = igual ? n * m : (Math.random() < 0.5 ? n * m + 1 : n * m - 1);
+                const f1 = textoFr(n, b), f2 = textoFr(Math.max(1, otroNum), b * m);
+                const amp = textoFr(n * m, b * m);
+                const segundo = algElegir(nombresPersonasFr.filter(y => y !== x));
+                const pregunta = `${x} leyó ${f1} de un libro y ${segundo} leyó ${f2} del mismo libro. ¿Quién leyó más?`;
+                // Errores típicos: mirar solo si los números son más grandes, o creer que un
+                // denominador menor siempre gana.
+                const mismo = `Leyeron lo mismo, porque ${f1} = ${amp}.`;
+                const grandes = `${segundo} leyó más, porque su fracción tiene números más grandes.`;
+                const chico = `${x} leyó más, porque ${b} es menor que ${b * m}.`;
+                const noSe = 'No se puede saber quién leyó más.';
+                let c, opciones;
+                if (igual) {
+                    c = mismo;
+                    opciones = [mismo, grandes, chico, noSe];
+                } else if (otroNum > n * m) {
+                    c = `${segundo} leyó más, porque ${f1} = ${amp}, y ${f2} es mayor que ${amp}.`;
+                    opciones = [c, mismo, chico, noSe];
+                } else {
+                    c = `${x} leyó más, porque ${f1} = ${amp}, y ${amp} es mayor que ${f2}.`;
+                    opciones = [c, mismo, grandes, noSe];
+                }
+                return Object.assign(base, {
+                    pregunta, respuestaCorrecta: c, firma: f1, opciones: barajarArreglo(opciones),
+                    explicacion: `Se amplifica ${f1} por ${m}: ${amp}. Así se comparan con el mismo denominador: ${amp} y ${f2}.`
+                });
+            }
+            const c = `Caminó ${textoFr(a, d)} del camino.`;
+            return Object.assign(base, {
+                pregunta: `Un camino de 1 kilómetro se dividió en ${d} tramos iguales. ${x} caminó desde el inicio (0) hasta el punto rojo. ¿Qué fracción del camino caminó?`,
+                figura: rectaFr(a, d), respuestaCorrecta: c, firma: textoFr(a, d),
+                opciones: opcionesFraseFr(c, a / d, [[`Caminó ${textoFr(a, d + 1)} del camino.`, a / (d + 1)], [`Caminó ${textoFr(d - a, d)} del camino.`, (d - a) / d], [`Caminó ${textoFr(a + 1, d)} del camino.`, (a + 1) / d], [`Caminó ${textoFr(a, d - 1)} del camino.`, a / (d - 1)]]),
+                explicacion: `El camino tiene ${d} tramos iguales y llegó al tramo ${a}: ${textoFr(a, d)}.`
+            });
+        }
+
+        // Prueba de 18 puntos: 3 ítems de 6 preguntas, como la pauta. Ninguna fracción se repite.
+        function generarPruebaFraccion(dificultad) {
+            const firmas = new Set();
+            const tomar = crear => {
+                let q, intentos = 0;
+                do { q = crear(); intentos++; } while (firmas.has(q.firma) && intentos < 60);
+                firmas.add(q.firma);
+                return q;
+            };
+            const item = (n, clave, tipos, pregunta) => {
+                const nivel = definicionesFraccion[clave].niveles[dificultad];
+                return tipos.map(t => Object.assign(tomar(() => pregunta(t, nivel)), { seccion: 'item' + n, item: n }));
+            };
+            return item(1, 'frLeer', ['leer', 'escribir', 'parteTodo', 'coleccion', 'recta', 'equivalente'], preguntaLeerRepresentarFr)
+                .concat(item(2, 'frEquivalentes', ['procAmp', 'procSimp', 'justif', 'sonEquiv', 'ampFalta', 'simIrred'], preguntaEquivalenteFr))
+                .concat(item(3, 'frProblemas', ['parte', 'resto', 'coleccion', 'cantidad', 'comparar', 'recta'], preguntaProblemaFr));
+        }
+
+        Object.assign(seccionesFraccion, {
+            leer:        { titulo: 'Lee la fracción', emoji: '🗣️', color: '#2d7d9a' },
+            escribir:    { titulo: 'Escribe la fracción con números', emoji: '✍️', color: '#6b4c9a' },
+            parteTodo:   { titulo: 'Parte de un todo', emoji: '🍕', color: '#a05a2c' },
+            coleccion:   { titulo: 'Fracción de una colección', emoji: '🔵', color: '#2f6f4e' },
+            recta:       { titulo: 'Fracción en la recta numérica', emoji: '📏', color: '#c0562f' },
+            equivalente: { titulo: 'Fracciones equivalentes', emoji: '⚖️', color: '#1a3c6e' },
+            procAmp:     { titulo: '¿Qué procedimiento se usó?', emoji: '🔼', color: '#2d7d9a' },
+            procSimp:    { titulo: '¿Qué procedimiento se usó?', emoji: '🔽', color: '#2d7d9a' },
+            justif:      { titulo: 'Justifica la equivalencia', emoji: '💬', color: '#6b4c9a' },
+            sonEquiv:    { titulo: '¿Son equivalentes?', emoji: '🤔', color: '#a05a2c' },
+            parte:       { titulo: 'Problemas: parte de un todo', emoji: '🍕', color: '#a05a2c' },
+            resto:       { titulo: 'Problemas: lo que queda', emoji: '🧩', color: '#6b4c9a' },
+            cantidad:    { titulo: 'Problemas: fracción de una cantidad', emoji: '🔢', color: '#2d7d9a' },
+            comparar:    { titulo: 'Problemas: compara', emoji: '⚖️', color: '#1a3c6e' },
+            item1:       { titulo: 'Ítem 1: Leer, representar e identificar equivalentes (6 puntos)', emoji: '🗣️', color: '#2d7d9a' },
+            item2:       { titulo: 'Ítem 2: Amplificar y simplificar, justificando (6 puntos)', emoji: '⚖️', color: '#6b4c9a' },
+            item3:       { titulo: 'Ítem 3: Resolución de problemas (6 puntos)', emoji: '🧩', color: '#2f6f4e' }
+        });
+
+        // Las guías que toman preguntas de amplificar o simplificar usan esos mismos niveles.
+        const nivelesPautaFr = {
+            facil:      { d: [2, 6] },
+            intermedio: { d: [2, 10] },
+            dificil:    { d: [3, 12] }
+        };
+        const nivelPautaFr = (dificultad, tipos) => Object.assign({}, nivelesPautaFr[dificultad], {
+            tipos, amp: definicionesFraccion.frAmplificar.niveles[dificultad], sim: definicionesFraccion.frSimplificar.niveles[dificultad]
+        });
+        const nivelesPorDificultadFr = tipos => ({ facil: nivelPautaFr('facil', tipos), intermedio: nivelPautaFr('intermedio', tipos), dificil: nivelPautaFr('dificil', tipos) });
+        const etiquetasPautaFr = { facil: 'Fácil (denominadores hasta 6)', intermedio: 'Intermedio (denominadores hasta 10)', dificil: 'Difícil (denominadores hasta 12)' };
+
+        Object.assign(definicionesFraccion, {
+            frLeer: {
+                titulo: 'Leer y Representar Fracciones', corto: 'Leer y representar', emoji: '🗣️', pregunta: preguntaLeerRepresentarFr,
+                intro: 'Lee y escribe fracciones, reconócelas en dibujos (parte de un todo, colección y recta numérica) e identifica fracciones equivalentes.',
+                recordatorio: 'Recuerda: el denominador dice en cuántas partes iguales se divide el entero; el numerador, cuántas se toman.',
+                etiquetas: etiquetasPautaFr,
+                niveles: nivelesPorDificultadFr(['leer', 'escribir', 'parteTodo', 'coleccion', 'recta', 'equivalente'])
+            },
+            frEquivalentes: {
+                titulo: 'Justificar Equivalencias', corto: 'Justificar equivalencias', emoji: '💬', pregunta: preguntaEquivalenteFr,
+                intro: 'Encuentra fracciones equivalentes amplificando y simplificando, y elige la explicación correcta del procedimiento.',
+                recordatorio: 'Recuerda: dos fracciones son equivalentes si una se obtiene de la otra amplificando o simplificando.',
+                etiquetas: etiquetasPautaFr,
+                niveles: nivelesPorDificultadFr(['procAmp', 'procSimp', 'justif', 'sonEquiv'])
+            },
+            frProblemas: {
+                titulo: 'Problemas con Fracciones', corto: 'Problemas', emoji: '🧩', pregunta: preguntaProblemaFr,
+                intro: 'Lee cada problema, mira el dibujo cuando lo haya y elige la respuesta escrita de manera clara.',
+                recordatorio: 'Recuerda: identifica el total de partes, cuántas se nombran y responde con una frase completa.',
+                etiquetas: etiquetasPautaFr,
+                niveles: nivelesPorDificultadFr(['parte', 'resto', 'coleccion', 'cantidad', 'comparar', 'recta'])
+            },
+            frPrueba: {
+                titulo: 'Prueba de Práctica', corto: 'Prueba de Práctica', emoji: '📝', generar: generarPruebaFraccion, porItem: true,
+                intro: 'Una prueba de 18 puntos con la pauta de la evaluación: 3 ítems de 6 puntos. Cada respuesta correcta vale 1 punto.',
+                recordatorio: 'Revisa en qué ítem perdiste puntos y practica esa guía.',
+                etiquetas: etiquetasPautaFr,
+                indicadores: {
+                    1: 'Selecciona la alternativa correcta al interpretar fracciones según su lectura y escritura, reconocer representaciones (parte de un todo, colección y recta numérica) e identificar fracciones equivalentes.',
+                    2: 'Encuentra fracciones equivalentes aplicando la amplificación y la simplificación, justificando el procedimiento.',
+                    3: 'Resuelve problemas contextuales que involucren el uso de fracciones, interpretando la información, representando la situación y comunicando la respuesta de manera clara.'
+                },
+                niveles: nivelesPorDificultadFr([])
+            }
+        });
+
         // Una guía: tipos de la bolsa barajada, sin repetir fracción (así ninguna pregunta
         // revela otra) y agrupados por tipo.
         function generarGuiaFraccion(clave, cantidad, dificultad) {
             const def = definicionesFraccion[clave];
+            if (def.generar) return def.generar(dificultad);
             const nivel = def.niveles[dificultad];
             const firmas = new Set();
             const lista = tomarDeColaEcuaciones(`fraccion/${clave}/${dificultad}`, nivel.tipos, cantidad).map(tipo => {
@@ -13857,14 +14235,14 @@
                                     <option value="dificil">${def.etiquetas.dificil}</option>
                                 </select>
                             </div>
-                            <div>
+                            ${def.generar ? '' : `<div>
                                 <label class="cfg-label" for="cantidad-${clave}">Cantidad de ejercicios:</label>
                                 <select id="cantidad-${clave}" class="cfg-select">
                                     <option value="5">5 ejercicios</option>
                                     <option value="10" selected>10 ejercicios</option>
                                     <option value="15">15 ejercicios</option>
                                 </select>
-                            </div>
+                            </div>`}
                         </div>
                         <button id="btn-generar-${clave}" class="alg-boton alg-comenzar">▶ Comenzar Guía</button>
                     </div>
@@ -13925,7 +14303,7 @@
                 '.texto { font-size: 13px; color: #333; margin-left: 6px; }' +
                 '.expr { font-size: 20px; font-weight: bold; margin: 10px 0 8px 22px; }' +
                 '.ops { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 5px; font-size: 15px; padding-left: 22px; margin-top: 6px; }' +
-                ESTILO_FRACCION +
+                ESTILO_FRACCION + '.fig { margin: 8px 0 6px 22px; } .fig svg { width: 240px; max-width: 100%; height: auto; }' +
                 '@media print { body { padding: 10px; } .exercise { page-break-inside: avoid; } }' +
                 '</style></head><body>' +
                 `<div class="header"><h1>${def.titulo}</h1><p>Fracciones &mdash; 5&deg; Básico</p></div>` +
@@ -13946,6 +14324,7 @@
                 htmlPDF += '<div class="exercise">' +
                     `<span class="num">${ej.numero}.</span><span class="texto">${htmlFr(ej.pregunta)}</span>` +
                     (ej.expresion ? `<div class="expr">${htmlFr(ej.expresion)}</div>` : '') +
+                    (ej.figura ? `<div class="fig">${ej.figura}</div>` : '') +
                     `<div class="ops">${ej.opciones.map((op, i) => `<div>${letras[i]}) ${htmlFr(op)}</div>`).join('')}</div>` +
                     '</div>';
             });
@@ -13985,6 +14364,7 @@
                         <div class="alg-item fr-item" style="border-left-color: ${info.color};">
                             <div class="alg-pregunta"><span class="alg-numero">${ej.numero}.</span><span>${htmlFr(ej.pregunta)}</span></div>
                             ${ej.expresion ? `<div class="ec-expresion">${htmlFr(ej.expresion)}</div>` : ''}
+                            ${ej.figura ? `<div class="fr-figura">${ej.figura}</div>` : ''}
                             <div class="alg-opciones">
                                 ${ej.opciones.map((opcion, i) => `<button type="button" class="alg-opcion" id="op-${clave}-${idx}-${i}" onclick="${seleccionar}(${idx}, ${i})">${letras[i]}) ${htmlFr(opcion)}</button>`).join('')}
                             </div>
@@ -14001,6 +14381,24 @@
                     const btn = document.getElementById(`op-${clave}-${idx}-${i}`);
                     if (btn) btn.classList.toggle('elegida', i === opcionIdx);
                 });
+            };
+
+            const tablaPorItem = () => {
+                const filas = Object.keys(def.indicadores).map(Number).map(n => {
+                    const delItem = est.lista.map((ej, i) => ({ ej, i })).filter(o => o.ej.item === n);
+                    const buenas = delItem.filter(o => est.resp[o.i] === o.ej.respuestaCorrecta).length;
+                    return `<tr>
+                        <td style="padding: 10px; border: 1px solid #ccc; font-size: 13px;">${def.indicadores[n]}</td>
+                        <td style="padding: 10px; border: 1px solid #ccc; text-align: center; white-space: nowrap;">Ítem ${n}</td>
+                        <td style="padding: 10px; border: 1px solid #ccc; text-align: center; font-weight: 600; white-space: nowrap;">${buenas} de ${delItem.length} puntos</td>
+                    </tr>`;
+                }).join('');
+                return `<table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+                    <tr style="background-color: #1a3c6e; color: white;">
+                        <th style="padding: 10px; text-align: left; border: 1px solid #ccc;">Indicadores</th>
+                        <th style="padding: 10px; border: 1px solid #ccc;">N° Pregunta</th>
+                        <th style="padding: 10px; border: 1px solid #ccc;">Puntaje</th>
+                    </tr>${filas}</table>`;
             };
 
             const revelar = () => {
@@ -14020,7 +14418,7 @@
                     if (bien) correctas++;
                     html += `<tr style="background-color: ${bien ? '#e8f5e9' : '#ffebee'};">
                         <td style="padding: 10px; border: 1px solid #ccc; font-weight: 600;">${ej.numero}</td>
-                        <td style="padding: 10px; border: 1px solid #ccc;">${htmlFr(ej.pregunta)}${ej.expresion ? `<br><strong style="white-space: nowrap;">${htmlFr(ej.expresion)}</strong>` : ''}</td>
+                        <td style="padding: 10px; border: 1px solid #ccc;">${htmlFr(ej.pregunta)}${ej.expresion ? `<br><strong style="white-space: nowrap;">${htmlFr(ej.expresion)}</strong>` : ''}${ej.figura ? `<div class="fr-figura fr-figura-chica">${ej.figura}</div>` : ''}</td>
                         <td style="padding: 10px; text-align: center; border: 1px solid #ccc;">${r === undefined ? '—' : htmlFr(r)}</td>
                         <td style="padding: 10px; text-align: center; border: 1px solid #ccc; font-weight: 600; color: #1a3c6e;">${htmlFr(ej.respuestaCorrecta)}</td>
                         <td style="padding: 10px; border: 1px solid #ccc; color: #555; font-size: 13px;">${htmlFr(ej.explicacion)}</td>
@@ -14039,7 +14437,7 @@
                         <p style="font-size: 32px; font-weight: 600; color: #1a3c6e;">${correctas}/${total}</p>
                         <p style="font-size: 18px; color: #2f6f4e;">${porcentaje}% — ${mensaje}</p>
                         <p style="font-size: 13px; color: #666; margin-top: 6px;">${def.recordatorio}</p>
-                    </div>` + html;
+                    </div>` + (def.porItem ? tablaPorItem() : '') + html;
 
                 id('area-ejercicios').style.display = 'none';
                 id('resultados').style.display = 'block';
@@ -14047,7 +14445,7 @@
             };
 
             const iniciar = () => {
-                est.lista = generarGuiaFraccion(clave, parseInt(id('cantidad').value, 10), id('dificultad').value);
+                est.lista = generarGuiaFraccion(clave, id('cantidad') ? parseInt(id('cantidad').value, 10) : 0, id('dificultad').value);
                 est.lista.forEach((ej, i) => { ej.numero = i + 1; });
                 est.resp = {};
                 dibujar();
@@ -14073,7 +14471,7 @@
             };
 
             return {
-                clave, titulo: 'Fracciones: ' + def.titulo.replace(' Fracciones', ''),
+                clave, titulo: 'Fracciones: ' + (def.corto || def.titulo.replace(' Fracciones', '')),
                 modulo: 'modulo-' + clave, config: 'configuracion-' + clave, area: 'area-ejercicios-' + clave,
                 resultados: 'resultados-' + clave, mostrar,
                 generar: ['btn-generar-' + clave, 'btn-nuevos-ejercicios-' + clave, 'btn-nuevos-resultados-' + clave],
@@ -14098,7 +14496,9 @@
             };
         }
 
-        document.head.insertAdjacentHTML('beforeend', `<style>${ESTILO_FRACCION} .fr-item .alg-opcion { font-size: 19px; } .fr-item .ec-expresion { font-size: 26px; }</style>`);
+        document.head.insertAdjacentHTML('beforeend', `<style>${ESTILO_FRACCION} .fr-item .alg-opcion { font-size: 19px; } .fr-item .ec-expresion { font-size: 26px; }` +
+            ` .fr-figura { display: flex; justify-content: center; margin-bottom: 12px; } .fr-figura svg { width: 100%; max-width: 320px; height: auto; }` +
+            ` .fr-figura-chica { margin: 6px 0 0 0; justify-content: flex-start; } .fr-figura-chica svg { max-width: 150px; }</style>`);
 
         const submodulosFraccion = Object.keys(definicionesFraccion).map(crearSubmoduloFraccion);
 
