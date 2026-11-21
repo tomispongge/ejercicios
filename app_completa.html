@@ -1731,9 +1731,28 @@
             </div>
             
             <div class="menu-principal">
-                <button class="opcion" onclick="mostrarModuloOrtografia()">
+                <button class="opcion" onclick="irA('menu-5basico-ortografia')">
                     <span class="opcion-emoji">📖</span>
                     Ortografía
+                </button>
+            </div>
+        </div>
+
+        <!-- SUBMENÚ 5º BÁSICO: ORTOGRAFÍA -->
+        <div id="menu-5basico-ortografia" class="seccion">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                <h1>📖 Ortografía · 5º Básico</h1>
+                <button class="btn btn-volver" onclick="irA('menu-5basico-lenguaje')">← Volver</button>
+            </div>
+
+            <div class="menu-principal">
+                <button class="opcion" onclick="mostrarModuloOrtografia()">
+                    <span class="opcion-emoji">📖</span>
+                    Guía de Ortografía
+                </button>
+                <button class="opcion" onclick="mostrarModuloOrtPalabras()">
+                    <span class="opcion-emoji">✍️</span>
+                    Palabras de la Prueba
                 </button>
             </div>
         </div>
@@ -1749,6 +1768,29 @@
                 <button class="opcion" onclick="mostrarModuloVocabularioIngles()">
                     <span class="opcion-emoji">🌎</span>
                     Vocabulario en Inglés
+                </button>
+                <button class="opcion" onclick="irA('menu-5basico-dinosaurs')">
+                    <span class="opcion-emoji">🦖</span>
+                    Unit: Dinosaurs
+                </button>
+            </div>
+        </div>
+
+        <!-- SUBMENÚ 5º BÁSICO: UNIT DINOSAURS -->
+        <div id="menu-5basico-dinosaurs" class="seccion">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                <h1>🦖 Unit: Dinosaurs · 5º Básico</h1>
+                <button class="btn btn-volver" onclick="irA('menu-5basico-ingles')">← Volver</button>
+            </div>
+
+            <div class="menu-principal">
+                <button class="opcion" onclick="irA('contenidos-dinosaurs')">
+                    <span class="opcion-emoji">📖</span>
+                    Contenidos
+                </button>
+                <button class="opcion" onclick="mostrarModuloDinoPrueba()">
+                    <span class="opcion-emoji">📝</span>
+                    Prueba de Práctica (29 puntos)
                 </button>
             </div>
         </div>
@@ -2402,7 +2444,7 @@
                 <!-- CONFIGURACIÓN INICIAL -->
                 <div id="configuracion-ortografia" class="seccion-contenedor">
                     <div style="display: flex; justify-content: flex-end; margin-bottom: 12px;">
-                        <button class="btn btn-volver" onclick="irA('menu-5basico-lenguaje'); document.getElementById('modulo-ortografia').style.display='none';">← Volver</button>
+                        <button class="btn btn-volver" onclick="irA('menu-5basico-ortografia'); document.getElementById('modulo-ortografia').style.display='none';">← Volver</button>
                     </div>
                     <h2 style="color: #1a3c6e; margin-bottom: 20px;">Guía de Ortografía — 5° Básico</h2>
 
@@ -2452,7 +2494,7 @@
                             cursor: pointer;
                         ">🖨️ Imprimir / PDF</button>
 
-                        <button onclick="irA('menu-5basico-lenguaje'); document.getElementById('modulo-ortografia').style.display='none';" style="
+                        <button onclick="irA('menu-5basico-ortografia'); document.getElementById('modulo-ortografia').style.display='none';" style="
                             padding: 10px 20px;
                             background-color: #1a3c6e;
                             color: white;
@@ -2484,7 +2526,7 @@
                     <h3 style="color: #1a3c6e; margin-bottom: 20px;">Resultados</h3>
                     <div id="contenedor-resultados-ortografia" style="background-color: white; padding: 20px; border-radius: 4px;"></div>
                     <div style="margin-top: 20px;">
-                        <button onclick="irA('menu-5basico-lenguaje'); document.getElementById('modulo-ortografia').style.display='none';" style="
+                        <button onclick="irA('menu-5basico-ortografia'); document.getElementById('modulo-ortografia').style.display='none';" style="
                             width: 100%;
                             padding: 12px;
                             background-color: #1a3c6e;
@@ -3943,6 +3985,245 @@
 
         <!-- SUBMÓDULOS DE HISTORIA 5° (se crean desde el script) -->
         <div id="modulos-historia5"></div>
+
+        <!-- UNIT DINOSAURS: CONTENIDOS DEL CUADERNO Y PREPARACIÓN PARA LA PRUEBA -->
+        <div id="contenidos-dinosaurs" class="seccion">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; gap: 10px; flex-wrap: wrap;">
+                <h1>📖 Contenidos · Unit Dinosaurs</h1>
+                <button class="btn btn-volver" onclick="irA('menu-5basico-dinosaurs')">← Volver</button>
+            </div>
+
+            <p style="font-size: 14px; color: #555; margin: 0 0 14px 0;"><span class="dino-etiqueta dino-cuaderno">📒 Del cuaderno</span> lo que está escrito en el cuaderno. <span class="dino-etiqueta dino-prueba">🎯 Para la prueba</span> lo que pide la pauta y no está en el cuaderno.</p>
+
+            <div class="micro-pestanas">
+                <button class="micro-pestana activa" onclick="verTemaEstudio('contenidos-dinosaurs', 0)">🦴 Vocabulary</button>
+                <button class="micro-pestana" onclick="verTemaEstudio('contenidos-dinosaurs', 1)">⏳ Was / Were</button>
+                <button class="micro-pestana" onclick="verTemaEstudio('contenidos-dinosaurs', 2)">🌍 There was / There were</button>
+                <button class="micro-pestana" onclick="verTemaEstudio('contenidos-dinosaurs', 3)">🌡️ Comparatives</button>
+                <button class="micro-pestana" onclick="verTemaEstudio('contenidos-dinosaurs', 4)">🦖 Dinosaurs</button>
+                <button class="micro-pestana" onclick="verTemaEstudio('contenidos-dinosaurs', 5)">✏️ Sentences</button>
+            </div>
+
+            <!-- TEMA 1 -->
+            <div class="micro-tema activo">
+                <div class="micro-bloque" style="border-left-color: #2f6f4e;">
+                    <span class="dino-etiqueta dino-cuaderno">📒 Del cuaderno</span>
+                    <h3>Dinosaurs · Vocabulary</h3>
+                    <p><strong>Obj:</strong> Recognize and describe dinosaurs using vocabulary related to their physical characteristics.</p>
+                    <p class="dino-trad">(Reconocer y describir dinosaurios usando vocabulario relacionado con sus características físicas.)</p>
+                    <div class="dino-dos">
+                        <table class="h5-tabla">
+                            <tr><th colspan="2">Partes del cuerpo</th></tr>
+                            <tr><td>1. head</td><td>cabeza</td></tr>
+                            <tr><td>2. arms</td><td>brazos</td></tr>
+                            <tr><td>3. legs</td><td>piernas</td></tr>
+                            <tr><td>4. tail</td><td>cola</td></tr>
+                            <tr><td>5. teeth</td><td>dientes</td></tr>
+                            <tr><td>6. claws</td><td>garras</td></tr>
+                            <tr><td>7. horns</td><td>cuernos</td></tr>
+                            <tr><td>8. neck</td><td>cuello</td></tr>
+                            <tr><td>9. wings</td><td>alas</td></tr>
+                            <tr><td>10. beak</td><td>pico</td></tr>
+                        </table>
+                        <table class="h5-tabla">
+                            <tr><th colspan="2">Adjetivos (cómo es)</th></tr>
+                            <tr><td>11. big</td><td>grande</td></tr>
+                            <tr><td>12. long</td><td>largo</td></tr>
+                            <tr><td>13. short</td><td>corto</td></tr>
+                            <tr><td>14. sharp</td><td>afilado</td></tr>
+                            <tr><td>15. wide</td><td>ancho</td></tr>
+                            <tr><td>16. heavy</td><td>pesado</td></tr>
+                            <tr><td>17. strong</td><td>fuerte</td></tr>
+                            <tr><td>18. dangerous</td><td>peligroso</td></tr>
+                        </table>
+                    </div>
+                    <p style="margin-top: 10px; font-size: 22px; font-weight: 700; color: #a05a2c;">Roar!</p>
+                </div>
+                <div class="micro-bloque" style="border-left-color: #1a3c6e;">
+                    <span class="dino-etiqueta dino-prueba">🎯 Para la prueba</span>
+                    <h3>Ítem 1: las partes del cuerpo</h3>
+                    <p>En la prueba hay que reconocer las 10 partes del cuerpo (1 a 10) y saber cómo se escriben en inglés.</p>
+                    <ul>
+                        <li><strong>arms, legs, teeth, claws, horns</strong> y <strong>wings</strong> están en plural (más de uno). <strong>head, tail, neck</strong> y <strong>beak</strong> están en singular (uno).</li>
+                        <li><strong>teeth</strong> es el plural de <strong>tooth</strong> (diente).</li>
+                        <li>En los animales, <strong>legs</strong> también se dice <strong>patas</strong>.</li>
+                    </ul>
+                </div>
+                <button class="alg-boton alg-comenzar" onclick="verTemaEstudio('contenidos-dinosaurs', 1)">Siguiente tema →</button>
+            </div>
+
+            <!-- TEMA 2 -->
+            <div class="micro-tema">
+                <div class="micro-bloque" style="border-left-color: #6b4c9a;">
+                    <span class="dino-etiqueta dino-cuaderno">📒 Del cuaderno</span>
+                    <h3>Was / Were</h3>
+                    <p><strong>Obj:</strong> To use "was" and "were" to describe dinosaurs and their characteristics in the past.</p>
+                    <p class="dino-trad">(Usar "was" y "were" para describir a los dinosaurios y sus características en el pasado.)</p>
+                    <p>Usamos <strong>"was"</strong> y <strong>"were"</strong> para describir cómo eran las cosas antes.</p>
+                    <ul>
+                        <li><strong>Was:</strong> (era) singular — una cosa.</li>
+                        <li><strong>Were:</strong> (eran) plural — más de uno.</li>
+                    </ul>
+                </div>
+                <div class="micro-bloque" style="border-left-color: #1a3c6e;">
+                    <span class="dino-etiqueta dino-prueba">🎯 Para la prueba</span>
+                    <h3>Ítem 3: was, were, wasn't, weren't</h3>
+                    <p>La negativa se forma con <strong>not</strong>: <strong>wasn't</strong> = was not (no era) y <strong>weren't</strong> = were not (no eran).</p>
+                    <table class="h5-tabla">
+                        <tr><th></th><th>✓ Afirmativa</th><th>✗ Negativa</th></tr>
+                        <tr><td><strong>Singular</strong><br>(una cosa)</td><td>The T-Rex <strong>was</strong> big.<br><span class="dino-trad">El T-Rex era grande.</span></td><td>Its neck <strong>wasn't</strong> long.<br><span class="dino-trad">Su cuello no era largo.</span></td></tr>
+                        <tr><td><strong>Plural</strong><br>(más de uno)</td><td>Its teeth <strong>were</strong> sharp.<br><span class="dino-trad">Sus dientes eran afilados.</span></td><td>Its arms <strong>weren't</strong> long.<br><span class="dino-trad">Sus brazos no eran largos.</span></td></tr>
+                    </table>
+                    <p><strong>¿Cómo elegir?</strong> Mira de qué se habla:</p>
+                    <ul>
+                        <li><strong>Its head, Its tail, Its neck, Its beak</strong> → una cosa → <strong>was</strong> / <strong>wasn't</strong>.</li>
+                        <li><strong>Its teeth, Its claws, Its legs, Its arms, Its wings, Its horns</strong> → más de uno → <strong>were</strong> / <strong>weren't</strong>.</li>
+                        <li><strong>Its</strong> = su (de un animal o de una cosa).</li>
+                    </ul>
+                </div>
+                <button class="alg-boton alg-comenzar" onclick="verTemaEstudio('contenidos-dinosaurs', 2)">Siguiente tema →</button>
+            </div>
+
+            <!-- TEMA 3 -->
+            <div class="micro-tema">
+                <div class="micro-bloque" style="border-left-color: #2d7d9a;">
+                    <span class="dino-etiqueta dino-cuaderno">📒 Del cuaderno</span>
+                    <h3>The Earth in the time of the dinosaurs</h3>
+                    <p><strong>Obj:</strong> To understand information about the Earth in the time of the dinosaurs, recognizing "there was" and "there were".</p>
+                    <p class="dino-trad">(Comprender información sobre la Tierra en la época de los dinosaurios, reconociendo "there was" y "there were".)</p>
+                </div>
+                <div class="micro-bloque" style="border-left-color: #1a3c6e;">
+                    <span class="dino-etiqueta dino-prueba">🎯 Para la prueba</span>
+                    <h3>Ítem 4: there was, there were, there is, there are</h3>
+                    <p>Sirven para decir lo que <strong>había</strong> antes y lo que <strong>hay</strong> hoy.</p>
+                    <table class="h5-tabla">
+                        <tr><th></th><th>Pasado (antes): había</th><th>Presente (hoy): hay</th></tr>
+                        <tr><td><strong>Singular</strong><br>(uno)</td><td>✓ there <strong>was</strong><br>✗ there <strong>wasn't</strong></td><td>✓ there <strong>is</strong><br>✗ there <strong>isn't</strong></td></tr>
+                        <tr><td><strong>Plural</strong><br>(más de uno)</td><td>✓ there <strong>were</strong><br>✗ there <strong>weren't</strong></td><td>✓ there <strong>are</strong><br>✗ there <strong>aren't</strong></td></tr>
+                    </table>
+                    <p><strong>Pistas para elegir:</strong></p>
+                    <ul>
+                        <li>Pasado: <em>millions of years ago</em> (hace millones de años), <em>in the time of the dinosaurs</em> (en la época de los dinosaurios).</li>
+                        <li>Presente: <em>today</em> (hoy), <em>now</em> (ahora).</li>
+                        <li>En negativa con plural se usa <strong>any</strong>: <em>There weren't any people.</em></li>
+                    </ul>
+                    <p><strong>The Earth: then and now</strong></p>
+                    <table class="h5-tabla">
+                        <tr><th>In the time of the dinosaurs</th><th>Today</th></tr>
+                        <tr><td>There was one big supercontinent: Pangaea.<br><span class="dino-trad">Había un gran supercontinente: Pangea.</span></td><td>There are seven continents.<br><span class="dino-trad">Hay siete continentes.</span></td></tr>
+                        <tr><td>There weren't any people.<br><span class="dino-trad">No había personas.</span></td><td>There are a lot of people.<br><span class="dino-trad">Hay muchas personas.</span></td></tr>
+                        <tr><td>There were a lot of volcanoes.<br><span class="dino-trad">Había muchos volcanes.</span></td><td>There aren't any giant dinosaurs.<br><span class="dino-trad">No hay dinosaurios gigantes.</span></td></tr>
+                        <tr><td>There wasn't a phone or a computer.<br><span class="dino-trad">No había teléfonos ni computadores.</span></td><td>There is a big ocean called the Pacific Ocean.<br><span class="dino-trad">Hay un gran océano llamado océano Pacífico.</span></td></tr>
+                    </table>
+                </div>
+                <button class="alg-boton alg-comenzar" onclick="verTemaEstudio('contenidos-dinosaurs', 3)">Siguiente tema →</button>
+            </div>
+
+            <!-- TEMA 4 -->
+            <div class="micro-tema">
+                <div class="micro-bloque" style="border-left-color: #c93c3c;">
+                    <span class="dino-etiqueta dino-prueba">🎯 Para la prueba</span>
+                    <h3>Ítem 5: Comparatives</h3>
+                    <p>Para comparar se agrega <strong>-er</strong> al adjetivo y después va <strong>than</strong> (que): <em>The ocean is deeper than a lake.</em></p>
+                    <table class="h5-tabla">
+                        <tr><th>Adjetivo</th><th>Comparativo</th><th>Ojo</th></tr>
+                        <tr><td>cold (frío)</td><td><strong>colder</strong> (más frío)</td><td>+ er</td></tr>
+                        <tr><td>deep (profundo)</td><td><strong>deeper</strong> (más profundo)</td><td>+ er</td></tr>
+                        <tr><td>warm (cálido, tibio)</td><td><strong>warmer</strong> (más cálido)</td><td>+ er</td></tr>
+                        <tr><td>dry (seco)</td><td><strong>drier</strong> (más seco)</td><td>la y cambia a i</td></tr>
+                        <tr><td>hot (caliente, caluroso)</td><td><strong>hotter</strong> (más caliente)</td><td>se dobla la t</td></tr>
+                    </table>
+                    <p><strong>warm</strong> es un calor agradable (tibio); <strong>hot</strong> es mucho calor (caliente).</p>
+                    <ul>
+                        <li>In the time of the dinosaurs, the Earth was <strong>warmer</strong> than today. <span class="dino-trad">La Tierra era más cálida que hoy.</span></li>
+                        <li>Today, the North Pole is <strong>colder</strong> than in the time of the dinosaurs. <span class="dino-trad">Hoy el Polo Norte es más frío.</span></li>
+                        <li>A desert is <strong>drier</strong> than a jungle. <span class="dino-trad">Un desierto es más seco que una selva.</span></li>
+                        <li>The ocean is <strong>deeper</strong> than a lake. <span class="dino-trad">El océano es más profundo que un lago.</span></li>
+                        <li>Lava is <strong>hotter</strong> than boiling water. <span class="dino-trad">La lava está más caliente que el agua hirviendo.</span></li>
+                    </ul>
+                </div>
+                <button class="alg-boton alg-comenzar" onclick="verTemaEstudio('contenidos-dinosaurs', 4)">Siguiente tema →</button>
+            </div>
+
+            <!-- TEMA 5 -->
+            <div class="micro-tema">
+                <div class="micro-bloque" style="border-left-color: #a05a2c;">
+                    <span class="dino-etiqueta dino-prueba">🎯 Para la prueba</span>
+                    <h3>Ítem 2: reconocer dinosaurios por su descripción</h3>
+                    <p>En la prueba se lee una descripción y hay que reconocer el animal. Busca las palabras clave: <strong>three horns</strong>, <strong>wings</strong>, <strong>a very long neck</strong>, <strong>plates</strong>, <strong>very short arms</strong>, <strong>feathers</strong>. <em>It had</em> = tenía.</p>
+                </div>
+                <div class="dino-fichas">
+                    <div class="dino-ficha">
+                        <img src="img/ingles/tyrannosaurus.jpg" alt="Tyrannosaurus rex" loading="lazy">
+                        <h4>T-Rex (Tyrannosaurus rex)</h4>
+                        <p>The T-Rex was big, strong and very dangerous. It had a very big head with big, sharp teeth. Its arms were very short, but its legs were long and strong.</p>
+                        <p class="dino-trad">El T-Rex era grande, fuerte y muy peligroso. Tenía una cabeza muy grande con dientes grandes y afilados. Sus brazos eran muy cortos, pero sus patas eran largas y fuertes.</p>
+                    </div>
+                    <div class="dino-ficha">
+                        <img src="img/ingles/brachiosaurus.jpg" alt="Brachiosaurus" loading="lazy">
+                        <h4>Brachiosaurus</h4>
+                        <p>The Brachiosaurus was enormous and very heavy. It had a very, very long neck and a small head. Its front legs were long. It ate leaves from tall trees.</p>
+                        <p class="dino-trad">El Braquiosaurio era enorme y muy pesado. Tenía un cuello muy, muy largo y una cabeza pequeña. Sus patas delanteras eran largas. Comía hojas de árboles altos.</p>
+                    </div>
+                    <div class="dino-ficha">
+                        <img src="img/ingles/triceratops.jpg" alt="Triceratops" loading="lazy">
+                        <h4>Triceratops</h4>
+                        <p>The Triceratops was big and heavy. It had three horns on its head: two long horns and one short horn. It had a beak, like a parrot, and a big, wide head.</p>
+                        <p class="dino-trad">El Triceratops era grande y pesado. Tenía tres cuernos en la cabeza: dos largos y uno corto. Tenía un pico, como un loro, y una cabeza grande y ancha.</p>
+                    </div>
+                    <div class="dino-ficha">
+                        <img src="img/ingles/stegosaurus.jpg" alt="Stegosaurus" loading="lazy">
+                        <h4>Stegosaurus</h4>
+                        <p>The Stegosaurus was big and heavy, but its head was very small. It had big plates on its back and four sharp spikes on its tail.</p>
+                        <p class="dino-trad">El Estegosaurio era grande y pesado, pero su cabeza era muy pequeña. Tenía grandes placas en la espalda (<em>plates on its back</em>) y cuatro púas afiladas en la cola (<em>spikes on its tail</em>).</p>
+                    </div>
+                    <div class="dino-ficha">
+                        <img src="img/ingles/pteranodon.jpg" alt="Pteranodon" loading="lazy">
+                        <h4>Pteranodon</h4>
+                        <p>The Pteranodon wasn't a dinosaur: it was a flying reptile. It had big, wide wings and a long beak. It didn't have teeth.</p>
+                        <p class="dino-trad">El Pteranodon no era un dinosaurio: era un reptil volador. Tenía alas grandes y anchas y un pico largo. No tenía dientes.</p>
+                    </div>
+                    <div class="dino-ficha">
+                        <img src="img/ingles/velociraptor.jpg" alt="Velociraptor" loading="lazy">
+                        <h4>Velociraptor</h4>
+                        <p>The Velociraptor wasn't big: it was about the size of a turkey. It was fast and dangerous. It had feathers, a long tail and a big, sharp claw on each foot.</p>
+                        <p class="dino-trad">El Velociraptor no era grande: era más o menos del tamaño de un pavo. Era rápido y peligroso. Tenía plumas (<em>feathers</em>), una cola larga y una garra grande y afilada en cada pie (<em>foot</em>).</p>
+                    </div>
+                </div>
+                <button class="alg-boton alg-comenzar" style="margin-top: 14px;" onclick="verTemaEstudio('contenidos-dinosaurs', 5)">Siguiente tema →</button>
+            </div>
+
+            <!-- TEMA 6 -->
+            <div class="micro-tema">
+                <div class="micro-bloque" style="border-left-color: #1a3c6e;">
+                    <span class="dino-etiqueta dino-prueba">🎯 Para la prueba</span>
+                    <h3>Ítem 6: construir oraciones breves</h3>
+                    <p>Una oración en inglés sigue un orden:</p>
+                    <ul>
+                        <li><strong>Quién + was/were + (very) + cómo es:</strong> <em>The dinosaur was very big.</em> · <em>Its claws were sharp.</em></li>
+                        <li><strong>There + was/were/is/are + qué + dónde:</strong> <em>There was a big lake near the forest.</em></li>
+                        <li><strong>El adjetivo va antes del sustantivo:</strong> <em>a big dinosaur</em> (no <em>a dinosaur big</em>).</li>
+                        <li>Empieza con <strong>mayúscula</strong> y termina con <strong>punto</strong>.</li>
+                    </ul>
+                    <table class="h5-tabla">
+                        <tr><th>✓ Bien</th><th>✗ Mal</th></tr>
+                        <tr><td>The dinosaur was very big.</td><td>The dinosaur very big was.</td></tr>
+                        <tr><td>Its teeth were long and sharp.</td><td>Its teeth long and sharp were.</td></tr>
+                        <tr><td>There was a big lake near the forest.</td><td>There a big lake was near the forest.</td></tr>
+                    </table>
+                </div>
+                <button class="alg-boton alg-comenzar" onclick="irA('menu-5basico-dinosaurs')">✅ Terminé: ir a la prueba →</button>
+
+                <details class="micro-creditos">
+                    <summary>Créditos de las imágenes</summary>
+                    <ul id="dino-lista-creditos"></ul>
+                </details>
+            </div>
+        </div>
+
+        <!-- SUBMÓDULOS DE INGLÉS Y LENGUAJE 5° (se crean desde el script) -->
+        <div id="modulos-ingles5"></div>
+        <div id="modulos-lenguaje5"></div>
 
         <!-- REVISIÓN DE TAREAS (HISTORIAL GUARDADO EN EL DISPOSITIVO) -->
         <div id="historial" class="seccion">
@@ -12274,7 +12555,8 @@
             '.mapa-fichas { display: flex; flex-wrap: wrap; gap: 8px; padding: 10px; background: white; border: 2px solid #1a3c6e; border-radius: 8px; position: sticky; top: 0; z-index: 5; }' +
             '.mapa-ficha { padding: 8px 12px; border: 2px solid #1a3c6e; border-radius: 20px; background: white; color: #1a3c6e; font: 600 14px/1.2 Arial, sans-serif; cursor: pointer; }' +
             '.mapa-ficha.elegida { background: #1a3c6e; color: white; }' +
-            '.completar-bloque { page-break-inside: avoid; }';
+            '.completar-bloque { page-break-inside: avoid; }' +
+            '.estudio-intro { margin: 6px 0 2px 0; font-size: 15px; line-height: 1.5; color: #333; }';
 
         document.head.insertAdjacentHTML('beforeend', `<style>${ESTILO_COMPLETAR}</style>`);
 
@@ -12444,7 +12726,8 @@
             const dibujadas = new Set();
             lista.forEach(ej => {
                 if (ej.seccion !== seccionPrevia) {
-                    htmlPDF += `<h2>${familia.secciones[ej.seccion].titulo}</h2>`;
+                    const intro = familia.secciones[ej.seccion].intro;
+                    htmlPDF += `<h2>${familia.secciones[ej.seccion].titulo}</h2>` + (intro ? `<div class="estudio-intro">${intro}</div>` : '');
                     seccionPrevia = ej.seccion;
                 }
                 if (ej.tipo === 'mapa') {
@@ -12523,7 +12806,8 @@
                 est.lista.forEach((ej, idx) => {
                     const info = familia.secciones[ej.seccion];
                     if (ej.seccion !== seccionPrevia) {
-                        html += `<h3 style="color: ${info.color}; margin: 10px 0 0 0; font-size: 18px;">${info.emoji} ${info.titulo}</h3>`;
+                        html += `<h3 style="color: ${info.color}; margin: 10px 0 0 0; font-size: 18px;">${info.emoji} ${info.titulo}</h3>` +
+                            (info.intro ? `<div class="estudio-intro">${info.intro}</div>` : '');
                         seccionPrevia = ej.seccion;
                     }
                     if (ej.tipo === 'mapa') {
@@ -13572,6 +13856,436 @@
             ['Padre Luis de Valdivia - Primer sermón bilingue Mapuche - Español (1606).jpg', 'Luis de Valdivia', 'Dominio público'],
             ['Parlamento de Negrete-1793.jpg', 'F. Lehmert, en el Atlas de Claudio Gay', 'Dominio público']
         ]);
+
+        // ============================================================
+        // ============ UNIT DINOSAURS (INGLÉS 5° BÁSICO) =============
+        // ============================================================
+        // Contenidos del cuaderno (vocabulario, was/were, there was/there were) y lo que pide la
+        // pauta de la prueba: wasn't/weren't, there is/there are, comparativos y descripciones.
+        // Prueba de 29 puntos con los 6 ítems de la pauta. Para que ninguna pregunta revele otra:
+        // el ítem 2 describe con "It had..." (nunca was/were con partes del cuerpo), el ítem 3
+        // usa solo partes del cuerpo ("Its tail") y el ítem 6 nunca las usa; el español de las
+        // partes del cuerpo aparece solo en el ítem 1.
+        const ESTILO_DINO =
+            '.dino-etiqueta { display: inline-block; margin-bottom: 8px; padding: 2px 10px; border-radius: 12px; font-size: 12px; font-weight: 700; }' +
+            '.dino-cuaderno { background: #fff3d6; color: #8a5a00; }' +
+            '.dino-prueba { background: #e3f2fd; color: #1a3c6e; }' +
+            '.dino-trad { color: #666; font-size: 14px; font-style: italic; }' +
+            '.dino-dos { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: start; }' +
+            '.dino-dos .h5-tabla { margin: 0; }' +
+            '.dino-fichas { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 12px; }' +
+            '.dino-ficha { background: white; border: 1px solid #ddd; border-radius: 8px; padding: 10px; }' +
+            '.dino-ficha img { display: block; width: 100%; height: 150px; object-fit: contain; }' +
+            '.dino-ficha h4 { margin: 6px 0; color: #1a3c6e; font-size: 17px; }' +
+            '.dino-ficha p { margin: 0 0 6px 0; font-size: 15px; line-height: 1.5; }' +
+            '.dino-galeria { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 8px 0 4px 0; }' +
+            '.dino-galeria figure { margin: 0; padding: 6px; background: white; border: 1px solid #ddd; border-radius: 6px; text-align: center; }' +
+            '.dino-galeria img { display: block; width: 100%; height: 110px; object-fit: contain; }' +
+            '.dino-galeria figcaption { margin-top: 4px; font: 700 14px/1.2 Arial, sans-serif; color: #1a3c6e; }' +
+            '.dino-vocab { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }' +
+            '.dino-par { display: grid; gap: 6px; padding: 8px; border-radius: 8px; background: #f5f7fa; border-top: 4px solid #2f6f4e; }' +
+            '.dino-es { font: 700 15px/1.2 Arial, sans-serif; color: #333; text-align: center; }' +
+            '@media (max-width: 640px) { .dino-dos { grid-template-columns: 1fr; } .dino-galeria { grid-template-columns: repeat(2, minmax(0, 1fr)); } }';
+
+        document.head.insertAdjacentHTML('beforeend', `<style>${ESTILO_DINO}</style>`);
+
+        // Ítem 1: partes del cuerpo (del cuaderno, 1 al 10).
+        const vocabDino = [
+            { nodo: 'head', c: 'head', d: 'cabeza' },
+            { nodo: 'arms', c: 'arms', d: 'brazos' },
+            { nodo: 'legs', c: 'legs', d: 'piernas' },
+            { nodo: 'tail', c: 'tail', d: 'cola' },
+            { nodo: 'teeth', c: 'teeth', d: 'dientes' },
+            { nodo: 'claws', c: 'claws', d: 'garras' },
+            { nodo: 'horns', c: 'horns', d: 'cuernos' },
+            { nodo: 'neck', c: 'neck', d: 'cuello' },
+            { nodo: 'wings', c: 'wings', d: 'alas' },
+            { nodo: 'beak', c: 'beak', d: 'pico' }
+        ].map(n => Object.assign(n, { nota: `«${n.d}» en inglés es «${n.c}».` }));
+
+        // Solo se dibujan los casilleros que se preguntan: los demás mostrarían su respuesta.
+        function htmlVocabDino(lista, modo, opciones) {
+            const pedidas = lista.filter(ej => ej.tipo === 'mapa' && ej.actividad === 'vocab');
+            return `<div class="dino-vocab completar-bloque">${pedidas.map(ej => {
+                const n = vocabDino.find(v => v.nodo === ej.nodo);
+                return `<div class="dino-par"><div class="dino-es">${n.d}</div>${cajaCompletar(lista, 'vocab', n.nodo, n.c, modo, opciones)}</div>`;
+            }).join('')}</div>`;
+        }
+
+        // Ítem 2: cada descripción usa solo pistas que tiene ese animal (y se ven en su imagen).
+        const dinosauriosUnidad = [
+            { nombre: 'T-Rex', img: 'tyrannosaurus.jpg', descripciones: [
+                'It had a very big head with big, sharp teeth. It had very short arms.',
+                'It walked on two strong legs. It had very short arms and big, sharp teeth.',
+                'It was a big, dangerous meat-eater. It had a big head and very short arms.'
+            ], nota: 'Pistas del T-Rex: very short arms (brazos muy cortos) y big, sharp teeth (dientes grandes y afilados).' },
+            { nombre: 'Brachiosaurus', img: 'brachiosaurus.jpg', descripciones: [
+                'It had a very, very long neck and a small head. It ate leaves from tall trees.',
+                'It was enormous and very heavy. It had a very long neck and a long tail.',
+                'It had a very long neck and long front legs. It ate leaves from tall trees.'
+            ], nota: 'Pista del Brachiosaurus: a very long neck (un cuello muy largo).' },
+            { nombre: 'Triceratops', img: 'triceratops.jpg', descripciones: [
+                'It had three horns on its head. It had a beak, like a parrot.',
+                'It had a very big, wide head with three horns. It walked on four strong legs.',
+                'It had two long horns and one short horn on its head. It had a beak.'
+            ], nota: 'Pista del Triceratops: three horns (tres cuernos) y a beak (un pico).' },
+            { nombre: 'Stegosaurus', img: 'stegosaurus.jpg', descripciones: [
+                'It had big plates on its back. It had sharp spikes on its tail.',
+                'It had a very small head and big plates on its back.',
+                'It had four sharp spikes on its tail. It walked on four legs.'
+            ], nota: 'Pistas del Stegosaurus: plates on its back (placas en la espalda) y spikes on its tail (púas en la cola).' },
+            { nombre: 'Pteranodon', img: 'pteranodon.jpg', descripciones: [
+                'It wasn\'t a dinosaur: it was a flying reptile. It had big wings.',
+                'It had big, wide wings and a long beak. It didn\'t have teeth.',
+                'It could fly with its big wings. It had a long beak.'
+            ], nota: 'Pistas del Pteranodon: big wings (alas grandes) y a long beak (un pico largo). No era un dinosaurio: era un reptil volador.' },
+            { nombre: 'Velociraptor', img: 'velociraptor.jpg', descripciones: [
+                'It was small and fast. It had feathers and a big, sharp claw on each foot.',
+                'It had feathers on its arms and a long tail. It was a small, dangerous hunter.',
+                'It had a big, sharp claw on each foot. It was about the size of a turkey.'
+            ], nota: 'Pistas del Velociraptor: feathers (plumas) y a big, sharp claw on each foot (una garra grande y afilada en cada pie).' }
+        ];
+
+        // Rutas completas: la versión para imprimir se abre en otra ventana.
+        const urlImagenDino = archivo => new URL('img/ingles/' + archivo, document.baseURI).href;
+
+        const galeriaDinos = `<div class="dino-galeria">${dinosauriosUnidad.map(d =>
+            `<figure><img src="${urlImagenDino(d.img)}" alt="${d.nombre}" loading="lazy"><figcaption>${d.nombre}</figcaption></figure>`).join('')}</div>`;
+
+        function preguntasDescripcionDino(cantidad) {
+            return barajarArreglo(dinosauriosUnidad).slice(0, cantidad).map(d => {
+                const otros = barajarArreglo(dinosauriosUnidad.filter(o => o !== d)).slice(0, 3).map(o => o.nombre);
+                return {
+                    tipo: 'alternativas', pregunta: `"${algElegir(d.descripciones)}" Which animal was it?`,
+                    opciones: barajarArreglo([d.nombre].concat(otros)), respuestaCorrecta: d.nombre, explicacion: d.nota
+                };
+            });
+        }
+
+        // Ítem 3: was, were, wasn't, weren't con partes del cuerpo.
+        const partesWasDino = [
+            { en: 'Its head', plural: false, adj: ['big', 'wide', 'heavy'] },
+            { en: 'Its tail', plural: false, adj: ['long', 'short', 'heavy', 'strong'] },
+            { en: 'Its neck', plural: false, adj: ['long', 'short', 'strong'] },
+            { en: 'Its beak', plural: false, adj: ['long', 'sharp', 'big'] },
+            { en: 'Its teeth', plural: true, adj: ['sharp', 'big', 'long'] },
+            { en: 'Its claws', plural: true, adj: ['sharp', 'long'] },
+            { en: 'Its legs', plural: true, adj: ['long', 'short', 'strong'] },
+            { en: 'Its arms', plural: true, adj: ['short', 'long', 'strong'] },
+            { en: 'Its wings', plural: true, adj: ['big', 'wide', 'long'] },
+            { en: 'Its horns', plural: true, adj: ['long', 'sharp'] }
+        ];
+        const FORMAS_WAS = ['was', 'were', 'wasn\'t', 'weren\'t'];
+
+        // 3 en singular y 3 en plural, con al menos una afirmativa y una negativa en cada grupo:
+        // así salen las 4 formas.
+        function preguntasWasDino() {
+            const elegir = plural => {
+                const partes = barajarArreglo(partesWasDino.filter(p => p.plural === plural)).slice(0, 3);
+                const si = barajarArreglo([true, false, Math.random() < 0.5]);
+                return partes.map((p, i) => ({ p, si: si[i] }));
+            };
+            return barajarArreglo(elegir(false).concat(elegir(true))).map(({ p, si }) => {
+                const forma = FORMAS_WAS[(p.plural ? 1 : 0) + (si ? 0 : 2)];
+                const numero = p.plural ? 'plural (más de uno): were' : 'singular (una cosa): was';
+                return {
+                    tipo: 'alternativas', pregunta: `${p.en} ___ ${algElegir(p.adj)}. ${si ? '✓' : '✗'}`,
+                    opciones: FORMAS_WAS.slice(), respuestaCorrecta: forma,
+                    explicacion: `«${p.en}» es ${numero}.` + (si ? ' Con ✓ va en afirmativa.' : ` Con ✗ va en negativa: ${forma}.`)
+                };
+            });
+        }
+
+        // Ítem 4: la Tierra en el pasado y hoy. Un grupo = un tema; entra uno por grupo.
+        const bancoThereDino = [
+            { g: 'pangea', t: 'Millions of years ago, ___ a big supercontinent called Pangaea.', pasado: true, plural: false, si: true },
+            { g: 'pangea', t: 'Today, ___ a supercontinent like Pangaea.', pasado: false, plural: false, si: false },
+            { g: 'personas', t: 'In the time of the dinosaurs, ___ any people on Earth.', pasado: true, plural: true, si: false },
+            { g: 'personas', t: 'Today, ___ a lot of people on Earth.', pasado: false, plural: true, si: true },
+            { g: 'volcanes', t: 'In the time of the dinosaurs, ___ a lot of volcanoes.', pasado: true, plural: true, si: true },
+            { g: 'continentes', t: 'Today, ___ seven continents.', pasado: false, plural: true, si: true },
+            { g: 'ciudades', t: 'In the time of the dinosaurs, ___ any cities or cars.', pasado: true, plural: true, si: false },
+            { g: 'ciudades', t: 'In the time of the dinosaurs, ___ a city on Earth.', pasado: true, plural: false, si: false },
+            { g: 'ciudades', t: 'Today, ___ a lot of cities and cars.', pasado: false, plural: true, si: true },
+            { g: 'asteroide', t: 'Millions of years ago, ___ a big asteroid that hit the Earth.', pasado: true, plural: false, si: true },
+            { g: 'gigantes', t: 'Millions of years ago, ___ giant dinosaurs on Earth.', pasado: true, plural: true, si: true },
+            { g: 'gigantes', t: 'Today, ___ any giant dinosaurs on Earth.', pasado: false, plural: true, si: false },
+            { g: 'oceano', t: 'In the time of the dinosaurs, ___ one big ocean around Pangaea.', pasado: true, plural: false, si: true },
+            { g: 'oceano', t: 'Today, ___ a big ocean called the Pacific Ocean.', pasado: false, plural: false, si: true },
+            { g: 'zoologico', t: 'Today, ___ a T-Rex at the zoo.', pasado: false, plural: false, si: false },
+            { g: 'telefono', t: 'In the time of the dinosaurs, ___ a phone or a computer.', pasado: true, plural: false, si: false }
+        ];
+        const FORMAS_THERE = ['There was', 'There wasn\'t', 'There were', 'There weren\'t', 'There is', 'There isn\'t', 'There are', 'There aren\'t'];
+        const formaThere = (pasado, plural, si) => FORMAS_THERE[(pasado ? 0 : 4) + (plural ? 2 : 0) + (si ? 0 : 1)];
+
+        function preguntasThereDino() {
+            let elegidas;
+            for (let intento = 0; intento < 200; intento++) {
+                const grupos = barajarArreglo([...new Set(bancoThereDino.map(o => o.g))]).slice(0, 6);
+                elegidas = grupos.map(g => algElegir(bancoThereDino.filter(o => o.g === g)));
+                const cuenta = f => elegidas.filter(f).length;
+                if (cuenta(o => o.pasado) >= 2 && cuenta(o => !o.pasado) >= 2 && cuenta(o => !o.si) >= 2 &&
+                    cuenta(o => o.si) >= 2 && cuenta(o => !o.plural) >= 2 && cuenta(o => o.plural) >= 2) break;
+            }
+            return elegidas.map(o => {
+                const correcta = formaThere(o.pasado, o.plural, o.si);
+                const opciones = [correcta, formaThere(o.pasado, !o.plural, o.si), formaThere(!o.pasado, o.plural, o.si), formaThere(o.pasado, o.plural, !o.si)];
+                return {
+                    tipo: 'alternativas', pregunta: `${o.t} ${o.si ? '✓' : '✗'}`,
+                    opciones: FORMAS_THERE.filter(f => opciones.includes(f)), respuestaCorrecta: correcta,
+                    explicacion: `${o.pasado ? 'Pasado' : 'Presente (today)'}, ${o.plural ? 'plural (más de uno)' : 'singular (uno)'} y ${o.si ? '✓ afirmativa' : '✗ negativa'}: ${correcta}.`
+                };
+            });
+        }
+
+        // Ítem 5: comparativos de la pauta, con la pista en español. Warmer y hotter nunca van
+        // juntos en las alternativas: los dos hablan de calor.
+        const bancoComparativosDino = {
+            colder: [{ t: 'Today, the North Pole is ___ than in the time of the dinosaurs.', es: 'más frío' },
+                { t: 'Winter is ___ than summer.', es: 'más frío' }],
+            warmer: [{ t: 'In the time of the dinosaurs, the Earth was ___ than today.', es: 'más cálida' },
+                { t: 'Spring is ___ than winter.', es: 'más cálida' }],
+            hotter: [{ t: 'Lava is ___ than boiling water.', es: 'más caliente' },
+                { t: 'The Sun is ___ than a fire.', es: 'más caliente' }],
+            drier: [{ t: 'A desert is ___ than a jungle.', es: 'más seco' },
+                { t: 'Sand is ___ than mud.', es: 'más seca' }],
+            deeper: [{ t: 'The ocean is ___ than a lake.', es: 'más profundo' },
+                { t: 'A sea is ___ than a river.', es: 'más profundo' }]
+        };
+        const reglaComparativoDino = {
+            colder: 'cold (frío) + er = colder.',
+            warmer: 'warm (cálido) + er = warmer.',
+            hotter: 'hot (caliente) dobla la t: hotter.',
+            drier: 'dry (seco) cambia la y por i: drier.',
+            deeper: 'deep (profundo) + er = deeper.'
+        };
+
+        function preguntasComparativosDino() {
+            const todos = Object.keys(bancoComparativosDino);
+            return barajarArreglo(todos).slice(0, 3).map(c => {
+                const o = algElegir(bancoComparativosDino[c]);
+                const vecino = { warmer: 'hotter', hotter: 'warmer' }[c];
+                const otros = barajarArreglo(todos.filter(x => x !== c && x !== vecino)).slice(0, 3);
+                return {
+                    tipo: 'alternativas', pregunta: `${o.t} (${o.es})`,
+                    opciones: barajarArreglo([c].concat(otros)), respuestaCorrecta: c,
+                    explicacion: `«${o.es}» = ${c}. ${reglaComparativoDino[c]}`
+                };
+            });
+        }
+
+        // Ítem 6: ordenar palabras. Las 3 incorrectas están escritas a mano para que ninguna
+        // sea una oración válida. Sujetos sin "Its ..." (eso es del ítem 3).
+        const bancoOracionesDino = [
+            { g: 'grande', c: 'The big dinosaur was very heavy.', no: ['The dinosaur big was very heavy.', 'The big dinosaur very heavy was.', 'Big the dinosaur was very heavy.'],
+                e: 'Sujeto (The big dinosaur) + was + very + adjetivo (heavy). El adjetivo va antes del sustantivo: big dinosaur.' },
+            { g: 'algunos', c: 'Some dinosaurs were very dangerous.', no: ['Some dinosaurs very were dangerous.', 'Dinosaurs some were very dangerous.', 'Some were dinosaurs very dangerous.'],
+                e: 'Sujeto (Some dinosaurs) + were + very + adjetivo (dangerous).' },
+            { g: 'algunos', c: 'Some dinosaurs were bigger than elephants.', no: ['Some dinosaurs bigger were than elephants.', 'Some dinosaurs were than bigger elephants.', 'Some were dinosaurs bigger than elephants.'],
+                e: 'Sujeto (Some dinosaurs) + were + comparativo (bigger) + than + lo que se compara (elephants).' },
+            { g: 'bebes', c: 'The baby dinosaurs weren\'t very strong.', no: ['The baby dinosaurs very weren\'t strong.', 'The dinosaurs baby weren\'t very strong.', 'Baby the dinosaurs weren\'t very strong.'],
+                e: 'Sujeto (The baby dinosaurs) + weren\'t + very + adjetivo (strong).' },
+            { g: 'huevos', c: 'There were three eggs in the nest.', no: ['There three eggs were in the nest.', 'Three there were eggs in the nest.', 'There were eggs three in the nest.'],
+                e: 'There were + cuántos (three eggs) + dónde (in the nest).' },
+            { g: 'museo', c: 'There is a big skeleton in the museum.', no: ['There is a skeleton big in the museum.', 'There a big is skeleton in the museum.', 'A big there is skeleton in the museum.'],
+                e: 'There is + qué (a big skeleton) + dónde (in the museum). El adjetivo va antes: a big skeleton.' },
+            { g: 'favorito', c: 'My favorite dinosaur was very long.', no: ['My dinosaur favorite was very long.', 'My favorite was dinosaur very long.', 'Favorite my dinosaur was very long.'],
+                e: 'Sujeto (My favorite dinosaur) + was + very + adjetivo (long).' },
+            { g: 'pequeno', c: 'The little dinosaur wasn\'t dangerous.', no: ['The dinosaur little wasn\'t dangerous.', 'The little wasn\'t dinosaur dangerous.', 'The little dinosaur dangerous wasn\'t.'],
+                e: 'Sujeto (The little dinosaur) + wasn\'t + adjetivo (dangerous).' },
+            { g: 'pequeno', c: 'There was a little dinosaur in the cave.', no: ['There a little was dinosaur in the cave.', 'There was a dinosaur little in the cave.', 'A little there was dinosaur in the cave.'],
+                e: 'There was + qué (a little dinosaur) + dónde (in the cave).' },
+            { g: 'fosiles', c: 'There are dinosaur fossils in Chile.', no: ['There dinosaur are fossils in Chile.', 'There are fossils dinosaur in Chile.', 'Dinosaur there are fossils in Chile.'],
+                e: 'There are + qué (dinosaur fossils) + dónde (in Chile).' }
+        ];
+
+        function preguntasOracionesDino(cantidad) {
+            const grupos = barajarArreglo([...new Set(bancoOracionesDino.map(o => o.g))]).slice(0, cantidad);
+            return grupos.map(g => {
+                const o = algElegir(bancoOracionesDino.filter(x => x.g === g));
+                const palabras = barajarArreglo(o.c.replace(/\.$/, '').split(' '));
+                return {
+                    tipo: 'alternativas', pregunta: `Ordena las palabras: ${palabras.join(' / ')}`,
+                    opciones: barajarArreglo([o.c].concat(o.no)), respuestaCorrecta: o.c, explicacion: o.e
+                };
+            });
+        }
+
+        // Ítem 1: 7 casilleros al azar; sobran 2 fichas, de las partes que no se preguntan.
+        const pruebaDino = () => {
+            const enItem = (lista, n) => lista.map(ej => Object.assign(ej, { seccion: 'item' + n, item: n }));
+            const pedidas = barajarArreglo(vocabDino).slice(0, 7);
+            const sobran = barajarArreglo(vocabDino.filter(n => !pedidas.includes(n))).slice(0, 2).map(n => n.c);
+            const vocab = barajarArreglo(casillerosEstudio('vocab', vocabDino, {
+                titulo: 'Vocabulary', fijos: pedidas.map(n => n.nodo), extras: sobran, seccion: 'item1', item: 1
+            }));
+            return vocab.concat(enItem(preguntasDescripcionDino(3), 2), enItem(preguntasWasDino(), 3), enItem(preguntasThereDino(), 4),
+                enItem(preguntasComparativosDino(), 5), enItem(preguntasOracionesDino(4), 6));
+        };
+
+        const familiaDino = {
+            id: 'dino', contenedor: 'modulos-ingles5', menu: 'menu-5basico-dinosaurs', prefijo: 'Dinosaurs: ',
+            encabezado: 'Unit &ldquo;Dinosaurs&rdquo; &mdash; Inglés &mdash; 5&deg; Básico',
+            puntos: 1, columnaNota: 'Para recordar', estiloImpresion: ESTILO_DINO,
+            secciones: {
+                item1: { titulo: 'Ítem 1: Vocabulary — partes del cuerpo (7 puntos)', emoji: '🦴', color: '#2f6f4e',
+                    intro: 'Busca cómo se dice en inglés cada parte del cuerpo.' },
+                item2: { titulo: 'Ítem 2: Reading — ¿qué animal es? (3 puntos)', emoji: '🔎', color: '#a05a2c',
+                    intro: 'Lee cada descripción, mira los animales y elige cuál es.' + galeriaDinos },
+                item3: { titulo: 'Ítem 3: was, were, wasn\'t, weren\'t (6 puntos)', emoji: '⏳', color: '#6b4c9a',
+                    intro: 'Completa con <strong>was</strong>, <strong>were</strong>, <strong>wasn\'t</strong> o <strong>weren\'t</strong>. ✓ = afirmativa · ✗ = negativa.' },
+                item4: { titulo: 'Ítem 4: there was, there were, there is, there are (6 puntos)', emoji: '🌍', color: '#2d7d9a',
+                    intro: 'Completa con la forma correcta. Fíjate si habla del pasado o de hoy (<em>today</em>), si es uno o más de uno, y en ✓ o ✗.' },
+                item5: { titulo: 'Ítem 5: Comparatives (3 puntos)', emoji: '🌡️', color: '#c93c3c',
+                    intro: 'Elige el comparativo que significa lo que dice el paréntesis.' },
+                item6: { titulo: 'Ítem 6: Sentences — oraciones (4 puntos)', emoji: '✏️', color: '#1a3c6e',
+                    intro: 'Elige la oración que tiene las palabras en el orden correcto.' }
+            },
+            indicadores: {
+                1: 'Reconocer e identificar vocabulario relacionado con las partes del cuerpo de los dinosaurios.',
+                2: 'Comprender descripciones escritas e identificar los dinosaurios correspondientes según sus características físicas.',
+                3: 'Aplicar correctamente was, were, wasn\'t y weren\'t para describir características de los dinosaurios en pasado.',
+                4: 'Distinguir y utilizar there was, there were, there is y there are, con sus formas negativas, para describir la Tierra en el pasado y el presente.',
+                5: 'Reconocer y seleccionar adjetivos comparativos para establecer diferencias entre el pasado y el presente.',
+                6: 'Construir oraciones breves en inglés con el vocabulario y las estructuras de la unidad.'
+            },
+            actividades: {
+                vocab: { titulo: '🦴 El vocabulario corregido', html: htmlVocabDino }
+            },
+            definiciones: {
+                dinoPrueba: {
+                    titulo: 'Prueba de Práctica', emoji: '📝', generar: pruebaDino, porItem: true,
+                    intro: 'Una prueba de 29 puntos con los 6 ítems de la pauta: vocabulario (7), descripciones (3), was/were (6), there was/there is (6), comparativos (3) y oraciones (4). Cada respuesta correcta vale 1 punto. Cada vez que presiones «Nuevos Ejercicios» salen otras preguntas.',
+                    instruccionPdf: 'Responde cada ítem. Cada respuesta vale 1 punto.'
+                }
+            }
+        };
+
+        const submodulosDino = Object.keys(familiaDino.definiciones).map(clave => crearSubmoduloEstudio(familiaDino, clave));
+
+        // Todas estas imágenes tienen licencia libre.
+        listarCreditosEstudio('dino-lista-creditos', [
+            ['Tyrannosaurus TD.png', 'TotalDino', 'CC BY-SA 4.0'],
+            ['Brachiosaurus TD.png', 'TotalDino', 'CC BY-SA 4.0'],
+            ['Triceratops TD.png', 'TotalDino', 'CC BY 4.0'],
+            ['Stegosaurus TD.png', 'TotalDino', 'CC BY 4.0'],
+            ['Pteranodon TD.png', 'TotalDino', 'CC BY 4.0'],
+            ['Velociraptor TD.png', 'TotalDino', 'CC BY 4.0']
+        ]);
+
+        // ============================================================
+        // ============ PALABRAS DE LA PRUEBA (ORTOGRAFÍA 5° BÁSICO) ==
+        // ============================================================
+        // Las 10 palabras que el colegio pidió practicar, "prestando especial atención a su
+        // escritura y acentuación". Una pregunta por palabra, de una de 4 formas: elegir cómo se
+        // escribe, completar una oración, elegir la tilde correcta o reconocer su regla de
+        // acentuación. Al haber una sola por palabra, ninguna muestra la palabra que pide otra.
+        // "atmosfera" (sin tilde) y "Unesco" no se usan como errores: la RAE también las acepta.
+        const REGLAS_TILDE5 = {
+            esdrujula: 'Esdrújula: siempre lleva tilde.',
+            agudaN: 'Aguda terminada en n: lleva tilde.',
+            agudaR: 'Aguda terminada en r: no lleva tilde.',
+            agudaD: 'Aguda terminada en d: no lleva tilde.',
+            graveN: 'Grave terminada en n: no lleva tilde.',
+            graveS: 'Grave terminada en s: no lleva tilde.',
+            graveVocal: 'Grave terminada en vocal: no lleva tilde.'
+        };
+
+        // silabas: la sílaba que suena más fuerte, en mayúsculas. mal: errores de letras;
+        // tilde: errores de tilde.
+        const palabrasPrueba5 = [
+            { c: 'contribuyen', silabas: 'con-tri-BU-yen', regla: 'graveN',
+                mal: ['contribullen', 'contrivuyen', 'contrivullen', 'contribuien'], tilde: ['contribuyén', 'contribúyen', 'cóntribuyen'],
+                oracion: 'Las plantas ___ a limpiar el aire que respiramos.',
+                nota: 'contribuyen: con b y con y (no ll). Es grave (con-tri-BU-yen) y termina en n: no lleva tilde.' },
+            { c: 'atmósfera', silabas: 'at-MÓS-fe-ra', regla: 'esdrujula',
+                mal: ['atmósphera', 'admósfera', 'atmózfera', 'amósfera'], tilde: ['atmosféra', 'átmosfera', 'atmosferá'],
+                oracion: 'La ___ es la capa de aire que rodea la Tierra.',
+                nota: 'atmósfera: con s y con f. Es esdrújula (at-MÓS-fe-ra): siempre lleva tilde.' },
+            { c: 'batalla', silabas: 'ba-TA-lla', regla: 'graveVocal',
+                mal: ['bataya', 'vatalla', 'batalya', 'vataya'], tilde: ['batálla', 'bátalla', 'batallá'],
+                oracion: 'Los dos ejércitos se enfrentaron en una gran ___.',
+                nota: 'batalla: con b y con ll. Es grave (ba-TA-lla) y termina en vocal: no lleva tilde.' },
+            { c: 'bienestar', silabas: 'bie-nes-TAR', regla: 'agudaR',
+                mal: ['vienestar', 'bienhestar', 'vienhestar', 'bien estar'], tilde: ['bienestár', 'biénestar', 'bienéstar'],
+                oracion: 'Dormir bien es importante para nuestro ___.',
+                nota: 'bienestar: con b, sin h y en una sola palabra. Es aguda (bie-nes-TAR) y termina en r: no lleva tilde.' },
+            { c: 'habilidades', silabas: 'ha-bi-li-DA-des', regla: 'graveS',
+                mal: ['abilidades', 'havilidades', 'habilidadez', 'avilidades'], tilde: ['habilidádes', 'hábilidades', 'habílidades'],
+                oracion: 'Practicando todos los días, mejoramos nuestras ___ para dibujar.',
+                nota: 'habilidades: con h al comienzo y con b. Es grave (ha-bi-li-DA-des) y termina en s: no lleva tilde.' },
+            { c: 'geológicas', silabas: 'ge-o-LÓ-gi-cas', regla: 'esdrujula',
+                mal: ['jeológicas', 'geolójicas', 'geológicaz', 'jeolójicas'], tilde: ['geologicas', 'geologícas', 'geólogicas'],
+                oracion: 'Los volcanes y los terremotos son fuerzas ___.',
+                nota: 'geológicas: con g en ge- y en -gi-. Es esdrújula (ge-o-LÓ-gi-cas): siempre lleva tilde.' },
+            { c: 'perseverancia', silabas: 'per-se-ve-RAN-cia', regla: 'graveVocal',
+                mal: ['perceverancia', 'perseberancia', 'perseveransia', 'perzeverancia'], tilde: ['perseverancía', 'perséverancia', 'perseveráncia'],
+                oracion: 'Gracias a su ___, terminó la carrera aunque estaba muy cansada.',
+                nota: 'perseverancia: con s, con v y con c al final (-ancia). Es grave (per-se-ve-RAN-cia) y termina en vocal: no lleva tilde.' },
+            { c: 'discriminación', silabas: 'dis-cri-mi-na-CIÓN', regla: 'agudaN',
+                mal: ['discriminasión', 'descriminación', 'discrimminación', 'dicriminación'], tilde: ['discriminacion', 'discrimínacion', 'díscriminacion'],
+                oracion: 'La ___ es tratar mal a una persona por ser diferente.',
+                nota: 'discriminación: dis- con s y -ción con c. Es aguda (dis-cri-mi-na-CIÓN) y termina en n: lleva tilde.' },
+            { c: 'vulnerabilidad', silabas: 'vul-ne-ra-bi-li-DAD', regla: 'agudaD',
+                mal: ['bulnerabilidad', 'vulneravilidad', 'vulnerabilida', 'vulnerabilidaz'], tilde: ['vulnerabilidád', 'vulnerábilidad', 'vúlnerabilidad'],
+                oracion: 'Los animales en peligro de extinción viven en una situación de ___.',
+                nota: 'vulnerabilidad: con v al comienzo, con b y con d al final. Es aguda (vul-ne-ra-bi-li-DAD) y termina en d: no lleva tilde.' },
+            { c: 'UNESCO', silabas: 'u-NES-co', regla: null,
+                mal: ['UNESKO', 'HUNESCO', 'UNECSO', 'UNESSCO'], tilde: ['UNÉSCO', 'ÚNESCO', 'UNESCÓ'],
+                oracion: 'La ___ es la organización de las Naciones Unidas para la Educación, la Ciencia y la Cultura.',
+                nota: 'UNESCO es una sigla: se escribe con mayúsculas y sin tilde. Sus letras vienen del inglés (United Nations Educational, Scientific and Cultural Organization).' }
+        ];
+
+        // Alternativas de escritura: al menos un error de letras y uno de tilde.
+        function opcionesEscrituraPalabra(p) {
+            const mal = barajarArreglo(p.mal);
+            const tilde = barajarArreglo(p.tilde.filter(t => !p.mal.includes(t)));
+            const resto = barajarArreglo(mal.slice(1).concat(tilde.slice(1)));
+            return barajarArreglo([p.c, mal[0], tilde[0], resto[0]]);
+        }
+
+        function preguntaPalabraPrueba(p) {
+            const formas = ['escribir', 'oracion', 'tilde'].concat(p.regla ? ['regla'] : []);
+            const forma = algElegir(formas);
+            const base = { tipo: 'alternativas', respuestaCorrecta: p.c, explicacion: p.nota, seccion: 'item1', item: 1 };
+            if (forma === 'escribir') {
+                return Object.assign(base, { pregunta: '¿Cuál palabra está bien escrita?', opciones: opcionesEscrituraPalabra(p) });
+            }
+            if (forma === 'oracion') {
+                return Object.assign(base, { pregunta: `Completa con la palabra bien escrita: «${p.oracion}»`, opciones: opcionesEscrituraPalabra(p) });
+            }
+            if (forma === 'tilde') {
+                return Object.assign(base, { pregunta: 'Fíjate en la tilde: ¿cuál está bien escrita?', opciones: barajarArreglo([p.c].concat(p.tilde)) });
+            }
+            const correcta = REGLAS_TILDE5[p.regla];
+            const otras = barajarArreglo(Object.keys(REGLAS_TILDE5).filter(r => r !== p.regla)).slice(0, 3).map(r => REGLAS_TILDE5[r]);
+            return Object.assign(base, {
+                pregunta: `¿Qué regla de acentuación se cumple en «${p.c}»? (${p.silabas})`,
+                opciones: barajarArreglo([correcta].concat(otras)), respuestaCorrecta: correcta
+            });
+        }
+
+        const guiaPalabrasPrueba5 = () => barajarArreglo(palabrasPrueba5).map(preguntaPalabraPrueba);
+
+        const familiaOrto5 = {
+            id: 'orto5', contenedor: 'modulos-lenguaje5', menu: 'menu-5basico-ortografia', prefijo: 'Ortografía: ',
+            encabezado: 'Ortografía &mdash; Lenguaje y Comunicación &mdash; 5&deg; Básico',
+            puntos: 1, columnaNota: 'Para recordar', estiloImpresion: '',
+            secciones: { item1: { titulo: 'Las 10 palabras de la prueba', emoji: '✍️', color: '#6b4c9a' } },
+            indicadores: {}, actividades: {},
+            definiciones: {
+                ortPalabras: {
+                    titulo: 'Palabras de la Prueba', emoji: '✍️', generar: guiaPalabrasPrueba5,
+                    intro: 'Las 10 palabras que serán evaluadas, con la sílaba que suena más fuerte en mayúsculas:' +
+                        '<ol style="margin: 8px 0; padding-left: 26px; columns: 220px 2; column-gap: 24px;">' +
+                        palabrasPrueba5.map(p => `<li><strong>${p.c}</strong> <span style="color: #666;">(${p.silabas})</span></li>`).join('') +
+                        '</ol>Sale una pregunta por palabra: elegir cómo se escribe, completar una oración, fijarse en la tilde o reconocer su regla de acentuación. Cada vez que presiones «Nuevos Ejercicios» cambian las preguntas.',
+                    instruccionPdf: 'Marca la alternativa correcta. Cada respuesta vale 1 punto.'
+                }
+            }
+        };
+
+        const submodulosOrto5 = Object.keys(familiaOrto5.definiciones).map(clave => crearSubmoduloEstudio(familiaOrto5, clave));
 
         // ============================================================
         // ============ FRACCIONES (5° BÁSICO) ========================
@@ -15388,7 +16102,9 @@
             ...submodulosMicro,
             ...submodulosFraccion,
             ...submodulosColonia,
-            ...submodulosArauco
+            ...submodulosArauco,
+            ...submodulosDino,
+            ...submodulosOrto5
         ];
 
         function guardarEstadoModulo5(m) {
