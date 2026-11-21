@@ -1815,6 +1815,52 @@
                     <span class="opcion-emoji">🗺️</span>
                     Historia: Prueba
                 </button>
+                <button class="opcion" onclick="irA('menu-5basico-colonia')">
+                    <span class="opcion-emoji">🏛️</span>
+                    La Colonia
+                </button>
+                <button class="opcion" onclick="irA('menu-5basico-arauco')">
+                    <span class="opcion-emoji">🛡️</span>
+                    Guerra de Arauco
+                </button>
+            </div>
+        </div>
+
+        <!-- SUBMENÚ 5º BÁSICO: LA COLONIA -->
+        <div id="menu-5basico-colonia" class="seccion">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                <h1>🏛️ La Colonia · 5º Básico</h1>
+                <button class="btn btn-volver" onclick="irA('menu-5basico-historia')">← Volver</button>
+            </div>
+
+            <div class="menu-principal">
+                <button class="opcion" onclick="irA('contenidos-colonia')">
+                    <span class="opcion-emoji">📖</span>
+                    Contenidos
+                </button>
+                <button class="opcion" onclick="mostrarModuloColPrueba()">
+                    <span class="opcion-emoji">📝</span>
+                    Prueba de Práctica (23 puntos)
+                </button>
+            </div>
+        </div>
+
+        <!-- SUBMENÚ 5º BÁSICO: GUERRA DE ARAUCO -->
+        <div id="menu-5basico-arauco" class="seccion">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                <h1>🛡️ Guerra de Arauco · 5º Básico</h1>
+                <button class="btn btn-volver" onclick="irA('menu-5basico-historia')">← Volver</button>
+            </div>
+
+            <div class="menu-principal">
+                <button class="opcion" onclick="irA('contenidos-arauco')">
+                    <span class="opcion-emoji">📖</span>
+                    Contenidos
+                </button>
+                <button class="opcion" onclick="mostrarModuloArcPrueba()">
+                    <span class="opcion-emoji">📝</span>
+                    Prueba de Práctica (23 puntos)
+                </button>
             </div>
         </div>
 
@@ -3564,6 +3610,323 @@
 
         <!-- SUBMÓDULOS DE FRACCIONES (se crean desde el script, uno por operación) -->
         <div id="modulos-fraccion"></div>
+
+        <!-- LA COLONIA: CONTENIDOS DEL CUADERNO Y DEL TEXTO -->
+        <div id="contenidos-colonia" class="seccion">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; gap: 10px; flex-wrap: wrap;">
+                <h1>📖 Contenidos · La Colonia</h1>
+                <button class="btn btn-volver" onclick="irA('menu-5basico-colonia')">← Volver</button>
+            </div>
+
+            <div class="micro-pestanas">
+                <button class="micro-pestana activa" onclick="verTemaEstudio('contenidos-colonia', 0)">🏛️ La Colonia</button>
+                <button class="micro-pestana" onclick="verTemaEstudio('contenidos-colonia', 1)">🗺️ Divisiones</button>
+                <button class="micro-pestana" onclick="verTemaEstudio('contenidos-colonia', 2)">🔺 Sociedad</button>
+                <button class="micro-pestana" onclick="verTemaEstudio('contenidos-colonia', 3)">⛏️ Economía y oficios</button>
+                <button class="micro-pestana" onclick="verTemaEstudio('contenidos-colonia', 4)">⚖️ Instituciones</button>
+                <button class="micro-pestana" onclick="verTemaEstudio('contenidos-colonia', 5)">🎉 Vida colonial</button>
+            </div>
+
+            <!-- TEMA 1 -->
+            <div class="micro-tema activo">
+                <div class="micro-bloque" style="border-left-color: #a05a2c;">
+                    <h3>La Colonia</h3>
+                    <p>Se ha denominado <strong>Colonia</strong> o <strong>Periodo colonial</strong> a la etapa de la historia americana que transcurre entre la <strong>conquista europea</strong> (siglo XVI) y los <strong>procesos de independencia</strong> de los países hispanoamericanos (siglo XIX).</p>
+                    <p>En este periodo, amplios territorios americanos (incluyendo Chile) eran dominados por potencias europeas, principalmente por la corona española.</p>
+                </div>
+                <button class="alg-boton alg-comenzar" onclick="verTemaEstudio('contenidos-colonia', 1)">Siguiente tema →</button>
+            </div>
+
+            <!-- TEMA 2 -->
+            <div class="micro-tema">
+                <div class="micro-bloque" style="border-left-color: #2d7d9a;">
+                    <h3>Divisiones administrativas de la América colonial</h3>
+                    <p>La corona española, luego de consolidar su dominio en gran parte de América, dividió el área bajo su control en distintos territorios o unidades administrativas para <strong>gobernarlo</strong> y <strong>administrarlo</strong> de una manera más eficiente.</p>
+                    <h3>División administrativa de los siglos XVI y XVII</h3>
+                    <table class="h5-tabla">
+                        <tr><th>Virreinatos</th><th>Capitanías generales</th></tr>
+                        <tr><td>Nueva España</td><td>Cuba y Guatemala</td></tr>
+                        <tr><td>Perú</td><td>Chile</td></tr>
+                    </table>
+                    <h3>División administrativa del siglo XVIII</h3>
+                    <table class="h5-tabla">
+                        <tr><th>Virreinatos</th><th>Capitanías generales</th></tr>
+                        <tr><td>Nueva España</td><td>Cuba y Guatemala</td></tr>
+                        <tr><td>Perú</td><td>Chile</td></tr>
+                        <tr><td>Nueva Granada</td><td>Venezuela</td></tr>
+                        <tr><td>Río de la Plata</td><td></td></tr>
+                    </table>
+                    <div class="micro-fotos">
+                        <figure><img src="img/historia/virreinatos-siglo-xviii.jpg" alt="Mapa de Sudamérica con los virreinatos y capitanías a fines del siglo XVIII" loading="lazy"><figcaption>Virreinatos y capitanías en Sudamérica a fines del siglo XVIII</figcaption></figure>
+                    </div>
+                </div>
+                <button class="alg-boton alg-comenzar" onclick="verTemaEstudio('contenidos-colonia', 2)">Siguiente tema →</button>
+            </div>
+
+            <!-- TEMA 3 -->
+            <div class="micro-tema">
+                <div class="micro-bloque" style="border-left-color: #c98a00;">
+                    <h3>La sociedad colonial</h3>
+                    <p>Fue la sociedad que surgió en América tras la conquista. Se formó con personas de orígenes y culturas distintas entre sí. Se formó, básicamente, con 3 grandes grupos:</p>
+                    <ul>
+                        <li>Los indígenas originarios de América.</li>
+                        <li>Los españoles.</li>
+                        <li>Los africanos, y sus respectivos descendientes.</li>
+                    </ul>
+                </div>
+                <div class="micro-bloque" style="border-left-color: #c98a00;">
+                    <h3>Características de esta sociedad</h3>
+                    <ul>
+                        <li><strong>Estratificada:</strong> dividida en grupos étnicos.</li>
+                        <li><strong>Jerarquizada:</strong> cada grupo tiene un lugar distinto en la escala social.</li>
+                        <li><strong>Rígida:</strong> el ascenso era casi imposible.</li>
+                    </ul>
+                    <div class="h5-piramide">
+                        <div class="h5-pie">▲ Más poder y privilegios</div>
+                        <div class="h5-nivel" style="width: 36%;">Peninsulares<small>españoles nacidos en España</small></div>
+                        <div class="h5-nivel" style="width: 50%;">Criollos<small>hijos de españoles nacidos en América</small></div>
+                        <div class="h5-nivel" style="width: 64%;">Mestizos<small>hijos de españoles e indígenas</small></div>
+                        <div class="h5-nivel" style="width: 80%;">Indígenas<small>pueblos originarios de América</small></div>
+                        <div class="h5-nivel" style="width: 100%;">Esclavos (africanos)<small>traídos a la fuerza desde África</small></div>
+                        <div class="h5-pie">▼ Menos derechos</div>
+                    </div>
+                </div>
+                <button class="alg-boton alg-comenzar" onclick="verTemaEstudio('contenidos-colonia', 3)">Siguiente tema →</button>
+            </div>
+
+            <!-- TEMA 4 -->
+            <div class="micro-tema">
+                <div class="micro-bloque" style="border-left-color: #2f6f4e;">
+                    <h3>La economía colonial</h3>
+                    <p>Durante el periodo colonial, los territorios americanos quedaron sometidos económicamente a España mediante un sistema de <strong>monopolio comercial</strong>, que se desarrolló en un contexto en que el modelo económico imperante era el <strong>mercantilismo</strong>.</p>
+                </div>
+                <div class="micro-bloque" style="border-left-color: #2f6f4e;">
+                    <h3>Oficios y actividades económicas en la Colonia</h3>
+                    <p>Durante la Colonia, la economía se fue modificando según las necesidades de la población. Se fue produciendo una diversificación económica.</p>
+                    <p><strong>Principales actividades económicas:</strong></p>
+                    <ol>
+                        <li>La minería.</li>
+                        <li>La ganadería.</li>
+                        <li>La agricultura.</li>
+                    </ol>
+                </div>
+                <div class="micro-bloque" style="border-left-color: #2f6f4e;">
+                    <h3>Unidades productivas</h3>
+                    <ul>
+                        <li><strong>Lavaderos de oro:</strong> la actividad más importante de la segunda mitad del siglo XVI. Se sacaba oro de ríos y esteros, como el Illapel y el Marga-Marga.</li>
+                        <li><strong>Estancias:</strong> importantes en el siglo XVII. Grandes terrenos con ganado ovino, caprino y vacuno, de los que se obtenía sebo y cuero.</li>
+                        <li><strong>Haciendas:</strong> desde fines del siglo XVII e inicios del XVIII. Producían trigo y cereales, y criaban ganado vacuno y ovino para obtener cuero y charqui (carne seca salada).</li>
+                    </ul>
+                </div>
+                <div class="micro-bloque" style="border-left-color: #2f6f4e;">
+                    <h3>Oficios más importantes</h3>
+                    <ul>
+                        <li><strong>Inquilinos:</strong> trabajan en el campo.</li>
+                        <li><strong>Pirquineros:</strong> trabajan en las minas.</li>
+                        <li><strong>Artesanos:</strong> por ejemplo, tejedores, herreros, etc.</li>
+                        <li><strong>Comerciantes:</strong> con diferentes ámbitos.</li>
+                    </ul>
+                    <p>Y otros, como el chinchinero y el organillero.</p>
+                </div>
+                <button class="alg-boton alg-comenzar" onclick="verTemaEstudio('contenidos-colonia', 4)">Siguiente tema →</button>
+            </div>
+
+            <!-- TEMA 5 -->
+            <div class="micro-tema">
+                <div class="micro-bloque" style="border-left-color: #6b4c9a;">
+                    <h3>Instituciones coloniales</h3>
+                    <table class="h5-tabla">
+                        <tr><th>En España</th><th>En América</th></tr>
+                        <tr><td>Consejo de Indias</td><td>Gobernación y Capitanía</td></tr>
+                        <tr><td>Casa de Contratación</td><td>Real Audiencia</td></tr>
+                        <tr><td></td><td>Cabildo</td></tr>
+                    </table>
+                    <ul>
+                        <li><strong>Consejo de Indias:</strong> dictaba las leyes para América.</li>
+                        <li><strong>Casa de Contratación:</strong> controlaba el comercio y los viajes entre España y América.</li>
+                        <li><strong>Gobernación y Capitanía:</strong> el gobernador era la máxima autoridad en Chile.</li>
+                        <li><strong>Real Audiencia:</strong> administraba justicia.</li>
+                        <li><strong>Cabildo:</strong> gobernaba cada ciudad.</li>
+                    </ul>
+                </div>
+                <div class="micro-bloque" style="border-left-color: #6b4c9a;">
+                    <h3>Instituciones coloniales y actuales</h3>
+                    <div class="h5-inst">
+                        <div class="h5-inst-fila"><div class="h5-inst-titulo">Coloniales</div><span></span><div class="h5-inst-titulo">Actuales</div></div>
+                        <div class="h5-inst-fila"><div class="mapa-caja">Cabildo</div><span class="h5-flecha">→</span><div class="mapa-caja">Municipalidad</div></div>
+                        <div class="h5-inst-fila"><div class="mapa-caja">Real Audiencia</div><span class="h5-flecha">→</span><div class="mapa-caja">Tribunales de Justicia</div></div>
+                        <div class="h5-inst-fila"><div class="mapa-caja">Casa de Contratación</div><span class="h5-flecha">→</span><div class="mapa-caja">Aduanas</div></div>
+                        <div class="h5-inst-fila"><div class="mapa-caja">Consejo de Indias</div><span class="h5-flecha">→</span><div class="mapa-caja">Parlamento</div></div>
+                    </div>
+                </div>
+                <button class="alg-boton alg-comenzar" onclick="verTemaEstudio('contenidos-colonia', 5)">Siguiente tema →</button>
+            </div>
+
+            <!-- TEMA 6 -->
+            <div class="micro-tema">
+                <div class="micro-bloque" style="border-left-color: #c0562f;">
+                    <h3>La vida colonial en Chile</h3>
+                    <ul>
+                        <li><strong>Las ciudades:</strong> reflejaban la sociedad. En Santiago, las familias de la aristocracia hispano-criolla vivían en el centro; el resto, en las afueras o en sectores rurales cercanos.</li>
+                        <li><strong>La Iglesia católica:</strong> era muy importante. La religiosidad se vivía en la casa y en la calle, con procesiones y ceremonias.</li>
+                        <li><strong>La vida de los grupos dirigentes</strong> giraba en torno a la administración, el comercio y la religión. La de los sectores populares era más apacible y estaba ligada a la agricultura, la ganadería y el comercio.</li>
+                    </ul>
+                </div>
+                <div class="micro-bloque" style="border-left-color: #c0562f;">
+                    <h3>Fiestas y faenas</h3>
+                    <ul>
+                        <li><strong>Fiestas religiosas:</strong> procesiones en honor a un santo, Semana Santa y Navidad.</li>
+                        <li><strong>Fiestas civiles:</strong> la llegada de noticias desde España, el nacimiento de un heredero al trono o la llegada de una autoridad.</li>
+                        <li><strong>Trilla:</strong> caballos o yeguas separaban el grano de trigo del forraje.</li>
+                        <li><strong>Vendimia:</strong> la cosecha de uva para hacer vino.</li>
+                        <li><strong>Rodeo:</strong> se reunía el ganado para marcarlo.</li>
+                    </ul>
+                    <p>Estas faenas del campo con el tiempo se volvieron fiestas.</p>
+                </div>
+                <div class="micro-bloque" style="border-left-color: #c0562f;">
+                    <h3>Tertulias, chinganas y vendedores</h3>
+                    <ul>
+                        <li><strong>Tertulias:</strong> reuniones en las casas de las familias criollas aristócratas. Los hombres conversaban de impuestos y de política; las mujeres bailaban y tocaban instrumentos.</li>
+                        <li><strong>Chinganas:</strong> lugares donde los sectores populares iban a divertirse: se bailaba cueca y se compartía comida y bebida, en la ciudad y en el campo.</li>
+                        <li><strong>Vendedores ambulantes:</strong> heladero, lechero, aguatero, yerbatero, panadero, sandillero y otros.</li>
+                    </ul>
+                    <div class="micro-fotos">
+                        <figure><img src="img/historia/tertulia.jpg" alt="Grabado de una tertulia en una casa de Santiago" loading="lazy"><figcaption>Una tertulia (grabado de Claudio Gay)</figcaption></figure>
+                        <figure><img src="img/historia/chingana.jpg" alt="Grabado de una chingana con gente bailando" loading="lazy"><figcaption>Una chingana (grabado de Claudio Gay)</figcaption></figure>
+                    </div>
+                </div>
+                <div class="micro-bloque" style="border-left-color: #c0562f;">
+                    <h3>Mujeres, niños y niñas</h3>
+                    <p>Las mujeres manejaban el ámbito de la casa y participaban del espacio público, pero sin los derechos ni el poder de los hombres. Los niños y las niñas dependían de sus padres y sus tareas dependían de su origen social.</p>
+                </div>
+                <button class="alg-boton alg-comenzar" onclick="irA('menu-5basico-colonia')">✅ Terminé: ir a la prueba →</button>
+
+                <details class="micro-creditos">
+                    <summary>Créditos de las imágenes</summary>
+                    <ul id="colonia-lista-creditos"></ul>
+                </details>
+            </div>
+        </div>
+
+        <!-- GUERRA DE ARAUCO: CONTENIDOS DEL CUADERNO Y DEL CUADRO RESUMEN -->
+        <div id="contenidos-arauco" class="seccion">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; gap: 10px; flex-wrap: wrap;">
+                <h1>📖 Contenidos · Guerra de Arauco</h1>
+                <button class="btn btn-volver" onclick="irA('menu-5basico-arauco')">← Volver</button>
+            </div>
+
+            <div class="micro-pestanas">
+                <button class="micro-pestana activa" onclick="verTemaEstudio('contenidos-arauco', 0)">🏞️ La Frontera</button>
+                <button class="micro-pestana" onclick="verTemaEstudio('contenidos-arauco', 1)">🛡️ La guerra de Arauco</button>
+                <button class="micro-pestana" onclick="verTemaEstudio('contenidos-arauco', 2)">🗂️ Las 3 etapas</button>
+                <button class="micro-pestana" onclick="verTemaEstudio('contenidos-arauco', 3)">📅 Línea de tiempo</button>
+            </div>
+
+            <!-- TEMA 1 -->
+            <div class="micro-tema activo">
+                <div class="micro-bloque" style="border-left-color: #2f6f4e;">
+                    <h3>La Frontera</h3>
+                    <p>El territorio mapuche atrajo el interés de los españoles, que intentaron conquistar dicho territorio, pero la corona española optó por la firma de acuerdos, que buscaban crear una relación de paz. Se definió el <strong>río Biobío</strong> como la frontera de ambos pueblos.</p>
+                </div>
+                <div class="micro-bloque" style="border-left-color: #2f6f4e;">
+                    <h3>Vida fronteriza</h3>
+                    <p>A partir de la segunda mitad del siglo XVII, la frontera del sur de Chile se convirtió en un espacio de <strong>interacción, roces e intercambios</strong> comerciales y culturales entre indígenas y españoles. El territorio mapuche se extendió desde el <strong>río Biobío</strong> por el norte hasta el <strong>río Toltén</strong> por el sur.</p>
+                    <div class="micro-fotos">
+                        <figure><img src="img/historia/mapuches.jpg" alt="Grabado de una familia mapuche" loading="lazy"><figcaption>Mapuches (grabado del Atlas de Claudio Gay)</figcaption></figure>
+                    </div>
+                </div>
+                <button class="alg-boton alg-comenzar" onclick="verTemaEstudio('contenidos-arauco', 1)">Siguiente tema →</button>
+            </div>
+
+            <!-- TEMA 2 -->
+            <div class="micro-tema">
+                <div class="micro-bloque" style="border-left-color: #a05a2c;">
+                    <h3>¿Qué es la guerra de Arauco?</h3>
+                    <p>La guerra de Arauco fue un prolongado conflicto que enfrentó a los <strong>españoles y criollos</strong> de la Capitanía General de Chile contra el <strong>pueblo araucano</strong> (mapuches y algunos aliados como los cuncos, picunches, etc.).</p>
+                    <p>Este conflicto duró un lapso de casi 3 siglos, desde 1536 hasta 1810, pero con diferentes grados de intensidad. Es por esta razón que es posible distinguir diversas etapas dentro de la guerra.</p>
+                </div>
+                <div class="micro-bloque" style="border-left-color: #a05a2c;">
+                    <h3>Las 3 estrategias hispanas o etapas de la guerra de Arauco</h3>
+                    <ul>
+                        <li><strong>La guerra ofensiva</strong> (1601 a 1612).</li>
+                        <li><strong>La guerra defensiva</strong> (1612 a 1625).</li>
+                        <li><strong>El sistema de parlamentos</strong> (mediados del siglo XVII al XVIII).</li>
+                    </ul>
+                    <p><strong>Idea clave:</strong> las relaciones entre españoles y mapuches incluyeron enfrentamientos, resistencia, negociaciones y comercio.</p>
+                </div>
+                <button class="alg-boton alg-comenzar" onclick="verTemaEstudio('contenidos-arauco', 2)">Siguiente tema →</button>
+            </div>
+
+            <!-- TEMA 3 -->
+            <div class="micro-tema">
+                <div class="micro-bloque" style="border-left-color: #c93c3c;">
+                    <h3>1. Guerra ofensiva (1601 – 1612)</h3>
+                    <p><strong>¿Por qué surgió?</strong> Después de la resistencia mapuche y de la gran derrota española de <strong>Curalaba (1598)</strong>, los españoles quisieron recuperar el control del territorio al sur del Biobío.</p>
+                    <p><strong>¿Cómo se desarrolló?</strong> El gobernador Alonso de Ribera formó un <strong>ejército permanente</strong> y construyó una <strong>línea de fuertes</strong>. Hubo campañas militares e incursiones que también afectaron a las comunidades mapuches.</p>
+                    <p><strong>Personajes relevantes:</strong></p>
+                    <ul>
+                        <li><strong>Alonso de Ribera:</strong> gobernador español que organizó el ejército y la línea de fuertes.</li>
+                        <li><strong>Pelantaro:</strong> líder mapuche, símbolo de la resistencia.</li>
+                    </ul>
+                    <div class="micro-fotos">
+                        <figure><img src="img/historia/alonso-de-ribera.jpg" alt="Retrato del gobernador Alonso de Ribera" loading="lazy"><figcaption>Alonso de Ribera</figcaption></figure>
+                    </div>
+                </div>
+                <div class="micro-bloque" style="border-left-color: #6b4c9a;">
+                    <h3>2. Guerra defensiva (1612 – 1625)</h3>
+                    <p><strong>¿Qué se propuso?</strong> El sacerdote jesuita Luis de Valdivia propuso que los españoles dejaran de entrar a atacar el territorio mapuche, que se <strong>respetara una frontera</strong> y que se enviaran <strong>misioneros</strong> para evangelizar.</p>
+                    <p><strong>¿Qué ocurrió?</strong> Los conflictos y ataques siguieron. La muerte de varios misioneros en <strong>Elicura</strong> y la oposición de muchos españoles hicieron fracasar el plan, y se volvió a la estrategia ofensiva.</p>
+                    <p><strong>Personajes relevantes:</strong></p>
+                    <ul>
+                        <li><strong>Luis de Valdivia:</strong> sacerdote jesuita que promovió la paz y la evangelización del pueblo mapuche.</li>
+                        <li><strong>Anganamón:</strong> lonko mapuche que representó la resistencia y se opuso al plan de Valdivia.</li>
+                    </ul>
+                    <div class="micro-fotos">
+                        <figure><img src="img/historia/sermon-valdivia.jpg" alt="Página de un sermón escrito en mapudungun y español" loading="lazy"><figcaption>Sermón en mapudungun y español del padre Luis de Valdivia (1606)</figcaption></figure>
+                    </div>
+                </div>
+                <div class="micro-bloque" style="border-left-color: #2f6f4e;">
+                    <h3>3. Sistema de parlamentos (desde 1641, siglos XVII y XVIII)</h3>
+                    <p><strong>¿En qué consistió?</strong> En reuniones formales, llamadas parlamentos, entre autoridades españolas y líderes mapuches. En ellas se negociaban acuerdos de paz, se definían fronteras, se regulaba el intercambio de bienes y se acordaban normas de convivencia.</p>
+                    <p><strong>¿Qué ocurrió?</strong> En el <strong>Parlamento de Quilín (1641)</strong> se reconoció el territorio mapuche al sur del Biobío. Después hubo otros parlamentos, con periodos de paz e intercambio comercial, pero también con nuevos conflictos: la paz no fue permanente.</p>
+                    <p><strong>Personajes relevantes:</strong></p>
+                    <ul>
+                        <li><strong>Marqués de Baides:</strong> gobernador español que participó en el Parlamento de Quilín y buscó mantener la paz.</li>
+                        <li><strong>Lonkos mapuches:</strong> líderes de distintas comunidades que representaron a su pueblo en los parlamentos.</li>
+                    </ul>
+                    <div class="micro-fotos micro-fotos-ancha">
+                        <figure><img src="img/historia/parlamento-negrete.jpg" alt="Grabado de un parlamento entre autoridades españolas y mapuches" loading="lazy"><figcaption>Un parlamento: el de Negrete, en 1793 (grabado del Atlas de Claudio Gay)</figcaption></figure>
+                    </div>
+                </div>
+                <button class="alg-boton alg-comenzar" onclick="verTemaEstudio('contenidos-arauco', 3)">Siguiente tema →</button>
+            </div>
+
+            <!-- TEMA 4 -->
+            <div class="micro-tema">
+                <div class="micro-bloque" style="border-left-color: #1a3c6e;">
+                    <h3>Línea de tiempo</h3>
+                    <ul class="h5-linea">
+                        <li><span class="h5-anio">1536</span>Comienza la guerra de Arauco, según el cuaderno.</li>
+                        <li><span class="h5-anio">1598</span>Derrota española de Curalaba.</li>
+                        <li><span class="h5-anio">1601</span>Comienza la guerra ofensiva, con Alonso de Ribera.</li>
+                        <li><span class="h5-anio">1612</span>Comienza la guerra defensiva, propuesta por Luis de Valdivia. Mueren misioneros en Elicura.</li>
+                        <li><span class="h5-anio">1625</span>Termina la guerra defensiva y se vuelve a la ofensiva.</li>
+                        <li><span class="h5-anio">1641</span>Parlamento de Quilín: comienza el sistema de parlamentos.</li>
+                        <li><span class="h5-anio">Siglos XVII y XVIII</span>Nuevos parlamentos, con periodos de paz, comercio y nuevos conflictos.</li>
+                        <li><span class="h5-anio">1810</span>Termina la guerra de Arauco, según el cuaderno.</li>
+                    </ul>
+                </div>
+                <button class="alg-boton alg-comenzar" onclick="irA('menu-5basico-arauco')">✅ Terminé: ir a la prueba →</button>
+
+                <details class="micro-creditos">
+                    <summary>Créditos de las imágenes</summary>
+                    <ul id="arauco-lista-creditos"></ul>
+                </details>
+            </div>
+        </div>
+
+        <!-- SUBMÓDULOS DE HISTORIA 5° (se crean desde el script) -->
+        <div id="modulos-historia5"></div>
 
         <!-- REVISIÓN DE TAREAS (HISTORIAL GUARDADO EN EL DISPOSITIVO) -->
         <div id="historial" class="seccion">
@@ -11869,6 +12232,457 @@
         const submodulosAlgebra = Object.keys(definicionesAlgebra).map(crearSubmoduloAlgebra);
 
         // ============================================================
+        // ============ GUÍAS DE ESTUDIO (5° BÁSICO) ==================
+        // ============================================================
+        // Motor común de los módulos con contenidos para estudiar y prueba (Ciencias e Historia).
+        // Ejercicios: alternativas, verdadero o falso y actividades para completar tocando una
+        // palabra y después su casillero (mapa conceptual, pirámide social, cuadro resumen).
+        // Cada familia de submódulos trae su configuración:
+        //   id, contenedor, menu (submenú al que vuelve), prefijo (título en el historial),
+        //   encabezado (impresión), puntos por respuesta, secciones, indicadores (tabla por ítem),
+        //   columnaNota, definiciones, estiloImpresion y
+        //   actividades: { nombre: { titulo, html(lista, modo, opciones) } }.
+        // Los casilleros son ejercicios de tipo 'mapa' con su actividad ('mapa' si no la dicen).
+        const familiasEstudio = {};
+
+        const ESTILO_COMPLETAR =
+            '.mapa-caja { display: flex; align-items: center; justify-content: center; gap: 6px; box-sizing: border-box; width: 100%; min-height: 52px;' +
+            ' padding: 8px; border: 2px solid #1a3c6e; border-radius: 8px; background: white; color: #1a3c6e; font: 600 15px/1.3 Arial, sans-serif; text-align: center; }' +
+            '.mapa-vacia { border-style: dashed; background: #fff8e1; cursor: pointer; }' +
+            '.mapa-llena { border-style: solid; background: #e3f2fd; }' +
+            '.mapa-bien { border-color: #2f6f4e; background: #e8f5e9; }' +
+            '.mapa-mal { border-color: #c93c3c; background: #ffebee; display: block; }' +
+            '.mapa-mal small { display: block; font-weight: 400; color: #c93c3c; }' +
+            '.mapa-num { flex: none; width: 24px; height: 24px; border-radius: 50%; background: #c98a00; color: white; font-size: 13px; line-height: 24px; }' +
+            '.mapa-enlace { text-align: center; font-size: 13px; color: #555; font-style: italic; line-height: 1.3; }' +
+            '.mapa-fichas { display: flex; flex-wrap: wrap; gap: 8px; padding: 10px; background: white; border: 2px solid #1a3c6e; border-radius: 8px; position: sticky; top: 0; z-index: 5; }' +
+            '.mapa-ficha { padding: 8px 12px; border: 2px solid #1a3c6e; border-radius: 20px; background: white; color: #1a3c6e; font: 600 14px/1.2 Arial, sans-serif; cursor: pointer; }' +
+            '.mapa-ficha.elegida { background: #1a3c6e; color: white; }' +
+            '.completar-bloque { page-break-inside: avoid; }';
+
+        document.head.insertAdjacentHTML('beforeend', `<style>${ESTILO_COMPLETAR}</style>`);
+
+        // Casillero de una actividad: fijo si no se pregunta; si se pregunta, vacío para tocar
+        // ("responder"), en blanco ("pdf") o con la corrección ("resuelto").
+        function cajaCompletar(lista, actividad, nodo, correcta, modo, opciones) {
+            const { idCaja, tocar, resp } = opciones || {};
+            const idx = lista.findIndex(ej => ej.tipo === 'mapa' && ej.actividad === actividad && ej.nodo === nodo);
+            if (idx === -1) return `<div class="mapa-caja">${ecEsc(correcta)}</div>`;
+            const numero = `<span class="mapa-num">${lista[idx].numero}</span>`;
+            if (modo === 'responder') {
+                return `<button type="button" class="mapa-caja mapa-vacia" id="${idCaja(idx)}" onclick="${tocar}(${idx})">${numero}<span class="mapa-texto"></span></button>`;
+            }
+            if (modo === 'pdf') return `<div class="mapa-caja mapa-vacia">${numero}</div>`;
+            if (resp[idx] === correcta) return `<div class="mapa-caja mapa-bien">✓ ${ecEsc(correcta)}</div>`;
+            return `<div class="mapa-caja mapa-mal">${ecEsc(correcta)}<small>${resp[idx] === undefined ? 'Sin responder' : 'Pusiste: ' + ecEsc(resp[idx])}</small></div>`;
+        }
+
+        // Casilleros de una actividad. nodos: [{ nodo, c (lo que va), d (qué se pide), nota }].
+        // Se preguntan los "fijos" y "alAzar" de los demás; las fichas suman "extras" que sobran.
+        function casillerosEstudio(actividad, nodos, opciones) {
+            const { titulo, fijos = [], alAzar = 0, extras = [], seccion, item } = opciones;
+            const otros = nodos.filter(n => !fijos.includes(n.nodo)).map(n => n.nodo);
+            const vacios = fijos.concat(barajarArreglo(otros).slice(0, alAzar));
+            const preguntados = nodos.filter(n => vacios.includes(n.nodo));
+            const fichas = barajarArreglo(preguntados.map(n => n.c).concat(extras));
+            return preguntados.map(n => ({
+                seccion, item, tipo: 'mapa', actividad, nodo: n.nodo, pregunta: `${titulo}: ${n.d}`, opciones: fichas,
+                respuestaCorrecta: n.c, explicacion: n.nota
+            }));
+        }
+
+        function preguntaAlternativasEstudio(grupo) {
+            const f = algElegir(grupo.formas);
+            return { tipo: 'alternativas', pregunta: f.p, opciones: barajarArreglo([f.c].concat(f.no)), respuestaCorrecta: f.c, explicacion: grupo.nota };
+        }
+
+        function preguntaVFEstudio(grupo, verdadera) {
+            const opciones = ['Verdadero', 'Falso'];
+            if (verdadera) {
+                const texto = algElegir(grupo.v);
+                return { tipo: 'vf', pregunta: texto, opciones, respuestaCorrecta: 'Verdadero', explicacion: texto };
+            }
+            const [texto, correccion] = algElegir(grupo.f);
+            return { tipo: 'vf', pregunta: texto, opciones, respuestaCorrecta: 'Falso', explicacion: correccion };
+        }
+
+        // Banco por grupos: cada grupo es una idea con formas de alternativas (formas) y
+        // afirmaciones de verdadero o falso (v y f). En una prueba entra a lo más una pregunta
+        // por grupo: todas se ven a la vez y así ninguna revela la respuesta de otra.
+        // Ítem 1: alternativas (bolsa barajada) · Ítem 2: verdadero o falso, mitad y mitad.
+        function preguntasPruebaEstudio(banco, cola, nAlt, nVF) {
+            const gruposAlt = tomarDeColaEcuaciones(cola, Object.keys(banco).filter(g => banco[g].formas), nAlt);
+            const gruposVF = barajarArreglo(Object.keys(banco).filter(g => banco[g].v && !gruposAlt.includes(g))).slice(0, nVF);
+            const verdaderas = barajarArreglo(gruposVF.map((_, i) => i % 2 === 0));
+            return gruposAlt.map(g => Object.assign(preguntaAlternativasEstudio(banco[g]), { seccion: 'item1', item: 1 }))
+                .concat(gruposVF.map((g, i) => Object.assign(preguntaVFEstudio(banco[g], verdaderas[i]), { seccion: 'item2', item: 2 })));
+        }
+
+        function htmlSubmoduloEstudio(familia, clave, def) {
+            const volver = `volverEstudio('${familia.id}', '${clave}')`;
+            return `
+        <div id="modulo-${clave}" class="modulo-contenedor">
+            <div style="max-width: 900px; margin: 0 auto; padding: 20px;">
+                <div id="configuracion-${clave}" class="seccion-contenedor">
+                    <div style="display: flex; justify-content: flex-end; margin-bottom: 12px;">
+                        <button class="btn btn-volver" onclick="${volver}">← Volver</button>
+                    </div>
+                    <h2 style="color: #1a3c6e; margin-bottom: 20px;">${def.emoji} ${def.titulo} — 5° Básico</h2>
+                    <div style="background-color: #f5f7fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                        <div style="font-size: 14px; color: #333; margin-bottom: 16px; line-height: 1.5;">
+                            ${def.intro} Puedes cambiar tu respuesta hasta presionar <strong>Revisar Respuestas</strong>.
+                        </div>
+                        <button id="btn-generar-${clave}" class="alg-boton alg-comenzar">▶ Comenzar</button>
+                    </div>
+                </div>
+
+                <div id="area-ejercicios-${clave}" style="display: none;">
+                    <div style="margin-bottom: 20px; display: flex; gap: 10px; flex-wrap: wrap;">
+                        <button id="btn-nuevos-ejercicios-${clave}" class="alg-boton" style="background-color: #2f6f4e;">🔄 Nuevos Ejercicios</button>
+                        <button id="btn-imprimir-${clave}" class="alg-boton" style="background-color: #0066cc;">🖨️ Imprimir / PDF</button>
+                        <button class="alg-boton" style="background-color: #1a3c6e;" onclick="${volver}">← Volver</button>
+                    </div>
+                    <div id="contenedor-ejercicios-${clave}" style="background-color: #fff; padding: 20px; border-radius: 8px; border: 1px solid #ddd;"></div>
+                    <div style="margin-top: 20px; text-align: center;">
+                        <button id="btn-revisar-${clave}" class="alg-boton" style="background-color: #1a3c6e; font-size: 16px; font-weight: 600; padding: 12px 30px;">Revisar Respuestas</button>
+                    </div>
+                </div>
+
+                <div id="resultados-${clave}" style="display: none; background-color: #f5f7fa; padding: 20px; border-radius: 8px;">
+                    <h3 style="color: #1a3c6e; margin-bottom: 20px;">Resultados</h3>
+                    <div id="contenedor-resultados-${clave}" style="background-color: white; padding: 20px; border-radius: 4px; overflow-x: auto;"></div>
+                    <div style="margin-top: 20px; display: grid; gap: 10px;">
+                        <button id="btn-nuevos-resultados-${clave}" class="alg-boton" style="width: 100%; padding: 12px; background-color: #2f6f4e;">🔄 Nuevos Ejercicios</button>
+                        <button class="alg-boton" style="width: 100%; padding: 12px; background-color: #1a3c6e;" onclick="${volver}">← Volver a Menú</button>
+                    </div>
+                </div>
+            </div>
+        </div>`;
+        }
+
+        function volverEstudio(familiaId, clave) {
+            irA(familiasEstudio[familiaId].menu);
+            document.getElementById('modulo-' + clave).style.display = 'none';
+        }
+
+        // Pestañas de una pantalla de contenidos.
+        function verTemaEstudio(seccionId, n) {
+            const seccion = document.getElementById(seccionId);
+            seccion.querySelectorAll('.micro-tema').forEach((t, i) => t.classList.toggle('activo', i === n));
+            seccion.querySelectorAll('.micro-pestana').forEach((b, i) => b.classList.toggle('activa', i === n));
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // creditos: [[archivo de Wikimedia Commons, autor, licencia], ...]
+        function listarCreditosEstudio(idLista, creditos) {
+            document.getElementById(idLista).innerHTML = creditos.map(([archivo, autor, licencia]) => {
+                const pagina = 'https://commons.wikimedia.org/wiki/File:' + encodeURIComponent(archivo.replace(/ /g, '_'));
+                return `<li><a href="${pagina}" target="_blank" rel="noopener">${ecEsc(archivo)}</a>: ${ecEsc(autor)} · ${licencia}</li>`;
+            }).join('');
+        }
+
+        function textoFichasSobran(n) {
+            if (n <= 0) return '';
+            if (n === 1) return ' Una palabra sobra.';
+            return ` ${['', '', 'Dos', 'Tres', 'Cuatro'][n] || n} palabras sobran.`;
+        }
+
+        function actividadesDeLista(lista) {
+            return [...new Set(lista.filter(ej => ej.tipo === 'mapa').map(ej => ej.actividad || 'mapa'))];
+        }
+
+        function imprimirGuiaEstudio(familia, def, lista) {
+            if (lista.length === 0) {
+                alert('Por favor, genera la guía primero.');
+                return;
+            }
+            const letras = ['A', 'B', 'C', 'D'];
+            let htmlPDF = '<!DOCTYPE html><html><head><meta charset="UTF-8"><style>' +
+                'body { font-family: Arial, sans-serif; padding: 20px; margin: 0; background: white; }' +
+                '.header { text-align: center; margin-bottom: 26px; border-bottom: 2px solid #1a3c6e; padding-bottom: 14px; }' +
+                '.header h1 { margin: 0 0 5px 0; color: #1a3c6e; font-size: 22px; }' +
+                '.header p { margin: 0; color: #666; font-size: 12px; }' +
+                '.student-info { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; font-size: 13px; }' +
+                '.info-field { display: flex; align-items: flex-end; gap: 10px; }' +
+                '.info-field label { font-weight: bold; color: #333; min-width: 70px; }' +
+                '.info-field .line { flex: 1; border-bottom: 1px solid #999; height: 18px; }' +
+                'h2 { color: #1a3c6e; font-size: 15px; margin: 18px 0 8px 0; }' +
+                '.exercise { margin-bottom: 12px; padding: 12px; background-color: #f9f9f9; border-left: 3px solid #1a3c6e; page-break-inside: avoid; }' +
+                '.num { font-weight: bold; color: #1a3c6e; font-size: 14px; }' +
+                '.texto { font-size: 13px; color: #333; margin-left: 6px; }' +
+                '.ops { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; font-size: 13px; padding-left: 22px; margin-top: 6px; }' +
+                '.fichas { font-size: 13px; margin: 8px 0 12px 0; padding: 10px 12px; border: 1px solid #1a3c6e; border-radius: 6px; }' +
+                ESTILO_COMPLETAR + (familia.estiloImpresion || '') + ' .mapa-fichas { position: static; }' +
+                '@media print { body { padding: 10px; } .exercise { page-break-inside: avoid; } }' +
+                '</style></head><body>' +
+                `<div class="header"><h1>${def.titulo}</h1><p>${familia.encabezado}</p></div>` +
+                '<div class="student-info">' +
+                '<div class="info-field"><label>Nombre:</label><div class="line"></div></div>' +
+                '<div class="info-field"><label>Curso:</label><div class="line"></div></div>' +
+                '<div class="info-field"><label>Fecha:</label><div class="line"></div></div>' +
+                '<div class="info-field"><label>Puntaje:</label><div class="line"></div></div>' +
+                '</div>' +
+                `<p style="text-align: center; color: #666; font-size: 12px; margin-bottom: 22px;"><strong>Instrucciones:</strong> ${def.instruccionPdf}</p>`;
+
+            let seccionPrevia = null;
+            const dibujadas = new Set();
+            lista.forEach(ej => {
+                if (ej.seccion !== seccionPrevia) {
+                    htmlPDF += `<h2>${familia.secciones[ej.seccion].titulo}</h2>`;
+                    seccionPrevia = ej.seccion;
+                }
+                if (ej.tipo === 'mapa') {
+                    const actividad = ej.actividad || 'mapa';
+                    if (!dibujadas.has(actividad)) {
+                        htmlPDF += `<div class="fichas"><strong>Palabras para usar:</strong> ${ej.opciones.map(ecEsc).join(' · ')}</div>` +
+                            familia.actividades[actividad].html(lista, 'pdf');
+                        dibujadas.add(actividad);
+                    }
+                    return;
+                }
+                htmlPDF += '<div class="exercise">' +
+                    `<span class="num">${ej.numero}.</span><span class="texto">${ecEsc(ej.pregunta)}</span>` +
+                    `<div class="ops">${ej.opciones.map((op, i) => `<div>${ej.tipo === 'vf' ? '( )' : letras[i] + ')'} ${ecEsc(op)}</div>`).join('')}</div>` +
+                    '</div>';
+            });
+            htmlPDF += '</body></html>';
+
+            const blob = new Blob([htmlPDF], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const printWindow = window.open(url, '_blank');
+            printWindow.onload = function () {
+                setTimeout(function () { printWindow.print(); }, 250);
+            };
+        }
+
+        // Crea el submódulo (pantallas, botones y funciones globales) y devuelve su entrada
+        // para modulos5: así guarda el progreso y aparece en Revisión de Tareas como los demás.
+        function crearSubmoduloEstudio(familia, clave) {
+            familiasEstudio[familia.id] = familia;
+            const def = familia.definiciones[clave];
+            const sufijo = clave.charAt(0).toUpperCase() + clave.slice(1);
+            const mostrar = 'mostrarModulo' + sufijo;
+            const seleccionar = 'seleccionarRespuesta' + sufijo;
+            const tocarCaja = 'tocarCasillero' + sufijo;
+            const tocarFicha = 'tocarFicha' + sufijo;
+            const id = nombre => document.getElementById(`${nombre}-${clave}`);
+            const idCaja = idx => `mapa-${clave}-${idx}`;
+            const actividadDe = ej => ej.actividad || 'mapa';
+            // ficha: la palabra elegida para poner en un casillero, { actividad, texto }.
+            const est = { lista: [], resp: {}, ficha: null };
+
+            document.getElementById(familia.contenedor).insertAdjacentHTML('beforeend', htmlSubmoduloEstudio(familia, clave, def));
+
+            const pintarCompletar = () => {
+                est.lista.forEach((ej, idx) => {
+                    const caja = document.getElementById(idCaja(idx));
+                    if (!caja) return;
+                    const puesta = est.resp[idx];
+                    caja.querySelector('.mapa-texto').textContent = puesta === undefined ? '' : puesta;
+                    caja.classList.toggle('mapa-llena', puesta !== undefined);
+                });
+                actividadesDeLista(est.lista).forEach((actividad, a) => {
+                    const delGrupo = est.lista.map((ej, idx) => ({ ej, idx })).filter(o => o.ej.tipo === 'mapa' && actividadDe(o.ej) === actividad);
+                    const usadas = delGrupo.map(o => est.resp[o.idx]);
+                    delGrupo[0].ej.opciones.forEach((op, i) => {
+                        const ficha = document.getElementById(`ficha-${clave}-${a}-${i}`);
+                        if (!ficha) return;
+                        ficha.style.display = usadas.includes(op) ? 'none' : '';
+                        ficha.classList.toggle('elegida', !!est.ficha && est.ficha.actividad === actividad && est.ficha.texto === op);
+                    });
+                });
+            };
+
+            const htmlFichas = (ej, a, casilleros) => `
+                <p style="font-size: 14px; color: #333; margin-bottom: 10px;">Toca una palabra y después el casillero donde va. Para sacarla, toca el casillero.${textoFichasSobran(ej.opciones.length - casilleros)}</p>
+                <div class="mapa-fichas">${ej.opciones.map((op, i) =>
+                    `<button type="button" class="mapa-ficha" id="ficha-${clave}-${a}-${i}" onclick="${tocarFicha}(${a}, ${i})">${ecEsc(op)}</button>`).join('')}</div>`;
+
+            const dibujar = () => {
+                const letras = ['A', 'B', 'C', 'D'];
+                const actividades = actividadesDeLista(est.lista);
+                const dibujadas = new Set();
+                let html = '<div class="alg-lista">';
+                let seccionPrevia = null;
+                est.lista.forEach((ej, idx) => {
+                    const info = familia.secciones[ej.seccion];
+                    if (ej.seccion !== seccionPrevia) {
+                        html += `<h3 style="color: ${info.color}; margin: 10px 0 0 0; font-size: 18px;">${info.emoji} ${info.titulo}</h3>`;
+                        seccionPrevia = ej.seccion;
+                    }
+                    if (ej.tipo === 'mapa') {
+                        const actividad = actividadDe(ej);
+                        if (!dibujadas.has(actividad)) {
+                            const casilleros = est.lista.filter(o => o.tipo === 'mapa' && actividadDe(o) === actividad).length;
+                            html += `<div>${htmlFichas(ej, actividades.indexOf(actividad), casilleros)}<div style="margin-top: 14px;">${familia.actividades[actividad].html(est.lista, 'responder', { idCaja, tocar: tocarCaja })}</div></div>`;
+                            dibujadas.add(actividad);
+                        }
+                        return;
+                    }
+                    html += `
+                        <div class="alg-item" style="border-left-color: ${info.color};">
+                            <div class="alg-pregunta"><span class="alg-numero">${ej.numero}.</span><span>${ecEsc(ej.pregunta)}</span></div>
+                            <div class="alg-opciones">
+                                ${ej.opciones.map((opcion, i) => `<button type="button" class="alg-opcion" id="op-${clave}-${idx}-${i}" onclick="${seleccionar}(${idx}, ${i})">${ej.tipo === 'vf' ? '' : letras[i] + ') '}${ecEsc(opcion)}</button>`).join('')}
+                            </div>
+                        </div>`;
+                });
+                id('contenedor-ejercicios').innerHTML = html + '</div>';
+                pintarCompletar();
+            };
+
+            // opcionIdx -1 = vaciar un casillero.
+            window[seleccionar] = function (idx, opcionIdx) {
+                const ej = est.lista[idx];
+                if (!ej) return;
+                if (opcionIdx === -1) delete est.resp[idx];
+                else est.resp[idx] = ej.opciones[opcionIdx];
+                if (ej.tipo === 'mapa') {
+                    pintarCompletar();
+                    return;
+                }
+                ej.opciones.forEach((_, i) => {
+                    const btn = document.getElementById(`op-${clave}-${idx}-${i}`);
+                    if (btn) btn.classList.toggle('elegida', i === opcionIdx);
+                });
+            };
+
+            window[tocarFicha] = function (a, i) {
+                const actividad = actividadesDeLista(est.lista)[a];
+                const op = est.lista.find(ej => ej.tipo === 'mapa' && actividadDe(ej) === actividad).opciones[i];
+                const misma = est.ficha && est.ficha.actividad === actividad && est.ficha.texto === op;
+                est.ficha = misma ? null : { actividad, texto: op };
+                pintarCompletar();
+            };
+
+            window[tocarCaja] = function (idx) {
+                const ej = est.lista[idx];
+                if (est.ficha && est.ficha.actividad === actividadDe(ej)) {
+                    const i = ej.opciones.indexOf(est.ficha.texto);
+                    est.ficha = null;
+                    window[seleccionar](idx, i);
+                } else if (est.resp[idx] !== undefined) {
+                    window[seleccionar](idx, -1);
+                }
+            };
+
+            const tablaPorItem = () => {
+                let filas = '';
+                Object.keys(familia.indicadores).map(Number).forEach(n => {
+                    const delItem = est.lista.map((ej, i) => ({ ej, i })).filter(o => o.ej.item === n);
+                    const buenas = delItem.filter(o => est.resp[o.i] === o.ej.respuestaCorrecta).length;
+                    filas += `<tr>
+                        <td style="padding: 10px; border: 1px solid #ccc; font-size: 13px;">${familia.indicadores[n]}</td>
+                        <td style="padding: 10px; border: 1px solid #ccc; text-align: center; white-space: nowrap;">Ítem ${n}</td>
+                        <td style="padding: 10px; border: 1px solid #ccc; text-align: center; font-weight: 600; white-space: nowrap;">${buenas * familia.puntos} de ${delItem.length * familia.puntos} puntos</td>
+                    </tr>`;
+                });
+                return `<table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+                    <tr style="background-color: #1a3c6e; color: white;">
+                        <th style="padding: 10px; text-align: left; border: 1px solid #ccc;">Indicadores</th>
+                        <th style="padding: 10px; border: 1px solid #ccc;">N° Pregunta</th>
+                        <th style="padding: 10px; border: 1px solid #ccc;">Puntaje</th>
+                    </tr>${filas}</table>`;
+            };
+
+            const revelar = () => {
+                let correctas = 0;
+                let html = '<table style="width: 100%; border-collapse: collapse; font-size: 13px;">';
+                html += '<tr style="background-color: #1a3c6e; color: white;">' +
+                        '<th style="padding: 10px; text-align: left; border: 1px solid #ccc;">N°</th>' +
+                        '<th style="padding: 10px; text-align: left; border: 1px solid #ccc;">Pregunta</th>' +
+                        '<th style="padding: 10px; text-align: center; border: 1px solid #ccc;">Tu Respuesta</th>' +
+                        '<th style="padding: 10px; text-align: center; border: 1px solid #ccc;">Respuesta Correcta</th>' +
+                        `<th style="padding: 10px; text-align: left; border: 1px solid #ccc;">${familia.columnaNota}</th>` +
+                        '<th style="padding: 10px; text-align: center; border: 1px solid #ccc;">Estado</th>' +
+                        '</tr>';
+                est.lista.forEach((ej, idx) => {
+                    const r = est.resp[idx];
+                    const bien = r === ej.respuestaCorrecta;
+                    if (bien) correctas++;
+                    html += `<tr style="background-color: ${bien ? '#e8f5e9' : '#ffebee'};">
+                        <td style="padding: 10px; border: 1px solid #ccc; font-weight: 600;">${ej.numero}</td>
+                        <td style="padding: 10px; border: 1px solid #ccc;">${ecEsc(ej.pregunta)}</td>
+                        <td style="padding: 10px; text-align: center; border: 1px solid #ccc;">${r === undefined ? '—' : ecEsc(r)}</td>
+                        <td style="padding: 10px; text-align: center; border: 1px solid #ccc; font-weight: 600; color: #1a3c6e;">${ecEsc(ej.respuestaCorrecta)}</td>
+                        <td style="padding: 10px; border: 1px solid #ccc; color: #555; font-size: 12px;">${ecEsc(ej.explicacion)}</td>
+                        <td style="padding: 10px; text-align: center; border: 1px solid #ccc; color: ${bien ? '#2f6f4e' : '#c93c3c'}; font-weight: 600;">${bien ? '✓' : '✗'}</td>
+                    </tr>`;
+                });
+                html += '</table>';
+
+                const total = est.lista.length;
+                const porcentaje = total === 0 ? 0 : Math.round((correctas / total) * 100);
+                const mensaje = porcentaje === 100 ? '¡Excelente! 🎉' :
+                                porcentaje >= 80 ? '¡Muy bien! 👏' :
+                                porcentaje >= 60 ? 'Buen esfuerzo 💪' : 'Sigue practicando 📚';
+                const corregidas = actividadesDeLista(est.lista).map(actividad =>
+                    `<h4 style="color: #1a3c6e; margin-bottom: 10px;">${familia.actividades[actividad].titulo}</h4>` +
+                    `<div style="margin-bottom: 20px;">${familia.actividades[actividad].html(est.lista, 'resuelto', { resp: est.resp })}</div>`).join('');
+                id('contenedor-resultados').innerHTML =
+                    `<div style="margin-bottom: 20px; text-align: center;">
+                        <p style="font-size: 32px; font-weight: 600; color: #1a3c6e;">${correctas * familia.puntos}/${total * familia.puntos} puntos</p>
+                        <p style="font-size: 18px; color: #2f6f4e;">${porcentaje}% — ${mensaje}</p>
+                    </div>` +
+                    (def.porItem ? tablaPorItem() : '') + corregidas + html;
+
+                id('area-ejercicios').style.display = 'none';
+                id('resultados').style.display = 'block';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            };
+
+            const iniciar = () => {
+                est.lista = def.generar();
+                est.lista.forEach((ej, i) => { ej.numero = i + 1; });
+                est.resp = {};
+                est.ficha = null;
+                dibujar();
+                id('configuracion').style.display = 'none';
+                id('area-ejercicios').style.display = 'block';
+                id('resultados').style.display = 'none';
+            };
+
+            id('btn-generar').addEventListener('click', iniciar);
+            ['btn-nuevos-ejercicios', 'btn-nuevos-resultados'].forEach(b => id(b).addEventListener('click', () => {
+                iniciar();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }));
+            id('btn-imprimir').addEventListener('click', () => imprimirGuiaEstudio(familia, def, est.lista));
+            id('btn-revisar').addEventListener('click', revelar);
+
+            window[mostrar] = function () {
+                id('modulo').style.display = 'block';
+                id('configuracion').style.display = 'block';
+                id('area-ejercicios').style.display = 'none';
+                id('resultados').style.display = 'none';
+                document.querySelectorAll('.seccion').forEach(s => s.style.display = 'none');
+            };
+
+            return {
+                clave, titulo: familia.prefijo + def.titulo,
+                modulo: 'modulo-' + clave, config: 'configuracion-' + clave, area: 'area-ejercicios-' + clave,
+                resultados: 'resultados-' + clave, mostrar,
+                generar: ['btn-generar-' + clave, 'btn-nuevos-ejercicios-' + clave, 'btn-nuevos-resultados-' + clave],
+                revisar: 'btn-revisar-' + clave, selectores: [seleccionar],
+                capturar: () => ({ lista: est.lista, resp: est.resp }),
+                restaurar: s => {
+                    est.lista = s.lista;
+                    est.resp = {};
+                    est.ficha = null;
+                    dibujar();
+                    Object.keys(s.resp || {}).forEach(k => {
+                        const j = indiceOpcion(est.lista[k] && est.lista[k].opciones, s.resp[k]);
+                        if (j !== -1) window[seleccionar](Number(k), j);
+                    });
+                },
+                detalle: () => est.lista.map((e, i) => {
+                    const r = est.resp[i];
+                    return { n: e.numero, p: e.pregunta, r: r === undefined ? '—' : r, c: e.respuestaCorrecta, ok: r === e.respuestaCorrecta, nota: e.explicacion };
+                })
+            };
+        }
+
+        // ============================================================
         // ============ MICROORGANISMOS Y SALUD (CIENCIAS 5° BÁSICO) ==
         // ============================================================
         // Contenidos del cuaderno, 5 preguntas al azar por tema, mapa conceptual y una prueba
@@ -12136,23 +12950,13 @@
             }));
         }
 
+        // Solo el dibujo del mapa: casilleros y fichas están en ESTILO_COMPLETAR.
         const ESTILO_MAPA_MICRO =
             '.mapa-micro { display: grid; gap: 14px; }' +
             '.mapa-raiz { display: grid; gap: 4px; max-width: 420px; width: 100%; margin: 0 auto; }' +
             '.mapa-ramas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; align-items: start; }' +
             '.mapa-rama { display: grid; gap: 4px; padding: 10px; border-radius: 8px; background: #f5f7fa; border-top: 4px solid #1a3c6e; }' +
-            '.mapa-caja { display: flex; align-items: center; justify-content: center; gap: 6px; box-sizing: border-box; width: 100%; min-height: 52px;' +
-            ' padding: 8px; border: 2px solid #1a3c6e; border-radius: 8px; background: white; color: #1a3c6e; font: 600 15px/1.3 Arial, sans-serif; text-align: center; }' +
-            '.mapa-vacia { border-style: dashed; background: #fff8e1; cursor: pointer; }' +
-            '.mapa-llena { border-style: solid; background: #e3f2fd; }' +
-            '.mapa-bien { border-color: #2f6f4e; background: #e8f5e9; }' +
-            '.mapa-mal { border-color: #c93c3c; background: #ffebee; display: block; }' +
-            '.mapa-mal small { display: block; font-weight: 400; color: #c93c3c; }' +
-            '.mapa-num { flex: none; width: 24px; height: 24px; border-radius: 50%; background: #c98a00; color: white; font-size: 13px; line-height: 24px; }' +
-            '.mapa-enlace { text-align: center; font-size: 13px; color: #555; font-style: italic; line-height: 1.3; }' +
-            '.mapa-fichas { display: flex; flex-wrap: wrap; gap: 8px; padding: 10px; background: white; border: 2px solid #1a3c6e; border-radius: 8px; position: sticky; top: 0; z-index: 5; }' +
-            '.mapa-ficha { padding: 8px 12px; border: 2px solid #1a3c6e; border-radius: 20px; background: white; color: #1a3c6e; font: 600 14px/1.2 Arial, sans-serif; cursor: pointer; }' +
-            '.mapa-ficha.elegida { background: #1a3c6e; color: white; }' +
+            '.mapa-micro { page-break-inside: avoid; }' +
             '@media (max-width: 640px) { .mapa-ramas { grid-template-columns: 1fr; } }';
 
         document.head.insertAdjacentHTML('beforeend', `<style>${ESTILO_MAPA_MICRO}</style>`);
@@ -12260,341 +13064,19 @@
             }
         };
 
-        function htmlSubmoduloMicro(clave, def) {
-            const volver = `volverMicro('${clave}')`;
-            return `
-        <div id="modulo-${clave}" class="modulo-contenedor">
-            <div style="max-width: 900px; margin: 0 auto; padding: 20px;">
-                <div id="configuracion-${clave}" class="seccion-contenedor">
-                    <div style="display: flex; justify-content: flex-end; margin-bottom: 12px;">
-                        <button class="btn btn-volver" onclick="${volver}">← Volver</button>
-                    </div>
-                    <h2 style="color: #1a3c6e; margin-bottom: 20px;">${def.emoji} ${def.titulo} — 5° Básico</h2>
-                    <div style="background-color: #f5f7fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
-                        <div style="font-size: 14px; color: #333; margin-bottom: 16px; line-height: 1.5;">
-                            ${def.intro} Puedes cambiar tu respuesta hasta presionar <strong>Revisar Respuestas</strong>.
-                        </div>
-                        <button id="btn-generar-${clave}" class="alg-boton alg-comenzar">▶ Comenzar</button>
-                    </div>
-                </div>
-
-                <div id="area-ejercicios-${clave}" style="display: none;">
-                    <div style="margin-bottom: 20px; display: flex; gap: 10px; flex-wrap: wrap;">
-                        <button id="btn-nuevos-ejercicios-${clave}" class="alg-boton" style="background-color: #2f6f4e;">🔄 Nuevos Ejercicios</button>
-                        <button id="btn-imprimir-${clave}" class="alg-boton" style="background-color: #0066cc;">🖨️ Imprimir / PDF</button>
-                        <button class="alg-boton" style="background-color: #1a3c6e;" onclick="${volver}">← Volver</button>
-                    </div>
-                    <div id="contenedor-ejercicios-${clave}" style="background-color: #fff; padding: 20px; border-radius: 8px; border: 1px solid #ddd;"></div>
-                    <div style="margin-top: 20px; text-align: center;">
-                        <button id="btn-revisar-${clave}" class="alg-boton" style="background-color: #1a3c6e; font-size: 16px; font-weight: 600; padding: 12px 30px;">Revisar Respuestas</button>
-                    </div>
-                </div>
-
-                <div id="resultados-${clave}" style="display: none; background-color: #f5f7fa; padding: 20px; border-radius: 8px;">
-                    <h3 style="color: #1a3c6e; margin-bottom: 20px;">Resultados</h3>
-                    <div id="contenedor-resultados-${clave}" style="background-color: white; padding: 20px; border-radius: 4px; overflow-x: auto;"></div>
-                    <div style="margin-top: 20px; display: grid; gap: 10px;">
-                        <button id="btn-nuevos-resultados-${clave}" class="alg-boton" style="width: 100%; padding: 12px; background-color: #2f6f4e;">🔄 Nuevos Ejercicios</button>
-                        <button class="alg-boton" style="width: 100%; padding: 12px; background-color: #1a3c6e;" onclick="${volver}">← Volver a Menú</button>
-                    </div>
-                </div>
-            </div>
-        </div>`;
-        }
-
-        function volverMicro(clave) {
-            irA('menu-5basico-microorganismos');
-            document.getElementById('modulo-' + clave).style.display = 'none';
-        }
-
         function verTemaMicro(n) {
-            document.querySelectorAll('.micro-tema').forEach((t, i) => t.classList.toggle('activo', i === n));
-            document.querySelectorAll('.micro-pestana').forEach((b, i) => b.classList.toggle('activa', i === n));
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            verTemaEstudio('contenidos-micro', n);
         }
 
-        function imprimirGuiaMicro(def, lista) {
-            if (lista.length === 0) {
-                alert('Por favor, genera la guía primero.');
-                return;
-            }
-            const letras = ['A', 'B', 'C', 'D'];
-            let htmlPDF = '<!DOCTYPE html><html><head><meta charset="UTF-8"><style>' +
-                'body { font-family: Arial, sans-serif; padding: 20px; margin: 0; background: white; }' +
-                '.header { text-align: center; margin-bottom: 26px; border-bottom: 2px solid #1a3c6e; padding-bottom: 14px; }' +
-                '.header h1 { margin: 0 0 5px 0; color: #1a3c6e; font-size: 22px; }' +
-                '.header p { margin: 0; color: #666; font-size: 12px; }' +
-                '.student-info { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; font-size: 13px; }' +
-                '.info-field { display: flex; align-items: flex-end; gap: 10px; }' +
-                '.info-field label { font-weight: bold; color: #333; min-width: 70px; }' +
-                '.info-field .line { flex: 1; border-bottom: 1px solid #999; height: 18px; }' +
-                'h2 { color: #1a3c6e; font-size: 15px; margin: 18px 0 8px 0; }' +
-                '.exercise { margin-bottom: 12px; padding: 12px; background-color: #f9f9f9; border-left: 3px solid #1a3c6e; page-break-inside: avoid; }' +
-                '.num { font-weight: bold; color: #1a3c6e; font-size: 14px; }' +
-                '.texto { font-size: 13px; color: #333; margin-left: 6px; }' +
-                '.ops { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; font-size: 13px; padding-left: 22px; margin-top: 6px; }' +
-                '.fichas { font-size: 13px; margin: 8px 0 12px 0; padding: 10px 12px; border: 1px solid #1a3c6e; border-radius: 6px; }' +
-                ESTILO_MAPA_MICRO + ' .mapa-fichas { position: static; } .mapa-micro { page-break-inside: avoid; }' +
-                '@media print { body { padding: 10px; } .exercise { page-break-inside: avoid; } }' +
-                '</style></head><body>' +
-                `<div class="header"><h1>${def.titulo}</h1><p>Microorganismos y Salud &mdash; Ciencias Naturales &mdash; 5&deg; Básico</p></div>` +
-                '<div class="student-info">' +
-                '<div class="info-field"><label>Nombre:</label><div class="line"></div></div>' +
-                '<div class="info-field"><label>Curso:</label><div class="line"></div></div>' +
-                '<div class="info-field"><label>Fecha:</label><div class="line"></div></div>' +
-                '<div class="info-field"><label>Puntaje:</label><div class="line"></div></div>' +
-                '</div>' +
-                `<p style="text-align: center; color: #666; font-size: 12px; margin-bottom: 22px;"><strong>Instrucciones:</strong> ${def.instruccionPdf}</p>`;
+        const familiaMicro = {
+            id: 'micro', contenedor: 'modulos-micro', menu: 'menu-5basico-microorganismos', prefijo: 'Microorganismos: ',
+            encabezado: 'Microorganismos y Salud &mdash; Ciencias Naturales &mdash; 5&deg; Básico',
+            puntos: PUNTOS_MICRO, secciones: seccionesMicro, indicadores: indicadoresMicro,
+            columnaNota: 'Lo que dice el cuaderno', definiciones: definicionesMicro, estiloImpresion: ESTILO_MAPA_MICRO,
+            actividades: { mapa: { titulo: '🗺️ El mapa corregido', html: htmlMapaMicro } }
+        };
 
-            let seccionPrevia = null;
-            let mapaListo = false;
-            lista.forEach(ej => {
-                if (ej.seccion !== seccionPrevia) {
-                    htmlPDF += `<h2>${seccionesMicro[ej.seccion].titulo}</h2>`;
-                    seccionPrevia = ej.seccion;
-                }
-                if (ej.tipo === 'mapa') {
-                    if (!mapaListo) {
-                        htmlPDF += `<div class="fichas"><strong>Palabras para usar:</strong> ${ej.opciones.map(ecEsc).join(' · ')}</div>` +
-                            htmlMapaMicro(lista, 'pdf');
-                        mapaListo = true;
-                    }
-                    return;
-                }
-                htmlPDF += '<div class="exercise">' +
-                    `<span class="num">${ej.numero}.</span><span class="texto">${ecEsc(ej.pregunta)}</span>` +
-                    `<div class="ops">${ej.opciones.map((op, i) => `<div>${ej.tipo === 'vf' ? '( )' : letras[i] + ')'} ${ecEsc(op)}</div>`).join('')}</div>` +
-                    '</div>';
-            });
-            htmlPDF += '</body></html>';
-
-            const blob = new Blob([htmlPDF], { type: 'text/html' });
-            const url = URL.createObjectURL(blob);
-            const printWindow = window.open(url, '_blank');
-            printWindow.onload = function () {
-                setTimeout(function () { printWindow.print(); }, 250);
-            };
-        }
-
-        // Crea el submódulo (pantallas, botones y funciones globales) y devuelve su entrada
-        // para modulos5: así guarda el progreso y aparece en Revisión de Tareas como los demás.
-        function crearSubmoduloMicro(clave) {
-            const def = definicionesMicro[clave];
-            const sufijo = clave.charAt(0).toUpperCase() + clave.slice(1);
-            const mostrar = 'mostrarModulo' + sufijo;
-            const seleccionar = 'seleccionarRespuesta' + sufijo;
-            const tocarCaja = 'tocarCasillero' + sufijo;
-            const tocarFicha = 'tocarFicha' + sufijo;
-            const id = nombre => document.getElementById(`${nombre}-${clave}`);
-            const idCaja = idx => `mapa-${clave}-${idx}`;
-            const est = { lista: [], resp: {}, ficha: null };
-
-            document.getElementById('modulos-micro').insertAdjacentHTML('beforeend', htmlSubmoduloMicro(clave, def));
-
-            const pintarMapa = () => {
-                const casilleros = est.lista.filter(ej => ej.tipo === 'mapa');
-                if (!casilleros.length) return;
-                est.lista.forEach((ej, idx) => {
-                    const caja = document.getElementById(idCaja(idx));
-                    if (!caja) return;
-                    const puesta = est.resp[idx];
-                    caja.querySelector('.mapa-texto').textContent = puesta === undefined ? '' : puesta;
-                    caja.classList.toggle('mapa-llena', puesta !== undefined);
-                });
-                const usadas = est.lista.map((ej, idx) => (ej.tipo === 'mapa' ? est.resp[idx] : undefined));
-                casilleros[0].opciones.forEach((op, i) => {
-                    const ficha = document.getElementById(`ficha-${clave}-${i}`);
-                    if (!ficha) return;
-                    ficha.style.display = usadas.includes(op) ? 'none' : '';
-                    ficha.classList.toggle('elegida', op === est.ficha);
-                });
-            };
-
-            const htmlFichas = ej => `
-                <p style="font-size: 14px; color: #333; margin-bottom: 10px;">Toca una palabra y después el casillero donde va. Para sacarla, toca el casillero. Dos palabras sobran.</p>
-                <div class="mapa-fichas">${ej.opciones.map((op, i) =>
-                    `<button type="button" class="mapa-ficha" id="ficha-${clave}-${i}" onclick="${tocarFicha}(${i})">${ecEsc(op)}</button>`).join('')}</div>`;
-
-            const dibujar = () => {
-                const letras = ['A', 'B', 'C', 'D'];
-                let html = '<div class="alg-lista">';
-                let seccionPrevia = null;
-                let mapaListo = false;
-                est.lista.forEach((ej, idx) => {
-                    const info = seccionesMicro[ej.seccion];
-                    if (ej.seccion !== seccionPrevia) {
-                        html += `<h3 style="color: ${info.color}; margin: 10px 0 0 0; font-size: 18px;">${info.emoji} ${info.titulo}</h3>`;
-                        seccionPrevia = ej.seccion;
-                    }
-                    if (ej.tipo === 'mapa') {
-                        if (!mapaListo) {
-                            html += `<div>${htmlFichas(ej)}<div style="margin-top: 14px;">${htmlMapaMicro(est.lista, 'responder', { idCaja, tocar: tocarCaja })}</div></div>`;
-                            mapaListo = true;
-                        }
-                        return;
-                    }
-                    html += `
-                        <div class="alg-item" style="border-left-color: ${info.color};">
-                            <div class="alg-pregunta"><span class="alg-numero">${ej.numero}.</span><span>${ecEsc(ej.pregunta)}</span></div>
-                            <div class="alg-opciones">
-                                ${ej.opciones.map((opcion, i) => `<button type="button" class="alg-opcion" id="op-${clave}-${idx}-${i}" onclick="${seleccionar}(${idx}, ${i})">${ej.tipo === 'vf' ? '' : letras[i] + ') '}${ecEsc(opcion)}</button>`).join('')}
-                            </div>
-                        </div>`;
-                });
-                id('contenedor-ejercicios').innerHTML = html + '</div>';
-                pintarMapa();
-            };
-
-            // opcionIdx -1 = vaciar un casillero del mapa.
-            window[seleccionar] = function (idx, opcionIdx) {
-                const ej = est.lista[idx];
-                if (!ej) return;
-                if (opcionIdx === -1) delete est.resp[idx];
-                else est.resp[idx] = ej.opciones[opcionIdx];
-                if (ej.tipo === 'mapa') {
-                    pintarMapa();
-                    return;
-                }
-                ej.opciones.forEach((_, i) => {
-                    const btn = document.getElementById(`op-${clave}-${idx}-${i}`);
-                    if (btn) btn.classList.toggle('elegida', i === opcionIdx);
-                });
-            };
-
-            window[tocarFicha] = function (i) {
-                const op = est.lista.find(ej => ej.tipo === 'mapa').opciones[i];
-                est.ficha = est.ficha === op ? null : op;
-                pintarMapa();
-            };
-
-            window[tocarCaja] = function (idx) {
-                const ej = est.lista[idx];
-                if (est.ficha !== null) {
-                    const i = ej.opciones.indexOf(est.ficha);
-                    est.ficha = null;
-                    window[seleccionar](idx, i);
-                } else if (est.resp[idx] !== undefined) {
-                    window[seleccionar](idx, -1);
-                }
-            };
-
-            const tablaPorItem = () => {
-                let filas = '';
-                [1, 2, 3].forEach(n => {
-                    const delItem = est.lista.map((ej, i) => ({ ej, i })).filter(o => o.ej.item === n);
-                    const buenas = delItem.filter(o => est.resp[o.i] === o.ej.respuestaCorrecta).length;
-                    filas += `<tr>
-                        <td style="padding: 10px; border: 1px solid #ccc; font-size: 13px;">${indicadoresMicro[n]}</td>
-                        <td style="padding: 10px; border: 1px solid #ccc; text-align: center; white-space: nowrap;">Ítem ${n}</td>
-                        <td style="padding: 10px; border: 1px solid #ccc; text-align: center; font-weight: 600; white-space: nowrap;">${buenas * PUNTOS_MICRO} de ${delItem.length * PUNTOS_MICRO} puntos</td>
-                    </tr>`;
-                });
-                return `<table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
-                    <tr style="background-color: #1a3c6e; color: white;">
-                        <th style="padding: 10px; text-align: left; border: 1px solid #ccc;">Indicadores</th>
-                        <th style="padding: 10px; border: 1px solid #ccc;">N° Pregunta</th>
-                        <th style="padding: 10px; border: 1px solid #ccc;">Puntaje</th>
-                    </tr>${filas}</table>`;
-            };
-
-            const revelar = () => {
-                let correctas = 0;
-                let html = '<table style="width: 100%; border-collapse: collapse; font-size: 13px;">';
-                html += '<tr style="background-color: #1a3c6e; color: white;">' +
-                        '<th style="padding: 10px; text-align: left; border: 1px solid #ccc;">N°</th>' +
-                        '<th style="padding: 10px; text-align: left; border: 1px solid #ccc;">Pregunta</th>' +
-                        '<th style="padding: 10px; text-align: center; border: 1px solid #ccc;">Tu Respuesta</th>' +
-                        '<th style="padding: 10px; text-align: center; border: 1px solid #ccc;">Respuesta Correcta</th>' +
-                        '<th style="padding: 10px; text-align: left; border: 1px solid #ccc;">Lo que dice el cuaderno</th>' +
-                        '<th style="padding: 10px; text-align: center; border: 1px solid #ccc;">Estado</th>' +
-                        '</tr>';
-                est.lista.forEach((ej, idx) => {
-                    const r = est.resp[idx];
-                    const bien = r === ej.respuestaCorrecta;
-                    if (bien) correctas++;
-                    html += `<tr style="background-color: ${bien ? '#e8f5e9' : '#ffebee'};">
-                        <td style="padding: 10px; border: 1px solid #ccc; font-weight: 600;">${ej.numero}</td>
-                        <td style="padding: 10px; border: 1px solid #ccc;">${ecEsc(ej.pregunta)}</td>
-                        <td style="padding: 10px; text-align: center; border: 1px solid #ccc;">${r === undefined ? '—' : ecEsc(r)}</td>
-                        <td style="padding: 10px; text-align: center; border: 1px solid #ccc; font-weight: 600; color: #1a3c6e;">${ecEsc(ej.respuestaCorrecta)}</td>
-                        <td style="padding: 10px; border: 1px solid #ccc; color: #555; font-size: 12px;">${ecEsc(ej.explicacion)}</td>
-                        <td style="padding: 10px; text-align: center; border: 1px solid #ccc; color: ${bien ? '#2f6f4e' : '#c93c3c'}; font-weight: 600;">${bien ? '✓' : '✗'}</td>
-                    </tr>`;
-                });
-                html += '</table>';
-
-                const total = est.lista.length;
-                const porcentaje = total === 0 ? 0 : Math.round((correctas / total) * 100);
-                const mensaje = porcentaje === 100 ? '¡Excelente! 🎉' :
-                                porcentaje >= 80 ? '¡Muy bien! 👏' :
-                                porcentaje >= 60 ? 'Buen esfuerzo 💪' : 'Sigue practicando 📚';
-                const conMapa = est.lista.some(ej => ej.tipo === 'mapa');
-                id('contenedor-resultados').innerHTML =
-                    `<div style="margin-bottom: 20px; text-align: center;">
-                        <p style="font-size: 32px; font-weight: 600; color: #1a3c6e;">${correctas * PUNTOS_MICRO}/${total * PUNTOS_MICRO} puntos</p>
-                        <p style="font-size: 18px; color: #2f6f4e;">${porcentaje}% — ${mensaje}</p>
-                    </div>` +
-                    (def.porItem ? tablaPorItem() : '') +
-                    (conMapa ? `<h4 style="color: #1a3c6e; margin-bottom: 10px;">🗺️ El mapa corregido</h4><div style="margin-bottom: 20px;">${htmlMapaMicro(est.lista, 'resuelto', { resp: est.resp })}</div>` : '') +
-                    html;
-
-                id('area-ejercicios').style.display = 'none';
-                id('resultados').style.display = 'block';
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            };
-
-            const iniciar = () => {
-                est.lista = def.generar();
-                est.lista.forEach((ej, i) => { ej.numero = i + 1; });
-                est.resp = {};
-                est.ficha = null;
-                dibujar();
-                id('configuracion').style.display = 'none';
-                id('area-ejercicios').style.display = 'block';
-                id('resultados').style.display = 'none';
-            };
-
-            id('btn-generar').addEventListener('click', iniciar);
-            ['btn-nuevos-ejercicios', 'btn-nuevos-resultados'].forEach(b => id(b).addEventListener('click', () => {
-                iniciar();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }));
-            id('btn-imprimir').addEventListener('click', () => imprimirGuiaMicro(def, est.lista));
-            id('btn-revisar').addEventListener('click', revelar);
-
-            window[mostrar] = function () {
-                id('modulo').style.display = 'block';
-                id('configuracion').style.display = 'block';
-                id('area-ejercicios').style.display = 'none';
-                id('resultados').style.display = 'none';
-                document.querySelectorAll('.seccion').forEach(s => s.style.display = 'none');
-            };
-
-            return {
-                clave, titulo: 'Microorganismos: ' + def.titulo,
-                modulo: 'modulo-' + clave, config: 'configuracion-' + clave, area: 'area-ejercicios-' + clave,
-                resultados: 'resultados-' + clave, mostrar,
-                generar: ['btn-generar-' + clave, 'btn-nuevos-ejercicios-' + clave, 'btn-nuevos-resultados-' + clave],
-                revisar: 'btn-revisar-' + clave, selectores: [seleccionar],
-                capturar: () => ({ lista: est.lista, resp: est.resp }),
-                restaurar: s => {
-                    est.lista = s.lista;
-                    est.resp = {};
-                    est.ficha = null;
-                    dibujar();
-                    Object.keys(s.resp || {}).forEach(k => {
-                        const j = indiceOpcion(est.lista[k] && est.lista[k].opciones, s.resp[k]);
-                        if (j !== -1) window[seleccionar](Number(k), j);
-                    });
-                },
-                detalle: () => est.lista.map((e, i) => {
-                    const r = est.resp[i];
-                    return { n: e.numero, p: e.pregunta, r: r === undefined ? '—' : r, c: e.respuestaCorrecta, ok: r === e.respuestaCorrecta, nota: e.explicacion };
-                })
-            };
-        }
-
-        const submodulosMicro = Object.keys(definicionesMicro).map(crearSubmoduloMicro);
+        const submodulosMicro = Object.keys(definicionesMicro).map(clave => crearSubmoduloEstudio(familiaMicro, clave));
 
         // Todas estas imágenes tienen licencia libre o están en el dominio público.
         const creditosMicro = [
@@ -12618,6 +13100,462 @@
             const pagina = 'https://commons.wikimedia.org/wiki/File:' + encodeURIComponent(archivo.replace(/ /g, '_'));
             return `<li><a href="${pagina}" target="_blank" rel="noopener">${ecEsc(archivo)}</a>: ${ecEsc(autor)} · ${licencia}</li>`;
         }).join('');
+
+
+        // ============================================================
+        // ============ HISTORIA 5° BÁSICO: LA COLONIA Y LA GUERRA DE ARAUCO
+        // ============================================================
+        // Dos módulos con sus contenidos para estudiar y una prueba de práctica cada uno, hechos
+        // con el motor de guías de estudio. Cada respuesta vale 1 punto.
+
+        const ESTILO_HISTORIA5 =
+            '.h5-piramide { display: grid; justify-items: center; gap: 6px; max-width: 620px; margin: 10px auto; }' +
+            '.h5-piramide > div { min-width: 150px; box-sizing: border-box; }' +
+            '.h5-pie { font-size: 13px; color: #555; font-style: italic; text-align: center; }' +
+            '.h5-nivel { padding: 8px 10px; border-radius: 6px; color: #1a3c6e; background: #fff3d6; border: 2px solid #c98a00; text-align: center; font-weight: 700; }' +
+            '.h5-nivel small { display: block; font-weight: 400; color: #555; }' +
+            '.h5-inst { display: grid; gap: 8px; max-width: 580px; margin: 0 auto; }' +
+            '.h5-inst-fila { display: grid; grid-template-columns: 1fr 34px 1fr; align-items: center; gap: 6px; }' +
+            '.h5-inst-titulo { font-size: 13px; font-weight: 700; color: #555; text-align: center; }' +
+            '.h5-flecha { text-align: center; font-size: 22px; color: #667eea; }' +
+            '.h5-cuadro { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }' +
+            '.h5-etapa { display: grid; gap: 8px; align-content: start; padding: 10px; border-radius: 8px; background: #f5f7fa; border-top: 5px solid #1a3c6e; }' +
+            '.h5-etapa-nombre { font-weight: 700; color: #1a3c6e; text-align: center; font-size: 16px; }' +
+            '.h5-campo > span { display: block; margin-bottom: 3px; font-size: 12px; color: #555; text-align: center; }' +
+            '.h5-tabla { width: 100%; border-collapse: collapse; margin: 8px 0 12px 0; font-size: 15px; background: white; }' +
+            '.h5-tabla th, .h5-tabla td { border: 1px solid #ccd; padding: 8px; text-align: left; vertical-align: top; }' +
+            '.h5-tabla th { background: #1a3c6e; color: white; }' +
+            '.h5-linea { list-style: none; margin: 0; padding: 0; border-left: 4px solid #1a3c6e; }' +
+            '.h5-linea li { position: relative; padding: 4px 0 12px 18px; }' +
+            '.h5-linea li::before { content: ""; position: absolute; left: -10px; top: 8px; width: 14px; height: 14px; border-radius: 50%; background: #c98a00; border: 2px solid white; }' +
+            '.h5-anio { font-weight: 700; color: #1a3c6e; margin-right: 6px; }' +
+            '@media (max-width: 640px) { .h5-cuadro { grid-template-columns: 1fr; } }';
+
+        document.head.insertAdjacentHTML('beforeend', `<style>${ESTILO_HISTORIA5}</style>`);
+
+        // ---------- La Colonia ----------
+        const bancoColonia = {
+            definicion: {
+                nota: 'La Colonia o Periodo colonial es la etapa de la historia americana entre la conquista europea (siglo XVI) y los procesos de independencia (siglo XIX).',
+                formas: [
+                    { p: '¿Qué es la Colonia o Periodo colonial?', c: 'La etapa entre la conquista europea y los procesos de independencia', no: ['La etapa anterior a la llegada de los europeos a América', 'La etapa que comenzó después de la independencia', 'El periodo de los viajes de Cristóbal Colón'] },
+                    { p: '¿En qué siglo terminó la Colonia, con los procesos de independencia?', c: 'En el siglo XIX', no: ['En el siglo XV', 'En el siglo XVI', 'En el siglo XX'] }
+                ],
+                v: ['La Colonia transcurre entre la conquista europea y los procesos de independencia.'],
+                f: [['La Colonia comenzó después de la independencia de los países hispanoamericanos.', 'La Colonia terminó con los procesos de independencia, en el siglo XIX.']]
+            },
+            potencia: {
+                nota: 'Amplios territorios americanos (incluyendo Chile) eran dominados por potencias europeas, principalmente por la corona española.',
+                formas: [{ p: 'Durante la Colonia, ¿qué potencia europea dominó principalmente los territorios americanos, incluyendo Chile?', c: 'La corona española', no: ['La corona inglesa', 'La corona francesa', 'La corona holandesa'] }],
+                v: ['Durante la Colonia, Chile fue dominado principalmente por la corona española.'],
+                f: [['Durante la Colonia, Chile fue dominado principalmente por la corona inglesa.', 'Chile fue dominado principalmente por la corona española.']]
+            },
+            divisiones: {
+                nota: 'La corona española dividió el territorio en unidades administrativas para gobernarlo y administrarlo de una manera más eficiente.',
+                formas: [{ p: '¿Para qué se dividió América en unidades administrativas?', c: 'Para gobernarla y administrarla de una manera más eficiente', no: ['Para que cada territorio fuera independiente', 'Para entregar cada territorio a otro país europeo', 'Para que los pueblos indígenas eligieran a sus autoridades'] }],
+                v: ['América se dividió en unidades administrativas para gobernarla de una manera más eficiente.'],
+                f: [['América se gobernó como un solo territorio, sin divisiones.', 'La dividió en virreinatos y capitanías generales para gobernarla de una manera más eficiente.']]
+            },
+            virreinatos: {
+                nota: 'Siglos XVI y XVII: virreinatos de Nueva España y Perú. En el siglo XVIII se agregaron Nueva Granada y Río de la Plata.',
+                formas: [
+                    { p: '¿Cuáles eran los virreinatos en los siglos XVI y XVII?', c: 'Nueva España y Perú', no: ['Nueva Granada y Río de la Plata', 'Chile y Venezuela', 'Cuba y Guatemala'] },
+                    { p: '¿Qué virreinatos se agregaron en el siglo XVIII?', c: 'Nueva Granada y Río de la Plata', no: ['Nueva España y Perú', 'Chile y Venezuela', 'Cuba y Guatemala'] }
+                ],
+                v: ['En el siglo XVIII existían los virreinatos de Nueva España, Perú, Nueva Granada y Río de la Plata.'],
+                f: [['En los siglos XVI y XVII ya existían los virreinatos de Nueva Granada y Río de la Plata.', 'En los siglos XVI y XVII había dos virreinatos: Nueva España y Perú. Nueva Granada y Río de la Plata se agregaron en el siglo XVIII.']]
+            },
+            chile: {
+                nota: 'Durante la Colonia, Chile era una capitanía general.',
+                formas: [{ p: '¿Qué tipo de unidad administrativa era Chile durante la Colonia?', c: 'Una capitanía general', no: ['Un virreinato', 'Un país independiente', 'Una provincia de Nueva España'] }],
+                v: ['Durante la Colonia, Chile era una capitanía general.'],
+                f: [['Durante la Colonia, Chile era un virreinato.', 'Chile era una capitanía general.']]
+            },
+            sociedad: {
+                nota: 'La sociedad colonial se formó con personas de orígenes y culturas distintas: los indígenas, los españoles, los africanos y sus respectivos descendientes.',
+                formas: [
+                    { p: '¿Cuáles eran los 3 grandes grupos que formaron la sociedad colonial?', c: 'Indígenas, españoles y africanos', no: ['Españoles, ingleses y franceses', 'Indígenas, holandeses y chinos', 'Inquilinos, pirquineros y artesanos'] },
+                    { p: '¿Cómo se formó la sociedad colonial?', c: 'Con personas de orígenes y culturas distintas', no: ['Solo con personas españolas', 'Solo con pueblos indígenas', 'Con personas de una sola cultura'] }
+                ],
+                v: ['La sociedad colonial se formó con personas de orígenes y culturas distintas entre sí.'],
+                f: [['La sociedad colonial se formó solo con personas españolas.', 'Se formó con indígenas, españoles, africanos y sus descendientes.']]
+            },
+            estratificada: {
+                nota: 'Estratificada: dividida en grupos étnicos. Jerarquizada: cada grupo tiene un lugar distinto en la escala social.',
+                formas: [
+                    { p: '¿Qué significa que la sociedad colonial era estratificada?', c: 'Que estaba dividida en grupos étnicos', no: ['Que todos tenían los mismos derechos', 'Que no tenía ninguna autoridad', 'Que vivía solo en ciudades'] },
+                    { p: '¿Qué significa que la sociedad colonial era jerarquizada?', c: 'Que cada grupo tenía un lugar distinto en la escala social', no: ['Que todos los grupos tenían el mismo lugar', 'Que no existían grupos sociales', 'Que cada persona elegía su grupo'] }
+                ],
+                v: ['La sociedad colonial era jerarquizada: cada grupo tenía un lugar distinto en la escala social.'],
+                f: [['En la sociedad colonial todos los grupos tenían el mismo lugar en la escala social.', 'Era jerarquizada: cada grupo tenía un lugar distinto en la escala social.']]
+            },
+            rigida: {
+                nota: 'Rígida: el ascenso social era casi imposible.',
+                formas: [{ p: '¿Qué significa que la sociedad colonial era rígida?', c: 'Que el ascenso social era casi imposible', no: ['Que era muy fácil subir de grupo social', 'Que todos cambiaban de grupo cada año', 'Que no había diferencias entre los grupos'] }],
+                v: ['En la sociedad colonial el ascenso social era casi imposible.'],
+                f: [['En la sociedad colonial era fácil pasar de un grupo social a otro.', 'Era rígida: el ascenso social era casi imposible.']]
+            },
+            diversificacion: {
+                nota: 'Durante la Colonia la economía se fue modificando según las necesidades de la población: se produjo una diversificación económica.',
+                formas: [{ p: '¿Qué ocurrió con la economía durante la Colonia?', c: 'Se fue modificando según las necesidades de la población', no: ['Se mantuvo igual durante todo el periodo', 'Dependió solo de la pesca', 'Desapareció el comercio'] }],
+                v: ['Durante la Colonia se fue produciendo una diversificación económica.'],
+                f: [['La economía colonial nunca cambió durante todo el periodo.', 'Se fue modificando según las necesidades de la población.']]
+            },
+            actividades: {
+                nota: 'Principales actividades económicas: la minería, la ganadería y la agricultura.',
+                formas: [
+                    { p: '¿Cuáles eran las principales actividades económicas de la Colonia?', c: 'La minería, la ganadería y la agricultura', no: ['La pesca, la industria y el turismo', 'El turismo, la minería y la industria', 'La industria, la pesca y la tecnología'] },
+                    { p: '¿Cuál de estas NO era una de las principales actividades económicas de la Colonia?', c: 'El turismo', no: ['La minería', 'La ganadería', 'La agricultura'] }
+                ],
+                v: ['La minería, la ganadería y la agricultura fueron las principales actividades económicas de la Colonia.'],
+                f: [['La pesca fue la principal actividad económica de la Colonia.', 'Las principales fueron la minería, la ganadería y la agricultura.']]
+            },
+            oficios: {
+                nota: 'Inquilinos: trabajaban en el campo. Pirquineros: trabajaban en las minas.',
+                formas: [
+                    { p: '¿Dónde trabajaban los inquilinos?', c: 'En el campo', no: ['En las minas', 'En los barcos', 'En los talleres'] },
+                    { p: '¿Dónde trabajaban los pirquineros?', c: 'En las minas', no: ['En el campo', 'En los barcos', 'En los talleres'] }
+                ],
+                v: ['Los pirquineros trabajaban en las minas.', 'Los inquilinos trabajaban en el campo.'],
+                f: [['Los inquilinos trabajaban en las minas.', 'Los inquilinos trabajaban en el campo; los pirquineros, en las minas.'],
+                    ['Los pirquineros trabajaban en el campo.', 'Los pirquineros trabajaban en las minas; los inquilinos, en el campo.']]
+            },
+            artesanos: {
+                nota: 'Artesanos: por ejemplo, tejedores, herreros, etc.',
+                formas: [{ p: '¿Cuál de estos era un artesano en la Colonia?', c: 'Un herrero', no: ['Un pirquinero', 'Un inquilino', 'Un gobernador'] }],
+                v: ['Los tejedores y los herreros eran artesanos.'],
+                f: [['Los herreros eran comerciantes.', 'Los herreros eran artesanos, como los tejedores.']]
+            },
+            monopolio: {
+                nota: 'Los territorios americanos quedaron sometidos económicamente a España mediante un sistema de monopolio comercial.',
+                formas: [{ p: '¿Mediante qué sistema los territorios americanos quedaron sometidos económicamente a España?', c: 'Un sistema de monopolio comercial', no: ['Un sistema de libre comercio con todos los países', 'Un sistema de trueque entre las colonias', 'Un sistema sin impuestos ni controles'] }],
+                v: ['España tenía el monopolio del comercio con sus territorios americanos.'],
+                f: [['Las colonias americanas podían comerciar libremente con cualquier país.', 'Existía un monopolio comercial a favor de España.']]
+            },
+            mercantilismo: {
+                nota: 'El modelo económico imperante era el mercantilismo.',
+                formas: [{ p: '¿Cuál era el modelo económico imperante durante la Colonia?', c: 'El mercantilismo', no: ['El liberalismo', 'El socialismo', 'El feudalismo'] }],
+                v: ['El modelo económico imperante durante la Colonia era el mercantilismo.'],
+                f: [['El modelo económico imperante durante la Colonia era el liberalismo.', 'Era el mercantilismo.']]
+            },
+            unidades: {
+                nota: 'Lavaderos de oro (segunda mitad del siglo XVI), estancias (siglo XVII: sebo y cuero) y haciendas (fines del XVII e inicios del XVIII: trigo, cereales y ganado).',
+                formas: [
+                    { p: '¿Cuál fue la actividad económica más importante durante la segunda mitad del siglo XVI?', c: 'Los lavaderos de oro', no: ['Las haciendas de trigo', 'Las estancias ganaderas', 'Las chinganas'] },
+                    { p: '¿Qué productos se obtenían principalmente en las estancias del siglo XVII?', c: 'Sebo y cuero', no: ['Oro y plata', 'Vino y trigo', 'Seda y algodón'] },
+                    { p: '¿En qué se especializaron las haciendas de fines del siglo XVII e inicios del XVIII?', c: 'En trigo, cereales y crianza de ganado', no: ['En lavar oro en los ríos y esteros', 'En pescar y vender mariscos', 'En fabricar barcos para el comercio'] }
+                ],
+                v: ['En las estancias del siglo XVII se obtenían productos como el sebo y el cuero.'],
+                f: [['Los lavaderos de oro fueron importantes recién en el siglo XVIII.', 'Fueron la actividad más importante en la segunda mitad del siglo XVI.']]
+            },
+            instituciones: {
+                nota: 'En España: el Consejo de Indias y la Casa de Contratación. En América: la Gobernación y Capitanía, la Real Audiencia y el Cabildo.',
+                formas: [
+                    { p: '¿Qué instituciones coloniales funcionaban en España?', c: 'El Consejo de Indias y la Casa de Contratación', no: ['El Cabildo y la Real Audiencia', 'La Real Audiencia y la Gobernación', 'El Cabildo y la Gobernación'] },
+                    { p: '¿Qué instituciones coloniales funcionaban en América?', c: 'El Cabildo y la Real Audiencia', no: ['El Consejo de Indias y la Casa de Contratación', 'El Consejo de Indias y el Cabildo', 'La Casa de Contratación y la Real Audiencia'] }
+                ],
+                v: ['El Consejo de Indias y la Casa de Contratación funcionaban en España.'],
+                f: [['El Cabildo funcionaba en España.', 'El Cabildo funcionaba en América; en España estaban el Consejo de Indias y la Casa de Contratación.']]
+            },
+            ciudad: {
+                nota: 'En Santiago, la aristocracia hispano-criolla vivía en el centro; el resto, en las afueras o en sectores rurales cercanos.',
+                formas: [{ p: 'En el Santiago colonial, ¿dónde vivían las familias de la aristocracia hispano-criolla?', c: 'En el centro de la ciudad', no: ['En las afueras de la ciudad', 'En los sectores rurales', 'En el puerto de Valparaíso'] }],
+                v: ['En Santiago, las familias de la aristocracia vivían en el centro de la ciudad.'],
+                f: [['En Santiago, las familias de la aristocracia vivían en las afueras de la ciudad.', 'Vivían en el centro; el resto, en las afueras o en sectores rurales.']]
+            },
+            iglesia: {
+                nota: 'La religiosidad se expresaba en lo privado y en lo público, con procesiones y ceremonias.',
+                formas: [{ p: '¿Cómo se expresaba la importancia de la Iglesia católica en la Colonia?', c: 'Con procesiones y ceremonias, en lo privado y en lo público', no: ['Solo en secreto, dentro de las casas', 'Con elecciones de sacerdotes cada año', 'De ninguna manera, porque era poco importante'] }],
+                v: ['En la Colonia la religiosidad se expresaba con procesiones y ceremonias.'],
+                f: [['Durante la Colonia la Iglesia católica tenía muy poca importancia.', 'La Iglesia era muy importante: se expresaba en procesiones y ceremonias.']]
+            },
+            fiestas: {
+                nota: 'Fiestas religiosas: Semana Santa, Navidad y procesiones en honor a un santo. Fiestas civiles: noticias desde España, el nacimiento de un heredero al trono o la llegada de una autoridad.',
+                formas: [
+                    { p: '¿Cuál de estas era una fiesta religiosa en la Colonia?', c: 'Semana Santa', no: ['La llegada de una autoridad', 'El nacimiento de un heredero al trono', 'La recepción de noticias desde España'] },
+                    { p: '¿Cuál de estas era una fiesta civil en la Colonia?', c: 'La llegada de una autoridad', no: ['Semana Santa', 'Navidad', 'Una procesión en honor a un santo'] }
+                ],
+                v: ['La Semana Santa y la Navidad eran fiestas religiosas.'],
+                f: [['La llegada de una autoridad era una fiesta religiosa.', 'Era una fiesta civil, como el nacimiento de un heredero al trono.']]
+            },
+            faenas: {
+                nota: 'Trilla: caballos o yeguas separaban el grano de trigo del forraje. Vendimia: cosecha de uva para hacer vino. Rodeo: para marcar el ganado.',
+                formas: [
+                    { p: '¿Qué era la trilla?', c: 'Separar el grano de trigo usando caballos o yeguas', no: ['La cosecha de uva para hacer vino', 'Reunir el ganado para marcarlo', 'Una reunión en casas de familias criollas'] },
+                    { p: '¿Qué era la vendimia?', c: 'La cosecha de uva para hacer vino', no: ['Separar el grano de trigo usando caballos', 'Reunir el ganado para marcarlo', 'Una fiesta en honor a un santo'] },
+                    { p: '¿Para qué se realizaba el rodeo?', c: 'Para marcar el ganado', no: ['Para cosechar uva', 'Para separar el trigo', 'Para recibir a una autoridad'] }
+                ],
+                v: ['La trilla, la vendimia y el rodeo adquirieron un carácter festivo.'],
+                f: [['La vendimia consistía en separar el grano de trigo con caballos.', 'La vendimia era la cosecha de uva; la trilla separaba el trigo.']]
+            },
+            sociabilidad: {
+                nota: 'Tertulias: reuniones en casas de familias criollas aristócratas. Chinganas: lugares donde los sectores populares iban a divertirse, bailar cueca, beber y comer.',
+                formas: [
+                    { p: '¿Qué eran las tertulias?', c: 'Reuniones en casas de familias criollas aristócratas', no: ['Lugares populares para bailar cueca y comer', 'Fiestas religiosas con procesiones en la calle', 'Ventas de comida que se hacían en la calle'] },
+                    { p: '¿Qué era una chingana?', c: 'Un lugar donde los sectores populares iban a divertirse', no: ['Una reunión en casas de familias aristócratas', 'Una ceremonia religiosa de la Iglesia', 'Una oficina donde trabajaba la Real Audiencia'] }
+                ],
+                v: ['En las chinganas se podía bailar cueca y compartir bebidas y comida.'],
+                f: [['Las chinganas eran reuniones de la aristocracia criolla.', 'Eran de los sectores populares; las tertulias eran de las familias criollas aristócratas.']]
+            },
+            vendedores: {
+                nota: 'Vendedores ambulantes: heladero, lechero, aguatero, yerbatero, panadero y sandillero, entre otros.',
+                formas: [{ p: '¿Cuál de estos era un vendedor ambulante de la Colonia?', c: 'El aguatero', no: ['El inquilino', 'El pirquinero', 'El gobernador'] }],
+                v: ['El lechero, el aguatero y el panadero eran vendedores ambulantes.'],
+                f: [['En la Colonia no existía la venta ambulante.', 'Había muchos vendedores ambulantes: heladero, lechero, aguatero, panadero...']]
+            },
+            mujeres: {
+                nota: 'Las mujeres tenían el dominio del ámbito privado y participaban del espacio público, pero sin ejercer los derechos ni el poder de los hombres.',
+                formas: [{ p: '¿Cómo era la situación de las mujeres en la Colonia?', c: 'Participaban del espacio público, pero sin los derechos de los hombres', no: ['Tenían los mismos derechos y el mismo poder que los hombres', 'Gobernaban las ciudades y dictaban las leyes', 'No podían salir de sus casas en ningún caso'] }],
+                v: ['En la Colonia las mujeres no tenían los mismos derechos ni el poder de los hombres.'],
+                f: [['En la Colonia las mujeres tenían los mismos derechos que los hombres.', 'Participaban del espacio público, pero sin los derechos ni el poder de los hombres.']]
+            }
+        };
+
+        const nodosPiramide = [
+            { nodo: 'peninsulares', c: 'Peninsulares', d: 'el grupo de más arriba', nota: 'Peninsulares: españoles nacidos en España. Estaban en la cima de la pirámide.' },
+            { nodo: 'criollos', c: 'Criollos', d: 'el segundo grupo desde arriba', nota: 'Criollos: hijos de españoles nacidos en América.' },
+            { nodo: 'mestizos', c: 'Mestizos', d: 'el tercer grupo desde arriba', nota: 'Mestizos: hijos de españoles e indígenas.' },
+            { nodo: 'indigenas', c: 'Indígenas', d: 'el cuarto grupo desde arriba', nota: 'Indígenas: los pueblos originarios de América.' },
+            { nodo: 'esclavos', c: 'Esclavos (africanos)', d: 'la base de la pirámide', nota: 'Esclavos (africanos): personas traídas a la fuerza desde África. Estaban en la base.' }
+        ];
+
+        const nodosInstituciones = [
+            { nodo: 'cabildo', colonial: 'Cabildo', c: 'Municipalidad', d: 'la institución actual parecida al Cabildo', nota: 'Cabildo → Municipalidad: gobernaba la ciudad.' },
+            { nodo: 'audiencia', colonial: 'Real Audiencia', c: 'Tribunales de Justicia', d: 'la institución actual parecida a la Real Audiencia', nota: 'Real Audiencia → Tribunales de Justicia: administraba justicia.' },
+            { nodo: 'contratacion', colonial: 'Casa de Contratación', c: 'Aduanas', d: 'la institución actual parecida a la Casa de Contratación', nota: 'Casa de Contratación → Aduanas: controlaba el comercio con América.' },
+            { nodo: 'consejo', colonial: 'Consejo de Indias', c: 'Parlamento', d: 'la institución actual parecida al Consejo de Indias', nota: 'Consejo de Indias → Parlamento: dictaba las leyes para América.' }
+        ];
+
+        const anchosPiramide = ['36%', '50%', '64%', '80%', '100%'];
+
+        function htmlPiramideColonia(lista, modo, opciones) {
+            return `<div class="h5-piramide completar-bloque">
+                <div class="h5-pie">▲ Más poder y privilegios</div>
+                ${nodosPiramide.map((n, i) => `<div style="width: ${anchosPiramide[i]};">${cajaCompletar(lista, 'piramide', n.nodo, n.c, modo, opciones)}</div>`).join('')}
+                <div class="h5-pie">▼ Menos derechos</div>
+            </div>`;
+        }
+
+        function htmlInstitucionesColonia(lista, modo, opciones) {
+            return `<div class="h5-inst completar-bloque">
+                <div class="h5-inst-fila"><div class="h5-inst-titulo">Institución colonial</div><span></span><div class="h5-inst-titulo">Institución actual</div></div>
+                ${nodosInstituciones.map(n => `<div class="h5-inst-fila"><div class="mapa-caja">${ecEsc(n.colonial)}</div><span class="h5-flecha">→</span>${cajaCompletar(lista, 'instituciones', n.nodo, n.c, modo, opciones)}</div>`).join('')}
+            </div>`;
+        }
+
+        const pruebaColonia = () => preguntasPruebaEstudio(bancoColonia, 'colonia/prueba', 8, 6)
+            .concat(casillerosEstudio('piramide', nodosPiramide, {
+                titulo: 'Pirámide social', fijos: nodosPiramide.map(n => n.nodo), extras: ['Inquilinos', 'Pirquineros'], seccion: 'item3', item: 3
+            }))
+            .concat(casillerosEstudio('instituciones', nodosInstituciones, {
+                titulo: 'Instituciones', fijos: nodosInstituciones.map(n => n.nodo), extras: ['Carabineros', 'Registro Civil'], seccion: 'item4', item: 4
+            }));
+
+        const familiaColonia = {
+            id: 'colonia', contenedor: 'modulos-historia5', menu: 'menu-5basico-colonia', prefijo: 'La Colonia: ',
+            encabezado: 'La Colonia &mdash; Historia, Geografía y Ciencias Sociales &mdash; 5&deg; Básico',
+            puntos: 1, columnaNota: 'Para recordar', estiloImpresion: ESTILO_HISTORIA5,
+            secciones: {
+                item1: { titulo: 'Ítem 1: Alternativas (8 puntos)', emoji: '🔤', color: '#a05a2c' },
+                item2: { titulo: 'Ítem 2: Verdadero o falso (6 puntos)', emoji: '✅', color: '#2d7d9a' },
+                item3: { titulo: 'Ítem 3: Pirámide social (5 puntos)', emoji: '🔺', color: '#c98a00' },
+                item4: { titulo: 'Ítem 4: Instituciones coloniales y actuales (4 puntos)', emoji: '🏛️', color: '#2f6f4e' }
+            },
+            indicadores: {
+                1: 'Identifica características del periodo colonial: divisiones administrativas, sociedad, economía, oficios y vida cotidiana.',
+                2: 'Determina si afirmaciones sobre la Colonia son verdaderas o falsas.',
+                3: 'Ordena los grupos de la sociedad colonial en la pirámide social.',
+                4: 'Relaciona las instituciones coloniales con las instituciones actuales.'
+            },
+            actividades: {
+                piramide: { titulo: '🔺 La pirámide corregida', html: htmlPiramideColonia },
+                instituciones: { titulo: '🏛️ Las instituciones corregidas', html: htmlInstitucionesColonia }
+            },
+            definiciones: {
+                colPrueba: {
+                    titulo: 'Prueba de Práctica', emoji: '📝', generar: pruebaColonia, porItem: true,
+                    intro: 'Una prueba de 23 puntos sobre todo lo que viste de la Colonia: 8 alternativas, 6 de verdadero o falso, la pirámide social y las instituciones. Cada respuesta correcta vale 1 punto. Cada vez que presiones «Nuevos Ejercicios» salen otras preguntas.',
+                    instruccionPdf: 'Responde cada ítem. Cada respuesta vale 1 punto.'
+                }
+            }
+        };
+
+        const submodulosColonia = Object.keys(familiaColonia.definiciones).map(clave => crearSubmoduloEstudio(familiaColonia, clave));
+
+        // ---------- La guerra de Arauco ----------
+        // Las alternativas y el verdadero o falso no nombran años de las etapas ni personajes:
+        // eso se pregunta en el cuadro resumen, y así ninguna pregunta revela un casillero.
+        const bancoArauco = {
+            frontera: {
+                nota: 'La corona española optó por la firma de acuerdos, que buscaban crear una relación de paz.',
+                formas: [{ p: '¿Qué hizo finalmente la corona española frente al territorio mapuche?', c: 'Optó por firmar acuerdos que buscaban una relación de paz', no: ['Lo conquistó por completo y fundó muchas ciudades', 'Lo entregó a otra potencia europea para que lo gobernara', 'Prohibió todo contacto y comercio con los mapuches'] }],
+                v: ['La corona española optó por firmar acuerdos con los mapuches para buscar la paz.'],
+                f: [['La corona española nunca intentó llegar a acuerdos con los mapuches.', 'Optó por la firma de acuerdos que buscaban una relación de paz.']]
+            },
+            territorio: {
+                nota: 'Se definió el río Biobío como la frontera de ambos pueblos. El territorio mapuche se extendía desde el río Biobío por el norte hasta el río Toltén por el sur.',
+                formas: [
+                    { p: '¿Qué río se definió como la frontera entre españoles y mapuches?', c: 'El río Biobío', no: ['El río Maipo', 'El río Mapocho', 'El río Loa'] },
+                    { p: '¿Hasta dónde se extendía el territorio mapuche?', c: 'Desde el río Biobío por el norte hasta el río Toltén por el sur', no: ['Desde el río Maipo por el norte hasta el río Biobío por el sur', 'Desde el río Loa por el norte hasta el río Maule por el sur', 'Desde el río Toltén por el norte hasta el río Biobío por el sur'] }
+                ],
+                v: ['El río Biobío se definió como la frontera entre españoles y mapuches.'],
+                f: [['El río Maipo fue la frontera entre españoles y mapuches.', 'La frontera fue el río Biobío.']]
+            },
+            vidaFronteriza: {
+                nota: 'A partir de la segunda mitad del siglo XVII, la frontera se convirtió en un espacio de interacción, roces e intercambios comerciales y culturales.',
+                formas: [{ p: '¿En qué se convirtió la frontera del sur de Chile a partir de la segunda mitad del siglo XVII?', c: 'En un espacio de interacción, roces e intercambios', no: ['En una zona sin ningún contacto entre pueblos', 'En una gran ciudad española', 'En un territorio deshabitado'] }],
+                v: ['En la frontera hubo roces, pero también intercambios comerciales y culturales.'],
+                f: [['En la frontera no hubo ningún contacto entre españoles e indígenas.', 'Fue un espacio de interacción, roces e intercambios comerciales y culturales.']]
+            },
+            guerra: {
+                nota: 'La guerra de Arauco fue un prolongado conflicto que enfrentó a los españoles y criollos de la Capitanía General de Chile contra el pueblo araucano.',
+                formas: [
+                    { p: '¿Qué fue la guerra de Arauco?', c: 'Un prolongado conflicto entre españoles y criollos contra el pueblo mapuche', no: ['Una larga guerra entre España e Inglaterra por el mar', 'Una guerra entre Chile y Perú por el desierto', 'Un conflicto entre criollos y peninsulares por el poder'] },
+                    { p: '¿Quiénes se enfrentaron en la guerra de Arauco?', c: 'Los españoles y criollos de Chile contra el pueblo araucano', no: ['Los incas contra los aztecas, por el oro', 'Los criollos contra los peninsulares, por el gobierno', 'Los ingleses contra los franceses, por el comercio'] }
+                ],
+                v: ['La guerra de Arauco enfrentó a españoles y criollos contra el pueblo araucano.'],
+                f: [['La guerra de Arauco fue un conflicto entre España e Inglaterra.', 'Enfrentó a españoles y criollos de la Capitanía General de Chile contra el pueblo araucano.']]
+            },
+            aliados: {
+                nota: 'Pueblo araucano: mapuches y algunos aliados como los cuncos, los picunches, etc.',
+                formas: [{ p: 'Además de los mapuches, ¿qué pueblos aparecen como aliados del pueblo araucano?', c: 'Los cuncos y los picunches', no: ['Los incas y los aztecas', 'Los peninsulares y los criollos', 'Los aymaras y los mayas'] }],
+                v: ['Los cuncos y los picunches aparecen como aliados del pueblo araucano.'],
+                f: [['Los incas y los aztecas fueron los aliados del pueblo araucano.', 'Sus aliados fueron, por ejemplo, los cuncos y los picunches.']]
+            },
+            duracion: {
+                nota: 'Según el cuaderno, este conflicto duró casi 3 siglos, desde 1536 hasta 1810.',
+                formas: [{ p: 'Según el cuaderno, ¿cuánto duró la guerra de Arauco?', c: 'Casi 3 siglos, desde 1536 hasta 1810', no: ['Unos 10 años, desde 1536 hasta 1546', 'Un siglo exacto, desde 1700 hasta 1800', 'Solo unos meses de 1810'] }],
+                v: ['Según el cuaderno, la guerra de Arauco duró casi 3 siglos.'],
+                f: [['La guerra de Arauco duró solo unos pocos meses.', 'Duró casi 3 siglos, desde 1536 hasta 1810.']]
+            },
+            intensidad: {
+                nota: 'La guerra tuvo diferentes grados de intensidad; por esa razón se distinguen diversas etapas.',
+                formas: [{ p: '¿Por qué es posible distinguir diversas etapas en la guerra de Arauco?', c: 'Porque tuvo diferentes grados de intensidad', no: ['Porque cada etapa ocurrió en otro país', 'Porque cada etapa tuvo un rey distinto', 'Porque se peleó en distintos continentes'] }],
+                v: ['La guerra de Arauco tuvo diferentes grados de intensidad.'],
+                f: [['La guerra de Arauco tuvo siempre la misma intensidad.', 'Tuvo diferentes grados de intensidad; por eso se distinguen etapas.']]
+            },
+            curalaba: {
+                nota: 'La guerra ofensiva surgió tras la resistencia mapuche y la derrota española de Curalaba (1598).',
+                formas: [{ p: '¿Qué derrota española, ocurrida en 1598, llevó a los españoles a intentar recuperar el territorio mapuche?', c: 'La derrota de Curalaba', no: ['La derrota de Quilín', 'La derrota de Elicura', 'La derrota de Santiago'] }],
+                v: ['Antes de la guerra ofensiva, los españoles sufrieron la derrota de Curalaba (1598).'],
+                f: [['Curalaba fue un gran triunfo español sobre los mapuches.', 'En Curalaba (1598) los españoles fueron derrotados.']]
+            },
+            ofensiva: {
+                nota: 'Guerra ofensiva: se organizó un ejército permanente y una línea de fuertes, con campañas militares e incursiones.',
+                formas: [{ p: '¿Qué estrategia consistió en organizar un ejército permanente y construir una línea de fuertes?', c: 'La guerra ofensiva', no: ['La guerra defensiva', 'El sistema de parlamentos', 'La evangelización'] }],
+                v: ['En la guerra ofensiva se organizó un ejército permanente y una línea de fuertes.'],
+                f: [['En la guerra ofensiva los españoles abandonaron el ejército y los fuertes.', 'En la guerra ofensiva se organizó un ejército permanente y una línea de fuertes.']]
+            },
+            defensiva: {
+                nota: 'Guerra defensiva: se propuso dejar de atacar el territorio mapuche, respetar una frontera y enviar misioneros para evangelizar. Siguieron los conflictos: la muerte de varios misioneros en Elicura y la oposición de muchos españoles la hicieron fracasar, y se retomó la estrategia ofensiva.',
+                formas: [
+                    { p: '¿Qué estrategia propuso dejar de atacar el territorio mapuche, respetar una frontera y enviar misioneros?', c: 'La guerra defensiva', no: ['La guerra ofensiva', 'El sistema de parlamentos', 'La línea de fuertes'] },
+                    { p: '¿Por qué fracasó la guerra defensiva?', c: 'Por la muerte de misioneros en Elicura y la oposición de muchos españoles', no: ['Porque los mapuches se fueron a vivir al norte de Chile', 'Porque terminó en una paz permanente y sin conflictos', 'Porque llegaron los ingleses y conquistaron Chile'] }
+                ],
+                v: ['La guerra defensiva propuso respetar una frontera y enviar misioneros para evangelizar.', 'La muerte de varios misioneros en Elicura contribuyó al fracaso de la guerra defensiva.'],
+                f: [['La guerra defensiva propuso atacar el territorio mapuche con más soldados.', 'Propuso dejar de atacar, respetar una frontera y enviar misioneros.'],
+                    ['La guerra defensiva fue un éxito y trajo la paz definitiva.', 'Fracasó: siguieron los conflictos y se retomó la estrategia ofensiva.']]
+            },
+            parlamentos: {
+                nota: 'Sistema de parlamentos: reuniones formales entre autoridades españolas y líderes mapuches para negociar acuerdos de paz, definir fronteras, regular el intercambio y establecer normas de convivencia.',
+                formas: [{ p: '¿Qué eran los parlamentos?', c: 'Reuniones formales entre autoridades españolas y líderes mapuches', no: ['Batallas entre los ejércitos españoles y mapuches', 'Misiones de sacerdotes para evangelizar', 'Fuertes construidos a lo largo de la frontera'] }],
+                v: ['En los parlamentos se negociaban acuerdos de paz y se definían fronteras.'],
+                f: [['Los parlamentos eran batallas entre españoles y mapuches.', 'Eran reuniones formales para negociar acuerdos de paz.']]
+            },
+            quilin: {
+                nota: 'En el Parlamento de Quilín se reconoció el territorio mapuche al sur del Biobío.',
+                formas: [{ p: '¿Qué se reconoció en el Parlamento de Quilín?', c: 'El territorio mapuche', no: ['La línea de fuertes españoles', 'La misión de los jesuitas', 'La independencia de Chile'] }],
+                v: ['En el Parlamento de Quilín se reconoció el territorio mapuche.'],
+                f: [['En el Parlamento de Quilín se declaró la independencia de Chile.', 'En Quilín se reconoció el territorio mapuche.']]
+            },
+            paz: {
+                nota: 'Hubo otros parlamentos en los siglos XVII y XVIII, con periodos de paz e intercambio comercial, pero también nuevos conflictos: la paz no fue permanente.',
+                formas: [{ p: '¿Qué pasó después de los parlamentos de los siglos XVII y XVIII?', c: 'Hubo periodos de paz e intercambio, pero también nuevos conflictos', no: ['Se logró una paz permanente y sin ningún conflicto', 'Los mapuches abandonaron todo su territorio', 'España se retiró de América para siempre'] }],
+                v: ['La paz lograda en los parlamentos no fue permanente.'],
+                f: [['Los parlamentos lograron una paz permanente, sin nuevos conflictos.', 'Hubo periodos de paz e intercambio, pero también nuevos conflictos.']]
+            },
+            ideaClave: {
+                nota: 'Idea clave: las relaciones entre españoles y mapuches incluyeron enfrentamientos, resistencia, negociaciones y comercio.',
+                formas: [{ p: '¿Qué incluyeron las relaciones entre españoles y mapuches?', c: 'Enfrentamientos, resistencia, negociaciones y comercio', no: ['Solo enfrentamientos, sin ningún acuerdo', 'Solo comercio, sin ningún conflicto', 'Ningún tipo de contacto entre ellos'] }],
+                v: ['Las relaciones entre españoles y mapuches incluyeron enfrentamientos, resistencia, negociaciones y comercio.'],
+                f: [['Las relaciones entre españoles y mapuches fueron solo guerra, sin comercio ni negociaciones.', 'Incluyeron enfrentamientos, resistencia, negociaciones y comercio.']]
+            }
+        };
+
+        const etapasArauco = [
+            { nombre: '1. Guerra ofensiva', color: '#c93c3c', nodos: [
+                { nodo: 'ofeAnios', campo: 'Años', c: '1601 – 1612', d: 'años de la guerra ofensiva', nota: 'La guerra ofensiva fue de 1601 a 1612.' },
+                { nodo: 'ofeEsp', campo: 'Personaje español', c: 'Alonso de Ribera', d: 'personaje español de la guerra ofensiva', nota: 'Alonso de Ribera: gobernador que organizó el ejército permanente y la línea de fuertes.' },
+                { nodo: 'ofeMap', campo: 'Personaje mapuche', c: 'Pelantaro', d: 'personaje mapuche de la guerra ofensiva', nota: 'Pelantaro: líder mapuche, símbolo de la resistencia.' }
+            ] },
+            { nombre: '2. Guerra defensiva', color: '#6b4c9a', nodos: [
+                { nodo: 'defAnios', campo: 'Años', c: '1612 – 1625', d: 'años de la guerra defensiva', nota: 'La guerra defensiva fue de 1612 a 1625.' },
+                { nodo: 'defEsp', campo: 'Personaje español', c: 'Luis de Valdivia', d: 'personaje español de la guerra defensiva', nota: 'Luis de Valdivia: sacerdote jesuita que promovió la paz y la evangelización.' },
+                { nodo: 'defMap', campo: 'Personaje mapuche', c: 'Anganamón', d: 'personaje mapuche de la guerra defensiva', nota: 'Anganamón: lonko que se opuso al plan de Luis de Valdivia.' }
+            ] },
+            { nombre: '3. Sistema de parlamentos', color: '#2f6f4e', nodos: [
+                { nodo: 'parAnios', campo: 'Años', c: 'Desde 1641', d: 'desde cuándo hubo parlamentos', nota: 'Los parlamentos comenzaron en 1641 (siglos XVII y XVIII).' },
+                { nodo: 'parEsp', campo: 'Personaje español', c: 'Marqués de Baides', d: 'personaje español del sistema de parlamentos', nota: 'Marqués de Baides: gobernador que participó en el Parlamento de Quilín (1641).' },
+                { nodo: 'parMap', campo: 'Personaje mapuche', c: 'Lonkos mapuches', d: 'personajes mapuches del sistema de parlamentos', nota: 'Lonkos mapuches: líderes de distintas comunidades que representaban a su pueblo.' }
+            ] }
+        ];
+
+        const nodosCuadroArauco = etapasArauco.reduce((todos, e) => todos.concat(e.nodos), []);
+
+        function htmlCuadroArauco(lista, modo, opciones) {
+            return `<div class="h5-cuadro completar-bloque">
+                ${etapasArauco.map(e => `<div class="h5-etapa" style="border-top-color: ${e.color};">
+                    <div class="h5-etapa-nombre">${e.nombre}</div>
+                    ${e.nodos.map(n => `<div class="h5-campo"><span>${n.campo}</span>${cajaCompletar(lista, 'cuadro', n.nodo, n.c, modo, opciones)}</div>`).join('')}
+                </div>`).join('')}
+            </div>`;
+        }
+
+        const pruebaArauco = () => preguntasPruebaEstudio(bancoArauco, 'arauco/prueba', 8, 6)
+            .concat(casillerosEstudio('cuadro', nodosCuadroArauco, {
+                titulo: 'Cuadro resumen', fijos: nodosCuadroArauco.map(n => n.nodo), extras: ['Pedro de Valdivia', 'Lautaro'], seccion: 'item3', item: 3
+            }));
+
+        const familiaArauco = {
+            id: 'arauco', contenedor: 'modulos-historia5', menu: 'menu-5basico-arauco', prefijo: 'Guerra de Arauco: ',
+            encabezado: 'La guerra de Arauco &mdash; Historia, Geografía y Ciencias Sociales &mdash; 5&deg; Básico',
+            puntos: 1, columnaNota: 'Para recordar', estiloImpresion: ESTILO_HISTORIA5,
+            secciones: {
+                item1: { titulo: 'Ítem 1: Alternativas (8 puntos)', emoji: '🔤', color: '#a05a2c' },
+                item2: { titulo: 'Ítem 2: Verdadero o falso (6 puntos)', emoji: '✅', color: '#2d7d9a' },
+                item3: { titulo: 'Ítem 3: Cuadro resumen de las etapas (9 puntos)', emoji: '🗂️', color: '#2f6f4e' }
+            },
+            indicadores: {
+                1: 'Caracteriza la frontera, la vida fronteriza, la guerra de Arauco y sus 3 estrategias hispanas.',
+                2: 'Determina si afirmaciones sobre la relación entre españoles y mapuches son verdaderas o falsas.',
+                3: 'Completa el cuadro resumen de las etapas de la guerra de Arauco: años y personajes relevantes.'
+            },
+            actividades: {
+                cuadro: { titulo: '🗂️ El cuadro resumen corregido', html: htmlCuadroArauco }
+            },
+            definiciones: {
+                arcPrueba: {
+                    titulo: 'Prueba de Práctica', emoji: '📝', generar: pruebaArauco, porItem: true,
+                    intro: 'Una prueba de 23 puntos sobre la frontera y la guerra de Arauco: 8 alternativas, 6 de verdadero o falso y el cuadro resumen de las 3 etapas. Cada respuesta correcta vale 1 punto. Cada vez que presiones «Nuevos Ejercicios» salen otras preguntas.',
+                    instruccionPdf: 'Responde cada ítem. Cada respuesta vale 1 punto.'
+                }
+            }
+        };
+
+        const submodulosArauco = Object.keys(familiaArauco.definiciones).map(clave => crearSubmoduloEstudio(familiaArauco, clave));
+
+        // Todas estas imágenes tienen licencia libre o están en el dominio público.
+        listarCreditosEstudio('colonia-lista-creditos', [
+            ['Virreinatos y Capitanías en Sudamérica durante la colonia española.jpg', 'Percybrun74', 'CC BY-SA 4.0'],
+            ['Tertulia por Claudio Gay.jpg', 'Claudio Gay', 'Dominio público'],
+            ['Una chingana - Chile.jpg', 'Claudio Gay', 'Dominio público']
+        ]);
+        listarCreditosEstudio('arauco-lista-creditos', [
+            ['Mapuches Atlas de la historia física y política de Chile.jpg', 'F. Lehmert, en el Atlas de Claudio Gay', 'Dominio público'],
+            ['Alonso De Ribera Domingo Mesa.jpg', 'Domingo Mesa', 'Dominio público'],
+            ['Padre Luis de Valdivia - Primer sermón bilingue Mapuche - Español (1606).jpg', 'Luis de Valdivia', 'Dominio público'],
+            ['Parlamento de Negrete-1793.jpg', 'F. Lehmert, en el Atlas de Claudio Gay', 'Dominio público']
+        ]);
 
         // ============================================================
         // ============ FRACCIONES (5° BÁSICO) ========================
@@ -14048,7 +14986,9 @@
             },
             ...submodulosAlgebra,
             ...submodulosMicro,
-            ...submodulosFraccion
+            ...submodulosFraccion,
+            ...submodulosColonia,
+            ...submodulosArauco
         ];
 
         function guardarEstadoModulo5(m) {
