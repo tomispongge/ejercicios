@@ -14593,7 +14593,13 @@
                 '<path d="M16 50 Q16 30 50 28 Q84 30 84 50 Q74 70 50 82 Q26 70 16 50 Z" fill="#ffca28"/></g>' +
                 '<path d="M18 44 Q50 36 82 44 L83 54 Q50 46 17 54 Z" fill="#ef5350"/>' +
                 '<path d="M26 62 L34 56 L42 64 L50 56 L58 64 L66 56 L74 62 Q64 72 50 79 Q36 72 26 62 Z" fill="#42a5f5"/>' +
-                '<path d="M16 50 Q16 30 50 28 Q84 30 84 50 Q74 70 50 82 Q26 70 16 50 Z" fill="none" stroke="#2b2b2b" stroke-width="3" stroke-linejoin="round"/>'
+                '<path d="M16 50 Q16 30 50 28 Q84 30 84 50 Q74 70 50 82 Q26 70 16 50 Z" fill="none" stroke="#2b2b2b" stroke-width="3" stroke-linejoin="round"/>',
+            kite: '<path d="M50 70 Q60 78 50 86 Q40 93 52 99" fill="none" stroke="#2b2b2b" stroke-width="2"/>' +
+                '<g stroke="#2b2b2b" stroke-width="2" stroke-linejoin="round"><path d="M53 78 L45 73 L45 83 Z M53 78 L61 73 L61 83 Z" fill="#e53935"/>' +
+                '<path d="M48 91 L40 86 L40 96 Z M48 91 L56 86 L56 96 Z" fill="#1e88e5"/></g>' +
+                '<g stroke="#2b2b2b" stroke-width="3" stroke-linejoin="round">' +
+                '<path d="M50 6 L22 36 L50 36 Z" fill="#e53935"/><path d="M50 6 L78 36 L50 36 Z" fill="#fdd835"/>' +
+                '<path d="M22 36 L50 70 L50 36 Z" fill="#1e88e5"/><path d="M78 36 L50 70 L50 36 Z" fill="#43a047"/></g>'
         };
 
         const svgJuguete = (nombre, clase) => `<svg class="${clase || 'juguete-svg'}" viewBox="0 0 100 100" role="img" aria-label="${nombre}">${SVG_JUGUETES[nombre]}</svg>`;
@@ -14641,14 +14647,19 @@
         document.head.insertAdjacentHTML('beforeend', `<style>${ESTILO_TOYS}</style>`);
 
         // Vocabulario y traducciones de la pauta.
+        // kite (cometa) lo agregó el usuario: aparece en la guía de repaso.
         const juguetesToys = [
-            { id: 'car', es: 'auto' }, { id: 'train', es: 'tren' }, { id: 'ball', es: 'pelota' },
-            { id: 'robot', es: 'robot' }, { id: 'bricks', es: 'bloques' }, { id: 'puzzle', es: 'rompecabezas' },
-            { id: 'doll', es: 'muñeca' }, { id: 'rattle', es: 'sonajero' }, { id: 'top', es: 'trompo' }
+            { id: 'car', es: 'auto', art: 'el' }, { id: 'train', es: 'tren', art: 'el' }, { id: 'ball', es: 'pelota', art: 'la' },
+            { id: 'robot', es: 'robot', art: 'el' }, { id: 'bricks', es: 'bloques', art: 'los' }, { id: 'puzzle', es: 'rompecabezas', art: 'el' },
+            { id: 'doll', es: 'muñeca', art: 'la' }, { id: 'rattle', es: 'sonajero', art: 'el' }, { id: 'top', es: 'trompo', art: 'el' },
+            { id: 'kite', es: 'cometa', art: 'la' }
         ];
         const NUMEROS_EN = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve'];
         const verboToy = id => id === 'bricks' ? 'are' : 'is';
-        const esToy = id => juguetesToys.find(j => j.id === id).es;
+        const precioEnEspanol = (id, n) => {
+            const j = juguetesToys.find(t => t.id === id);
+            return `${j.art.charAt(0).toUpperCase() + j.art.slice(1)} ${j.es} ${id === 'bricks' ? 'cuestan' : 'cuesta'} ${n} dólares.`;
+        };
         const dolares = n => `${NUMEROS_EN[n]} ${n === 1 ? 'dollar' : 'dollars'}`;
 
         // Ítem 1: escuchar y numerar. Los números son las fichas; los juguetes, los casilleros.
@@ -14709,7 +14720,7 @@
                     tipo: 'alternativas', seccion: 'item3', item: 3,
                     pregunta: 'Escucha: ¿qué juguete pide?', escuchar: algElegir(pedidosToys)(j.id),
                     opciones: barajarArreglo([j.id].concat(otros)), respuestaCorrecta: j.id,
-                    explicacion: `«May I have the ${j.id}?» = ¿Me puedes dar ${j.id === 'bricks' ? 'los bloques' : 'el ' + j.es}?`
+                    explicacion: `«May I have the ${j.id}?» = ¿Me puedes dar ${j.art} ${j.es}?`
                 };
             });
         }
@@ -14733,7 +14744,7 @@
         function casillerosDialogoToys(toy) {
             const precio = ecAzar(2, 12); // con 1 sería "one dollar", sin s
             const nodos = [
-                { nodo: 'juguete', c: toy.id, d: 'May I have the ___, please?', nota: `May I have the ${toy.id}, please? = ¿Me puedes dar ${toy.id === 'bricks' ? 'los bloques' : 'el ' + toy.es}, por favor?` },
+                { nodo: 'juguete', c: toy.id, d: 'May I have the ___, please?', nota: `May I have the ${toy.id}, please? = ¿Me puedes dar ${toy.art} ${toy.es}, por favor?` },
                 { nodo: 'here', c: 'Here', d: '___ you are.', nota: 'Here you are. = Aquí tienes.' },
                 { nodo: 'precio', c: String(precio), d: 'That\'s ___ dollars.', nota: `That's ${NUMEROS_EN[precio]} dollars. = Son ${precio} dólares.` },
                 { nodo: 'thank', c: 'Thank', d: '___ you!', nota: 'Thank you! = ¡Gracias!' }
@@ -14745,8 +14756,8 @@
         // 1 a 3: así su palabra escrita no ayuda a reconocer lo que se escucha.
         const pruebaToys = () => {
             const orden = barajarArreglo(juguetesToys);
-            const toyDialogo = orden[8];
-            const pool = orden.slice(0, 8);
+            const toyDialogo = orden[orden.length - 1];
+            const pool = orden.slice(0, -1);
             const preguntados = barajarArreglo(pool).slice(0, 4);
             const companeros = preguntados.map(j => algElegir(pool.filter(o => o !== j)));
             const precios = {};
@@ -14807,7 +14818,7 @@
             document.getElementById('toys-numeros').innerHTML = NUMEROS_EN.slice(1).map((n, i) =>
                 `<div class="toys-tarjeta"><div class="toys-num">${i + 1}</div><div class="toys-palabra">${n}</div>${botonEscuchar(n, '')}</div>`).join('');
             document.getElementById('toys-precios').innerHTML = [['robot', 5], ['ball', 3], ['puzzle', 4], ['bricks', 10]].map(([id, n]) =>
-                frase(`The ${id} ${verboToy(id)} ${dolares(n)}.`, `${id === 'bricks' ? 'Los bloques cuestan' : 'El ' + esToy(id) + ' cuesta'} ${n} dólares.`,
+                frase(`The ${id} ${verboToy(id)} ${dolares(n)}.`, precioEnEspanol(id, n),
                     `${svgJuguete(id, 'toys-opcion')}<span class="toys-precio">$${n}</span>`)).join('');
             const dialogo = [
                 ['A:', 'May I have the robot, please?', '¿Me puedes dar el robot, por favor?'],
