@@ -1494,6 +1494,44 @@
                     <span class="opcion-emoji">🔤</span>
                     Lenguaje
                 </button>
+                <button class="opcion" onclick="irA('menu-1basico-ingles')">
+                    <span class="opcion-emoji">💬</span>
+                    Inglés
+                </button>
+            </div>
+        </div>
+
+        <!-- SUBMENÚ 1º BÁSICO: INGLÉS -->
+        <div id="menu-1basico-ingles" class="seccion">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                <h1>💬 Inglés · 1º Básico</h1>
+                <button class="btn btn-volver" onclick="irA('menu-1basico')">← Volver</button>
+            </div>
+
+            <div class="menu-principal">
+                <button class="opcion" onclick="irA('menu-1basico-toys')">
+                    <span class="opcion-emoji">🧸</span>
+                    Unit 4: Toys
+                </button>
+            </div>
+        </div>
+
+        <!-- SUBMENÚ 1º BÁSICO: UNIT 4 TOYS -->
+        <div id="menu-1basico-toys" class="seccion">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                <h1>🧸 Unit 4: Toys · 1º Básico</h1>
+                <button class="btn btn-volver" onclick="irA('menu-1basico-ingles')">← Volver</button>
+            </div>
+
+            <div class="menu-principal">
+                <button class="opcion" onclick="irA('contenidos-toys1')">
+                    <span class="opcion-emoji">📖</span>
+                    Contenidos
+                </button>
+                <button class="opcion" onclick="mostrarModuloToysPrueba()">
+                    <span class="opcion-emoji">📝</span>
+                    Prueba de Práctica (20 puntos)
+                </button>
             </div>
         </div>
 
@@ -4222,6 +4260,84 @@
         </div>
 
         <!-- SUBMÓDULOS DE INGLÉS Y LENGUAJE 5° (se crean desde el script) -->
+
+        <!-- UNIT 4: TOYS (INGLÉS 1° BÁSICO): CONTENIDOS DEL LIBRO Y DE LA PAUTA -->
+        <div id="contenidos-toys1" class="seccion">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; gap: 10px; flex-wrap: wrap;">
+                <h1>📖 Contenidos · Unit 4: Toys</h1>
+                <button class="btn btn-volver" onclick="irA('menu-1basico-toys')">← Volver</button>
+            </div>
+
+            <p style="font-size: 15px; color: #555; margin: 0 0 14px 0;">Toca 🔊 para escuchar cómo se dice en inglés.</p>
+
+            <div class="micro-pestanas">
+                <button class="micro-pestana activa" onclick="verTemaEstudio('contenidos-toys1', 0)">🧸 Toys</button>
+                <button class="micro-pestana" onclick="verTemaEstudio('contenidos-toys1', 1)">🔢 Numbers</button>
+                <button class="micro-pestana" onclick="verTemaEstudio('contenidos-toys1', 2)">🛒 Shopping</button>
+                <button class="micro-pestana" onclick="verTemaEstudio('contenidos-toys1', 3)">➕ One or many</button>
+            </div>
+
+            <!-- TEMA 1 -->
+            <div class="micro-tema activo">
+                <div class="micro-bloque" style="border-left-color: #2f6f4e;">
+                    <h3>Toys · Juguetes</h3>
+                    <div id="toys-tarjetas" class="toys-tarjetas"></div>
+                </div>
+                <button class="alg-boton alg-comenzar" onclick="verTemaEstudio('contenidos-toys1', 1)">Siguiente →</button>
+            </div>
+
+            <!-- TEMA 2 -->
+            <div class="micro-tema">
+                <div class="micro-bloque" style="border-left-color: #c98a00;">
+                    <h3>Numbers · Números del 1 al 12</h3>
+                    <div id="toys-numeros" class="toys-tarjetas"></div>
+                </div>
+                <div class="micro-bloque" style="border-left-color: #c98a00;">
+                    <h3>Prices · Precios</h3>
+                    <p><strong>$5</strong> se dice <strong>five dollars</strong> (cinco dólares).</p>
+                    <div id="toys-precios" class="toys-frases"></div>
+                </div>
+                <button class="alg-boton alg-comenzar" onclick="verTemaEstudio('contenidos-toys1', 2)">Siguiente →</button>
+            </div>
+
+            <!-- TEMA 3 -->
+            <div class="micro-tema">
+                <div class="micro-bloque" style="border-left-color: #6b4c9a;">
+                    <h3>In the toy shop · En la tienda de juguetes</h3>
+                    <ul>
+                        <li>Para <strong>pedir</strong> un juguete: <strong>May I have the …?</strong></li>
+                        <li>Para <strong>entregarlo</strong>: <strong>Here you are.</strong></li>
+                        <li>Para decir el <strong>precio</strong>: <strong>That's … dollars.</strong></li>
+                        <li>Para <strong>agradecer</strong>: <strong>Thank you!</strong></li>
+                    </ul>
+                    <div id="toys-dialogo"></div>
+                </div>
+                <div class="micro-bloque" style="border-left-color: #6b4c9a;">
+                    <h3>Del libro: comprar dos juguetes</h3>
+                    <div id="toys-dialogo-libro" class="toys-frases"></div>
+                </div>
+                <button class="alg-boton alg-comenzar" onclick="verTemaEstudio('contenidos-toys1', 3)">Siguiente →</button>
+            </div>
+
+            <!-- TEMA 4 -->
+            <div class="micro-tema">
+                <div class="micro-bloque" style="border-left-color: #2d7d9a;">
+                    <h3>One or many · Uno o varios</h3>
+                    <p>Cuando hay más de uno, se agrega una <strong>s</strong> al final: <strong>a car → cars</strong>.</p>
+                    <div id="toys-uno-varios" class="toys-uno-varios"></div>
+                </div>
+                <div class="micro-bloque" style="border-left-color: #2d7d9a;">
+                    <h3>There's a … / There are some …</h3>
+                    <p><strong>There's a</strong> … = hay un (uno solo). <strong>There are some</strong> … = hay algunos (varios).</p>
+                    <div id="toys-there" class="toys-frases"></div>
+                </div>
+                <button class="alg-boton alg-comenzar" onclick="irA('menu-1basico-toys')">✅ Terminé: ir a la prueba →</button>
+                <p class="micro-creditos">Dibujos de los juguetes hechos para Applicatzo.</p>
+            </div>
+        </div>
+
+        <!-- SUBMÓDULOS DE INGLÉS 1° (se crean desde el script) -->
+        <div id="modulos-ingles1"></div>
         <div id="modulos-ingles5"></div>
         <div id="modulos-lenguaje5"></div>
 
@@ -12556,9 +12672,43 @@
             '.mapa-ficha { padding: 8px 12px; border: 2px solid #1a3c6e; border-radius: 20px; background: white; color: #1a3c6e; font: 600 14px/1.2 Arial, sans-serif; cursor: pointer; }' +
             '.mapa-ficha.elegida { background: #1a3c6e; color: white; }' +
             '.completar-bloque { page-break-inside: avoid; }' +
-            '.estudio-intro { margin: 6px 0 2px 0; font-size: 15px; line-height: 1.5; color: #333; }';
+            '.estudio-intro { margin: 6px 0 2px 0; font-size: 15px; line-height: 1.5; color: #333; }' +
+            '.btn-escuchar { display: inline-flex; align-items: center; gap: 6px; margin: 0 0 10px 0; padding: 8px 16px; border: 2px solid #2d7d9a; border-radius: 20px;' +
+            ' background: #e0f4fb; color: #1a5a70; font: 700 16px/1.2 Arial, sans-serif; cursor: pointer; }' +
+            '.btn-escuchar.hablando { background: #2d7d9a; color: white; }' +
+            '.estudio-figura { display: flex; justify-content: center; margin-bottom: 10px; }' +
+            '.alg-opciones.estudio-ops-img { grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); }' +
+            '.estudio-ops-img .alg-opcion { display: flex; align-items: center; justify-content: center; padding: 8px; text-align: center; }' +
+            '.guion-adulto { page-break-before: always; } .guion-adulto li { margin-bottom: 6px; font-size: 14px; }';
 
         document.head.insertAdjacentHTML('beforeend', `<style>${ESTILO_COMPLETAR}</style>`);
+
+        // Preguntas de escuchar (Inglés): la voz del dispositivo dice la frase en inglés. Sin voz
+        // disponible, el botón muestra la frase escrita.
+        function hablarIngles(boton) {
+            const texto = boton.dataset.texto;
+            const voz = window.speechSynthesis;
+            if (!voz || typeof SpeechSynthesisUtterance === 'undefined') {
+                boton.textContent = '🔊 ' + texto;
+                return;
+            }
+            voz.cancel();
+            const frase = new SpeechSynthesisUtterance(texto);
+            frase.lang = 'en-US';
+            frase.rate = 0.8;
+            const ingles = voz.getVoices().filter(v => /^en[-_]/i.test(v.lang));
+            const elegida = ingles.find(v => /^en[-_]US/i.test(v.lang)) || ingles[0];
+            if (elegida) frase.voice = elegida;
+            boton.classList.add('hablando');
+            frase.onend = frase.onerror = () => boton.classList.remove('hablando');
+            voz.speak(frase);
+        }
+
+        // etiqueta '' = solo el ícono.
+        function botonEscuchar(texto, etiqueta) {
+            const rotulo = etiqueta === undefined ? 'Escuchar' : etiqueta;
+            return `<button type="button" class="btn-escuchar" data-texto="${ecEsc(texto).replace(/"/g, '&quot;')}" onclick="hablarIngles(this)" aria-label="Escuchar">🔊${rotulo ? ' ' + rotulo : ''}</button>`;
+        }
 
         // Casillero de una actividad: fijo si no se pregunta; si se pregunta, vacío para tocar
         // ("responder"), en blanco ("pdf") o con la corrección ("resuelto").
@@ -12724,6 +12874,7 @@
 
             let seccionPrevia = null;
             const dibujadas = new Set();
+            const guiones = [];
             lista.forEach(ej => {
                 if (ej.seccion !== seccionPrevia) {
                     const intro = familia.secciones[ej.seccion].intro;
@@ -12733,17 +12884,25 @@
                 if (ej.tipo === 'mapa') {
                     const actividad = ej.actividad || 'mapa';
                     if (!dibujadas.has(actividad)) {
-                        htmlPDF += `<div class="fichas"><strong>Palabras para usar:</strong> ${ej.opciones.map(ecEsc).join(' · ')}</div>` +
-                            familia.actividades[actividad].html(lista, 'pdf');
+                        const act = familia.actividades[actividad];
+                        htmlPDF += `<div class="fichas"><strong>${act.etiquetaFichas || 'Palabras para usar'}:</strong> ${ej.opciones.map(ecEsc).join(' · ')}</div>` +
+                            act.html(lista, 'pdf');
+                        if (act.guion) guiones.push(`${familia.secciones[ej.seccion].titulo}: ${act.guion(lista).map(ecEsc).join(' / ')}`);
                         dibujadas.add(actividad);
                     }
                     return;
                 }
+                if (ej.escuchar) guiones.push(`${ej.numero}. ${ecEsc(ej.escuchar)}`);
                 htmlPDF += '<div class="exercise">' +
                     `<span class="num">${ej.numero}.</span><span class="texto">${ecEsc(ej.pregunta)}</span>` +
-                    `<div class="ops">${ej.opciones.map((op, i) => `<div>${ej.tipo === 'vf' ? '( )' : letras[i] + ')'} ${ecEsc(op)}</div>`).join('')}</div>` +
+                    (ej.figura ? `<div style="margin: 6px 0 0 22px;">${ej.figura}</div>` : '') +
+                    `<div class="ops">${ej.opciones.map((op, i) => `<div>${ej.tipo === 'vf' ? '( )' : letras[i] + ')'} ${familia.htmlOpcion ? familia.htmlOpcion(op, ej) : ecEsc(op)}</div>`).join('')}</div>` +
                     '</div>';
             });
+            if (guiones.length) {
+                htmlPDF += '<div class="guion-adulto"><h2>Para el adulto: lea en voz alta (puede repetir cada frase)</h2><ul>' +
+                    guiones.map(g => `<li>${g}</li>`).join('') + '</ul></div>';
+            }
             htmlPDF += '</body></html>';
 
             const blob = new Blob([htmlPDF], { type: 'text/html' });
@@ -12793,7 +12952,7 @@
             };
 
             const htmlFichas = (ej, a, casilleros) => `
-                <p style="font-size: 14px; color: #333; margin-bottom: 10px;">Toca una palabra y después el casillero donde va. Para sacarla, toca el casillero.${textoFichasSobran(ej.opciones.length - casilleros)}</p>
+                <p style="font-size: 14px; color: #333; margin-bottom: 10px;">${familia.actividades[actividadDe(ej)].instruccion || 'Toca una palabra y después el casillero donde va. Para sacarla, toca el casillero.'}${textoFichasSobran(ej.opciones.length - casilleros)}</p>
                 <div class="mapa-fichas">${ej.opciones.map((op, i) =>
                     `<button type="button" class="mapa-ficha" id="ficha-${clave}-${a}-${i}" onclick="${tocarFicha}(${a}, ${i})">${ecEsc(op)}</button>`).join('')}</div>`;
 
@@ -12822,8 +12981,10 @@
                     html += `
                         <div class="alg-item" style="border-left-color: ${info.color};">
                             <div class="alg-pregunta"><span class="alg-numero">${ej.numero}.</span><span>${ecEsc(ej.pregunta)}</span></div>
-                            <div class="alg-opciones">
-                                ${ej.opciones.map((opcion, i) => `<button type="button" class="alg-opcion" id="op-${clave}-${idx}-${i}" onclick="${seleccionar}(${idx}, ${i})">${ej.tipo === 'vf' ? '' : letras[i] + ') '}${ecEsc(opcion)}</button>`).join('')}
+                            ${ej.escuchar ? botonEscuchar(ej.escuchar) : ''}
+                            ${ej.figura ? `<div class="estudio-figura">${ej.figura}</div>` : ''}
+                            <div class="alg-opciones${familia.htmlOpcion ? ' estudio-ops-img' : ''}">
+                                ${ej.opciones.map((opcion, i) => `<button type="button" class="alg-opcion" id="op-${clave}-${idx}-${i}" onclick="${seleccionar}(${idx}, ${i})">${familia.htmlOpcion ? familia.htmlOpcion(opcion, ej) : (ej.tipo === 'vf' ? '' : letras[i] + ') ') + ecEsc(opcion)}</button>`).join('')}
                             </div>
                         </div>`;
                 });
@@ -12902,7 +13063,7 @@
                     if (bien) correctas++;
                     html += `<tr style="background-color: ${bien ? '#e8f5e9' : '#ffebee'};">
                         <td style="padding: 10px; border: 1px solid #ccc; font-weight: 600;">${ej.numero}</td>
-                        <td style="padding: 10px; border: 1px solid #ccc;">${ecEsc(ej.pregunta)}</td>
+                        <td style="padding: 10px; border: 1px solid #ccc;">${ecEsc(ej.pregunta)}${ej.escuchar ? `<br><em style="color: #2d7d9a;">🔊 «${ecEsc(ej.escuchar)}»</em>` : ''}</td>
                         <td style="padding: 10px; text-align: center; border: 1px solid #ccc;">${r === undefined ? '—' : ecEsc(r)}</td>
                         <td style="padding: 10px; text-align: center; border: 1px solid #ccc; font-weight: 600; color: #1a3c6e;">${ecEsc(ej.respuestaCorrecta)}</td>
                         <td style="padding: 10px; border: 1px solid #ccc; color: #555; font-size: 12px;">${ecEsc(ej.explicacion)}</td>
@@ -12959,7 +13120,7 @@
             };
 
             return {
-                clave, titulo: familia.prefijo + def.titulo,
+                clave, grado: familia.grado, titulo: familia.prefijo + def.titulo,
                 modulo: 'modulo-' + clave, config: 'configuracion-' + clave, area: 'area-ejercicios-' + clave,
                 resultados: 'resultados-' + clave, mostrar,
                 generar: ['btn-generar-' + clave, 'btn-nuevos-ejercicios-' + clave, 'btn-nuevos-resultados-' + clave],
@@ -12977,7 +13138,7 @@
                 },
                 detalle: () => est.lista.map((e, i) => {
                     const r = est.resp[i];
-                    return { n: e.numero, p: e.pregunta, r: r === undefined ? '—' : r, c: e.respuestaCorrecta, ok: r === e.respuestaCorrecta, nota: e.explicacion };
+                    return { n: e.numero, p: e.pregunta + (e.escuchar ? ` 🔊 «${e.escuchar}»` : ''), r: r === undefined ? '—' : r, c: e.respuestaCorrecta, ok: r === e.respuestaCorrecta, nota: e.explicacion };
                 })
             };
         }
@@ -14286,6 +14447,313 @@
         };
 
         const submodulosOrto5 = Object.keys(familiaOrto5.definiciones).map(clave => crearSubmoduloEstudio(familiaOrto5, clave));
+
+        // ============================================================
+        // ============ UNIT 4: TOYS (INGLÉS 1° BÁSICO) ===============
+        // ============================================================
+        // Vocabulario de la pauta (9 juguetes y números del 1 al 12) y expresiones de compra.
+        // Prueba de 20 puntos con los 4 ítems de la pauta. Los 3 primeros son de escuchar: botón 🔊
+        // con la voz del dispositivo, en inglés (el usuario lo pidió para esta prueba). Lo que se
+        // escucha no aparece escrito hasta revisar, y el juguete del diálogo (ítem 4, con su precio
+        // a la vista) nunca se nombra en el ítem 2, donde se escuchan los precios.
+        // Dibujos propios de los juguetes de la unidad (sin derechos de terceros).
+        const SVG_JUGUETES = {
+            car: '<g stroke="#2b2b2b" stroke-width="3" stroke-linejoin="round">' +
+                '<path d="M10 66 L10 54 Q10 48 17 47 L28 46 L38 31 Q40 28 44 28 L64 28 Q68 28 70 31 L80 46 L86 47 Q92 48 92 55 L92 66 Z" fill="#e53935"/>' +
+                '<path d="M43 33 L52 33 L52 46 L34 46 Z" fill="#bbdefb"/><path d="M57 33 L65 33 Q67 33 68 35 L74 46 L57 46 Z" fill="#bbdefb"/>' +
+                '<circle cx="30" cy="68" r="11" fill="#37474f"/><circle cx="72" cy="68" r="11" fill="#37474f"/></g>' +
+                '<circle cx="30" cy="68" r="4" fill="#cfd8dc"/><circle cx="72" cy="68" r="4" fill="#cfd8dc"/><circle cx="87" cy="53" r="2.5" fill="#ffeb3b"/>',
+            train: '<circle cx="24" cy="12" r="5" fill="#cfd8dc"/><circle cx="33" cy="8" r="4" fill="#cfd8dc"/>' +
+                '<g stroke="#2b2b2b" stroke-width="3" stroke-linejoin="round">' +
+                '<path d="M20 22 L36 22 L33 40 L23 40 Z" fill="#e53935"/>' +
+                '<rect x="12" y="40" width="46" height="24" rx="4" fill="#1e88e5"/>' +
+                '<rect x="56" y="28" width="32" height="36" fill="#1e88e5"/><rect x="52" y="22" width="40" height="8" rx="2" fill="#e53935"/>' +
+                '<rect x="63" y="35" width="18" height="13" fill="#bbdefb"/>' +
+                '<rect x="8" y="62" width="84" height="8" fill="#455a64"/>' +
+                '<circle cx="24" cy="74" r="9" fill="#ffb300"/><circle cx="47" cy="74" r="9" fill="#ffb300"/><circle cx="74" cy="74" r="9" fill="#ffb300"/></g>' +
+                '<circle cx="24" cy="74" r="3" fill="#2b2b2b"/><circle cx="47" cy="74" r="3" fill="#2b2b2b"/><circle cx="74" cy="74" r="3" fill="#2b2b2b"/>',
+            ball: '<g stroke="#2b2b2b" stroke-width="3"><circle cx="50" cy="52" r="34" fill="#43a047"/>' +
+                '<path d="M28 26 Q56 40 56 86 L44 86 Q44 46 19 34 Z" fill="#fdd835" stroke-linejoin="round"/></g>' +
+                '<ellipse cx="66" cy="36" rx="7" ry="4" fill="white" opacity="0.7" transform="rotate(-30 66 36)"/>',
+            robot: '<g stroke="#2b2b2b" stroke-width="3" stroke-linejoin="round">' +
+                '<line x1="50" y1="14" x2="50" y2="24"/><circle cx="50" cy="11" r="4" fill="#e53935"/>' +
+                '<rect x="32" y="24" width="36" height="26" rx="6" fill="#b0bec5"/>' +
+                '<rect x="16" y="54" width="10" height="24" rx="4" fill="#b0bec5"/><rect x="74" y="54" width="10" height="24" rx="4" fill="#b0bec5"/>' +
+                '<rect x="35" y="80" width="11" height="14" rx="2" fill="#78909c"/><rect x="54" y="80" width="11" height="14" rx="2" fill="#78909c"/>' +
+                '<rect x="28" y="52" width="44" height="30" rx="4" fill="#90a4ae"/></g>' +
+                '<circle cx="42" cy="36" r="4.5" fill="#29b6f6"/><circle cx="58" cy="36" r="4.5" fill="#29b6f6"/><rect x="42" y="43" width="16" height="3" rx="1" fill="#2b2b2b"/>' +
+                '<circle cx="41" cy="64" r="3.5" fill="#e53935"/><circle cx="50" cy="64" r="3.5" fill="#fdd835"/><circle cx="59" cy="64" r="3.5" fill="#43a047"/>',
+            bricks: '<g stroke="#2b2b2b" stroke-width="3" stroke-linejoin="round">' +
+                '<rect x="16" y="52" width="10" height="7" fill="#e53935"/><rect x="30" y="52" width="10" height="7" fill="#e53935"/>' +
+                '<rect x="10" y="58" width="56" height="26" rx="2" fill="#e53935"/>' +
+                '<rect x="44" y="28" width="10" height="7" fill="#fdd835"/><rect x="58" y="28" width="10" height="7" fill="#fdd835"/><rect x="72" y="28" width="10" height="7" fill="#fdd835"/>' +
+                '<rect x="38" y="34" width="52" height="24" rx="2" fill="#fdd835"/>' +
+                '<rect x="70" y="58" width="22" height="26" rx="2" fill="#1e88e5"/></g>',
+            puzzle: '<g stroke="#2b2b2b" stroke-width="3" stroke-linejoin="round">' +
+                '<path d="M40 24 L52 24 C49 13 67 13 64 24 L76 24 L76 36 C87 33 87 51 76 48 L76 60 L40 60 L40 48 C51 51 51 33 40 36 Z" fill="#43a047"/>' +
+                '<path d="M14 40 L26 40 C23 29 41 29 38 40 L50 40 L50 52 C61 49 61 67 50 64 L50 78 L38 78 C41 67 23 67 26 78 L14 78 Z" fill="#8e24aa"/></g>',
+            doll: '<g stroke="#2b2b2b" stroke-width="3" stroke-linejoin="round">' +
+                '<circle cx="31" cy="28" r="8" fill="#ff7043"/><circle cx="69" cy="28" r="8" fill="#ff7043"/>' +
+                '<rect x="42" y="78" width="6" height="14" fill="#ffe0b2"/><rect x="52" y="78" width="6" height="14" fill="#ffe0b2"/>' +
+                '<path d="M40 50 L28 66" fill="none" stroke-width="6"/><path d="M60 50 L72 66" fill="none" stroke-width="6"/>' +
+                '<path d="M42 46 L58 46 L70 80 L30 80 Z" fill="#ec407a"/>' +
+                '<circle cx="50" cy="32" r="16" fill="#ffe0b2"/>' +
+                '<path d="M34 30 Q34 14 50 14 Q66 14 66 30 Q58 22 50 24 Q42 22 34 30 Z" fill="#ff7043"/></g>' +
+                '<path d="M40 50 L28 66" stroke="#ffe0b2" stroke-width="3" stroke-linecap="round"/><path d="M60 50 L72 66" stroke="#ffe0b2" stroke-width="3" stroke-linecap="round"/>' +
+                '<circle cx="44" cy="33" r="2.2" fill="#2b2b2b"/><circle cx="56" cy="33" r="2.2" fill="#2b2b2b"/>' +
+                '<path d="M45 39 Q50 43 55 39" fill="none" stroke="#c62828" stroke-width="2" stroke-linecap="round"/>' +
+                '<ellipse cx="45" cy="93" rx="5" ry="3" fill="#37474f"/><ellipse cx="55" cy="93" rx="5" ry="3" fill="#37474f"/>',
+            rattle: '<path d="M18 88 L46 56" stroke="#2b2b2b" stroke-width="14" stroke-linecap="round"/>' +
+                '<path d="M18 88 L46 56" stroke="#fbc02d" stroke-width="9" stroke-linecap="round"/>' +
+                '<circle cx="62" cy="38" r="20" fill="none" stroke="#2b2b2b" stroke-width="9"/><circle cx="62" cy="38" r="20" fill="none" stroke="#fbc02d" stroke-width="5"/>' +
+                '<g stroke="#2b2b2b" stroke-width="2.5"><circle cx="62" cy="18" r="7" fill="#e53935"/><circle cx="80" cy="30" r="7" fill="#43a047"/>' +
+                '<circle cx="79" cy="50" r="7" fill="#ec407a"/><circle cx="62" cy="58" r="7" fill="#1e88e5"/><circle cx="44" cy="30" r="7" fill="#ff9800"/></g>',
+            top: '<g stroke="#2b2b2b" stroke-width="3" stroke-linejoin="round">' +
+                '<rect x="45" y="10" width="10" height="20" rx="3" fill="#1e88e5"/>' +
+                '<path d="M46 78 L50 93 L54 78 Z" fill="#6d4c41"/>' +
+                '<path d="M16 50 Q16 30 50 28 Q84 30 84 50 Q74 70 50 82 Q26 70 16 50 Z" fill="#ffca28"/></g>' +
+                '<path d="M18 44 Q50 36 82 44 L83 54 Q50 46 17 54 Z" fill="#ef5350"/>' +
+                '<path d="M26 62 L34 56 L42 64 L50 56 L58 64 L66 56 L74 62 Q64 72 50 79 Q36 72 26 62 Z" fill="#42a5f5"/>' +
+                '<path d="M16 50 Q16 30 50 28 Q84 30 84 50 Q74 70 50 82 Q26 70 16 50 Z" fill="none" stroke="#2b2b2b" stroke-width="3" stroke-linejoin="round"/>'
+        };
+
+        const svgJuguete = (nombre, clase) => `<svg class="${clase || 'juguete-svg'}" viewBox="0 0 100 100" role="img" aria-label="${nombre}">${SVG_JUGUETES[nombre]}</svg>`;
+
+        const ESTILO_TOYS =
+            '.juguete-svg { width: 100%; height: auto; }' +
+            '.toys-tarjetas { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 12px; }' +
+            '.toys-tarjeta { background: white; border: 2px solid #e0e0e0; border-radius: 12px; padding: 10px; text-align: center; }' +
+            '.toys-tarjeta svg { width: 90px; height: 90px; }' +
+            '.toys-tarjeta .btn-escuchar { margin: 0; }' +
+            '.toys-palabra { font: 700 22px/1.2 Arial, sans-serif; color: #1a3c6e; margin: 4px 0 2px 0; }' +
+            '.toys-es { font-size: 14px; color: #666; margin-bottom: 8px; }' +
+            '.toys-num { font: 700 34px/1.1 Arial, sans-serif; color: #c98a00; }' +
+            '.toys-frases { display: grid; gap: 10px; }' +
+            '.toys-frase { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; background: white; border: 1px solid #ddd; border-radius: 10px; padding: 10px 12px; }' +
+            '.toys-frase .btn-escuchar { margin: 0; }' +
+            '.toys-frase strong { font-size: 18px; color: #1a3c6e; }' +
+            '.toys-frase small { color: #666; font-size: 14px; }' +
+            '.toys-escuchar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }' +
+            '.toys-escuchar .btn-escuchar { margin: 0; }' +
+            '.toys-grilla { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }' +
+            '.toys-carta { background: #f5f7fa; border-radius: 10px; padding: 8px; display: grid; gap: 6px; justify-items: center; }' +
+            '.toys-carta svg { width: 96px; height: 96px; }' +
+            '.toys-carta .mapa-caja { font-size: 22px; min-height: 46px; }' +
+            '.toys-opcion { width: 96px; height: 96px; }' +
+            '.toys-figura { width: 110px; height: 110px; }' +
+            '.toys-precio { display: inline-block; font: 700 24px/1.2 Arial, sans-serif; padding: 4px 12px; border: 2px dashed #c98a00; border-radius: 8px; background: #fff8e1; color: #6d4c00; }' +
+            '.toys-dialogo { display: grid; grid-template-columns: 140px 1fr; gap: 14px; align-items: center; }' +
+            '.toys-tienda { text-align: center; background: #fff8e1; border: 2px solid #c98a00; border-radius: 12px; padding: 8px; }' +
+            '.toys-tienda svg { width: 100px; height: 100px; }' +
+            '.toys-linea { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font: 600 18px/1.4 Arial, sans-serif; margin-bottom: 10px; color: #333; }' +
+            '.toys-linea .mapa-caja { width: auto; min-width: 96px; min-height: 42px; }' +
+            '.toys-quien { font: 700 18px Arial, sans-serif; color: #6b4c9a; }' +
+            '.toys-uno-varios { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }' +
+            '.toys-par { display: flex; align-items: center; justify-content: center; gap: 6px; background: white; border: 1px solid #ddd; border-radius: 10px; padding: 8px; font: 600 16px Arial, sans-serif; color: #1a3c6e; }' +
+            '.toys-par svg { width: 40px; height: 40px; }' +
+            '.toys-escena { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 4px; }' +
+            '.toys-escena svg { width: 60px; height: 60px; }' +
+            '#modulo-toysPrueba .mapa-ficha { font-size: 20px; padding: 10px 18px; }' +
+            '.ops .toys-opcion { width: 56px; height: 56px; vertical-align: middle; }' +
+            '.exercise .toys-figura { width: 70px; height: 70px; }' +
+            '.ops .toys-precio { font-size: 18px; }' +
+            '@media (max-width: 640px) { .toys-dialogo { grid-template-columns: 1fr; } .toys-grilla { grid-template-columns: repeat(2, minmax(0, 1fr)); } }';
+
+        document.head.insertAdjacentHTML('beforeend', `<style>${ESTILO_TOYS}</style>`);
+
+        // Vocabulario y traducciones de la pauta.
+        const juguetesToys = [
+            { id: 'car', es: 'auto' }, { id: 'train', es: 'tren' }, { id: 'ball', es: 'pelota' },
+            { id: 'robot', es: 'robot' }, { id: 'bricks', es: 'bloques' }, { id: 'puzzle', es: 'rompecabezas' },
+            { id: 'doll', es: 'muñeca' }, { id: 'rattle', es: 'sonajero' }, { id: 'top', es: 'trompo' }
+        ];
+        const NUMEROS_EN = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve'];
+        const verboToy = id => id === 'bricks' ? 'are' : 'is';
+        const esToy = id => juguetesToys.find(j => j.id === id).es;
+        const dolares = n => `${NUMEROS_EN[n]} ${n === 1 ? 'dollar' : 'dollars'}`;
+
+        // Ítem 1: escuchar y numerar. Los números son las fichas; los juguetes, los casilleros.
+        const guionNumerar = ej => `Number ${NUMEROS_EN[ej.respuestaCorrecta]}. The ${ej.nodo}.`;
+        const sinNumeroCaja = html => html.replace(/<span class="mapa-num">\d+<\/span>/, '');
+
+        function htmlNumerarToys(lista, modo, opciones) {
+            const pedidas = lista.filter(ej => ej.tipo === 'mapa' && ej.actividad === 'numerar');
+            const porNumero = pedidas.slice().sort((a, b) => a.respuestaCorrecta - b.respuestaCorrecta);
+            const botones = modo === 'responder'
+                ? `<div class="toys-escuchar">${porNumero.map(ej => botonEscuchar(guionNumerar(ej), 'Número ' + ej.respuestaCorrecta)).join('')}</div>` : '';
+            return botones + `<div class="toys-grilla completar-bloque">${pedidas.map(ej =>
+                `<div class="toys-carta">${svgJuguete(ej.nodo)}${sinNumeroCaja(cajaCompletar(lista, 'numerar', ej.nodo, ej.respuestaCorrecta, modo, opciones))}</div>`).join('')}</div>`;
+        }
+
+        function casillerosNumerarToys(pool) {
+            const juguetes = barajarArreglo(pool).slice(0, 6);
+            const numeros = barajarArreglo([1, 2, 3, 4, 5, 6]);
+            const nodos = juguetes.map((j, i) => ({
+                nodo: j.id, c: String(numeros[i]), d: `the ${j.id}`,
+                nota: `Se escuchó: «Number ${NUMEROS_EN[numeros[i]]}. The ${j.id}.» (${j.id} = ${j.es})`
+            }));
+            const lista = casillerosEstudio('numerar', nodos, { titulo: 'Listen and number', fijos: nodos.map(n => n.nodo), seccion: 'item1', item: 1 });
+            lista[0].opciones.sort((a, b) => a - b); // todas comparten las mismas fichas: 1 a 6 en orden
+            return lista;
+        }
+
+        // Ítem 2: escuchar los precios de dos juguetes y elegir el del juguete de la imagen.
+        // precios: uno por juguete para toda la prueba, así un juguete nunca tiene dos precios.
+        function preguntasPreciosToys(juguetes, companeros, precios) {
+            return juguetes.map((j, i) => {
+                const otro = companeros[i];
+                const precio = precios[j.id];
+                const precioOtro = precios[otro.id];
+                const frases = [`The ${j.id} ${verboToy(j.id)} ${dolares(precio)}.`, `The ${otro.id} ${verboToy(otro.id)} ${dolares(precioOtro)}.`];
+                const resto = barajarArreglo([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].filter(n => n !== precio && n !== precioOtro)).slice(0, 2);
+                return {
+                    tipo: 'alternativas', seccion: 'item2', item: 2,
+                    pregunta: 'Escucha: ¿cuánto cuesta el juguete de la imagen?', escuchar: barajarArreglo(frases).join(' '),
+                    figura: svgJuguete(j.id, 'toys-figura'),
+                    opciones: [precio, precioOtro].concat(resto).sort((a, b) => a - b).map(n => '$' + n), respuestaCorrecta: '$' + precio,
+                    explicacion: `The ${j.id} (${j.es}) ${verboToy(j.id)} ${dolares(precio)}: $${precio}.`
+                };
+            });
+        }
+
+        // Ítem 3: escuchar qué juguete se pide y tocar su imagen.
+        const pedidosToys = [
+            id => `May I have the ${id}, please?`,
+            id => `May I have the ${id}?`,
+            id => `Hello! May I have the ${id}, please?`
+        ];
+
+        function preguntasPedidoToys(pool) {
+            return barajarArreglo(pool).slice(0, 6).map(j => {
+                const otros = barajarArreglo(juguetesToys.filter(o => o !== j)).slice(0, 2).map(o => o.id);
+                return {
+                    tipo: 'alternativas', seccion: 'item3', item: 3,
+                    pregunta: 'Escucha: ¿qué juguete pide?', escuchar: algElegir(pedidosToys)(j.id),
+                    opciones: barajarArreglo([j.id].concat(otros)), respuestaCorrecta: j.id,
+                    explicacion: `«May I have the ${j.id}?» = ¿Me puedes dar ${j.id === 'bricks' ? 'los bloques' : 'el ' + j.es}?`
+                };
+            });
+        }
+
+        // Ítem 4: completar el diálogo de la tienda (como la guía de repaso).
+        function htmlDialogoToys(lista, modo, opciones) {
+            const del = nodo => lista.find(ej => ej.tipo === 'mapa' && ej.actividad === 'dialogo' && ej.nodo === nodo);
+            const caja = nodo => sinNumeroCaja(cajaCompletar(lista, 'dialogo', nodo, del(nodo).respuestaCorrecta, modo, opciones));
+            const toy = del('juguete').respuestaCorrecta;
+            const precio = del('precio').respuestaCorrecta;
+            return `<div class="toys-dialogo completar-bloque">
+                <div class="toys-tienda">🏪 <strong>Toy Shop</strong><br>${svgJuguete(toy)}<br><span class="toys-precio">$${precio}</span></div>
+                <div>
+                    <div class="toys-linea"><span class="toys-quien">A:</span> May I have the ${caja('juguete')}, please?</div>
+                    <div class="toys-linea"><span class="toys-quien">B:</span> ${caja('here')} you are. That's ${caja('precio')} dollars.</div>
+                    <div class="toys-linea"><span class="toys-quien">A:</span> ${caja('thank')} you!</div>
+                </div>
+            </div>`;
+        }
+
+        function casillerosDialogoToys(toy) {
+            const precio = ecAzar(2, 12); // con 1 sería "one dollar", sin s
+            const nodos = [
+                { nodo: 'juguete', c: toy.id, d: 'May I have the ___, please?', nota: `May I have the ${toy.id}, please? = ¿Me puedes dar ${toy.id === 'bricks' ? 'los bloques' : 'el ' + toy.es}, por favor?` },
+                { nodo: 'here', c: 'Here', d: '___ you are.', nota: 'Here you are. = Aquí tienes.' },
+                { nodo: 'precio', c: String(precio), d: 'That\'s ___ dollars.', nota: `That's ${NUMEROS_EN[precio]} dollars. = Son ${precio} dólares.` },
+                { nodo: 'thank', c: 'Thank', d: '___ you!', nota: 'Thank you! = ¡Gracias!' }
+            ];
+            return casillerosEstudio('dialogo', nodos, { titulo: 'Complete the dialogue', fijos: nodos.map(n => n.nodo), seccion: 'item4', item: 4 });
+        }
+
+        // El juguete del diálogo (escrito, con su dibujo y su precio) no se escucha en los ítems
+        // 1 a 3: así su palabra escrita no ayuda a reconocer lo que se escucha.
+        const pruebaToys = () => {
+            const orden = barajarArreglo(juguetesToys);
+            const toyDialogo = orden[8];
+            const pool = orden.slice(0, 8);
+            const preguntados = barajarArreglo(pool).slice(0, 4);
+            const companeros = preguntados.map(j => algElegir(pool.filter(o => o !== j)));
+            const precios = {};
+            barajarArreglo([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]).slice(0, pool.length).forEach((n, i) => { precios[pool[i].id] = n; });
+            return casillerosNumerarToys(pool)
+                .concat(preguntasPreciosToys(preguntados, companeros, precios), preguntasPedidoToys(pool), casillerosDialogoToys(toyDialogo));
+        };
+
+        const familiaToys = {
+            id: 'toys1', grado: '1', contenedor: 'modulos-ingles1', menu: 'menu-1basico-toys', prefijo: 'Toys: ',
+            encabezado: 'Unit 4: Toys &mdash; Inglés &mdash; 1&deg; Básico',
+            puntos: 1, columnaNota: 'Para recordar', estiloImpresion: ESTILO_TOYS,
+            htmlOpcion: op => op.charAt(0) === '$' ? `<span class="toys-precio">${op}</span>` : svgJuguete(op, 'toys-opcion'),
+            secciones: {
+                item1: { titulo: 'Ítem 1: Listen and number — escucha y numera (6 puntos)', emoji: '🔢', color: '#2f6f4e',
+                    intro: 'Toca cada 🔊, escucha y pon ese número en el juguete.' },
+                item2: { titulo: 'Ítem 2: Listen and match — ¿cuánto cuesta? (4 puntos)', emoji: '💲', color: '#c98a00',
+                    intro: 'Toca 🔊, escucha y elige el precio del juguete de la imagen.' },
+                item3: { titulo: 'Ítem 3: Listen and circle — ¿qué juguete pide? (6 puntos)', emoji: '👂', color: '#2d7d9a',
+                    intro: 'Toca 🔊, escucha y toca el juguete que pide.' },
+                item4: { titulo: 'Ítem 4: Complete the dialogue — completa el diálogo (4 puntos)', emoji: '🛒', color: '#6b4c9a',
+                    intro: 'Mira la tienda y completa el diálogo.' }
+            },
+            indicadores: {
+                1: 'Reconoce e identifica auditivamente el vocabulario de juguetes, numerando las imágenes según lo escuchado.',
+                2: 'Identifica y relaciona los juguetes con sus respectivos precios a partir de la información escuchada.',
+                3: 'Comprende e identifica el juguete solicitado mediante expresiones sencillas de compra, seleccionando la imagen correcta.',
+                4: 'Reconoce y comprende vocabulario y expresiones sencillas utilizadas en situaciones de compra y venta de juguetes.'
+            },
+            actividades: {
+                numerar: {
+                    titulo: '🔢 Los números corregidos', html: htmlNumerarToys, etiquetaFichas: 'Números',
+                    instruccion: 'Toca un número y después el juguete. Para sacarlo, toca el juguete.',
+                    guion: lista => lista.filter(ej => ej.tipo === 'mapa' && ej.actividad === 'numerar')
+                        .sort((a, b) => a.respuestaCorrecta - b.respuestaCorrecta).map(guionNumerar)
+                },
+                dialogo: {
+                    titulo: '🛒 El diálogo corregido', html: htmlDialogoToys,
+                    instruccion: 'Toca una palabra y después el espacio donde va. Para sacarla, toca el espacio.'
+                }
+            },
+            definiciones: {
+                toysPrueba: {
+                    titulo: 'Prueba de Práctica', emoji: '📝', generar: pruebaToys, porItem: true,
+                    intro: 'Una prueba de 20 puntos con los 4 ítems de la pauta: escuchar y numerar (6), escuchar precios (4), escuchar qué juguete piden (6) y completar el diálogo de la tienda (4). En las preguntas con 🔊 se escucha la frase en inglés: puedes tocarlo las veces que quieras. Cada vez que presiones «Nuevos Ejercicios» salen otras preguntas.',
+                    instruccionPdf: 'Un adulto lee en voz alta las frases de la última hoja. Cada respuesta vale 1 punto.'
+                }
+            }
+        };
+
+        const submodulosToys = Object.keys(familiaToys.definiciones).map(clave => crearSubmoduloEstudio(familiaToys, clave));
+
+        // Pantalla de contenidos: tarjetas con dibujo y 🔊.
+        (function dibujarContenidosToys() {
+            const frase = (en, es, extra) => `<div class="toys-frase">${botonEscuchar(en, '')}${extra || ''}<div><strong>${ecEsc(en)}</strong><br><small>${es}</small></div></div>`;
+            document.getElementById('toys-tarjetas').innerHTML = juguetesToys.map(j =>
+                `<div class="toys-tarjeta">${svgJuguete(j.id)}<div class="toys-palabra">${j.id}</div><div class="toys-es">${j.es}</div>${botonEscuchar(j.id, '')}</div>`).join('');
+            document.getElementById('toys-numeros').innerHTML = NUMEROS_EN.slice(1).map((n, i) =>
+                `<div class="toys-tarjeta"><div class="toys-num">${i + 1}</div><div class="toys-palabra">${n}</div>${botonEscuchar(n, '')}</div>`).join('');
+            document.getElementById('toys-precios').innerHTML = [['robot', 5], ['ball', 3], ['puzzle', 4], ['bricks', 10]].map(([id, n]) =>
+                frase(`The ${id} ${verboToy(id)} ${dolares(n)}.`, `${id === 'bricks' ? 'Los bloques cuestan' : 'El ' + esToy(id) + ' cuesta'} ${n} dólares.`,
+                    `${svgJuguete(id, 'toys-opcion')}<span class="toys-precio">$${n}</span>`)).join('');
+            const dialogo = [
+                ['A:', 'May I have the robot, please?', '¿Me puedes dar el robot, por favor?'],
+                ['B:', 'Here you are.', 'Aquí tienes.'],
+                ['B:', 'That\'s five dollars.', 'Son cinco dólares.'],
+                ['A:', 'Thank you!', '¡Gracias!']
+            ];
+            document.getElementById('toys-dialogo').innerHTML =
+                `<div style="margin-bottom: 10px;">${botonEscuchar(dialogo.map(d => d[1]).join(' '), 'Escuchar todo el diálogo')}</div>` +
+                dialogo.map(([quien, en, es]) => frase(en, es, `<span class="toys-quien">${quien}</span>`)).join('');
+            document.getElementById('toys-dialogo-libro').innerHTML = [
+                ['May I have the car and the ball?', '¿Me puedes dar el auto y la pelota?'],
+                ['Yes, here you are. That\'s seven dollars.', 'Sí, aquí tienes. Son siete dólares.'],
+                ['Thank you. Here\'s your change.', 'Gracias. Aquí está tu vuelto.'],
+                ['Thanks!', '¡Gracias!']
+            ].map(([en, es]) => frase(en, es)).join('');
+            document.getElementById('toys-uno-varios').innerHTML = juguetesToys.map(j => {
+                const uno = j.id === 'bricks' ? 'brick' : j.id;
+                const varios = uno + 's';
+                return `<div class="toys-par">${svgJuguete(j.id)} a ${uno} → ${varios} ${botonEscuchar(`a ${uno}. ${varios}.`, '')}</div>`;
+            }).join('');
+            document.getElementById('toys-there').innerHTML =
+                frase('There\'s a doll.', 'Hay una muñeca.', `<div class="toys-escena">${svgJuguete('doll')}</div>`) +
+                frase('There are some cars.', 'Hay algunos autos.', `<div class="toys-escena">${svgJuguete('car')}${svgJuguete('car')}${svgJuguete('car')}</div>`);
+        })();
 
         // ============================================================
         // ============ FRACCIONES (5° BÁSICO) ========================
@@ -16104,7 +16572,8 @@
             ...submodulosColonia,
             ...submodulosArauco,
             ...submodulosDino,
-            ...submodulosOrto5
+            ...submodulosOrto5,
+            ...submodulosToys
         ];
 
         function guardarEstadoModulo5(m) {
@@ -16212,7 +16681,7 @@
                 const detalle = m.detalle();
                 if (!detalle.length) return;
                 const correctas = detalle.filter(f => f.ok).length;
-                registrarEnHistorial({ grado: '5', modulo: m.clave, titulo: m.titulo, correctas, total: detalle.length, detalle });
+                registrarEnHistorial({ grado: m.grado || '5', modulo: m.clave, titulo: m.titulo, correctas, total: detalle.length, detalle });
                 almacenBorrar('estado5.' + m.clave);
                 quitarAvisoReanudar(m);
             });
@@ -16260,7 +16729,7 @@
                 const s = almacenLeer('estado5.' + m.clave);
                 if (!s || !Array.isArray(s.lista)) return;
                 const total = m.total ? m.total(s) : s.lista.length;
-                lista.push({ grado: '5', titulo: m.titulo, respondidas: contarRespondidas(s.resp), total, fecha: s.fecha });
+                lista.push({ grado: m.grado || '5', titulo: m.titulo, respondidas: contarRespondidas(s.resp), total, fecha: s.fecha });
             });
             return lista.sort((a, b) => (b.fecha || 0) - (a.fecha || 0));
         }
