@@ -1533,6 +1533,13 @@
                     Prueba de Práctica (20 puntos)
                 </button>
             </div>
+
+            <div class="panel-voz">
+                <label>🎙️ Voz en inglés: <select class="sel-voz" onchange="cambiarVozIngles(this)" onfocus="llenarPanelesVoz()"></select></label>
+                <label>Velocidad: <select class="sel-velocidad" onchange="cambiarVelocidadIngles(this)"><option value="lenta">Lenta</option><option value="normal">Normal</option></select></label>
+                <button type="button" class="btn-escuchar" data-texto="Hello! May I have the robot, please?" onclick="hablarIngles(this)">🔊 Probar</button>
+                <small>Las voces dependen del dispositivo. En el iPad hay voces más naturales para descargar en Ajustes → Accesibilidad → Contenido leído → Voces → Inglés.</small>
+            </div>
         </div>
 
         <!-- SUBMENÚ 1º BÁSICO: MATEMÁTICA -->
@@ -4269,6 +4276,13 @@
             </div>
 
             <p style="font-size: 15px; color: #555; margin: 0 0 14px 0;">Toca 🔊 para escuchar cómo se dice en inglés.</p>
+
+            <div class="panel-voz" style="margin: 0 0 16px 0;">
+                <label>🎙️ Voz en inglés: <select class="sel-voz" onchange="cambiarVozIngles(this)" onfocus="llenarPanelesVoz()"></select></label>
+                <label>Velocidad: <select class="sel-velocidad" onchange="cambiarVelocidadIngles(this)"><option value="lenta">Lenta</option><option value="normal">Normal</option></select></label>
+                <button type="button" class="btn-escuchar" data-texto="Hello! May I have the robot, please?" onclick="hablarIngles(this)">🔊 Probar</button>
+                <small>Las voces dependen del dispositivo. En el iPad hay voces más naturales para descargar en Ajustes → Accesibilidad → Contenido leído → Voces → Inglés.</small>
+            </div>
 
             <div class="micro-pestanas">
                 <button class="micro-pestana activa" onclick="verTemaEstudio('contenidos-toys1', 0)">🧸 Toys</button>
@@ -12679,12 +12693,78 @@
             '.estudio-figura { display: flex; justify-content: center; margin-bottom: 10px; }' +
             '.alg-opciones.estudio-ops-img { grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); }' +
             '.estudio-ops-img .alg-opcion { display: flex; align-items: center; justify-content: center; padding: 8px; text-align: center; }' +
-            '.guion-adulto { page-break-before: always; } .guion-adulto li { margin-bottom: 6px; font-size: 14px; }';
+            '.guion-adulto { page-break-before: always; } .guion-adulto li { margin-bottom: 6px; font-size: 14px; }' +
+            '.panel-voz { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; margin-top: 24px; padding: 12px 14px; background: #f5f7fa;' +
+            ' border-radius: 8px; font-size: 14px; color: #333; }' +
+            '.panel-voz select { padding: 6px 8px; font-size: 14px; border: 1px solid #ccc; border-radius: 6px; max-width: 260px; background: white; }' +
+            '.panel-voz .btn-escuchar { margin: 0; }' +
+            '.panel-voz small { flex-basis: 100%; color: #666; font-size: 12px; }';
 
         document.head.insertAdjacentHTML('beforeend', `<style>${ESTILO_COMPLETAR}</style>`);
 
         // Preguntas de escuchar (Inglés): la voz del dispositivo dice la frase en inglés. Sin voz
         // disponible, el botón muestra la frase escrita.
+        // El iPad trae en inglés voces de broma y otras muy robóticas: nunca se eligen ni se ofrecen.
+        const VOCES_DESCARTADAS = /^(Albert|Bad News|Bahh|Bells|Boing|Bubbles|Cellos|Deranged|Good News|Hysterical|Jester|Organ|Pipe Organ|Superstar|Trinoids|Whisper|Wobble|Zarvox|Fred|Junior|Kathy|Ralph|Grandma|Grandpa|Eddy|Flo|Reed|Rocko|Sandy|Shelley)\b/i;
+        const VOCES_PREFERIDAS = ['Samantha', 'Ava', 'Allison', 'Susan', 'Zoe', 'Nicky', 'Evan', 'Nathan', 'Tom', 'Alex', 'Karen', 'Daniel', 'Moira', 'Tessa', 'Serena', 'Kate', 'Oliver', 'Google US English', 'Microsoft Aria', 'Microsoft Jenny'];
+        const VELOCIDADES_VOZ = { lenta: 0.65, normal: 0.85 };
+        const PAISES_VOZ = { US: 'EE. UU.', GB: 'Reino Unido', AU: 'Australia', IE: 'Irlanda', ZA: 'Sudáfrica', IN: 'India', CA: 'Canadá', NZ: 'Nueva Zelanda' };
+
+        // Primero las mejoradas (premium), después las conocidas y las de EE. UU.
+        function vocesIngles() {
+            if (!window.speechSynthesis) return [];
+            const puntaje = v => {
+                const conocida = VOCES_PREFERIDAS.findIndex(n => v.name.includes(n));
+                return (/premium|enhanced|mejorada|natural/i.test(v.name) ? 0 : 100) + (conocida === -1 ? 50 : conocida) + (/^en[-_]US/i.test(v.lang) ? 0 : 20);
+            };
+            return speechSynthesis.getVoices()
+                .filter(v => /^en[-_]/i.test(v.lang) && !VOCES_DESCARTADAS.test(v.name))
+                .sort((a, b) => puntaje(a) - puntaje(b));
+        }
+
+        const ajusteVozIngles = () => almacenLeer('vozIngles') || {};
+
+        function vozInglesElegida() {
+            const voces = vocesIngles();
+            const { uri } = ajusteVozIngles();
+            return voces.find(v => v.voiceURI === uri) || voces[0] || null;
+        }
+
+        function llenarPanelesVoz() {
+            const voces = vocesIngles();
+            const elegida = vozInglesElegida();
+            const ajuste = ajusteVozIngles();
+            document.querySelectorAll('.sel-voz').forEach(sel => {
+                sel.innerHTML = voces.length
+                    ? voces.map(v => {
+                        const pais = PAISES_VOZ[(v.lang.split(/[-_]/)[1] || '').toUpperCase()] || v.lang;
+                        return `<option value="${ecEsc(v.voiceURI).replace(/"/g, '&quot;')}"${v === elegida ? ' selected' : ''}>${ecEsc(v.name)} (${pais})</option>`;
+                    }).join('')
+                    : '<option>La del dispositivo</option>';
+            });
+            document.querySelectorAll('.sel-velocidad').forEach(sel => { sel.value = ajuste.velocidad || 'normal'; });
+        }
+
+        function cambiarVozIngles(sel) {
+            almacenGuardar('vozIngles', Object.assign(ajusteVozIngles(), { uri: sel.value }));
+            llenarPanelesVoz();
+            const probar = sel.closest('.panel-voz').querySelector('.btn-escuchar');
+            if (probar) hablarIngles(probar);
+        }
+
+        function cambiarVelocidadIngles(sel) {
+            almacenGuardar('vozIngles', Object.assign(ajusteVozIngles(), { velocidad: sel.value }));
+            llenarPanelesVoz();
+            const probar = sel.closest('.panel-voz').querySelector('.btn-escuchar');
+            if (probar) hablarIngles(probar);
+        }
+
+        // La lista de voces puede llegar después de cargar la página.
+        if (window.speechSynthesis) {
+            if (speechSynthesis.addEventListener) speechSynthesis.addEventListener('voiceschanged', llenarPanelesVoz);
+            setTimeout(llenarPanelesVoz, 0);
+        }
+
         function hablarIngles(boton) {
             const texto = boton.dataset.texto;
             const voz = window.speechSynthesis;
@@ -12694,11 +12774,10 @@
             }
             voz.cancel();
             const frase = new SpeechSynthesisUtterance(texto);
-            frase.lang = 'en-US';
-            frase.rate = 0.8;
-            const ingles = voz.getVoices().filter(v => /^en[-_]/i.test(v.lang));
-            const elegida = ingles.find(v => /^en[-_]US/i.test(v.lang)) || ingles[0];
+            const elegida = vozInglesElegida();
+            frase.lang = elegida ? elegida.lang : 'en-US';
             if (elegida) frase.voice = elegida;
+            frase.rate = VELOCIDADES_VOZ[ajusteVozIngles().velocidad] || VELOCIDADES_VOZ.normal;
             boton.classList.add('hablando');
             frase.onend = frase.onerror = () => boton.classList.remove('hablando');
             voz.speak(frase);
