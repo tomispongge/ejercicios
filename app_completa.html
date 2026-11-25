@@ -1501,6 +1501,37 @@
             </div>
         </div>
 
+        <!-- SUBMENÚ 1º BÁSICO: SUMAS Y RESTAS HASTA 20 (PAUTA Nº7) -->
+        <div id="menu-1basico-p7" class="seccion">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                <h1>📝 Sumas y Restas hasta 20 · 1º Básico</h1>
+                <button class="btn btn-volver" onclick="irA('menu-1basico-matematica')">← Volver</button>
+            </div>
+
+            <div class="menu-principal">
+                <button class="opcion" onclick="mostrarModuloP7Problemas()">
+                    <span class="opcion-emoji">🧮</span>
+                    Problemas de Sumas y Restas
+                </button>
+                <button class="opcion" onclick="mostrarModuloP7Tarjetas()">
+                    <span class="opcion-emoji">🃏</span>
+                    Tarjetas que Suman 20
+                </button>
+                <button class="opcion" onclick="mostrarModuloP7Completar()">
+                    <span class="opcion-emoji">🔟</span>
+                    Completar el 10
+                </button>
+                <button class="opcion" onclick="mostrarModuloP7Historias()">
+                    <span class="opcion-emoji">📖</span>
+                    ¿Qué Historia Es?
+                </button>
+                <button class="opcion" onclick="mostrarModuloP7Prueba()">
+                    <span class="opcion-emoji">📝</span>
+                    Prueba de Práctica (34 puntos)
+                </button>
+            </div>
+        </div>
+
         <!-- SUBMENÚ 1º BÁSICO: INGLÉS -->
         <div id="menu-1basico-ingles" class="seccion">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
@@ -1550,6 +1581,10 @@
             </div>
             
             <div class="menu-principal">
+                <button class="opcion" onclick="irA('menu-1basico-p7')">
+                    <span class="opcion-emoji">📝</span>
+                    Sumas y Restas hasta 20
+                </button>
                 <button class="opcion" onclick="irA('recta')">
                     <span class="opcion-emoji">📍</span>
                     Sumas y Restas<br>en Recta
@@ -4352,6 +4387,7 @@
 
         <!-- SUBMÓDULOS DE INGLÉS 1° (se crean desde el script) -->
         <div id="modulos-ingles1"></div>
+        <div id="modulos-mat1"></div>
         <div id="modulos-ingles5"></div>
         <div id="modulos-lenguaje5"></div>
 
@@ -12698,7 +12734,9 @@
             ' border-radius: 8px; font-size: 14px; color: #333; }' +
             '.panel-voz select { padding: 6px 8px; font-size: 14px; border: 1px solid #ccc; border-radius: 6px; max-width: 260px; background: white; }' +
             '.panel-voz .btn-escuchar { margin: 0; }' +
-            '.panel-voz small { flex-basis: 100%; color: #666; font-size: 12px; }';
+            '.panel-voz small { flex-basis: 100%; color: #666; font-size: 12px; }' +
+            '.estudio-casilla { width: 58px; height: 50px; box-sizing: border-box; font: 700 24px/1 Arial, sans-serif; text-align: center; color: #1a3c6e;' +
+            ' border: 2px solid #1a3c6e; border-radius: 8px; background: #fffdf3; }';
 
         document.head.insertAdjacentHTML('beforeend', `<style>${ESTILO_COMPLETAR}</style>`);
 
@@ -12954,6 +12992,7 @@
             let seccionPrevia = null;
             const dibujadas = new Set();
             const guiones = [];
+            let grupoPrevioPdf = null;
             lista.forEach(ej => {
                 if (ej.seccion !== seccionPrevia) {
                     const intro = familia.secciones[ej.seccion].intro;
@@ -12971,11 +13010,19 @@
                     }
                     return;
                 }
+                if (ej.grupo) {
+                    if (ej.grupo !== grupoPrevioPdf) {
+                        const delGrupo = lista.map((e, i) => ({ ej: e, idx: i })).filter(o => o.ej.grupo === ej.grupo);
+                        htmlPDF += `<div class="exercise">${familia.dibujarGrupo(delGrupo, 'pdf')}</div>`;
+                        grupoPrevioPdf = ej.grupo;
+                    }
+                    return;
+                }
                 if (ej.escuchar) guiones.push(`${ej.numero}. ${ecEsc(ej.escuchar)}`);
                 htmlPDF += '<div class="exercise">' +
                     `<span class="num">${ej.numero}.</span><span class="texto">${ecEsc(ej.pregunta)}</span>` +
                     (ej.figura ? `<div style="margin: 6px 0 0 22px;">${ej.figura}</div>` : '') +
-                    `<div class="ops">${ej.opciones.map((op, i) => `<div>${ej.tipo === 'vf' ? '( )' : letras[i] + ')'} ${familia.htmlOpcion ? familia.htmlOpcion(op, ej) : ecEsc(op)}</div>`).join('')}</div>` +
+                    `<div class="ops">${ej.opciones.map((op, i) => `<div>${ej.tipo === 'vf' ? '( )' : letras[i] + ')'} ${ej.opcionesHtml ? ej.opcionesHtml[i] : familia.htmlOpcion ? familia.htmlOpcion(op, ej) : ecEsc(op)}</div>`).join('')}</div>` +
                     '</div>';
             });
             if (guiones.length) {
@@ -13002,6 +13049,7 @@
             const seleccionar = 'seleccionarRespuesta' + sufijo;
             const tocarCaja = 'tocarCasillero' + sufijo;
             const tocarFicha = 'tocarFicha' + sufijo;
+            const escribir = 'escribirCasilla' + sufijo;
             const id = nombre => document.getElementById(`${nombre}-${clave}`);
             const idCaja = idx => `mapa-${clave}-${idx}`;
             const actividadDe = ej => ej.actividad || 'mapa';
@@ -13035,12 +13083,19 @@
                 <div class="mapa-fichas">${ej.opciones.map((op, i) =>
                     `<button type="button" class="mapa-ficha" id="ficha-${clave}-${a}-${i}" onclick="${tocarFicha}(${a}, ${i})">${ecEsc(op)}</button>`).join('')}</div>`;
 
+            // Para las preguntas agrupadas (ej.grupo): la familia arma el bloque con estas piezas.
+            const piezasGrupo = {
+                casilla: idx => `<input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" autocomplete="off" class="estudio-casilla" id="in-${clave}-${idx}" oninput="${escribir}(${idx}, this)">`,
+                boton: (idx, i, html) => `<button type="button" class="alg-opcion" id="op-${clave}-${idx}-${i}" onclick="${seleccionar}(${idx}, ${i})">${html}</button>`
+            };
+
             const dibujar = () => {
                 const letras = ['A', 'B', 'C', 'D'];
                 const actividades = actividadesDeLista(est.lista);
                 const dibujadas = new Set();
                 let html = '<div class="alg-lista">';
                 let seccionPrevia = null;
+                let grupoPrevio = null;
                 est.lista.forEach((ej, idx) => {
                     const info = familia.secciones[ej.seccion];
                     if (ej.seccion !== seccionPrevia) {
@@ -13057,13 +13112,22 @@
                         }
                         return;
                     }
+                    if (ej.grupo) {
+                        if (ej.grupo !== grupoPrevio) {
+                            const delGrupo = est.lista.map((e, i) => ({ ej: e, idx: i })).filter(o => o.ej.grupo === ej.grupo);
+                            html += `<div class="alg-item" style="border-left-color: ${info.color};">${familia.dibujarGrupo(delGrupo, 'responder', piezasGrupo)}</div>`;
+                            grupoPrevio = ej.grupo;
+                        }
+                        return;
+                    }
+                    const vista = ej.opcionesHtml || (familia.htmlOpcion ? ej.opciones.map(o => familia.htmlOpcion(o, ej)) : null);
                     html += `
                         <div class="alg-item" style="border-left-color: ${info.color};">
                             <div class="alg-pregunta"><span class="alg-numero">${ej.numero}.</span><span>${ecEsc(ej.pregunta)}</span></div>
                             ${ej.escuchar ? botonEscuchar(ej.escuchar) : ''}
                             ${ej.figura ? `<div class="estudio-figura">${ej.figura}</div>` : ''}
-                            <div class="alg-opciones${familia.htmlOpcion ? ' estudio-ops-img' : ''}">
-                                ${ej.opciones.map((opcion, i) => `<button type="button" class="alg-opcion" id="op-${clave}-${idx}-${i}" onclick="${seleccionar}(${idx}, ${i})">${familia.htmlOpcion ? familia.htmlOpcion(opcion, ej) : (ej.tipo === 'vf' ? '' : letras[i] + ') ') + ecEsc(opcion)}</button>`).join('')}
+                            <div class="alg-opciones${vista ? ' estudio-ops-img' : ''}">
+                                ${ej.opciones.map((opcion, i) => `<button type="button" class="alg-opcion" id="op-${clave}-${idx}-${i}" onclick="${seleccionar}(${idx}, ${i})">${vista ? vista[i] : (ej.tipo === 'vf' ? '' : letras[i] + ') ') + ecEsc(opcion)}</button>`).join('')}
                             </div>
                         </div>`;
                 });
@@ -13081,10 +13145,23 @@
                     pintarCompletar();
                     return;
                 }
+                if (ej.tipo === 'casilla') {
+                    // Al retomar una guía se escribe el número guardado; al escribir, ya está.
+                    const el = document.getElementById(`in-${clave}-${idx}`);
+                    const valor = est.resp[idx] === undefined ? '' : est.resp[idx];
+                    if (el && el !== document.activeElement && el.value !== valor) el.value = valor;
+                    return;
+                }
                 ej.opciones.forEach((_, i) => {
                     const btn = document.getElementById(`op-${clave}-${idx}-${i}`);
                     if (btn) btn.classList.toggle('elegida', i === opcionIdx);
                 });
+            };
+
+            // Casilla de número: solo dígitos; lo escrito se guarda como una de sus opciones.
+            window[escribir] = function (idx, el) {
+                el.value = el.value.replace(/\D/g, '').slice(0, 2);
+                window[seleccionar](idx, el.value === '' ? -1 : est.lista[idx].opciones.indexOf(String(Number(el.value))));
             };
 
             window[tocarFicha] = function (a, i) {
@@ -13126,6 +13203,7 @@
             };
 
             const revelar = () => {
+                if (familia.antesDeRevisar) familia.antesDeRevisar(est.lista, est.resp);
                 let correctas = 0;
                 let html = '<table style="width: 100%; border-collapse: collapse; font-size: 13px;">';
                 html += '<tr style="background-color: #1a3c6e; color: white;">' +
@@ -14844,6 +14922,284 @@
                 frase('There\'s a doll.', 'Hay una muñeca.', `<div class="toys-escena">${svgJuguete('doll')}</div>`) +
                 frase('There are some cars.', 'Hay algunos autos.', `<div class="toys-escena">${svgJuguete('car')}${svgJuguete('car')}${svgJuguete('car')}</div>`);
         })();
+
+        // ============================================================
+        // ===== SUMAS Y RESTAS HASTA 20 (MATEMÁTICA 1° BÁSICO) =======
+        // ============================================================
+        // Práctica según la pauta de la evaluación sumativa Nº7 (34 puntos):
+        //   Ítem 1 (22): problemas de adición o sustracción. 2 preguntas de qué operación es y
+        //     5 problemas con su expresión: número, signo, número y resultado (4 puntos cada uno).
+        //   Ítem 2 (5): reconocer la tarjeta de suma que da 20.
+        //   Ítem 3 (5): unir sumas equivalentes completando el 10 (9 + 5 = 10 + 4).
+        //   Ítem 4 (2): reconocer la historia que corresponde a una suma (15 + 3).
+        // Ninguna pregunta revela otra: el ítem 1 y el ítem 4 usan objetos distintos, y los números
+        // de las historias del ítem 4 no salen en el ítem 1.
+        const ESTILO_P7 =
+            '.p7-emoji { font-size: 26px; margin-right: 4px; }' +
+            '.p7-expresion { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font: 700 24px/1.2 Arial, sans-serif; color: #1a3c6e; }' +
+            '.p7-rotulo { flex-basis: 100%; font-size: 14px; font-weight: 600; color: #555; }' +
+            '.p7-signos { display: inline-flex; gap: 6px; }' +
+            '.p7-signos .alg-opcion { min-width: 52px; padding: 4px 14px; font-size: 26px; text-align: center; }' +
+            '.p7-tarjeta { display: inline-block; min-width: 96px; padding: 14px 10px; font: 700 24px/1.2 Arial, sans-serif; color: #1a3c6e;' +
+            ' background: #fff8e1; border: 2px solid #c98a00; border-radius: 10px; }' +
+            '.p7-filas { display: grid; gap: 10px; max-width: 460px; }' +
+            '.p7-fila { display: grid; grid-template-columns: 1fr 34px 1.2fr; align-items: center; font: 700 22px/1.2 Arial, sans-serif; color: #1a3c6e; }' +
+            '.p7-fila .mapa-caja { font-size: 20px; }' +
+            '.p7-suma { text-align: right; }' +
+            '.p7-igual { text-align: center; }' +
+            '.p7-raya { display: inline-block; width: 54px; height: 26px; border-bottom: 2px solid #333; }' +
+            '.p7-signo-pdf { font-size: 18px; }' +
+            '[id^="modulo-p7"] .mapa-ficha { font-size: 20px; padding: 10px 16px; }';
+
+        document.head.insertAdjacentHTML('beforeend', `<style>${ESTILO_P7}</style>`);
+
+        // Ítem 1: problemas. Sin nombres propios: en primera persona o sin personaje.
+        const problemasSuma7 = [
+            { e: '🃏', t: 'Tengo {a} láminas y me regalaron {b} más. ¿Cuántas láminas tengo ahora?' },
+            { e: '🚌', t: 'En el bus iban {a} niños y subieron {b} más. ¿Cuántos niños van ahora en el bus?' },
+            { e: '🐦', t: 'En el árbol hay {a} pajaritos y llegan {b} más. ¿Cuántos pajaritos hay ahora?' },
+            { e: '🐚', t: 'En la mañana junté {a} conchitas y en la tarde junté {b} más. ¿Cuántas conchitas junté en total?' },
+            { e: '🔵', t: 'Tengo {a} bolitas azules y {b} bolitas rojas. ¿Cuántas bolitas tengo en total?' }
+        ];
+        const problemasResta7 = [
+            { e: '🍪', t: 'Tenía {a} galletas y me comí {b}. ¿Cuántas galletas me quedan?' },
+            { e: '🦆', t: 'En la laguna había {a} patos y se fueron volando {b}. ¿Cuántos patos quedaron?' },
+            { e: '🐟', t: 'En la pecera había {a} peces y regalé {b}. ¿Cuántos peces quedan?' },
+            { e: '🚗', t: 'Tenía {a} autitos y le presté {b} a mi primo. ¿Cuántos autitos me quedan?' },
+            { e: '🪑', t: 'En la sala había {a} sillas y sacaron {b}. ¿Cuántas sillas quedan?' }
+        ];
+
+        // Suma: resultado entre 11 y 20 (pasando el 10). Resta: desde un número entre 11 y 20.
+        function numerosProblema7(suma, usados) {
+            for (let intento = 0; intento < 100; intento++) {
+                const a = suma ? ecAzar(3, 15) : ecAzar(11, 20);
+                const b = ecAzar(2, 9);
+                const r = suma ? a + b : a - b;
+                if ((suma ? r >= 11 && r <= 20 : r >= 2) && !usados.has(`${a},${b}`)) {
+                    usados.add(`${a},${b}`);
+                    return { a, b, r };
+                }
+            }
+        }
+
+        // Un problema son 4 casillas (4 puntos): primer número, signo, segundo número y resultado.
+        function problemasExpresion7(cantidad, usados, plantillas) {
+            const nSuma = Math.ceil(cantidad / 2) - (cantidad % 2 === 0 ? 0 : ecAzar(0, 1));
+            const tipos = barajarArreglo(Array.from({ length: cantidad }, (_, i) => i < nSuma));
+            let lista = [];
+            tipos.forEach((suma, k) => {
+                const p = plantillas[suma ? 'suma' : 'resta'].shift();
+                const { a, b, r } = numerosProblema7(suma, usados);
+                const s = suma ? '+' : '−';
+                const comun = {
+                    seccion: 'item1', item: 1, grupo: `prob-${k}`, problema: k + 1, emoji: p.e,
+                    enunciado: p.t.replace('{a}', a).replace('{b}', b), explicacion: `${a} ${s} ${b} = ${r}`
+                };
+                const numeros = Array.from({ length: 100 }, (_, i) => String(i));
+                lista = lista.concat([
+                    Object.assign({}, comun, { tipo: 'casilla', parte: 'n1', pregunta: `Problema ${k + 1}: primer número`, opciones: numeros, respuestaCorrecta: String(a) }),
+                    Object.assign({}, comun, { tipo: 'alternativas', parte: 's', pregunta: `Problema ${k + 1}: signo`, opciones: ['+', '−'], respuestaCorrecta: s }),
+                    Object.assign({}, comun, { tipo: 'casilla', parte: 'n2', pregunta: `Problema ${k + 1}: segundo número`, opciones: numeros, respuestaCorrecta: String(b) }),
+                    Object.assign({}, comun, { tipo: 'casilla', parte: 'r', pregunta: `Problema ${k + 1}: resultado`, opciones: numeros, respuestaCorrecta: String(r) })
+                ]);
+            });
+            return lista;
+        }
+
+        function dibujarProblema7(items, modo, ctx) {
+            const ej = items[0].ej;
+            const parte = p => items.find(o => o.ej.parte === p);
+            const caja = p => (modo === 'pdf' ? '<span class="p7-raya"></span>' : ctx.casilla(parte(p).idx));
+            const s = parte('s');
+            const signo = modo === 'pdf' ? '<span class="p7-signo-pdf">( + o − )</span>'
+                : `<span class="p7-signos">${s.ej.opciones.map((op, i) => ctx.boton(s.idx, i, op)).join('')}</span>`;
+            return `<div class="alg-pregunta"><span><span class="p7-emoji">${ej.emoji}</span><strong>Problema ${ej.problema}:</strong> ${ecEsc(ej.enunciado)}</span></div>
+                <div class="p7-expresion"><span class="p7-rotulo">Expresión matemática:</span>${caja('n1')} ${signo} ${caja('n2')} <span>=</span> ${caja('r')}</div>`;
+        }
+
+        // ¿Qué operación es? (sin resolver), con historias que no salen en los problemas.
+        function preguntasOperacion7(cantidad, usados, plantillas) {
+            return Array.from({ length: cantidad }, () => {
+                const suma = Math.random() < 0.5;
+                const p = plantillas[suma ? 'suma' : 'resta'].shift();
+                const { a, b } = numerosProblema7(suma, usados);
+                return {
+                    tipo: 'alternativas', seccion: 'item1', item: 1,
+                    pregunta: `${p.t.replace('{a}', a).replace('{b}', b)} ¿Qué operación tienes que hacer?`,
+                    opciones: ['Suma (+)', 'Resta (−)'], respuestaCorrecta: suma ? 'Suma (+)' : 'Resta (−)',
+                    explicacion: suma ? `Se juntan o llegan más: es una suma. ${a} + ${b} = ${a + b}.` : `Se van, se comen o se regalan: es una resta. ${a} − ${b} = ${a - b}.`
+                };
+            });
+        }
+
+        // Plantillas sin repetir dentro de una guía.
+        const plantillasProblema7 = () => ({ suma: barajarArreglo(problemasSuma7), resta: barajarArreglo(problemasResta7) });
+
+        // En la suma, los números valen en cualquier orden: 9 + 8 o 8 + 9.
+        function ordenSumandos7(lista, resp) {
+            [...new Set(lista.filter(e => e.grupo).map(e => e.grupo))].forEach(g => {
+                const pos = p => lista.findIndex(e => e.grupo === g && e.parte === p);
+                const i1 = pos('n1'), i2 = pos('n2');
+                if (lista[pos('s')].respuestaCorrecta !== '+') return;
+                const a = lista[i1].respuestaCorrecta, b = lista[i2].respuestaCorrecta;
+                const alReves = resp[i1] === b || resp[i2] === a;
+                const enOrden = resp[i1] === a || resp[i2] === b;
+                if (a !== b && alReves && !enOrden) {
+                    lista[i1].respuestaCorrecta = b;
+                    lista[i2].respuestaCorrecta = a;
+                }
+            });
+        }
+
+        // Ítem 2: tarjetas. Una da 20 y las otras dos dan 15 a 19.
+        const pares20 = [[10, 10], [11, 9], [12, 8], [13, 7], [14, 6], [15, 5], [16, 4], [17, 3], [18, 2]];
+
+        function preguntasTarjetas7(cantidad) {
+            return barajarArreglo(pares20).slice(0, cantidad).map(par => {
+                const [a, b] = Math.random() < 0.5 ? par : [par[1], par[0]];
+                const malas = [];
+                while (malas.length < 2) {
+                    const d = ecAzar(1, 4);
+                    const x = Math.random() < 0.5 ? [a - d, b] : [a, b - d];
+                    if (x[0] >= 1 && x[1] >= 1 && !malas.some(m => m[0] === x[0] && m[1] === x[1])) malas.push(x);
+                }
+                const tarjetas = barajarArreglo([[a, b]].concat(malas)).map(([x, y]) => `${x} + ${y}`);
+                return {
+                    tipo: 'alternativas', seccion: 'item2', item: 2, pregunta: '¿Qué tarjeta da 20?',
+                    opciones: tarjetas, opcionesHtml: tarjetas.map(t => `<span class="p7-tarjeta">${t}</span>`), respuestaCorrecta: `${a} + ${b}`,
+                    explicacion: `${a} + ${b} = 20. ` + malas.map(([x, y]) => `${x} + ${y} = ${x + y}`).join('; ') + '.'
+                };
+            });
+        }
+
+        // Ítem 3: unir cada suma con la suma con 10 que da lo mismo. Resultados distintos (11 a 18).
+        function casillerosCompletar7(cantidad) {
+            const resultados = barajarArreglo([11, 12, 13, 14, 15, 16, 17, 18]);
+            const usados = resultados.slice(0, cantidad);
+            const nodos = usados.map(r => {
+                const a = algElegir([9, 8, 7].filter(x => r - x >= 11 - x && r - x <= 9));
+                const b = r - a;
+                return {
+                    nodo: 'c' + r, c: `10 + ${r - 10}`, d: `${a} + ${b}`,
+                    nota: `Al ${a} le faltan ${10 - a} para llegar a 10: se los pasa el ${b}, y quedan 10 + ${r - 10} = ${r}.`
+                };
+            });
+            const sobra = `10 + ${resultados[cantidad] - 10}`;
+            return barajarArreglo(casillerosEstudio('completar', nodos, {
+                titulo: 'Completar el 10', fijos: nodos.map(n => n.nodo), extras: [sobra], seccion: 'item3', item: 3
+            }));
+        }
+
+        function htmlCompletar7(lista, modo, opciones) {
+            const pedidas = lista.filter(ej => ej.tipo === 'mapa' && ej.actividad === 'completar');
+            return `<div class="p7-filas completar-bloque">${pedidas.map(ej =>
+                `<div class="p7-fila"><span class="p7-suma">${ej.pregunta.split(': ')[1]}</span><span class="p7-igual">=</span>` +
+                `${cajaCompletar(lista, 'completar', ej.nodo, ej.respuestaCorrecta, modo, opciones).replace(/<span class="mapa-num">\d+<\/span>/, '')}</div>`).join('')}</div>`;
+        }
+
+        // Ítem 4: la historia de la suma, una de resta con los mismos números y una que no es suma.
+        const historiasSuma7 = [
+            'Tengo {a} lápices y me regalaron {b} más. ¿Cuántos lápices tengo ahora?',
+            'En el estante hay {a} libros y puse {b} más. ¿Cuántos libros hay ahora?',
+            'Había {a} hormigas y llegaron {b} más. ¿Cuántas hormigas hay ahora?'
+        ];
+        const historiasResta7 = [
+            'Había {a} globos y se reventaron {b}. ¿Cuántos globos quedaron?',
+            'Tenía {a} caramelos y me comí {b}. ¿Cuántos caramelos me quedan?',
+            'En el árbol había {a} manzanas y se cayeron {b}. ¿Cuántas manzanas quedan?'
+        ];
+        const historiasOtra7 = [
+            'Hay {a} pasteles y {b} platos. ¿Cuántos platos faltan?',
+            'Hay {a} flores y {b} floreros. ¿Cuántos floreros faltan?',
+            'Hay {a} perros y {b} correas. ¿Cuántas correas faltan?'
+        ];
+
+        function preguntasHistoria7(cantidad, usados) {
+            const [suma, resta, otra] = [historiasSuma7, historiasResta7, historiasOtra7].map(barajarArreglo);
+            return Array.from({ length: cantidad }, (_, k) => {
+                let a, b;
+                do { a = ecAzar(10, 17); b = ecAzar(2, 5); } while (a + b > 20 || usados.has(`${a},${b}`));
+                usados.add(`${a},${b}`);
+                const llenar = t => t.replace('{a}', a).replace('{b}', b);
+                const correcta = llenar(suma[k % suma.length]);
+                return {
+                    tipo: 'alternativas', seccion: 'item4', item: 4, pregunta: `¿Qué historia corresponde a ${a} + ${b}?`,
+                    opciones: barajarArreglo([correcta, llenar(resta[k % resta.length]), llenar(otra[k % otra.length])]), respuestaCorrecta: correcta,
+                    explicacion: `${a} + ${b}: hay ${a} y llegan o se agregan ${b} más. En la de restar se quitan ${b}; en la otra se pregunta cuántos faltan.`
+                };
+            });
+        }
+
+        // Las guías comparten los generadores; "usados" evita repetir los mismos números.
+        function guiaP7({ operacion = 0, problemas = 0, tarjetas = 0, completar = 0, historias = 0 }) {
+            const usados = new Set();
+            const historiasLista = preguntasHistoria7(historias, usados); // primero: sus números no salen en el ítem 1
+            const plantillas = plantillasProblema7();
+            return preguntasOperacion7(operacion, usados, plantillas)
+                .concat(problemasExpresion7(problemas, usados, plantillas))
+                .concat(preguntasTarjetas7(tarjetas))
+                .concat(completar ? casillerosCompletar7(completar) : [])
+                .concat(historiasLista);
+        }
+
+        const familiaP7 = {
+            id: 'p7', grado: '1', contenedor: 'modulos-mat1', menu: 'menu-1basico-p7', prefijo: 'Sumas y restas hasta 20: ',
+            encabezado: 'Sumas y restas hasta 20 &mdash; Matemática &mdash; 1&deg; Básico',
+            puntos: 1, columnaNota: 'Para recordar', estiloImpresion: ESTILO_P7,
+            dibujarGrupo: dibujarProblema7, antesDeRevisar: ordenSumandos7,
+            secciones: {
+                item1: { titulo: 'Ítem 1: Problemas de sumas y restas', emoji: '🧮', color: '#2f6f4e',
+                    intro: 'Lee cada problema. Escribe los dos números, toca el signo <strong>+</strong> o <strong>−</strong> y escribe el resultado.' },
+                item2: { titulo: 'Ítem 2: Tarjetas que suman 20', emoji: '🃏', color: '#c98a00',
+                    intro: 'Toca la tarjeta que da 20.' },
+                item3: { titulo: 'Ítem 3: Completar el 10', emoji: '🔟', color: '#2d7d9a',
+                    intro: 'Une cada suma con la suma con 10 que da el mismo resultado.' },
+                item4: { titulo: 'Ítem 4: ¿Qué historia es?', emoji: '📖', color: '#6b4c9a',
+                    intro: 'Lee las historias y elige la que corresponde a la suma.' }
+            },
+            indicadores: {
+                1: 'Resuelven problemas reconociendo sus datos (números), identificando la operación de adición o sustracción y escribiendo la expresión matemática con su signo y resultado.',
+                2: 'Aplica estrategias de adición para reconocer las tarjetas de sumas que dan como resultado el número 20.',
+                3: 'Asocia sumas que mantienen un resultado equivalente, aplicando estrategias de adición, como completar el 10.',
+                4: 'Reconocen la situación o historia que se relaciona con una frase numérica de adición.'
+            },
+            actividades: {
+                completar: {
+                    titulo: '🔟 Completar el 10 corregido', html: htmlCompletar7, etiquetaFichas: 'Sumas con 10',
+                    instruccion: 'Toca una suma con 10 y después el espacio de la suma que da lo mismo. Para sacarla, toca el espacio.'
+                }
+            },
+            definiciones: {
+                p7Problemas: {
+                    titulo: 'Problemas de Sumas y Restas', emoji: '🧮', generar: () => guiaP7({ operacion: 2, problemas: 6 }),
+                    intro: 'Dos preguntas de qué operación hay que hacer y 6 problemas. En cada problema escribe la expresión matemática: los dos números, el signo (+ o −) y el resultado.',
+                    instruccionPdf: 'Escribe la expresión matemática de cada problema.'
+                },
+                p7Tarjetas: {
+                    titulo: 'Tarjetas que Suman 20', emoji: '🃏', generar: () => guiaP7({ tarjetas: 8 }),
+                    intro: 'En cada pregunta, solo una tarjeta da 20. Ayuda: completa el 10 (por ejemplo, 12 + 8 es 10 + 2 + 8).',
+                    instruccionPdf: 'Encierra la tarjeta que da 20.'
+                },
+                p7Completar: {
+                    titulo: 'Completar el 10', emoji: '🔟', generar: () => guiaP7({ completar: 6 }),
+                    intro: 'Une cada suma con la suma con 10 que da lo mismo. Ayuda: al 9 le falta 1 para llegar a 10, al 8 le faltan 2 y al 7 le faltan 3.',
+                    instruccionPdf: 'Une cada suma con la suma con 10 que da el mismo resultado.'
+                },
+                p7Historias: {
+                    titulo: '¿Qué Historia Es?', emoji: '📖', generar: () => guiaP7({ historias: 4 }),
+                    intro: 'Lee las tres historias y elige la que corresponde a la suma.',
+                    instruccionPdf: 'Marca la historia que corresponde a la suma.'
+                },
+                p7Prueba: {
+                    titulo: 'Prueba de Práctica', emoji: '📝', porItem: true,
+                    generar: () => guiaP7({ operacion: 2, problemas: 5, tarjetas: 5, completar: 5, historias: 2 }),
+                    intro: 'Una prueba de 34 puntos con los 4 ítems de la pauta: problemas de sumas y restas (22: dos preguntas de qué operación es y 5 problemas de 4 puntos), tarjetas que suman 20 (5), completar el 10 (5) y qué historia corresponde a una suma (2). Cada vez que presiones «Nuevos Ejercicios» salen otras preguntas.',
+                    instruccionPdf: 'Responde cada ítem. Cada número, signo o respuesta correcta vale 1 punto.'
+                }
+            }
+        };
+
+        const submodulosP7 = Object.keys(familiaP7.definiciones).map(clave => crearSubmoduloEstudio(familiaP7, clave));
 
         // ============================================================
         // ============ FRACCIONES (5° BÁSICO) ========================
@@ -16663,7 +17019,8 @@
             ...submodulosArauco,
             ...submodulosDino,
             ...submodulosOrto5,
-            ...submodulosToys
+            ...submodulosToys,
+            ...submodulosP7
         ];
 
         function guardarEstadoModulo5(m) {
